@@ -1,1 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Terafarm — Your AI World. All Connected.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080c14;
+    --surface: #0d1420;
+    --surface2: #111927;
+    --border: rgba(0,180,255,0.12);
+    --border2: rgba(0,180,255,0.07);
+    --cyan: #00c8ff;
+    --cyan-dim: rgba(0,200,255,0.18);
+    --cyan-glow: rgba(0,200,255,0.35);
+    --green: #00e676;
+    --gold: #ffb300;
+    --text: #e8f4ff;
+    --text-dim: rgba(200,220,255,0.55);
+    --text-muted: rgba(150,180,210,0.4);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --font: 'Exo 2', sans-serif;
+    --font-head: 'Rajdhani', sans-serif;
+  }
+
+  html, body {
+    width: 100%; height: 100svh;
+    overflow: hidden;
+    background: #020408;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font);
+  }
+
+  /* ── Phone shell ── */
+  .phone {
+    width: min(390px, 100vw);
+    height: min(844px, 100svh);
+    background: var(--bg);
+    border-radius: clamp(0px, 3vw, 44px);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 80px rgba(0,150,255,0.15), 0 0 200px rgba(0,80,180,0.1), inset 0 0 0 1px rgba(0,180,255,0.08);
+  }
+
+  /* ── Status bar ── */
+  .statusbar {
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 24px 4px;
+    font-size: 13px; font-weight: 600; color: var(--text);
+    letter-spacing: 0.02em;
+  }
+  .statusbar-icons { display: flex; align-items: center; gap: 6px; }
+  .statusbar-icons svg { width: 16px; height: 16px; fill: var(--text); }
+
+  /* ── Scrollable content ── */
+  .content {
+    flex: 1 1 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 14px 8px;
+    scrollbar-width: none;
+  }
+  .content::-webkit-scrollbar { display: none; }
+
+  /* ── Header ── */
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 8px 0 12px;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, #003a5c 0%, #005580 50%, #00a8cc 100%);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(0,200,255,0.3);
+    box-shadow: 0 0 12px rgba(0,180,255,0.25);
+    position: relative; overflow: hidden;
+  }
+  .logo-icon::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 40%, rgba(0,200,255,0.15));
+  }
+  .logo-svg { width: 22px; height: 22px; }
+  .logo-text h1 {
+    font-family: var(--font-head);
+    font-size: 19px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.06em;
+    line-height: 1;
+  }
+  .logo-text h1 span { color: var(--cyan); }
+  .logo-text p { font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em; margin-top: 2px; }
+  .avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 2px solid var(--cyan);
+    box-shadow: 0 0 10px var(--cyan-glow);
+    background: linear-gradient(135deg, #1a3a5c, #0d5080);
+    cursor: pointer; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .avatar svg { width: 20px; height: 20px; fill: rgba(150,200,255,0.7); }
+
+  /* ── Hero card ── */
+  .hero {
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: linear-gradient(135deg, #060e1a 0%, #0a1628 60%, #0d2040 100%);
+    border: 1px solid var(--border);
+    padding: 16px;
+    margin-bottom: 14px;
+    position: relative;
+    cursor: pointer;
+    min-height: 110px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,200,255,0.08);
+  }
+  .hero-bg {
+    position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
+    background: linear-gradient(90deg, #060e1a 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 50%, rgba(0,80,140,0.4) 0%, transparent 70%);
+    overflow: hidden;
+  }
+  .hero-city {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 100%, rgba(0,60,120,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 60%, rgba(0,100,180,0.3) 0%, transparent 40%);
+  }
+  /* Stylized city silhouette */
+  .hero-city::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+    background:
+      linear-gradient(to top, rgba(0,20,50,0.9) 0%, transparent 100%);
+    clip-path: polygon(0 100%, 0 70%, 5% 70%, 5% 50%, 10% 50%, 10% 65%, 15% 65%, 15% 40%, 20% 40%, 20% 55%, 25% 55%, 25% 35%, 28% 35%, 28% 45%, 32% 45%, 32% 30%, 35% 30%, 35% 50%, 40% 50%, 40% 20%, 43% 20%, 43% 45%, 48% 45%, 48% 55%, 55% 55%, 55% 35%, 58% 35%, 58% 25%, 62% 25%, 62% 45%, 68% 45%, 68% 60%, 72% 60%, 72% 40%, 78% 40%, 78% 55%, 85% 55%, 85% 65%, 90% 65%, 90% 50%, 95% 50%, 95% 70%, 100% 70%, 100% 100%);
+  }
+  .hero-arrow {
+    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(0,200,255,0.12); border: 1px solid rgba(0,200,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-arrow svg { width: 12px; height: 12px; stroke: var(--cyan); fill: none; }
+  .hero-label {
+    font-size: 9px; font-weight: 600; color: var(--text-dim);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .hero-status {
+    font-family: var(--font-head); font-size: 28px; font-weight: 700;
+    color: var(--cyan); letter-spacing: 0.06em; line-height: 1;
+    text-shadow: 0 0 20px rgba(0,200,255,0.5);
+    margin-bottom: 8px;
+  }
+  .hero-active {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--text); margin-bottom: 6px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .hero-health {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--text);
+  }
+  .hero-health .pct { font-family: var(--font-head); font-size: 16px; font-weight: 700; color: var(--text); }
+  .hero-health .lbl { font-size: 9px; color: var(--text-dim); letter-spacing: 0.1em; }
+  .bolt svg { width: 14px; height: 14px; }
+
+  /* ── Section title ── */
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin: 2px 0 10px;
+  }
+  .section-head h2 {
+    font-family: var(--font-head); font-size: 13px; font-weight: 600;
+    color: var(--text); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .section-head .edit {
+    font-size: 12px; color: var(--cyan); font-weight: 500; cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+  .section-head .edit:hover { text-shadow: 0 0 8px var(--cyan); }
+
+  /* ── AI grid ── */
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .ai-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 10px 6px 9px;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 5px; cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .ai-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, var(--card-glow, rgba(0,200,255,0.06)) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ai-card:active { transform: scale(0.96); }
+  .ai-card:hover { border-color: rgba(0,200,255,0.22); box-shadow: 0 0 14px var(--cyan-dim); }
+  .card-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .card-icon svg { width: 22px; height: 22px; }
+  .card-name {
+    font-size: 10px; font-weight: 600; color: var(--text);
+    text-align: center; line-height: 1.2; letter-spacing: 0.01em;
+  }
+  .card-sub {
+    font-size: 8px; color: var(--text-dim); text-align: center; line-height: 1.2;
+  }
+  .card-status {
+    display: flex; align-items: center; gap: 3px;
+    font-size: 8px; color: var(--green); font-weight: 500;
+  }
+  .card-status .dot { width: 4px; height: 4px; }
+
+  /* Icon themes */
+  .icon-purple { background: rgba(120,60,200,0.18); border: 1px solid rgba(150,80,255,0.3); }
+  .icon-purple svg { stroke: #a06cff; fill: none; }
+  .icon-blue { background: rgba(30,80,200,0.18); border: 1px solid rgba(60,120,255,0.3); }
+  .icon-blue svg { stroke: #5090ff; fill: none; }
+  .icon-teal { background: rgba(0,120,130,0.18); border: 1px solid rgba(0,180,190,0.3); }
+  .icon-teal svg { stroke: #00bcd4; fill: none; }
+  .icon-orange { background: rgba(180,80,0,0.18); border: 1px solid rgba(255,120,30,0.3); }
+  .icon-orange svg { stroke: #ff8c40; fill: none; }
+  .icon-cyan { background: rgba(0,140,180,0.18); border: 1px solid rgba(0,200,230,0.3); }
+  .icon-cyan svg { stroke: var(--cyan); fill: none; }
+  .icon-green2 { background: rgba(0,130,80,0.18); border: 1px solid rgba(0,200,120,0.3); }
+  .icon-green2 svg { stroke: #00e5a0; fill: none; }
+  .icon-red { background: rgba(180,30,60,0.18); border: 1px solid rgba(255,60,90,0.3); }
+  .icon-red svg { stroke: #ff5070; fill: none; }
+  .icon-indigo { background: rgba(60,60,200,0.18); border: 1px solid rgba(100,100,255,0.3); }
+  .icon-indigo svg { stroke: #8080ff; fill: none; }
+  .icon-slate { background: rgba(50,80,120,0.18); border: 1px solid rgba(80,130,200,0.3); }
+  .icon-slate svg { stroke: #6090c0; fill: none; }
+  .icon-gold { background: rgba(160,100,0,0.18); border: 1px solid rgba(255,180,30,0.3); }
+  .icon-gold svg { stroke: #ffb300; fill: none; }
+  .icon-violet { background: rgba(100,30,160,0.18); border: 1px solid rgba(180,60,255,0.3); }
+  .icon-violet svg { stroke: #c060ff; fill: none; }
+  .icon-pink { background: rgba(160,20,120,0.18); border: 1px solid rgba(255,60,200,0.3); }
+  .icon-pink svg { stroke: #ff50d0; fill: none; }
+
+  /* ── Wide cards row ── */
+  .wide-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 10px;
+  }
+  .wide-card {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+  .wide-card:active { transform: scale(0.97); }
+  .wide-card:hover { border-color: rgba(0,200,255,0.22); box-shadow: 0 0 14px var(--cyan-dim); }
+  .wide-icon {
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .wide-icon svg { width: 22px; height: 22px; }
+  .wide-info { flex: 1; min-width: 0; }
+  .wide-name { font-size: 12px; font-weight: 600; color: var(--text); letter-spacing: 0.02em; }
+  .wide-sub { font-size: 9px; color: var(--text-dim); margin-top: 1px; }
+  .wide-value { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--text); margin-top: 4px; }
+  .wide-value-lbl { font-size: 8px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .wide-badge {
+    font-family: var(--font-head); font-size: 13px; font-weight: 700;
+    color: var(--green); margin-top: 4px;
+  }
+  .wide-badge-lbl { font-size: 9px; color: var(--text-dim); }
+
+  /* ── Command panel ── */
+  .command {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px 10px;
+    margin-bottom: 4px;
+  }
+  .command-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .command-head h3 {
+    font-family: var(--font-head); font-size: 11px; font-weight: 600;
+    color: var(--text); letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .command-head p { font-size: 9px; color: var(--text-dim); }
+  .command-head svg { width: 14px; height: 14px; stroke: var(--text-dim); fill: none; cursor: pointer; }
+  .command-actions {
+    display: flex; justify-content: space-between;
+  }
+  .cmd-btn {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    cursor: pointer; flex: 1;
+    transition: opacity 0.2s;
+  }
+  .cmd-btn:active { opacity: 0.7; }
+  .cmd-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(0,150,200,0.08);
+    border: 1px solid rgba(0,180,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .cmd-btn:hover .cmd-icon {
+    border-color: rgba(0,200,255,0.3);
+    box-shadow: 0 0 10px var(--cyan-dim);
+  }
+  .cmd-icon svg { width: 18px; height: 18px; stroke: rgba(150,210,255,0.8); fill: none; }
+  .cmd-label { font-size: 9px; color: var(--text-dim); text-align: center; letter-spacing: 0.01em; }
+
+  /* ── Bottom nav ── */
+  .bottom-nav {
+    flex-shrink: 0;
+    background: rgba(8,14,22,0.95);
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 8px 0 20px;
+    backdrop-filter: blur(20px);
+  }
+  .nav-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; gap: 3px; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .nav-item:active { opacity: 0.6; }
+  .nav-item svg { width: 20px; height: 20px; stroke: rgba(150,180,210,0.5); fill: none; }
+  .nav-item.active svg { stroke: var(--cyan); }
+  .nav-item span { font-size: 9px; color: rgba(150,180,210,0.5); letter-spacing: 0.04em; }
+  .nav-item.active span { color: var(--cyan); }
+  .nav-center {
+    flex: 1; display: flex; justify-content: center; align-items: center;
+    cursor: pointer;
+  }
+  .nav-logo-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: radial-gradient(circle, #0050a0 0%, #002060 60%, #001040 100%);
+    border: 2px solid rgba(0,180,255,0.4);
+    box-shadow: 0 0 20px rgba(0,150,255,0.4), 0 0 40px rgba(0,100,200,0.2), inset 0 0 10px rgba(0,200,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    margin-top: -18px;
+    animation: pulse-nav 3s ease-in-out infinite;
+  }
+  @keyframes pulse-nav {
+    0%, 100% { box-shadow: 0 0 20px rgba(0,150,255,0.4), 0 0 40px rgba(0,100,200,0.2); }
+    50% { box-shadow: 0 0 30px rgba(0,180,255,0.6), 0 0 60px rgba(0,120,220,0.35); }
+  }
+  .nav-logo-btn svg { width: 26px; height: 26px; }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(2,4,10,0.92);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    width: min(390px, 100vw);
+    background: linear-gradient(170deg, #0a1828 0%, #070e1c 100%);
+    border: 1px solid rgba(0,180,255,0.2);
+    border-bottom: none;
+    border-radius: 28px 28px 0 0;
+    padding: 28px 24px 36px;
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    box-shadow: 0 -20px 60px rgba(0,80,180,0.25);
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-handle {
+    width: 40px; height: 4px; border-radius: 2px;
+    background: rgba(0,200,255,0.2); margin: 0 auto 24px;
+  }
+  .modal h2 {
+    font-family: var(--font-head); font-size: 22px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.04em; margin-bottom: 6px;
+  }
+  .modal p.sub {
+    font-size: 12px; color: var(--text-dim); margin-bottom: 22px; line-height: 1.5;
+  }
+  .field {
+    background: rgba(0,150,200,0.06);
+    border: 1px solid rgba(0,180,255,0.14);
+    border-radius: 10px; padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .field label { font-size: 9px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
+  .field input {
+    background: none; border: none; outline: none;
+    font-family: var(--font); font-size: 14px; color: var(--text);
+    caret-color: var(--cyan);
+  }
+  .field input::placeholder { color: rgba(150,180,210,0.3); }
+  .modal-btn {
+    width: 100%; padding: 15px;
+    background: linear-gradient(135deg, #0060b0 0%, #0090d0 100%);
+    border: none; border-radius: 12px; margin-top: 6px;
+    font-family: var(--font-head); font-size: 16px; font-weight: 700;
+    color: #fff; letter-spacing: 0.08em; cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,150,220,0.4);
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .modal-btn:hover { box-shadow: 0 0 30px rgba(0,180,255,0.55); }
+  .modal-btn:active { transform: scale(0.98); }
+  .modal-note { font-size: 10px; color: var(--text-muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+  .modal-close {
+    position: absolute; top: 18px; right: 18px;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,150,200,0.1); border: 1px solid rgba(0,180,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  .modal-close svg { width: 14px; height: 14px; stroke: var(--text-dim); fill: none; }
+  .modal { position: relative; }
+
+  /* Subtle scan line texture */
+  .phone::after {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none; z-index: 100;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  }
+</style>
+</head>
+<body>
+
+<div class="phone">
+  <!-- Status bar -->
+  <div class="statusbar">
+    <span>9:41</span>
+    <div class="statusbar-icons">
+      <svg viewBox="0 0 24 24"><rect x="2" y="8" width="3" height="13" rx="1"/><rect x="7" y="5" width="3" height="16" rx="1"/><rect x="12" y="2" width="3" height="19" rx="1"/><rect x="17" y="0" width="3" height="21" rx="1" opacity=".4"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M1 7c5.5-5.5 14.5-5.5 20 0M5 11c3.5-3.5 9.5-3.5 13 0M9 15c1.5-1.5 4.5-1.5 6 0M12 19h.01" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="11" rx="2" stroke="white" stroke-width="2" fill="none"/><path d="M22 11v3" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="4" y="9" width="13" height="7" rx="1" fill="white"/></svg>
+    </div>
+  </div>
+
+  <!-- Scrollable content -->
+  <div class="content">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-wrap" onclick="openModal()">
+        <div class="logo-icon">
+          <svg class="logo-svg" viewBox="0 0 32 32" fill="none">
+            <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#00c8ff" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M16 4 L16 28" stroke="#00c8ff" stroke-width="1" opacity="0.4"/>
+            <path d="M4 10 L28 22" stroke="#00c8ff" stroke-width="1" opacity="0.3"/>
+            <path d="M28 10 L4 22" stroke="#00c8ff" stroke-width="1" opacity="0.3"/>
+            <circle cx="16" cy="16" r="4" fill="#00a8e8" opacity="0.8"/>
+            <circle cx="16" cy="16" r="2" fill="#00d8ff"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <h1>TERA<span>FARM</span></h1>
+          <p>Your AI World. All Connected.</p>
+        </div>
+      </div>
+      <div class="avatar" onclick="openModal()">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="rgba(150,200,255,0.6)"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" fill="rgba(100,160,220,0.5)"/></svg>
+      </div>
+    </div>
+
+    <!-- Hero card -->
+    <div class="hero" onclick="openModal()">
+      <div class="hero-bg">
+        <div class="hero-city"></div>
+      </div>
+      <div class="hero-arrow">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="hero-label">AI Ecosystem</div>
+      <div class="hero-status">ONLINE</div>
+      <div class="hero-active">
+        <div class="dot dot-green"></div>
+        All Systems Active
+      </div>
+      <div class="hero-health">
+        <span class="bolt">
+          <svg viewBox="0 0 24 24" fill="#ffb300"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z"/></svg>
+        </span>
+        <div>
+          <div class="pct">97%</div>
+          <div class="lbl">SYSTEM HEALTH</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Systems grid -->
+    <div class="section-head">
+      <h2>My AI Systems</h2>
+      <span class="edit" onclick="openModal()">Edit</span>
+    </div>
+
+    <div class="ai-grid">
+      <!-- Row 1 -->
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(160,108,255,0.1)">
+        <div class="card-icon icon-purple">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26C17.81 13.47 19 11.38 19 9c0-3.87-3.13-7-7-7z"/><path d="M9 21h6M10 18v3M14 18v3"/></svg>
+        </div>
+        <div class="card-name">Assistant AI</div>
+        <div class="card-sub">Your main assistant</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(80,144,255,0.1)">
+        <div class="card-icon icon-blue">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><rect x="7" y="14" width="2" height="2" rx=".5" fill="#5090ff"/><rect x="11" y="14" width="2" height="2" rx=".5" fill="#5090ff"/><rect x="15" y="14" width="2" height="2" rx=".5" fill="#5090ff"/></svg>
+        </div>
+        <div class="card-name">Schedule AI</div>
+        <div class="card-sub">Calendar & tasks</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(0,188,212,0.1)">
+        <div class="card-icon icon-teal">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+        </div>
+        <div class="card-name">Home AI</div>
+        <div class="card-sub">Smart home control</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(255,140,64,0.1)">
+        <div class="card-icon icon-orange">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="1" y="8" width="22" height="12" rx="3"/><path d="M5 8V6a2 2 0 012-2h10a2 2 0 012 2v2"/><circle cx="7" cy="16" r="2"/><circle cx="17" cy="16" r="2"/></svg>
+        </div>
+        <div class="card-name">Car AI</div>
+        <div class="card-sub">Drive & navigation</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(0,200,255,0.1)">
+        <div class="card-icon icon-cyan">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="6" y="2" width="12" height="14" rx="3"/><circle cx="12" cy="9" r="2.5"/><path d="M9 16v1a3 3 0 006 0v-1"/><path d="M4 20h16M9 22h6"/></svg>
+        </div>
+        <div class="card-name">Robot AI</div>
+        <div class="card-sub">Your robot partner</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(0,229,160,0.1)">
+        <div class="card-icon icon-green2">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/><path d="M9 3.6C9 3.6 7 6 7 9s2 5.4 2 5.4"/><path d="M15 3.6C15 3.6 17 6 17 9s-2 5.4-2 5.4"/><path d="M3 12h3M18 12h3"/></svg>
+        </div>
+        <div class="card-name">Finance AI</div>
+        <div class="card-sub">Money & investments</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(255,80,112,0.1)">
+        <div class="card-icon icon-red">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke-width="1.5"/></svg>
+        </div>
+        <div class="card-name">Health AI</div>
+        <div class="card-sub">Health & wellness</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(128,128,255,0.1)">
+        <div class="card-icon icon-indigo">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="#8080ff"/><circle cx="12" cy="11" r="1" fill="#8080ff"/><circle cx="15" cy="11" r="1" fill="#8080ff"/></svg>
+        </div>
+        <div class="card-name">Communication AI</div>
+        <div class="card-sub">Calls & messages</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(96,144,192,0.1)">
+        <div class="card-icon icon-slate">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2M12 12v4M10 14h4"/></svg>
+        </div>
+        <div class="card-name">Work AI</div>
+        <div class="card-sub">Work & documents</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(255,179,0,0.1)">
+        <div class="card-icon icon-gold">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="9" cy="21" r="1" fill="#ffb300"/><circle cx="20" cy="21" r="1" fill="#ffb300"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67l1.38-7.72H6"/></svg>
+        </div>
+        <div class="card-name">Shopping AI</div>
+        <div class="card-sub">Orders & delivery</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(192,96,255,0.1)">
+        <div class="card-icon icon-violet">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </div>
+        <div class="card-name">Travel AI</div>
+        <div class="card-sub">Trips & booking</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+
+      <div class="ai-card" onclick="openModal()" style="--card-glow: rgba(255,80,208,0.1)">
+        <div class="card-icon icon-pink">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M6 10h.01M6 14h.01M10 8v8M16 10l-2 2 2 2M18 10l2 2-2 2"/></svg>
+        </div>
+        <div class="card-name">Entertainment AI</div>
+        <div class="card-sub">Music, movies, games</div>
+        <div class="card-status"><div class="dot dot-green"></div>Active</div>
+      </div>
+    </div>
+
+    <!-- Cloud & Security -->
+    <div class="wide-grid">
+      <div class="wide-card" onclick="openModal()">
+        <div class="wide-icon icon-blue">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#5090ff" fill="none"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
+        </div>
+        <div class="wide-info">
+          <div class="wide-name">Cloud AI</div>
+          <div class="wide-sub">Compute & storage</div>
+          <div class="wide-value">24.3 TFLOPS</div>
+          <div class="wide-value-lbl">Usage today</div>
+        </div>
+      </div>
+      <div class="wide-card" onclick="openModal()">
+        <div class="wide-icon icon-violet">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#c060ff" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4M12 16h.01" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="wide-info">
+          <div class="wide-name">Security AI</div>
+          <div class="wide-sub">Protection & privacy</div>
+          <div class="wide-badge">SAFE</div>
+          <div class="wide-badge-lbl">All good</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Command panel -->
+    <div class="command">
+      <div class="command-head">
+        <div>
+          <h3>Terafarm Command</h3>
+          <p>Quick actions</p>
+        </div>
+        <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+      </div>
+      <div class="command-actions">
+        <div class="cmd-btn" onclick="openModal()">
+          <div class="cmd-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+          </div>
+          <span class="cmd-label">New Task</span>
+        </div>
+        <div class="cmd-btn" onclick="openModal()">
+          <div class="cmd-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="rgba(150,210,255,0.8)"/><circle cx="12" cy="11" r="1" fill="rgba(150,210,255,0.8)"/><circle cx="15" cy="11" r="1" fill="rgba(150,210,255,0.8)"/></svg>
+          </div>
+          <span class="cmd-label">Message All</span>
+        </div>
+        <div class="cmd-btn" onclick="openModal()">
+          <div class="cmd-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+          </div>
+          <span class="cmd-label">AI Studio</span>
+        </div>
+        <div class="cmd-btn" onclick="openModal()">
+          <div class="cmd-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+          </div>
+          <span class="cmd-label">Automation</span>
+        </div>
+        <div class="cmd-btn" onclick="openModal()">
+          <div class="cmd-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <span class="cmd-label">Settings</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+  <!-- Bottom nav -->
+  <div class="bottom-nav">
+    <div class="nav-item active" onclick="openModal()">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="nav-item" onclick="openModal()">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span>Systems</span>
+    </div>
+    <div class="nav-center" onclick="openModal()">
+      <div class="nav-logo-btn">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 4 L28 10 L28 22 L16 28 L4 22 L4 10 Z" stroke="#00c8ff" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <path d="M16 4 L16 28" stroke="#00c8ff" stroke-width="1" opacity="0.5"/>
+          <path d="M4 10 L28 22" stroke="#00c8ff" stroke-width="1" opacity="0.4"/>
+          <path d="M28 10 L4 22" stroke="#00c8ff" stroke-width="1" opacity="0.4"/>
+          <circle cx="16" cy="16" r="4" fill="#00a8e8" opacity="0.9"/>
+          <circle cx="16" cy="16" r="2" fill="white"/>
+        </svg>
+      </div>
+    </div>
+    <div class="nav-item" onclick="openModal()">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Activity</span>
+    </div>
+    <div class="nav-item" onclick="openModal()">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span>Profile</span>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <div class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg>
+    </div>
+    <h2>Create your Terafarm account</h2>
+    <p class="sub">Connect your AI world in one interface.</p>
+    <div class="field">
+      <label>Name</label>
+      <input type="text" placeholder="Your full name" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" placeholder="your@email.com" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" placeholder="Create a password">
+    </div>
+    <button class="modal-btn" onclick="closeModal()">Create Account</button>
+    <p class="modal-note">Early access platform. More systems coming soon.</p>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    document.getElementById('modal').classList.add('open');
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
 
