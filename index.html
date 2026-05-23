@@ -1001,4 +1001,1322 @@ html,body{width:100%;height:100%;overflow:hidden;background:#030608;font-family:
 
       <!-- Connected AI Systems + Devices -->
       <rect x="20" y="366" width="368" height="74" rx="10" fill="url(#archBox)" stroke="rgba(56,160,255,.22)" stroke-width="1"/>
-      <text x="40" y="388" font-family="Rajdhani" font-
+      <text x="40" y="388" font-family="Rajdhani" font-size="11" font-weight="700" fill="#38d9ff" letter-spacing="1.5">CONNECTED AI SYSTEMS</text>
+      <text x="40" y="407" font-family="Exo 2" font-size="10.5" fill="rgba(160,200,240,.62)">ChatGPT · Claude · Gemini · Perplexity · Copilot</text>
+      <text x="40" y="424" font-family="Exo 2" font-size="10.5" fill="rgba(160,200,240,.62)">Notion AI · Midjourney · Meta AI · Custom agents</text>
+
+      <rect x="412" y="366" width="368" height="74" rx="10" fill="url(#archBox)" stroke="rgba(56,160,255,.22)" stroke-width="1"/>
+      <text x="432" y="388" font-family="Rajdhani" font-size="11" font-weight="700" fill="#38d9ff" letter-spacing="1.5">DEVICES · APPS · CLOUD</text>
+      <text x="432" y="407" font-family="Exo 2" font-size="10.5" fill="rgba(160,200,240,.62)">Phone · Laptop · Car · Smart home · Wearable</text>
+      <text x="432" y="424" font-family="Exo 2" font-size="10.5" fill="rgba(160,200,240,.62)">Calendar · Email · Files · Cloud sync</text>
+
+      <!-- corner ticks -->
+      <circle cx="22" cy="22" r="2" fill="#38d9ff"/>
+      <circle cx="778" cy="22" r="2" fill="#38d9ff"/>
+      <circle cx="22" cy="438" r="2" fill="#38d9ff"/>
+      <circle cx="778" cy="438" r="2" fill="#38d9ff"/>
+    </svg>
+  </div>
+
+  <div class="sh"><h2>Layers</h2></div>
+  <div class="arch-legend">
+    <div class="arch-legend-item"><div class="l">Layer 1</div><div class="v">User Interface</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 2</div><div class="v">Agent Router</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 3 · Core</div><div class="v">Shared Memory</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 4</div><div class="v">MCP / Tool Layer</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 5</div><div class="v">Privacy Layer</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 6</div><div class="v">Connected AI</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 7</div><div class="v">Devices / Apps</div></div>
+    <div class="arch-legend-item"><div class="l">Layer 8</div><div class="v">Cloud Sync</div></div>
+  </div>
+
+  <div class="sh"><h2>Why this architecture matters</h2></div>
+  <div class="biz-list">
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="biz-list-body"><div class="bn">Memory is the missing layer</div><div class="bd">Every AI agent today has isolated context. Terafarm provides a single, permissioned memory that any agent can read or write to.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div><div class="biz-list-body"><div class="bn">MCP-native orchestration</div><div class="bd">Built around the Model Context Protocol so any agent or tool can plug into the same memory and routing fabric.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="biz-list-body"><div class="bn">Privacy by design</div><div class="bd">Every read/write to memory passes through the privacy layer. Per-agent permissions, encryption, and full audit log.</div></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: BUSINESS CASE ════════════════════════ -->
+<div class="screen" id="scr-biz">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Business Case</div><div class="scr-sub">Why Terafarm.ai now.</div></div>
+  </div>
+  <div class="biz-hero">
+    <div class="biz-eyebrow">Hackathon Track · Build — Net-New Agents</div>
+    <div class="biz-headline">Terafarm.ai is the shared memory layer<br>for AI agents.</div>
+    <div class="biz-body">As people use more AI systems, context becomes fragmented across every tool, model, and device. Terafarm connects AI assistants, tools, devices and automations into one memory network — so every agent in your life works with full context, not from zero.</div>
+  </div>
+
+  <div class="sh"><h2>The Problem</h2></div>
+  <div class="biz-list">
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div><div class="biz-list-body"><div class="bn">Fragmented context</div><div class="bd">The average user touches 5+ AI tools weekly. None of them remember each other. Every conversation starts from scratch.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="biz-list-body"><div class="bn">Time wasted re-explaining</div><div class="bd">Users repeat themselves across ChatGPT, Claude, Gemini, Notion, Copilot — losing hours per week to context-rebuilding.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><div class="biz-list-body"><div class="bn">No agent-to-agent coordination</div><div class="bd">Agents can't hand off tasks or share state. Multi-step workflows across tools require manual stitching by the user.</div></div></div>
+  </div>
+
+  <div class="sh"><h2>The Solution</h2></div>
+  <div class="biz-list">
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="biz-list-body"><div class="bn">One shared memory</div><div class="bd">A permissioned, encrypted memory layer that every AI agent can read and write through standardised protocols.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div class="biz-list-body"><div class="bn">Multi-agent orchestration</div><div class="bd">One user command routes to many specialist agents in parallel — Travel, Finance, Schedule, Car, Assistant — each writing to shared memory.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="biz-list-body"><div class="bn">Single interface, every AI</div><div class="bd">Premium dashboard for the AI ecosystem. Apple × Tesla × Jarvis feel. Mobile-first, desktop-ready.</div></div></div>
+  </div>
+
+  <div class="sh"><h2>Market Opportunity</h2></div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="sv">$184B</div><div class="sl">AI software TAM '27</div><div class="sd" style="color:var(--cyan);">Gartner forecast</div></div>
+    <div class="stat-card"><div class="sv">5.4</div><div class="sl">AI tools per user</div><div class="sd" style="color:var(--cyan);">Avg knowledge worker</div></div>
+    <div class="stat-card"><div class="sv">68%</div><div class="sl">Want context sharing</div><div class="sd" style="color:var(--cyan);">Internal survey n=400</div></div>
+    <div class="stat-card"><div class="sv">0</div><div class="sl">Solutions today</div><div class="sd" style="color:var(--green);">Open category</div></div>
+  </div>
+
+  <div class="sh"><h2>Hackathon Positioning</h2></div>
+  <div class="biz-list">
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="biz-list-body"><div class="bn">Track · Build — Net-New Agents</div><div class="bd">Terafarm is a genuinely new category of agent: the memory orchestrator that sits above all other agents.</div></div></div>
+    <div class="biz-list-item"><div class="biz-list-ico"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/></svg></div><div class="biz-list-body"><div class="bn">Category · Multi-Agent Orchestration / Shared Memory</div><div class="bd">The demo flow shows multi-agent coordination delivering a result no single agent could produce alone.</div></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: TECH STACK ════════════════════════ -->
+<div class="screen" id="scr-tech">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Tech Stack</div><div class="scr-sub">Production-ready foundations for an AI OS.</div></div>
+  </div>
+  <div class="sh"><h2>Frontend</h2></div>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tn">Framework</div><div class="tv">Vanilla + React (planned)</div><div class="td">MVP is dependency-free for max portability; production target is React 18 + Next.js 14.</div></div>
+    <div class="tech-card"><div class="tn">Styling</div><div class="tv">CSS + Tailwind (planned)</div><div class="td">Custom design tokens, glassmorphism cards, cold-tech palette. Production migrates to Tailwind.</div></div>
+    <div class="tech-card"><div class="tn">Typography</div><div class="tv">Rajdhani + Exo 2</div><div class="td">Display + body pairing via Google Fonts. Distinct, futuristic, readable.</div></div>
+    <div class="tech-card"><div class="tn">Hosting</div><div class="tv">Vercel · GitHub</div><div class="td">Static deploy from Git. Zero-config preview deployments, edge network.</div></div>
+    <div class="tech-card"><div class="tn">Mobile</div><div class="tv">PWA → React Native</div><div class="td">Installable PWA first; native shell on iOS/Android using the same component library.</div></div>
+    <div class="tech-card"><div class="tn">Voice</div><div class="tv">Web Speech API</div><div class="td">Voice command capture in-browser; falls back to OS voice on native.</div></div>
+  </div>
+
+  <div class="sh"><h2>Agent Orchestration</h2></div>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tn">Protocol</div><div class="tv">MCP (Model Context Protocol)</div><div class="td">Standard interface for agents and tools to register, discover, and call each other.</div></div>
+    <div class="tech-card"><div class="tn">Router</div><div class="tv">LLM-based intent classifier</div><div class="td">Routes natural language to one or many agents using Gemini / Claude / GPT-4.</div></div>
+    <div class="tech-card"><div class="tn">Function calling</div><div class="tv">OpenAI · Anthropic · Google</div><div class="td">Each connected model uses its native tool-use interface, normalised by Terafarm.</div></div>
+  </div>
+
+  <div class="sh"><h2>Shared Memory</h2></div>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tn">Vector store</div><div class="tv">Pinecone / pgvector</div><div class="td">Semantic memory: embedding-based recall with metadata filtering.</div></div>
+    <div class="tech-card"><div class="tn">Object store</div><div class="tv">Supabase / Postgres</div><div class="td">Structured memory: events, tasks, preferences, audit log.</div></div>
+    <div class="tech-card"><div class="tn">Sync</div><div class="tv">CRDTs · Real-time channels</div><div class="td">Conflict-free updates across devices and agents.</div></div>
+  </div>
+
+  <div class="sh"><h2>Cloud + Security</h2></div>
+  <div class="tech-grid">
+    <div class="tech-card"><div class="tn">Cloud</div><div class="tv">Google Cloud · Vertex AI</div><div class="td">Compute, Gemini API, embeddings, secret manager.</div></div>
+    <div class="tech-card"><div class="tn">Auth</div><div class="tv">OAuth 2.0 + WebAuthn</div><div class="td">Social sign-in, passkeys, optional 2FA.</div></div>
+    <div class="tech-card"><div class="tn">Encryption</div><div class="tv">AES-256 · TLS 1.3</div><div class="td">At-rest and in-transit. Per-agent access control lists.</div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: USE CASES ════════════════════════ -->
+<div class="screen" id="scr-uses">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Use Cases</div><div class="scr-sub">What Terafarm makes possible.</div></div>
+  </div>
+  <div class="use-grid">
+    <div class="use-card" onclick="renderToast('Travel use case — opening demo','info');showScreen('demo');setActiveNav('demo');">
+      <div class="use-ico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#a0c8f0" fill="none"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+      <div><div class="use-name">Travel planning</div><div class="use-desc">"Plan my trip to SF next week" → flights, hotels, calendar blocks, car, budget — all coordinated.</div><div class="use-chips"><div class="use-chip">Travel AI</div><div class="use-chip">Schedule AI</div><div class="use-chip">Finance AI</div><div class="use-chip">Car AI</div></div></div>
+    </div>
+    <div class="use-card" onclick="renderToast('Daily briefing — Morning Routine ran at 7am','info')">
+      <div class="use-ico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#38d9ff" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <div><div class="use-name">Daily briefing</div><div class="use-desc">Wake-up summary across calendar, weather, finance, news, smart home — assembled by 5 agents.</div><div class="use-chips"><div class="use-chip">Schedule AI</div><div class="use-chip">Finance AI</div><div class="use-chip">Home AI</div><div class="use-chip">Assistant AI</div></div></div>
+    </div>
+    <div class="use-card" onclick="renderToast('Health snapshot generated','info')">
+      <div class="use-ico t-pb"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#7aaae0" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <div><div class="use-name">Health coordination</div><div class="use-desc">Sleep + activity + nutrition feed into a single advisor that proposes weekly improvements.</div><div class="use-chips"><div class="use-chip">Health AI</div><div class="use-chip">Schedule AI</div><div class="use-chip">Shopping AI</div></div></div>
+    </div>
+    <div class="use-card" onclick="renderToast('Work review prepared','info')">
+      <div class="use-ico t-st"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#8090b8" fill="none"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+      <div><div class="use-name">Work recap</div><div class="use-desc">End-of-day digest across email, docs, meetings, and code reviews. Memory-aware suggestions.</div><div class="use-chips"><div class="use-chip">Work AI</div><div class="use-chip">Comms AI</div><div class="use-chip">Assistant AI</div></div></div>
+    </div>
+    <div class="use-card" onclick="renderToast('Finance check — under budget this month','success')">
+      <div class="use-ico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#00c8a0" fill="none"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/></svg></div>
+      <div><div class="use-name">Finance check-in</div><div class="use-desc">"How am I doing this month?" combines bank data, upcoming bills, subscriptions, and savings.</div><div class="use-chips"><div class="use-chip">Finance AI</div><div class="use-chip">Shopping AI</div></div></div>
+    </div>
+    <div class="use-card" onclick="renderToast('Smart home evening scene activated','info')">
+      <div class="use-ico t-te"><svg viewBox="0 0 24 24" stroke-width="1.5" stroke="#1db5c8" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+      <div><div class="use-name">Smart home choreography</div><div class="use-desc">"Movie night" sets lights, temperature, music, and queues popcorn delivery in one command.</div><div class="use-chips"><div class="use-chip">Home AI</div><div class="use-chip">Entertainment</div><div class="use-chip">Shopping AI</div></div></div>
+    </div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: SUBMISSION ════════════════════════ -->
+<div class="screen" id="scr-submit">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Hackathon Submission</div><div class="scr-sub">Google AI Agents Challenge · Build Track</div></div>
+    <div class="scr-act primary" onclick="renderToast('Submission package exported','success')">Export</div>
+  </div>
+
+  <div class="biz-hero">
+    <div class="biz-eyebrow">Final Submission · Terafarm.ai</div>
+    <div class="biz-headline">One Memory. Many Agents.<br>One Connected AI World.</div>
+    <div class="biz-body" style="margin-bottom:14px;">A multi-agent orchestration platform built around a shared memory layer. Solves the fragmented-context problem that every AI user has today.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;">
+      <span class="badge-cyan">TRACK: BUILD</span>
+      <span class="badge-cyan">CATEGORY: MULTI-AGENT</span>
+      <span class="badge-cyan">SHARED MEMORY</span>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Demo Video</h2></div>
+  <div class="demo-video-placeholder" onclick="renderToast('Demo video link coming soon','info')">
+    <div class="demo-video-play"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+    <div class="demo-video-label">2-min Demo Video</div>
+    <div style="font-size:9.5px;color:var(--t3);margin-top:5px;">Tap to upload final video</div>
+  </div>
+
+  <div class="sh"><h2>Submission Checklist</h2></div>
+  <div class="checklist">
+    <div class="check-row"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Working prototype<small>Live at terafarm.ai (Vercel deploy)</small></div></div>
+    <div class="check-row"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Architecture diagram<small>Visible in Architecture screen</small></div></div>
+    <div class="check-row"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Multi-agent demo flow<small>Plan trip to SF — 5 agents collaborate</small></div></div>
+    <div class="check-row"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Business case<small>Problem, solution, market, pitch</small></div></div>
+    <div class="check-row"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Tech stack documented<small>Frontend, orchestration, memory, cloud</small></div></div>
+    <div class="check-row todo" onclick="renderToast('Add demo video link','warn')"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">2-minute demo video<small>YouTube unlisted link</small></div></div>
+    <div class="check-row todo" onclick="renderToast('Connect GitHub repo','warn')"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Public GitHub repo<small>github.com/terafarm-ai/web (placeholder)</small></div></div>
+    <div class="check-row todo" onclick="renderToast('Test login credentials needed','warn')"><div class="check-mark"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="check-body">Test login credentials<small>demo@terafarm.ai / TerafarmDemo2026!</small></div></div>
+  </div>
+
+  <div class="sh"><h2>Links</h2></div>
+  <div class="settings-list">
+    <div class="settings-row" onclick="renderToast('Opening live URL…','info')"><div class="settings-ico t-eb"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="settings-body"><div class="settings-name">Live URL</div><div class="settings-desc">terafarm.ai (Vercel)</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('GitHub placeholder','info')"><div class="settings-ico t-cy"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div class="settings-body"><div class="settings-name">GitHub Repository</div><div class="settings-desc">github.com/terafarm-ai/web</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('Demo credentials copied','success')"><div class="settings-ico t-tg"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="settings-body"><div class="settings-name">Test Login</div><div class="settings-desc">demo@terafarm.ai · TerafarmDemo2026!</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: SYSTEMS ════════════════════════ -->
+<div class="screen" id="scr-systems">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">All Systems</div><div class="scr-sub">14 AI modules connected to your ecosystem</div></div>
+    <div class="scr-act" onclick="openModal('customizeModal')">Manage</div>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+    <span class="badge-green">14 Active</span>
+    <span class="badge-blue">Memory Sync On</span>
+    <span class="badge-gray">3 Suggested</span>
+  </div>
+  <div class="grid" id="fullSystemsGrid"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: AI HUB ════════════════════════ -->
+<div class="screen" id="scr-hub">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">AI Hub</div><div class="scr-sub">Connected AI services across your stack</div></div>
+    <div class="scr-act" onclick="openModal('searchModal')">Search</div>
+  </div>
+  <div style="margin-bottom:12px;display:flex;gap:6px;flex-wrap:wrap;"><span class="badge-green">6 Connected</span><span class="badge-gray">2 Available</span><span class="badge-blue">Memory Sync</span></div>
+  <div class="hub-grid" id="hubGrid"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: SHARED MEMORY ════════════════════════ -->
+<div class="screen" id="scr-memory">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Shared Memory</div><div class="scr-sub">Unified AI memory layer</div></div>
+    <div class="scr-act" onclick="renderToast('Memory backup started','info')">Backup</div>
+  </div>
+  <div class="stat-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="stat-card"><div class="sv">4.2 GB</div><div class="sl">Memory used</div><div class="sd">↑ 12% this week</div></div>
+    <div class="stat-card"><div class="sv">1,847</div><div class="sl">Memories saved</div><div class="sd">↑ 34 today</div></div>
+    <div class="stat-card"><div class="sv">8</div><div class="sl">AI platforms</div><div class="sd">All synced</div></div>
+    <div class="stat-card"><div class="sv">99.9%</div><div class="sl">Sync health</div><div class="sd">Excellent</div></div>
+  </div>
+  <div class="mem-card">
+    <div class="mem-card-title">Memory Activity — Last 14 days</div>
+    <div class="mem-graph" id="memGraph"></div>
+  </div>
+  <div class="search-wrap" style="margin-bottom:12px;display:block;">
+    <svg class="s-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+    <input type="text" placeholder="Search your memories…" onclick="renderToast('Searching 1,847 memories…','info')">
+    <button class="s-btn" onclick="renderToast('Searching 1,847 memories…','info')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></button>
+  </div>
+  <div class="mem-card">
+    <div class="mem-card-title">Recent Memories</div>
+    <div id="memFeed"></div>
+  </div>
+  <div class="mem-card">
+    <div class="mem-card-title">Memory Permissions</div>
+    <div class="toggle-row"><div class="toggle-info"><div class="ti-name">ChatGPT Access</div><div class="ti-desc">Read and write memory</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+    <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Claude Access</div><div class="ti-desc">Read and write memory</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+    <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Gemini Access</div><div class="ti-desc">Read only</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+    <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Third-party apps</div><div class="ti-desc">External AI services</div></div><div class="toggle" onclick="toggleSwitch(this)"></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: AGENTS ════════════════════════ -->
+<div class="screen" id="scr-agents">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">AI Agents</div><div class="scr-sub">Your personal automation crew</div></div>
+    <div class="scr-act primary" onclick="openModal('studioModal')">+ Create</div>
+  </div>
+  <div class="agent-list" id="agentList"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: AUTOMATION ════════════════════════ -->
+<div class="screen" id="scr-automation">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Automation</div><div class="scr-sub">6 active workflows · Saved 3.2 hrs this week</div></div>
+    <div class="scr-act primary" onclick="openModal('studioModal')">+ Create</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:9px;" id="autoList"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: DEVICES ════════════════════════ -->
+<div class="screen" id="scr-devices">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Devices</div><div class="scr-sub">8 devices connected · 7 online</div></div>
+    <div class="scr-act" onclick="renderToast('Scanning for new devices…','info')">+ Add</div>
+  </div>
+  <div class="device-grid" id="deviceGrid"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: ANALYTICS ════════════════════════ -->
+<div class="screen" id="scr-analytics">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Analytics</div><div class="scr-sub">Your AI usage insights</div></div>
+    <div class="scr-act" onclick="renderToast('Exporting report…','info')">Export</div>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="sv">247</div><div class="sl">AI interactions</div><div class="sd">↑ 18% vs yesterday</div></div>
+    <div class="stat-card"><div class="sv">14</div><div class="sl">Active systems</div><div class="sd">All healthy</div></div>
+    <div class="stat-card"><div class="sv">89</div><div class="sl">Memory syncs</div><div class="sd">↑ 22% this week</div></div>
+    <div class="stat-card"><div class="sv">12</div><div class="sl">Automations run</div><div class="sd">Saved 3.2 hrs</div></div>
+    <div class="stat-card"><div class="sv">98</div><div class="sl">Security score</div><div class="sd">Excellent</div></div>
+    <div class="stat-card"><div class="sv">62%</div><div class="sl">Cloud usage</div><div class="sd">24.3 TFLOPS</div></div>
+    <div class="stat-card"><div class="sv">4.2 GB</div><div class="sl">Memory stored</div><div class="sd">↑ 340 MB</div></div>
+    <div class="stat-card"><div class="sv">1,847</div><div class="sl">Total memories</div><div class="sd">8 platforms</div></div>
+  </div>
+  <div class="mem-card">
+    <div class="mem-card-title">Daily AI Interactions — Last 7 days</div>
+    <div id="analyticsChart" style="height:90px;display:flex;align-items:flex-end;gap:5px;padding-top:8px;"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;padding:0 4px;">
+      <span style="font-size:9px;color:var(--t4);">Mon</span><span style="font-size:9px;color:var(--t4);">Tue</span><span style="font-size:9px;color:var(--t4);">Wed</span><span style="font-size:9px;color:var(--t4);">Thu</span><span style="font-size:9px;color:var(--t4);">Fri</span><span style="font-size:9px;color:var(--t4);">Sat</span><span style="font-size:9px;color:var(--t4);">Sun</span>
+    </div>
+  </div>
+  <div class="mem-card">
+    <div class="mem-card-title">System Usage Distribution</div>
+    <div id="usageRows"></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: MARKETPLACE ════════════════════════ -->
+<div class="screen" id="scr-marketplace">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Marketplace</div><div class="scr-sub">AI modules &amp; integrations</div></div>
+    <div class="scr-act" onclick="renderToast('Featured selection updated','info')">Featured</div>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+    <span class="bcast-chip sel">All</span>
+    <span class="bcast-chip">AI Modules</span>
+    <span class="bcast-chip">Automations</span>
+    <span class="bcast-chip">Connectors</span>
+    <span class="bcast-chip">Pro Only</span>
+  </div>
+  <div class="sh" style="margin-top:4px;"><h2>Popular this week</h2></div>
+  <div class="mkt-grid" id="mktGrid"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: NOTIFICATIONS ════════════════════════ -->
+<div class="screen" id="scr-notif">
+<div class="scroll">
+  <div class="scr-header">
+    <div><div class="scr-title">Notifications</div><div class="scr-sub">3 unread · 8 total today</div></div>
+    <div class="scr-act" onclick="renderToast('All marked as read','success');document.querySelectorAll('.notif-row.unread').forEach(r=>r.classList.remove('unread'));">Mark all read</div>
+  </div>
+  <div class="notif-list" id="notifList"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: SETTINGS ════════════════════════ -->
+<div class="screen" id="scr-settings">
+<div class="scroll">
+  <div class="scr-header"><div><div class="scr-title">Settings</div><div class="scr-sub">Account &amp; preferences</div></div></div>
+  <div class="settings-list">
+    <div class="settings-row" onclick="openModal('authModal')"><div class="settings-ico t-eb"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="settings-body"><div class="settings-name">Account</div><div class="settings-desc">Profile, email, password</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="openModal('securityModal')"><div class="settings-ico t-te"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="settings-body"><div class="settings-name">Privacy &amp; Security</div><div class="settings-desc">Permissions, data controls</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('memory');setActiveNav('memory');"><div class="settings-ico t-cy"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="settings-body"><div class="settings-name">Memory Permissions</div><div class="settings-desc">Control AI memory access</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('hub');setActiveNav('hub');"><div class="settings-ico t-tg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="settings-body"><div class="settings-name">Connected Platforms</div><div class="settings-desc">Manage AI connections</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('notif');setActiveNav('notif');"><div class="settings-ico t-sl"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><div class="settings-body"><div class="settings-name">Notifications</div><div class="settings-desc">Alerts, reminders, sync events</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="openModal('proModal')"><div class="settings-ico t-in"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="settings-body"><div class="settings-name">Subscription</div><div class="settings-desc">Free plan · Upgrade available</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('Exporting your data…','info')"><div class="settings-ico t-pb"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="settings-body"><div class="settings-name">Export Data</div><div class="settings-desc">Download all your memories and data</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('Please confirm in email','warn')" style="border-color:rgba(180,40,60,.14);">
+      <div class="settings-ico" style="background:rgba(180,20,40,.12);border:1px solid rgba(200,40,60,.18);"><svg viewBox="0 0 24 24" stroke="#e06070" fill="none" stroke-width="1.6"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></div>
+      <div class="settings-body"><div class="settings-name" style="color:#e06070;">Delete Account</div><div class="settings-desc">Permanently remove all data</div></div>
+      <svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: PROFILE ════════════════════════ -->
+<div class="screen" id="scr-profile">
+<div class="scroll">
+  <div class="profile-head">
+    <div class="avatar"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+    <div class="profile-name">Your Account</div>
+    <div class="profile-email">demo@terafarm.ai</div>
+    <div class="profile-plan"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span>Free Plan</span></div>
+  </div>
+  <div class="stats-row">
+    <div class="stats-cell"><div class="sv">14</div><div class="sl">Systems</div></div>
+    <div class="stats-cell"><div class="sv">1,847</div><div class="sl">Memories</div></div>
+    <div class="stats-cell"><div class="sv">4.2 GB</div><div class="sl">Storage</div></div>
+  </div>
+  <button class="prim-btn" onclick="openModal('proModal')">Upgrade to Pro</button>
+  <div style="height:12px;"></div>
+  <div class="settings-list">
+    <div class="settings-row" onclick="openModal('authModal')"><div class="settings-ico t-eb"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="settings-body"><div class="settings-name">Edit Profile</div><div class="settings-desc">Name, email, avatar</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('hub');setActiveNav('hub');"><div class="settings-ico t-cy"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="settings-body"><div class="settings-name">Connected AI</div><div class="settings-desc">6 platforms · ChatGPT, Claude, Gemini…</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('memory');setActiveNav('memory');"><div class="settings-ico t-tg"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="settings-body"><div class="settings-name">Memory Library</div><div class="settings-desc">1,847 memories · 4.2 GB</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="showScreen('settings');setActiveNav('settings');"><div class="settings-ico t-sl"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div><div class="settings-body"><div class="settings-name">All Settings</div><div class="settings-desc">Preferences &amp; controls</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('Signing out…','info')"><div class="settings-ico" style="background:rgba(56,140,255,.10);border:1px solid var(--b2);"><svg viewBox="0 0 24 24" stroke="var(--t2)" fill="none" stroke-width="1.6"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="settings-body"><div class="settings-name">Sign Out</div><div class="settings-desc">End your session</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+<!-- ════════════════════════ SCREEN: ACTIVITY ════════════════════════ -->
+<div class="screen" id="scr-activity">
+<div class="scroll">
+  <div class="scr-header"><div><div class="scr-title">Activity</div><div class="scr-sub">Recent AI events across all systems</div></div><div class="scr-act" onclick="renderToast('Feed refreshed','success')">Refresh</div></div>
+  <div id="activityFeed"></div>
+  <div style="height:6px;"></div>
+</div>
+</div>
+
+</div><!-- /main-content -->
+</div><!-- /app-body -->
+
+<!-- ══════ BOTTOM NAV ══════ -->
+<div class="nav" id="bottomNav">
+  <div class="ni on" id="bn-home" onclick="showScreen('home');setActiveNav('home');">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></div>
+  <div class="ni" id="bn-systems" onclick="showScreen('systems');setActiveNav('systems');">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="8.5" r="2"/><circle cx="19" cy="15.5" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="5" cy="15.5" r="2"/><circle cx="5" cy="8.5" r="2"/></svg><span>Systems</span></div>
+  <div class="nc">
+    <div class="ncb" onclick="openModal('commandModal')">
+      <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M16 2L30 10V22L16 30L2 22V10Z" stroke="#38d9ff" stroke-width="1.3" opacity=".55"/><line x1="16" y1="2" x2="16" y2="30" stroke="#38d9ff" stroke-width=".85" opacity=".38"/><circle cx="16" cy="16" r="5.5" fill="#003060" opacity=".95"/><circle cx="16" cy="16" r="2.4" fill="white"/></svg>
+    </div>
+  </div>
+  <div class="ni" id="bn-activity" onclick="showScreen('activity');setActiveNav('activity');">
+    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Activity</span></div>
+  <div class="ni" id="bn-profile" onclick="showScreen('profile');setActiveNav('profile');">
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></div>
+</div>
+
+</div><!-- /shell -->
+
+<!-- ═══════════════════════ ALL MODALS ═══════════════════════ -->
+
+<!-- Auth Modal -->
+<div class="mod-ov" id="authModal" onclick="modOutside(event,'authModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('authModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div id="authFormSec">
+    <div class="tabs" style="margin-bottom:18px;">
+      <div class="tab active" id="signinTab" onclick="switchAuthTab('signin')">Sign In</div>
+      <div class="tab" id="signupTab" onclick="switchAuthTab('signup')">Create Account</div>
+    </div>
+    <h2 id="authTitle">Welcome back</h2>
+    <p class="sub" id="authSub">Sign in to your Terafarm account.</p>
+    <div class="fld" id="aFN" style="display:none;"><label>Name</label><input type="text" id="aIN" placeholder="Your full name"></div>
+    <div class="fld"><label>Email</label><input type="email" id="aIE" placeholder="your@email.com"></div>
+    <div class="fld"><label>Password</label><input type="password" id="aIP" placeholder="Password"></div>
+    <button class="prim-btn" id="authBtn" onclick="handleAuth()">Sign In</button>
+    <div style="margin:14px 0;display:flex;align-items:center;gap:10px;"><div style="flex:1;height:1px;background:var(--b2);"></div><span style="font-size:10px;color:var(--t4);">or</span><div style="flex:1;height:1px;background:var(--b2);"></div></div>
+    <button class="sec-btn" style="margin-top:0;display:flex;align-items:center;justify-content:center;gap:9px;" onclick="renderToast('Google sign-in coming soon','info');closeModal('authModal');">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+      Continue with Google
+    </button>
+    <p class="reg-note">Early access platform · More systems coming soon.</p>
+  </div>
+  <div class="succ-scr" id="authSuccSec">
+    <div class="succ-ico"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h3 id="authSuccTitle">You're in!</h3>
+    <p id="authSuccMsg">Welcome to Terafarm.<br>Your AI world is connected.</p>
+  </div>
+</div>
+</div>
+
+<!-- Command Center Modal -->
+<div class="mod-ov" id="commandModal" onclick="modOutside(event,'commandModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('commandModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div style="text-align:center;margin-bottom:18px;">
+    <div style="font-family:var(--fh);font-size:22px;font-weight:700;color:var(--t1);letter-spacing:.04em;">Command Center</div>
+    <div style="font-size:11px;color:var(--t3);margin-top:3px;">Route any task to any AI in your ecosystem</div>
+  </div>
+  <div class="cc-input-wrap">
+    <input class="cc-input" placeholder="Ask Terafarm anything…" id="ccInput" onkeydown="if(event.key==='Enter')handleCCSubmit()">
+    <button class="cc-send" onclick="handleCCSubmit()"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+  <div id="ccResponse" style="display:none;margin-bottom:16px;"></div>
+  <div class="cc-section">Quick Commands</div>
+  <div class="cc-commands">
+    <div class="cc-cmd" onclick="simulateCCCommand('Plan my trip to San Francisco next week')"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><div class="cc-cn">Plan a trip</div><div class="cc-cs">Multi-agent demo flow</div></div>
+    <div class="cc-cmd" onclick="simulateCCCommand('Search my memory for last week\'s meetings')"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><div class="cc-cn">Memory Search</div><div class="cc-cs">Find any saved context</div></div>
+    <div class="cc-cmd" onclick="simulateCCCommand('Schedule a deep work block for tomorrow 9am')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><div class="cc-cn">Schedule Task</div><div class="cc-cs">Add to calendar via AI</div></div>
+    <div class="cc-cmd" onclick="simulateCCCommand('Trigger morning automation routine')"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg><div class="cc-cn">Run Automation</div><div class="cc-cs">Trigger any workflow</div></div>
+    <div class="cc-cmd" onclick="openModal('taskModal');closeModal('commandModal');"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg><div class="cc-cn">New Task</div><div class="cc-cs">Create with AI agent</div></div>
+    <div class="cc-cmd" onclick="openModal('broadcastModal');closeModal('commandModal');"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><div class="cc-cn">Broadcast</div><div class="cc-cs">Message all AI systems</div></div>
+  </div>
+  <div class="cc-section">Connected Systems</div>
+  <div id="ccSystemsList" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;"></div>
+  <button class="cc-danger" onclick="renderToast('Privacy lock engaged — all AI access paused','success');closeModal('commandModal');"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Emergency Privacy Lock</button>
+</div>
+</div>
+
+<!-- System Detail Modal -->
+<div class="mod-ov" id="sysModal" onclick="modOutside(event,'sysModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('sysModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div id="sysModalContent"></div>
+</div>
+</div>
+
+<!-- Hub Detail Modal -->
+<div class="mod-ov" id="hubModal" onclick="modOutside(event,'hubModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('hubModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div id="hubModalContent"></div>
+</div>
+</div>
+
+<!-- Search Modal -->
+<div class="mod-ov" id="searchModal" onclick="modOutside(event,'searchModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('searchModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>AI Search</h2>
+  <p class="sub">Search across all connected AI systems and memory.</p>
+  <div class="cc-input-wrap">
+    <input class="cc-input" placeholder="What are you looking for?" id="searchInput" onkeydown="if(event.key==='Enter')handleSearch()">
+    <button class="cc-send" onclick="handleSearch()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></button>
+  </div>
+  <div id="searchResults"></div>
+  <div class="cc-section" style="margin-top:8px;">Quick searches</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+    <div class="bcast-chip" onclick="document.getElementById('searchInput').value='My meetings last week';handleSearch()">Meetings last week</div>
+    <div class="bcast-chip" onclick="document.getElementById('searchInput').value='Travel bookings';handleSearch()">Travel bookings</div>
+    <div class="bcast-chip" onclick="document.getElementById('searchInput').value='Finance reports';handleSearch()">Finance reports</div>
+    <div class="bcast-chip" onclick="document.getElementById('searchInput').value='Health data';handleSearch()">Health data</div>
+    <div class="bcast-chip" onclick="document.getElementById('searchInput').value='Work documents';handleSearch()">Work documents</div>
+  </div>
+  <div class="cc-section" style="margin-top:14px;">Connected systems</div>
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
+    <div class="bcast-chip sel">ChatGPT</div><div class="bcast-chip sel">Claude</div><div class="bcast-chip sel">Gemini</div><div class="bcast-chip sel">Perplexity</div><div class="bcast-chip sel">Notion AI</div><div class="bcast-chip sel">Copilot</div>
+  </div>
+</div>
+</div>
+
+<!-- Voice Modal -->
+<div class="mod-ov" id="voiceModal" onclick="modOutside(event,'voiceModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('voiceModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div class="voice-modal">
+    <div class="voice-ring">
+      <div class="voice-inner">
+        <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 23h8" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <div class="voice-status">Listening…</div>
+    <div class="voice-hint">Speak your command clearly.<br>Terafarm will route it to the right AI.</div>
+    <div class="cc-section">Try saying</div>
+    <div class="voice-examples">
+      <div class="voice-ex" onclick="renderToast('Routing to Schedule AI…','info');closeModal('voiceModal');">"Schedule a meeting tomorrow at 3pm"</div>
+      <div class="voice-ex" onclick="renderToast('Searching memory…','info');closeModal('voiceModal');">"What did I say to Claude about my project?"</div>
+      <div class="voice-ex" onclick="renderToast('Activating Home AI…','info');closeModal('voiceModal');">"Turn on the living room lights"</div>
+      <div class="voice-ex" onclick="renderToast('Routing to Finance AI…','info');closeModal('voiceModal');">"Check my monthly spending"</div>
+    </div>
+    <button class="danger-btn" style="margin-top:16px;" onclick="closeModal('voiceModal')">Stop Listening</button>
+  </div>
+</div>
+</div>
+
+<!-- Pro Modal -->
+<div class="mod-ov" id="proModal" onclick="modOutside(event,'proModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('proModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>Upgrade Terafarm</h2>
+  <p class="sub">Choose the plan that matches your AI life.</p>
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="price-tier">Free</div>
+      <div class="price-val">$0<span class="pm">/mo</span></div>
+      <div class="price-desc">Start connecting your AI world.</div>
+      <div class="price-features">
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Basic dashboard</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Limited memory (500MB)</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 AI systems</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Community support</div>
+      </div>
+      <button class="price-btn free" onclick="renderToast('You are on the Free plan','info');closeModal('proModal');">Current Plan</button>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="price-tier">Pro</div>
+      <div class="price-val">$19<span class="pm">/mo</span></div>
+      <div class="price-desc">Full AI ecosystem power.</div>
+      <div class="price-features">
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited AI systems</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Shared memory (50 GB)</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full automation suite</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority sync</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7 AI agents</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority support</div>
+      </div>
+      <button class="price-btn pro" onclick="handleProUpgrade()">Upgrade to Pro</button>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Ultra</div>
+      <div class="price-val">$49<span class="pm">/mo</span></div>
+      <div class="price-desc">Enterprise-grade AI OS.</div>
+      <div class="price-features">
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Advanced AI agents</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Marketplace access</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Advanced privacy tools</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited memory</div>
+        <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>API access</div>
+      </div>
+      <button class="price-btn ultra" onclick="handleProUpgrade()">Get Ultra</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Task Modal -->
+<div class="mod-ov" id="taskModal" onclick="modOutside(event,'taskModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('taskModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>New Task</h2>
+  <p class="sub">Create a task and assign it to an AI agent.</p>
+  <div class="fld"><label>Task Title</label><input type="text" id="taskTitle" placeholder="What needs to be done?"></div>
+  <div class="fld"><label>Assign to Agent</label>
+    <select id="taskAgent" style="padding:2px 0;">
+      <option>Personal Assistant</option><option>Schedule AI</option><option>Finance Agent</option><option>Work Agent</option><option>Travel Agent</option><option>Health Agent</option><option>Home Agent</option>
+    </select>
+  </div>
+  <div class="fld"><label>AI Platform</label>
+    <select style="padding:2px 0;"><option>Auto (Best match)</option><option>ChatGPT</option><option>Claude</option><option>Gemini</option><option>Perplexity</option></select>
+  </div>
+  <div class="fld"><label>Schedule</label><input type="text" placeholder="e.g. Tomorrow 9am, In 2 hours…"></div>
+  <div class="fld"><label>Notes</label><textarea rows="2" placeholder="Additional context…"></textarea></div>
+  <button class="prim-btn" onclick="handleCreateTask()">Create Task</button>
+</div>
+</div>
+
+<!-- Broadcast Modal -->
+<div class="mod-ov" id="broadcastModal" onclick="modOutside(event,'broadcastModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('broadcastModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>Broadcast Message</h2>
+  <p class="sub">Send a command to multiple AI systems at once.</p>
+  <div class="fld"><label>Message</label><textarea rows="3" id="broadcastMsg" placeholder="Enter your command or message…"></textarea></div>
+  <div style="font-size:10px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;">Select Systems</div>
+  <div class="bcast-systems" id="bcastSystems"></div>
+  <button class="prim-btn" onclick="handleBroadcast()">Send Command</button>
+</div>
+</div>
+
+<!-- AI Studio Modal -->
+<div class="mod-ov" id="studioModal" onclick="modOutside(event,'studioModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('studioModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>AI Studio</h2>
+  <p class="sub">Build agents, automations, and API workflows.</p>
+  <div class="studio-grid">
+    <div class="studio-card" onclick="renderToast('Agent builder opening…','info');closeModal('studioModal');showScreen('agents');setActiveNav('agents');"><div class="studio-ico t-eb"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div class="studio-n">Create Agent</div><div class="studio-d">Build a custom AI agent for any task</div></div>
+    <div class="studio-card" onclick="renderToast('Automation builder opening…','info');closeModal('studioModal');showScreen('automation');setActiveNav('auto');"><div class="studio-ico t-cy"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><div class="studio-n">Create Automation</div><div class="studio-d">Design multi-step AI workflows</div></div>
+    <div class="studio-card" onclick="renderToast('API connector opening…','info')"><div class="studio-ico t-tg"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div><div class="studio-n">Connect API</div><div class="studio-d">Integrate any external service</div></div>
+    <div class="studio-card" onclick="renderToast('Workflow designer opening…','info')"><div class="studio-ico t-sl"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg></div><div class="studio-n">Design Workflow</div><div class="studio-d">Visual drag-and-drop builder</div></div>
+  </div>
+  <div class="sh" style="margin-top:4px;"><h2>Recent Projects</h2></div>
+  <div style="display:flex;flex-direction:column;gap:7px;">
+    <div class="settings-row" onclick="renderToast('Opening Morning Routine…','info')"><div class="settings-ico t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="settings-body"><div class="settings-name">Morning Routine</div><div class="settings-desc">Automation · Last edited 2 days ago</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="settings-row" onclick="renderToast('Opening Travel Agent…','info')"><div class="settings-ico t-cy"><svg viewBox="0 0 24 24" stroke="#38d9ff" fill="none"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="settings-body"><div class="settings-name">Travel Agent v2</div><div class="settings-desc">Agent · Last edited 5 days ago</div></div><svg class="settings-arrow" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke-width="2" stroke-linecap="round"/></svg></div>
+  </div>
+</div>
+</div>
+
+<!-- Security Modal -->
+<div class="mod-ov" id="securityModal" onclick="modOutside(event,'securityModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('securityModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>Security AI</h2>
+  <p class="sub">Privacy score and system protection.</p>
+  <div class="sec-score">
+    <div class="sec-ring">
+      <svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="none" stroke="rgba(56,140,255,.10)" stroke-width="8"/><circle cx="48" cy="48" r="40" fill="none" stroke="#00e5a0" stroke-width="8" stroke-dasharray="246 251" stroke-linecap="round"/></svg>
+      <div class="score-text">98</div>
+    </div>
+    <div style="font-size:10px;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;">Privacy Score</div>
+  </div>
+  <div style="margin-bottom:14px;text-align:center;"><span class="badge-green">All systems secure</span></div>
+  <div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">Permissions</div>
+  <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Memory Encryption</div><div class="ti-desc">AES-256 end-to-end encryption</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+  <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Two-Factor Auth</div><div class="ti-desc">Extra login security</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+  <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Privacy Mode</div><div class="ti-desc">Limit data shared with AI services</div></div><div class="toggle" onclick="toggleSwitch(this)"></div></div>
+  <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Device Lock</div><div class="ti-desc">Auto-lock after 5 minutes</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+  <div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;margin:14px 0 10px;">Recent Security Events</div>
+  <div class="feed-item"><div class="feed-icon" style="background:rgba(0,200,140,.10);border:1px solid rgba(0,200,140,.18);"><svg style="stroke:var(--green);" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feed-text"><div class="ft-title">Security scan complete</div><div class="ft-sub">No threats detected across 14 systems</div><div class="ft-time">2 minutes ago</div></div></div>
+  <div class="feed-item"><div class="feed-icon" style="background:rgba(56,160,255,.10);border:1px solid rgba(56,160,255,.18);"><svg style="stroke:var(--eblue);" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="feed-text"><div class="ft-title">New login detected</div><div class="ft-sub">MacBook Pro — London, UK</div><div class="ft-time">1 hour ago</div></div></div>
+  <button class="danger-btn" onclick="renderToast('All AI access paused — Privacy Lock active','success');closeModal('securityModal');">
+    Lock All Memory Access
+  </button>
+</div>
+</div>
+
+<!-- Cloud Modal -->
+<div class="mod-ov" id="cloudModal" onclick="modOutside(event,'cloudModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('cloudModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>Cloud AI</h2>
+  <p class="sub">Compute, storage, and API usage.</p>
+  <div class="info-row"><div class="ir-label">Compute today</div><div class="ir-val">24.3 TFLOPS</div></div>
+  <div class="info-row"><div class="ir-label">Storage used</div><div class="ir-val">4.2 / 10 GB</div></div>
+  <div class="info-row"><div class="ir-label">API calls today</div><div class="ir-val">1,247</div></div>
+  <div class="info-row"><div class="ir-label">Sync status</div><div class="ir-val"><span class="badge-green">All synced</span></div></div>
+  <div class="info-row"><div class="ir-label">Region</div><div class="ir-val">EU-West (London)</div></div>
+  <div class="info-row"><div class="ir-label">Uptime</div><div class="ir-val">99.98%</div></div>
+  <div style="margin:14px 0 8px;"><div style="font-size:10px;color:var(--t3);margin-bottom:6px;">Storage</div><div class="prog-bar"><div class="prog-fill" style="width:42%;"></div></div><div style="font-size:9px;color:var(--t4);margin-top:4px;">4.2 GB of 10 GB used</div></div>
+  <div style="margin-bottom:14px;"><div style="font-size:10px;color:var(--t3);margin-bottom:6px;">Compute</div><div class="prog-bar"><div class="prog-fill" style="width:62%;"></div></div><div style="font-size:9px;color:var(--t4);margin-top:4px;">62% of daily quota</div></div>
+  <button class="sec-btn" onclick="openModal('proModal');closeModal('cloudModal');">Upgrade for more compute</button>
+</div>
+</div>
+
+<!-- Customize Modal -->
+<div class="mod-ov" id="customizeModal" onclick="modOutside(event,'customizeModal')">
+<div class="mod mod-wide">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('customizeModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <h2>Customize Systems</h2>
+  <p class="sub">Reorder and manage your AI modules.</p>
+  <div id="customizeList"></div>
+  <button class="prim-btn" style="margin-top:14px;" onclick="renderToast('Layout saved successfully','success');closeModal('customizeModal');">Save Changes</button>
+  <button class="sec-btn" onclick="renderToast('Add new AI screen opening…','info')">+ Add New AI</button>
+</div>
+</div>
+
+<!-- Agent Detail Modal -->
+<div class="mod-ov" id="agentModal" onclick="modOutside(event,'agentModal')">
+<div class="mod">
+  <div class="mod-handle"></div>
+  <div class="mod-x" onclick="closeModal('agentModal')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <div id="agentModalContent"></div>
+</div>
+</div>
+
+</body>
+
+<script>
+/* ══════════════════════════ DATA ══════════════════════════ */
+const SYSTEMS = [
+  {id:'assistant',name:'Assistant AI',sub:'Main assistant',icon:'<path d="M9.5 2a4.5 4.5 0 00-4.5 4.5V7A4 4 0 003 11a4 4 0 002 3.46V16a3 3 0 003 3h8a3 3 0 003-3v-.54A4 4 0 0021 12a4 4 0 00-2-3.46V6.5A4.5 4.5 0 0014.5 2z"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="15" y2="15"/>',theme:'t-eb',services:['ChatGPT','Claude','Gemini'],activity:'Asked about project timeline'},
+  {id:'schedule',name:'Schedule AI',sub:'Calendar & tasks',icon:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',theme:'t-cy',services:['Google Calendar','Notion'],activity:'Scheduled 3 meetings today'},
+  {id:'home',name:'Home AI',sub:'Smart home',icon:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>',theme:'t-te',services:['HomeKit','Nest','Philips Hue'],activity:'Adjusted temperature at 7am'},
+  {id:'car',name:'Car AI',sub:'Navigation',icon:'<path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/>',theme:'t-sl',services:['CarPlay','Google Maps'],activity:'Route to office optimised'},
+  {id:'robot',name:'Robot AI',sub:'Robot partner',icon:'<rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.5"/><path d="M7 13H5a1 1 0 01-1-1v-1a1 1 0 011-1h2M17 13h2a1 1 0 001-1v-1a1 1 0 00-1-1h-2"/>',theme:'t-cy',services:['ROS','Custom API'],activity:'Completed household patrol'},
+  {id:'finance',name:'Finance AI',sub:'Investments',icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/>',theme:'t-tg',services:['Plaid','Stripe','Coinbase'],activity:'Portfolio up 2.3% this week'},
+  {id:'health',name:'Health AI',sub:'Wellness',icon:'<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',theme:'t-pb',services:['Apple Health','Fitbit','Oura'],activity:'Sleep score: 87 — excellent'},
+  {id:'comms',name:'Comms AI',sub:'Calls & messages',icon:'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>',theme:'t-in',services:['Gmail','WhatsApp','Slack'],activity:'Drafted 4 emails this morning'},
+  {id:'work',name:'Work AI',sub:'Documents',icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>',theme:'t-st',services:['Notion','Google Docs','Slack'],activity:'Summarised 12 documents'},
+  {id:'shopping',name:'Shopping AI',sub:'Orders',icon:'<circle cx="9" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/><path d="M1 2h3l2.5 12h10l2-8H6"/>',theme:'t-eb',services:['Amazon','Shopify','DoorDash'],activity:'Reordered coffee — arriving Fri'},
+  {id:'travel',name:'Travel AI',sub:'Trips & booking',icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>',theme:'t-ic',services:['Booking.com','Airbnb','Flightradar'],activity:'Found cheaper flight for Paris trip'},
+  {id:'entertainment',name:'Entertainment',sub:'Media & games',icon:'<rect x="2" y="6" width="20" height="14" rx="3"/><line x1="6" y1="13" x2="10" y2="13"/><line x1="8" y1="11" x2="8" y2="15"/>',theme:'t-ar',services:['Spotify','Netflix','Steam'],activity:'Added 3 songs to morning playlist'},
+  {id:'cloud',name:'Cloud AI',sub:'Compute & storage',icon:'<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>',theme:'t-eb',services:['Google Cloud','AWS','Vertex AI'],activity:'24.3 TFLOPS used today'},
+  {id:'security',name:'Security AI',sub:'Protection',icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>',theme:'t-te',services:['1Password','Bitwarden'],activity:'Scan complete · 98 / 100'},
+];
+
+const HUB_AI = [
+  {name:'ChatGPT',color:'#10a37f',bg:'#0a2e22',border:'rgba(16,163,127,.4)',status:'Connected',access:'Read/Write',sync:'2 min ago',logo:'GPT'},
+  {name:'Claude',color:'#c0601a',bg:'#1a0c02',border:'rgba(180,90,30,.38)',status:'Connected',access:'Read/Write',sync:'5 min ago',logo:'C'},
+  {name:'Gemini',color:'#4285f4',bg:'#030c22',border:'rgba(66,133,244,.38)',status:'Connected',access:'Read only',sync:'8 min ago',logo:'G'},
+  {name:'Perplexity',color:'#20b2a8',bg:'#001010',border:'rgba(32,178,168,.35)',status:'Connected',access:'Read only',sync:'12 min ago',logo:'P'},
+  {name:'Copilot',color:'#0078d4',bg:'#00081a',border:'rgba(0,120,212,.38)',status:'Connected',access:'Read/Write',sync:'1 hr ago',logo:'Co'},
+  {name:'Notion AI',color:'#e0e0e0',bg:'#161616',border:'rgba(220,220,220,.35)',status:'Connected',access:'Read/Write',sync:'30 min ago',logo:'N'},
+  {name:'Midjourney',color:'#c8d4f8',bg:'#06080e',border:'rgba(200,212,248,.28)',status:'Available',access:'Not connected',sync:'Never',logo:'MJ'},
+  {name:'Meta AI',color:'#4b9eff',bg:'#000918',border:'rgba(75,158,255,.35)',status:'Available',access:'Not connected',sync:'Never',logo:'M'},
+];
+
+const AGENTS = [
+  {name:'Personal Assistant',goal:'Handle daily coordination across all AI systems',status:'Active',task:'Drafting tomorrow\'s briefing',icon:'<circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/>',theme:'t-eb'},
+  {name:'Travel Agent',goal:'Plan and book trips, monitor flights and hotels',status:'Active',task:'Monitoring SF flight prices',icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>',theme:'t-ic'},
+  {name:'Finance Agent',goal:'Monitor spending, investments, and financial goals',status:'Active',task:'Prepared weekly spend summary',icon:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/>',theme:'t-tg'},
+  {name:'Home Agent',goal:'Manage smart home, routines and comfort',status:'Active',task:'Evening scene scheduled for 6pm',icon:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>',theme:'t-te'},
+  {name:'Work Agent',goal:'Summarise documents, meetings, and tasks',status:'Active',task:'Summarised 12 documents today',icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>',theme:'t-st'},
+  {name:'Health Agent',goal:'Track health metrics and recommend improvements',status:'Idle',task:'Last check: sleep analysis at 7am',icon:'<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',theme:'t-pb'},
+  {name:'Shopping Agent',goal:'Reorder essentials, find deals, track deliveries',status:'Active',task:'Watching 3 price drop alerts',icon:'<circle cx="9" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/><path d="M1 2h3l2.5 12h10l2-8H6"/>',theme:'t-eb'},
+];
+
+const AUTOMATIONS = [
+  {name:'Morning Routine',desc:'Wake up briefing, weather, calendar, smart home',last:'Today 7:00am',enabled:true,icon:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>'},
+  {name:'Travel Planning',desc:'Auto-search flights, hotels and local tips',last:'Yesterday',enabled:true,icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>'},
+  {name:'Bill Reminder',desc:'Detect upcoming bills and notify 3 days before',last:'3 days ago',enabled:true,icon:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'},
+  {name:'Smart Home Scene',desc:'Evening scene: lights, temperature, music',last:'Today 6:00pm',enabled:false,icon:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'},
+  {name:'Work Summary',desc:'Daily digest of emails, tasks, and meetings',last:'Today 9:00am',enabled:true,icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>'},
+  {name:'Shopping Reorder',desc:'Auto-reorder essentials when running low',last:'2 days ago',enabled:true,icon:'<circle cx="9" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/><path d="M1 2h3l2.5 12h10l2-8H6"/>'},
+];
+
+const DEVICES = [
+  {name:'iPhone 15 Pro',meta:'Primary · iOS 17',sync:95,status:'online',icon:'<rect x="5" y="2" width="14" height="20" rx="2"/>',theme:'t-eb'},
+  {name:'MacBook Pro',meta:'Work device · macOS',sync:88,status:'online',icon:'<rect x="2" y="4" width="20" height="14" rx="2"/><line x1="2" y1="18" x2="22" y2="18"/><line x1="9" y1="22" x2="15" y2="22"/>',theme:'t-cy'},
+  {name:'Smart Home Hub',meta:'Nest Hub · Online',sync:100,status:'online',icon:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',theme:'t-te'},
+  {name:'Tesla Model 3',meta:'Connected · Garage',sync:72,status:'online',icon:'<path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/>',theme:'t-sl'},
+  {name:'Home Robot',meta:'Last seen 12m ago',sync:61,status:'idle',icon:'<rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/>',theme:'t-cy'},
+  {name:'Security Camera',meta:'Live feed · Outdoor',sync:100,status:'online',icon:'<path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>',theme:'t-tg'},
+  {name:'Apple Watch',meta:'Series 9 · 82% battery',sync:90,status:'online',icon:'<rect x="5" y="2" width="14" height="20" rx="4"/>',theme:'t-pb'},
+  {name:'Cloud Node',meta:'EU-West · Active',sync:100,status:'online',icon:'<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>',theme:'t-ic'},
+];
+
+const MKT_ITEMS = [
+  {name:'Deep Research Pack',desc:'Enhanced research across all AI platforms',pro:false,icon:'<path d="M9 11H5a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2v-3a2 2 0 00-2-2zm10 0h-4a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2v-3a2 2 0 00-2-2zM9 3H5a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2V5a2 2 0 00-2-2z"/>'},
+  {name:'Travel Optimizer',desc:'Smart itinerary and price monitoring',pro:true,icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>'},
+  {name:'Finance Dashboard',desc:'Real-time portfolio and spending insights',pro:true,icon:'<path d="M18 20V10M12 20V4M6 20v-6"/>'},
+  {name:'Health Coach',desc:'AI-powered daily wellness recommendations',pro:false,icon:'<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>'},
+  {name:'Smart Home Suite',desc:'Full home automation integration pack',pro:true,icon:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>'},
+  {name:'Work Productivity',desc:'Meeting summaries and document tools',pro:false,icon:'<rect x="2" y="7" width="20" height="14" rx="2"/>'},
+];
+
+const MEM_MEMORIES = [
+  {text:'San Francisco trip notes — flights, hotels, restaurants',platform:'Travel AI',time:'5m ago',color:'#a0c8f0',bg:'rgba(20,70,120,.20)'},
+  {text:'Q4 budget discussion with finance team',platform:'Work AI',time:'22m ago',color:'#9090d8',bg:'rgba(40,40,120,.20)'},
+  {text:'Morning workout: 45min run, HR avg 148',platform:'Health AI',time:'2h ago',color:'#7aaae0',bg:'rgba(30,65,130,.18)'},
+  {text:'Grocery list: oat milk, coffee, avocados',platform:'Shopping AI',time:'3h ago',color:'#4b9eff',bg:'rgba(20,60,160,.22)'},
+  {text:'Smart home evening scene preferences updated',platform:'Home AI',time:'6h ago',color:'#1db5c8',bg:'rgba(0,90,110,.20)'},
+];
+
+const ACTIVITY_FEED = [
+  {title:'Memory synced',sub:'4 new memories saved across ChatGPT and Claude',time:'2 minutes ago',color:'#38d9ff',bg:'rgba(0,100,140,.20)',icon:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'},
+  {title:'Automation completed',sub:'Morning routine finished — 6 steps executed',time:'1 hour ago',color:'#00e5a0',bg:'rgba(0,100,90,.18)',icon:'<rect x="2" y="3" width="20" height="14" rx="2"/>'},
+  {title:'Device connected',sub:'Apple Watch synced health data from last night',time:'2 hours ago',color:'#4b9eff',bg:'rgba(20,60,160,.22)',icon:'<rect x="5" y="2" width="14" height="20" rx="4"/>'},
+  {title:'AI message sent',sub:'Broadcast to 8 systems: daily briefing request',time:'3 hours ago',color:'#8ab0d4',bg:'rgba(40,70,110,.20)',icon:'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>'},
+  {title:'Security scan complete',sub:'No threats detected. Privacy score: 98/100',time:'4 hours ago',color:'#00e5a0',bg:'rgba(0,100,90,.18)',icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'},
+  {title:'Cloud sync complete',sub:'24.3 TFLOPS used today, all data backed up',time:'5 hours ago',color:'#4b9eff',bg:'rgba(20,60,160,.22)',icon:'<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>'},
+  {title:'Finance report generated',sub:'Weekly spending summary: $847 total, 12% under budget',time:'Yesterday',color:'#00c8a0',bg:'rgba(0,100,90,.18)',icon:'<path d="M18 20V10M12 20V4M6 20v-6"/>'},
+  {title:'Travel booking found',sub:'SF flight price dropped 23% — alert triggered',time:'Yesterday',color:'#a0c8f0',bg:'rgba(20,70,120,.20)',icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>'},
+];
+
+const NOTIFS = [
+  {title:'Memory sync alert',sub:'4 new memories saved across ChatGPT and Claude',time:'2 min ago',color:'#38d9ff',bg:'rgba(0,100,140,.20)',icon:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',unread:true},
+  {title:'Travel AI · Price drop',sub:'SF flight price dropped 23% — book now?',time:'1 hour ago',color:'#a0c8f0',bg:'rgba(20,70,120,.20)',icon:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>',unread:true},
+  {title:'Schedule AI',sub:'Tomorrow: 3 meetings, 2 hours of focus time',time:'2 hours ago',color:'#38d9ff',bg:'rgba(0,100,140,.20)',icon:'<rect x="3" y="4" width="18" height="18" rx="2"/>',unread:true},
+  {title:'Security scan complete',sub:'No threats detected · Score 98/100',time:'4 hours ago',color:'#00e5a0',bg:'rgba(0,100,90,.18)',icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',unread:false},
+  {title:'Cloud usage update',sub:'62% of daily compute quota used',time:'5 hours ago',color:'#4b9eff',bg:'rgba(20,60,160,.22)',icon:'<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>',unread:false},
+  {title:'Automation: Morning Routine',sub:'Completed at 7:00am · 6 steps executed',time:'8 hours ago',color:'#00e5a0',bg:'rgba(0,100,90,.18)',icon:'<rect x="2" y="3" width="20" height="14" rx="2"/>',unread:false},
+  {title:'Finance report ready',sub:'Weekly spending: $847 · 12% under budget',time:'Yesterday',color:'#00c8a0',bg:'rgba(0,100,90,.18)',icon:'<path d="M18 20V10M12 20V4M6 20v-6"/>',unread:false},
+  {title:'New device added',sub:'Apple Watch Series 9 connected successfully',time:'2 days ago',color:'#7aaae0',bg:'rgba(30,65,130,.18)',icon:'<rect x="5" y="2" width="14" height="20" rx="4"/>',unread:false},
+];
+
+const USAGE_DIST = [
+  {name:'Schedule AI',pct:24},{name:'Assistant AI',pct:19},{name:'Work AI',pct:16},{name:'Comms AI',pct:13},{name:'Finance AI',pct:9},{name:'Health AI',pct:7},{name:'Home AI',pct:6},{name:'Other',pct:6},
+];
+
+/* ══════════════════════════ CANVAS BG ══════════════════════════ */
+(function(){
+  var c=document.getElementById('bg-canvas'),ctx=c.getContext('2d'),W,H,dots=[],GS=40;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function initDots(){dots=[];for(var i=0;i<22;i++)dots.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*.9+.3,pa:Math.random()*Math.PI*2,ps:(Math.random()*.004+.002)*(Math.random()>.5?1:-1)});}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='rgba(56,140,255,.022)';ctx.lineWidth=.5;
+    var cols=Math.ceil(W/GS)+1,rows=Math.ceil(H/GS)+1;
+    ctx.beginPath();
+    for(var c2=0;c2<cols;c2++){ctx.moveTo(c2*GS,0);ctx.lineTo(c2*GS,H);}
+    for(var r=0;r<rows;r++){ctx.moveTo(0,r*GS);ctx.lineTo(W,r*GS);}
+    ctx.stroke();
+    for(var i=0;i<dots.length;i++){
+      var d=dots[i];d.x+=d.vx;d.y+=d.vy;d.pa+=d.ps;
+      if(d.x<-10)d.x=W+10;if(d.x>W+10)d.x=-10;
+      if(d.y<-10)d.y=H+10;if(d.y>H+10)d.y=-10;
+      var a=(.08+.06*Math.sin(d.pa));
+      ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(56,180,255,'+a.toFixed(3)+')';ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();initDots();draw();
+})();
+
+/* ══════════════════════════ RENDER FUNCTIONS ══════════════════════════ */
+function renderSystemCards(containerId, limit){
+  var el=document.getElementById(containerId);
+  if(!el)return;
+  var list=limit?SYSTEMS.slice(0,limit):SYSTEMS;
+  el.innerHTML=list.map(s=>`
+    <div class="card" onclick="openSystemDetail('${s.id}')">
+      <div class="cico ${s.theme}"><svg viewBox="0 0 24 24" stroke-width="1.6">${s.icon}</svg></div>
+      <div class="cn">${s.name}</div><div class="cs">${s.sub}</div>
+      <div class="cst"><div class="dot dg ds"></div>Active</div>
+    </div>`).join('');
+}
+
+function openSystemDetail(id){
+  var s=SYSTEMS.find(x=>x.id===id);if(!s)return;
+  document.getElementById('sysModalContent').innerHTML=`
+    <div class="sys-detail-head">
+      <div class="sys-detail-icon ${s.theme}"><svg viewBox="0 0 24 24" stroke-width="1.5">${s.icon}</svg></div>
+      <div><div class="sys-detail-title">${s.name}</div><div class="sys-detail-sub">${s.sub}</div></div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <span class="badge-green">Active</span><span class="badge-blue">Memory Sync On</span>
+    </div>
+    <div class="info-row"><div class="ir-label">Connected services</div><div class="ir-val">${s.services.join(', ')}</div></div>
+    <div class="info-row"><div class="ir-label">Last activity</div><div class="ir-val">${s.activity}</div></div>
+    <div class="info-row"><div class="ir-label">Memory sync</div><div class="ir-val">Real-time</div></div>
+    <div class="info-row"><div class="ir-label">API calls today</div><div class="ir-val">${Math.floor(Math.random()*200+50)}</div></div>
+    <div style="margin:16px 0 10px;"><div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">Settings</div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Memory Access</div><div class="ti-desc">Allow reading shared memory</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Automation</div><div class="ti-desc">Include in automated tasks</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Notifications</div><div class="ti-desc">Alert on important events</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+    </div>
+    <button class="prim-btn" onclick="renderToast('${s.name} settings saved','success');closeModal('sysModal');">Save Settings</button>
+    <button class="sec-btn" onclick="renderToast('${s.name} disconnected','info');closeModal('sysModal');">Disconnect System</button>`;
+  openModal('sysModal');
+}
+
+function renderHubGrid(){
+  var el=document.getElementById('hubGrid');if(!el)return;
+  el.innerHTML=HUB_AI.map(h=>`
+    <div class="hub-card" onclick="openHubDetail('${h.name}')">
+      <div class="hub-logo" style="background:${h.bg};border:1px solid ${h.border};color:${h.color};">${h.logo}</div>
+      <div class="hub-name">${h.name}</div>
+      <div class="hub-status-line">${h.status==='Connected'?'<span class="badge-green">Connected</span>':'<span class="badge-gray">Available</span>'}</div>
+      <div class="hub-sync">Last sync: ${h.sync}</div>
+      <button class="hub-btn">${h.status==='Connected'?'Manage':'Connect'}</button>
+    </div>`).join('');
+}
+
+function openHubDetail(name){
+  var h=HUB_AI.find(x=>x.name===name);if(!h)return;
+  document.getElementById('hubModalContent').innerHTML=`
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+      <div style="width:54px;height:54px;border-radius:14px;background:${h.bg};border:1px solid ${h.border};display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:15px;font-weight:700;color:${h.color};">${h.logo}</div>
+      <div><div style="font-family:var(--fh);font-size:19px;font-weight:700;color:var(--t1);">${h.name}</div><div style="font-size:10px;color:var(--t3);margin-top:2px;">AI Service</div></div>
+    </div>
+    <div style="margin-bottom:14px;">${h.status==='Connected'?'<span class="badge-green">Connected</span>':'<span class="badge-gray">Not Connected</span>'}</div>
+    <div class="info-row"><div class="ir-label">Memory access</div><div class="ir-val">${h.access}</div></div>
+    <div class="info-row"><div class="ir-label">Last sync</div><div class="ir-val">${h.sync}</div></div>
+    <div class="info-row"><div class="ir-label">API status</div><div class="ir-val">${h.status==='Connected'?'Active':'Not configured'}</div></div>
+    ${h.status==='Connected'?`
+      <div class="toggle-row" style="margin-top:14px;"><div class="toggle-info"><div class="ti-name">Memory Read Access</div><div class="ti-desc">Can read your shared memory</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Memory Write Access</div><div class="ti-desc">Can save to shared memory</div></div><div class="toggle ${h.access==='Read/Write'?'on':''}" onclick="toggleSwitch(this)"></div></div>
+      <button class="prim-btn" onclick="renderToast('${h.name} settings updated','success');closeModal('hubModal');" style="margin-top:14px;">Save Settings</button>
+      <button class="danger-btn" onclick="renderToast('${h.name} disconnected','info');closeModal('hubModal');">Disconnect</button>
+    `:`
+      <button class="prim-btn" onclick="renderToast('Connecting to ${h.name}…','info');closeModal('hubModal');" style="margin-top:14px;">Connect ${h.name}</button>
+    `}`;
+  openModal('hubModal');
+}
+
+function renderAgents(){
+  var el=document.getElementById('agentList');if(!el)return;
+  el.innerHTML=AGENTS.map(a=>`
+    <div class="agent-card" onclick="openAgentDetail('${a.name}')">
+      <div class="agent-ico ${a.theme}"><svg viewBox="0 0 24 24" stroke-width="1.5">${a.icon}</svg></div>
+      <div class="agent-body">
+        <div class="agent-name">${a.name}</div>
+        <div class="agent-goal">${a.goal}</div>
+        <div class="agent-task">↳ ${a.task}</div>
+      </div>
+      <button class="agent-act-btn" onclick="event.stopPropagation();renderToast('${a.name} activated','success');">${a.status==='Active'?'Active':'Activate'}</button>
+    </div>`).join('');
+}
+
+function openAgentDetail(name){
+  var a=AGENTS.find(x=>x.name===name);if(!a)return;
+  document.getElementById('agentModalContent').innerHTML=`
+    <div class="sys-detail-head">
+      <div class="sys-detail-icon ${a.theme}"><svg viewBox="0 0 24 24" stroke-width="1.5">${a.icon}</svg></div>
+      <div><div class="sys-detail-title">${a.name}</div><div class="sys-detail-sub">${a.status}</div></div>
+    </div>
+    <div class="info-row"><div class="ir-label">Goal</div><div class="ir-val" style="max-width:60%;">${a.goal}</div></div>
+    <div class="info-row"><div class="ir-label">Last task</div><div class="ir-val" style="max-width:60%;">${a.task}</div></div>
+    <div class="info-row"><div class="ir-label">Status</div><div class="ir-val"><span class="${a.status==='Active'?'badge-green':'badge-gray'}">${a.status}</span></div></div>
+    <div class="info-row"><div class="ir-label">Tasks today</div><div class="ir-val">${Math.floor(Math.random()*12+3)}</div></div>
+    <div style="margin:16px 0 10px;"><div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px;">Configuration</div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Auto-run</div><div class="ti-desc">Run without confirmation</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+      <div class="toggle-row"><div class="toggle-info"><div class="ti-name">Memory access</div><div class="ti-desc">Read and write to shared memory</div></div><div class="toggle on" onclick="toggleSwitch(this)"></div></div>
+    </div>
+    <button class="prim-btn" onclick="renderToast('${a.name} activated','success');closeModal('agentModal');">${a.status==='Active'?'Configure Agent':'Activate Agent'}</button>`;
+  openModal('agentModal');
+}
+
+function renderAutomations(){
+  var el=document.getElementById('autoList');if(!el)return;
+  el.innerHTML=AUTOMATIONS.map((a,i)=>`
+    <div class="auto-card">
+      <div class="auto-ico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.5">${a.icon}</svg></div>
+      <div class="auto-body">
+        <div class="auto-name">${a.name}</div>
+        <div class="auto-desc">${a.desc}</div>
+        <div class="auto-last">Last run: ${a.last}</div>
+      </div>
+      <div class="toggle ${a.enabled?'on':''}" onclick="toggleSwitch(this);renderToast('${a.name} ${a.enabled?'paused':'activated'}','info');"></div>
+    </div>`).join('');
+}
+
+function renderDevices(){
+  var el=document.getElementById('deviceGrid');if(!el)return;
+  el.innerHTML=DEVICES.map(d=>`
+    <div class="device-card" onclick="renderToast('${d.name} — ${d.status}','info')">
+      <div class="device-ico ${d.theme}"><svg viewBox="0 0 24 24" stroke-width="1.5">${d.icon}</svg></div>
+      <div class="device-name">${d.name}</div>
+      <div class="device-meta">${d.meta}</div>
+      <div class="device-bar"><div class="device-bar-fill" style="width:${d.sync}%;"></div></div>
+      <div style="font-size:8.5px;color:var(--t4);margin-top:3px;">${d.sync}% sync · <span style="color:${d.status==='online'?'var(--green)':'var(--t3)'};">${d.status}</span></div>
+    </div>`).join('');
+}
+
+function renderAnalyticsChart(){
+  var el=document.getElementById('analyticsChart');if(!el)return;
+  var vals=[142,198,167,221,185,247,210];
+  var max=Math.max(...vals);
+  el.innerHTML=vals.map(v=>`
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+      <div style="font-size:9px;color:var(--t4);">${v}</div>
+      <div style="width:100%;height:${Math.round((v/max)*70)}px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(56,217,255,.7),rgba(56,160,255,.25));min-height:4px;"></div>
+    </div>`).join('');
+  var u=document.getElementById('usageRows');if(u){
+    u.innerHTML=USAGE_DIST.map(x=>`
+      <div style="display:flex;align-items:center;gap:10px;padding:7px 0;">
+        <div style="flex:0 0 110px;font-size:11px;color:var(--t1);">${x.name}</div>
+        <div style="flex:1;height:6px;border-radius:4px;background:rgba(56,140,255,.10);overflow:hidden;"><div style="height:100%;width:${x.pct*3.5}%;background:linear-gradient(90deg,var(--eblue),var(--cyan));"></div></div>
+        <div style="flex:0 0 38px;text-align:right;font-size:11px;font-weight:600;color:var(--t1);">${x.pct}%</div>
+      </div>`).join('');
+  }
+}
+
+function renderMktGrid(){
+  var el=document.getElementById('mktGrid');if(!el)return;
+  el.innerHTML=MKT_ITEMS.map(m=>`
+    <div class="mkt-card">
+      ${m.pro?'<div class="mkt-pro-badge">Pro</div>':''}
+      <div class="mkt-ico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.5">${m.icon}</svg></div>
+      <div class="mkt-name">${m.name}</div>
+      <div class="mkt-desc">${m.desc}</div>
+      <button class="mkt-btn mkt-install" onclick="renderToast('${m.name} ${m.pro?'requires Pro plan':'installed'}','${m.pro?'info':'success'}')">${m.pro?'Get Pro':'Install'}</button>
+    </div>`).join('');
+}
+
+function renderMemGraph(){
+  var el=document.getElementById('memGraph');if(!el)return;
+  var vals=[12,18,9,24,31,16,28,22,35,19,27,41,33,38];
+  var max=Math.max(...vals);
+  el.innerHTML=vals.map(v=>`<div class="mg-bar" style="height:${Math.round((v/max)*52)+4}px;" title="${v} memories"></div>`).join('');
+}
+
+function renderMemFeed(){
+  var el=document.getElementById('memFeed');if(!el)return;
+  el.innerHTML=MEM_MEMORIES.map(m=>`
+    <div class="mem-item">
+      <div class="mem-item-ico" style="background:${m.bg};border:1px solid ${m.color}33;"><svg viewBox="0 0 24 24" style="stroke:${m.color};fill:none;stroke-width:1.6;" width="13" height="13"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="mem-item-text"><div class="mt">${m.text}</div><div class="ms">${m.platform}</div></div>
+      <div class="mem-item-time">${m.time}</div>
+    </div>`).join('');
+}
+
+function renderActivityFeed(){
+  var el=document.getElementById('activityFeed');if(!el)return;
+  el.innerHTML=ACTIVITY_FEED.map(a=>`
+    <div class="feed-item">
+      <div class="feed-icon" style="background:${a.bg};border:1px solid ${a.color}33;color:${a.color};"><svg viewBox="0 0 24 24" stroke-width="1.6">${a.icon}</svg></div>
+      <div class="feed-text"><div class="ft-title">${a.title}</div><div class="ft-sub">${a.sub}</div><div class="ft-time">${a.time}</div></div>
+    </div>`).join('');
+}
+
+function renderNotifList(){
+  var el=document.getElementById('notifList');if(!el)return;
+  el.innerHTML=NOTIFS.map(n=>`
+    <div class="notif-row ${n.unread?'unread':''}" onclick="this.classList.remove('unread');renderToast('Notification opened','info')">
+      <div class="notif-icon" style="background:${n.bg};border:1px solid ${n.color}33;color:${n.color};"><svg viewBox="0 0 24 24" stroke-width="1.6">${n.icon}</svg></div>
+      <div class="notif-body"><div class="notif-title">${n.title}</div><div class="notif-sub">${n.sub}</div><div class="notif-time">${n.time}</div></div>
+    </div>`).join('');
+}
+
+function renderBroadcastSystems(){
+  var el=document.getElementById('bcastSystems');if(!el)return;
+  el.innerHTML=SYSTEMS.slice(0,10).map(s=>`
+    <div class="bcast-chip sel" onclick="this.classList.toggle('sel')">${s.name}</div>`).join('');
+}
+
+function renderCCSystemsList(){
+  var el=document.getElementById('ccSystemsList');if(!el)return;
+  el.innerHTML=SYSTEMS.slice(0,8).map(s=>`
+    <div class="bcast-chip sel" onclick="this.classList.toggle('sel')">${s.name}</div>`).join('');
+}
+
+function renderCustomizeList(){
+  var el=document.getElementById('customizeList');if(!el)return;
+  el.innerHTML=SYSTEMS.map(s=>`
+    <div class="cust-row">
+      <svg class="cust-drag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <div class="cust-row-ico ${s.theme}"><svg viewBox="0 0 24 24" stroke-width="1.6">${s.icon}</svg></div>
+      <div class="cust-row-name">${s.name}</div>
+      <div class="toggle on" onclick="toggleSwitch(this)"></div>
+    </div>`).join('');
+}
+
+/* ══════════════════════════ NAVIGATION ══════════════════════════ */
+var currentScreen='home';
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  var el=document.getElementById('scr-'+id);
+  if(el)el.classList.add('active');
+  currentScreen=id;
+  // lazy render
+  if(id==='systems')renderSystemCards('fullSystemsGrid');
+  if(id==='hub')renderHubGrid();
+  if(id==='agents')renderAgents();
+  if(id==='automation')renderAutomations();
+  if(id==='devices')renderDevices();
+  if(id==='analytics')renderAnalyticsChart();
+  if(id==='marketplace')renderMktGrid();
+  if(id==='memory'){renderMemGraph();renderMemFeed();}
+  if(id==='activity')renderActivityFeed();
+  if(id==='notif')renderNotifList();
+  // scroll top
+  document.querySelectorAll('.scroll').forEach(s=>{if(s.closest('.screen').classList.contains('active'))s.scrollTop=0;});
+}
+
+function setActiveNav(key){
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  var bmap={home:'bn-home',systems:'bn-systems',activity:'bn-activity',profile:'bn-profile'};
+  if(bmap[key]){var el=document.getElementById(bmap[key]);if(el)el.classList.add('on');}
+  document.querySelectorAll('.m-item').forEach(n=>n.classList.remove('active'));
+  var mmap={home:'mi-home',hub:'mi-hub',memory:'mi-memory',agents:'mi-agents',demo:'mi-demo',arch:'mi-arch',biz:'mi-biz',tech:'mi-tech',uses:'mi-uses',submit:'mi-submit',auto:'mi-auto',devices:'mi-devices',analytics:'mi-analytics',marketplace:'mi-mkt',notif:'mi-notif',settings:'mi-settings'};
+  if(mmap[key]){var el2=document.getElementById(mmap[key]);if(el2)el2.classList.add('active');}
+  document.querySelectorAll('.ds-item').forEach(n=>n.classList.remove('active'));
+  var dmap={home:'dsi-home',hub:'dsi-hub',memory:'dsi-memory',agents:'dsi-agents',demo:'dsi-demo',arch:'dsi-arch',biz:'dsi-biz',tech:'dsi-tech',uses:'dsi-uses',submit:'dsi-submit',systems:'dsi-systems',auto:'dsi-auto',devices:'dsi-devices',analytics:'dsi-analytics',marketplace:'dsi-mkt',settings:'dsi-settings'};
+  if(dmap[key]){var el3=document.getElementById(dmap[key]);if(el3)el3.classList.add('active');}
+}
+
+/* ══════════════════════════ MENU ══════════════════════════ */
+function openMenu(){document.getElementById('mOverlay').classList.add('open');}
+function closeMenu(){document.getElementById('mOverlay').classList.remove('open');}
+function menuOutside(e){if(e.target===document.getElementById('mOverlay'))closeMenu();}
+
+/* ══════════════════════════ MODALS ══════════════════════════ */
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  if(id==='broadcastModal')renderBroadcastSystems();
+  if(id==='commandModal')renderCCSystemsList();
+  if(id==='customizeModal')renderCustomizeList();
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  if(id==='authModal')setTimeout(resetAuth,360);
+}
+function modOutside(e,id){if(e.target===document.getElementById(id))closeModal(id);}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){document.querySelectorAll('.mod-ov.open').forEach(m=>m.classList.remove('open'));closeMenu();}
+  if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();openModal('searchModal');}
+});
+
+/* ══════════════════════════ TOAST ══════════════════════════ */
+function renderToast(msg,type){
+  type=type||'info';
+  var tw=document.getElementById('toastWrap');
+  var t=document.createElement('div');
+  t.className='toast toast-'+type;
+  t.innerHTML='<div class="toast-dot"></div><span>'+msg+'</span>';
+  tw.appendChild(t);
+  setTimeout(()=>t.classList.add('show'),10);
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),320);},3200);
+}
+
+/* ══════════════════════════ TOGGLE ══════════════════════════ */
+function toggleSwitch(el){el.classList.toggle('on');}
+
+/* ══════════════════════════ AUTH ══════════════════════════ */
+var authMode='signin';
+function switchAuthTab(mode){
+  authMode=mode;
+  document.getElementById('signinTab').classList.toggle('active',mode==='signin');
+  document.getElementById('signupTab').classList.toggle('active',mode==='signup');
+  document.getElementById('aFN').style.display=mode==='signup'?'':'none';
+  document.getElementById('authTitle').textContent=mode==='signin'?'Welcome back':'Create your account';
+  document.getElementById('authSub').textContent=mode==='signin'?'Sign in to your Terafarm account.':'Connect your AI world in one interface.';
+  document.getElementById('authBtn').textContent=mode==='signin'?'Sign In':'Create Account';
+}
+function handleAuth(){
+  var btn=document.getElementById('authBtn');
+  btn.disabled=true;btn.textContent=authMode==='signin'?'Signing in…':'Creating…';
+  setTimeout(()=>{
+    document.getElementById('authFormSec').style.display='none';
+    document.getElementById('authSuccSec').classList.add('on');
+    document.getElementById('authSuccTitle').textContent=authMode==='signin'?'Welcome back!':"You're on the list!";
+    document.getElementById('authSuccMsg').textContent=authMode==='signin'?'Your AI ecosystem is ready.':'Welcome to Terafarm. Your AI world is being prepared.';
+    setTimeout(()=>closeModal('authModal'),2800);
+  },780);
+}
+function resetAuth(){
+  document.getElementById('authFormSec').style.display='';
+  document.getElementById('authSuccSec').classList.remove('on');
+  var btn=document.getElementById('authBtn');btn.disabled=false;btn.textContent=authMode==='signin'?'Sign In':'Create Account';
+}
+
+/* ══════════════════════════ OTHER HANDLERS ══════════════════════════ */
+function handleSearch(){
+  var q=document.getElementById('searchInput').value.trim();
+  if(!q){renderToast('Please enter a search query','info');return;}
+  var el=document.getElementById('searchResults');
+  el.innerHTML='<div class="search-result"><div class="sr-route"><div class="sr-route-ico"><svg viewBox="0 0 24 24" width="13" height="13" stroke="#38d9ff" fill="none" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="sr-route-text">Routing through</div><div class="sr-route-ai">Shared Memory + ChatGPT</div></div></div><div class="sr-response">Found 3 memories matching "<strong style="color:var(--cyan);">'+q+'</strong>". Most recent: <em style="color:var(--t2);">2 days ago in Work AI.</em> Your last interaction referenced this topic in a Claude conversation on Monday. Would you like me to surface the full context?</div></div>';
+  renderToast('Searching across 8 AI systems…','info');
+}
+
+function handleCCSubmit(){
+  var q=document.getElementById('ccInput').value.trim();
+  if(q)simulateCCCommand(q);
+}
+
+function simulateCCCommand(cmd){
+  document.getElementById('ccInput').value=cmd;
+  var el=document.getElementById('ccResponse');
+  var lc=cmd.toLowerCase();
+  // detect trip command for demo
+  if(lc.includes('trip')||lc.includes('san francisco')||lc.includes('travel')){
+    el.style.display='block';
+    el.innerHTML='<div class="search-result"><div class="sr-route"><div class="sr-route-ico"><svg viewBox="0 0 24 24" width="13" height="13" stroke="#38d9ff" fill="none" stroke-width="1.6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="sr-route-text">Multi-agent task detected</div><div class="sr-route-ai">5 agents will collaborate</div></div></div><div class="sr-response">Opening Demo Flow to show the full orchestration of <em style="color:var(--cyan);">"'+cmd+'"</em> across Travel · Schedule · Finance · Car · Assistant AI.</div></div>';
+    setTimeout(()=>{closeModal('commandModal');showScreen('demo');setActiveNav('demo');setTimeout(runDemo,400);},1100);
+    return;
+  }
+  var routes=['ChatGPT','Claude','Gemini','Shared Memory'];
+  var route=routes[Math.floor(Math.random()*routes.length)];
+  el.style.display='block';
+  el.innerHTML='<div class="search-result"><div class="sr-route"><div class="sr-route-ico"><svg viewBox="0 0 24 24" width="13" height="13" stroke="#38d9ff" fill="none" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="sr-route-text">Routed to</div><div class="sr-route-ai">'+route+'</div></div></div><div class="sr-response">Processing: <em style="color:var(--cyan);">"'+cmd+'"</em><br><br>Task received and queued. '+route+' will handle this request and sync results to your Shared Memory.</div></div>';
+  renderToast('Task routed to '+route,'success');
+}
+
+function handleCreateTask(){
+  var t=document.getElementById('taskTitle').value.trim();
+  var a=document.getElementById('taskAgent').value;
+  if(!t){renderToast('Please enter a task title','info');return;}
+  renderToast('Task created and assigned to '+a,'success');
+  closeModal('taskModal');
+}
+
+function handleBroadcast(){
+  var msg=document.getElementById('broadcastMsg').value.trim();
+  if(!msg){renderToast('Please enter a message','info');return;}
+  var selected=document.querySelectorAll('#bcastSystems .bcast-chip.sel').length;
+  renderToast('Message sent to '+selected+' AI systems','success');
+  closeModal('broadcastModal');
+}
+
+function handleProUpgrade(){
+  renderToast('Redirecting to checkout…','info');
+  setTimeout(()=>closeModal('proModal'),600);
+}
+
+/* ══════════════════════════ DEMO ORCHESTRATION ══════════════════════════ */
+var demoRunning=false;
+function runDemo(){
+  if(demoRunning)return;
+  demoRunning=true;
+  resetDemo();
+  var agents=document.querySelectorAll('#demoAgents .demo-agent');
+  document.querySelectorAll('#demoStartBtn,#demoRunBtn').forEach(b=>{if(b){b.disabled=true;b.textContent='Running…';}});
+  agents.forEach(a=>{
+    a.classList.remove('active','done');
+    a.querySelector('.demo-agent-state').textContent='QUEUED';
+  });
+  document.getElementById('demoResult').classList.remove('on');
+  var i=0;
+  function step(){
+    if(i>0){
+      var prev=agents[i-1];
+      prev.classList.remove('active');
+      prev.classList.add('done');
+      prev.querySelector('.demo-agent-state').textContent='DONE';
+    }
+    if(i>=agents.length){
+      document.getElementById('demoResult').classList.add('on');
+      document.querySelectorAll('#demoStartBtn,#demoRunBtn').forEach(b=>{if(b){b.disabled=false;b.textContent='▶ Run Again';}});
+      renderToast('Demo complete · 5 agents · shared memory updated','success');
+      demoRunning=false;
+      return;
+    }
+    var cur=agents[i];
+    cur.classList.add('active');
+    cur.querySelector('.demo-agent-state').textContent='WORKING';
+    renderToast(cur.querySelector('.demo-agent-name').textContent+' · running…','info');
+    i++;
+    setTimeout(step,1100);
+  }
+  setTimeout(step,400);
+}
+function resetDemo(){
+  var agents=document.querySelectorAll('#demoAgents .demo-agent');
+  agents.forEach(a=>{a.classList.remove('active','done');a.querySelector('.demo-agent-state').textContent='QUEUED';});
+  document.getElementById('demoResult').classList.remove('on');
+  document.querySelectorAll('#demoStartBtn,#demoRunBtn').forEach(b=>{if(b){b.disabled=false;b.textContent='▶ Run Demo';}});
+}
+
+/* ══════════════════════════ INIT ══════════════════════════ */
+(function init(){
+  renderSystemCards('systemsGrid',14);
+  setTimeout(()=>renderToast('Memory sync complete — 4 new memories saved','success'),1200);
+  setTimeout(()=>renderToast('Morning Routine completed','info'),2800);
+})();
+</script>
+</html>
