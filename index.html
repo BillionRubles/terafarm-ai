@@ -823,7 +823,9 @@ html,body{
   position:relative;
   backdrop-filter:blur(40px);
   -webkit-backdrop-filter:blur(40px);
+  max-height:92vh;overflow-y:auto;scrollbar-width:none;
 }
+.mod::-webkit-scrollbar{display:none;}
 @media(min-width:768px){
   .mod{
     border-radius:20px;
@@ -831,6 +833,7 @@ html,body{
     transform:scale(0.95) translateY(16px);
     opacity:0;
     transition:transform .32s var(--ease),opacity .26s;
+    max-height:86vh;
   }
 }
 .mod-ov.open .mod{transform:translateY(0);opacity:1;}
@@ -849,7 +852,7 @@ html,body{
   background:rgba(56,140,255,0.08);
   border:1px solid rgba(56,140,255,0.14);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
-  transition:background .18s,border-color .18s;
+  transition:background .18s,border-color .18s;z-index:5;
 }
 .mod-x:hover{background:rgba(56,140,255,0.15);border-color:rgba(56,140,255,0.24);}
 .mod-x svg{width:12px;height:12px;stroke:var(--t2);fill:none;}
@@ -878,13 +881,15 @@ html,body{
   letter-spacing:.12em;text-transform:uppercase;
   display:block;margin-bottom:3px;
 }
-.fld input{
+.fld input,.fld textarea,.fld select{
   background:none;border:none;outline:none;
   font-family:var(--fb);font-size:14px;color:var(--t1);
   caret-color:var(--cyan);width:100%;
   letter-spacing:.02em;
 }
-.fld input::placeholder{color:rgba(100,140,190,0.28);}
+.fld textarea{resize:none;line-height:1.5;}
+.fld select option{background:#0b1730;color:var(--t1);}
+.fld input::placeholder,.fld textarea::placeholder{color:rgba(100,140,190,0.28);}
 
 .emsg{font-size:9.5px;color:#e05060;margin:-5px 0 7px 4px;display:none;}
 .emsg.on{display:block;}
@@ -926,12 +931,180 @@ html,body{
 .succ-scr h3{font-family:var(--fh);font-size:22px;font-weight:700;color:var(--t1);margin-bottom:8px;}
 .succ-scr p{font-size:12px;color:var(--t2);line-height:1.7;}
 
+/* ══════════════════════════════════════
+   FUNCTIONAL UTILITIES — additive only.
+   No spacing changes. No new design.
+   Just: screens show/hide, toasts,
+   sec-btn, info-row, toggle, badges.
+   All match existing palette + tokens.
+══════════════════════════════════════ */
+.scr{display:none;}
+.scr.on{display:block;}
+
+.sec-btn{
+  width:100%;padding:11px;
+  background:rgba(11,27,60,0.6);
+  border:1px solid rgba(56,140,255,0.15);
+  border-radius:12px;margin-top:8px;
+  font-family:var(--fh);font-size:13px;font-weight:600;
+  color:var(--t1);letter-spacing:.05em;cursor:pointer;
+  transition:background .18s,border-color .18s;
+}
+.sec-btn:hover{background:rgba(15,33,72,0.7);border-color:rgba(56,140,255,0.24);}
+.dng-btn{
+  width:100%;padding:11px;
+  background:rgba(180,20,40,0.10);
+  border:1px solid rgba(220,50,70,0.20);
+  border-radius:12px;margin-top:8px;
+  font-family:var(--fh);font-size:13px;font-weight:600;
+  color:#e07080;letter-spacing:.05em;cursor:pointer;
+  transition:background .18s;
+}
+.dng-btn:hover{background:rgba(180,20,40,0.18);}
+
+.irow{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--b3);gap:12px;}
+.irow:last-child{border-bottom:none;}
+.irow .il{font-size:11px;color:var(--t3);flex-shrink:0;}
+.irow .iv{font-size:11px;font-weight:600;color:var(--t1);text-align:right;}
+
+.tg{
+  width:36px;height:21px;border-radius:11px;
+  background:rgba(56,130,220,0.12);
+  border:1px solid rgba(56,130,220,0.20);
+  position:relative;cursor:pointer;flex-shrink:0;
+  transition:background .24s,border-color .24s;
+}
+.tg.on{background:rgba(56,217,255,0.22);border-color:rgba(56,217,255,0.42);}
+.tg::after{
+  content:'';position:absolute;width:15px;height:15px;border-radius:50%;
+  background:rgba(120,160,210,0.6);
+  top:2px;left:2px;
+  transition:transform .24s,background .24s;
+  box-shadow:0 1px 4px rgba(0,0,0,0.4);
+}
+.tg.on::after{transform:translateX(15px);background:var(--cyan);box-shadow:0 0 6px rgba(56,217,255,0.5);}
+
+.trow{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--b3);gap:14px;}
+.trow:last-child{border-bottom:none;}
+.trow-info .tn{font-size:12px;font-weight:600;color:var(--t1);}
+.trow-info .td{font-size:10px;color:var(--t3);margin-top:2px;line-height:1.5;}
+
+.dhead{display:flex;align-items:center;gap:13px;margin-bottom:16px;}
+.dhead-ic{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dhead-ic svg{width:23px;height:23px;stroke-width:1.5;}
+.dhead-tx h2{margin-bottom:2px;font-size:20px;}
+.dhead-tx p{font-size:10px;color:var(--t3);letter-spacing:.05em;}
+
+.bdg-grn{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;background:rgba(0,200,140,0.10);border:1px solid rgba(0,200,140,0.22);font-size:9.5px;font-weight:600;color:var(--green);letter-spacing:.04em;}
+.bdg-cy{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;background:rgba(56,160,255,0.10);border:1px solid rgba(56,160,255,0.22);font-size:9.5px;font-weight:600;color:var(--cyan);}
+.bdg-gy{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;background:rgba(90,120,160,0.10);border:1px solid rgba(90,120,160,0.20);font-size:9.5px;font-weight:600;color:var(--t3);}
+
+.sect-lbl{font-size:9px;font-weight:600;color:var(--t4);letter-spacing:.15em;text-transform:uppercase;margin:14px 0 10px;}
+
+.toast-wrap{position:fixed;top:20px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+@media(min-width:768px){.toast-wrap{right:24px;top:24px;}}
+.toast{
+  background:rgba(8,18,45,0.96);
+  border:1px solid rgba(56,160,255,0.22);
+  border-radius:11px;padding:10px 15px;
+  font-size:12px;font-weight:500;color:var(--t1);
+  backdrop-filter:blur(20px);
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+  display:flex;align-items:center;gap:8px;min-width:220px;max-width:320px;
+  transform:translateX(110%);opacity:0;
+  transition:transform .3s var(--ease),opacity .3s;pointer-events:all;
+}
+.toast.show{transform:translateX(0);opacity:1;}
+.toast .td{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.toast.tinfo .td{background:var(--cyan);box-shadow:0 0 5px var(--cyan);}
+.toast.tok .td{background:var(--green);box-shadow:0 0 5px var(--green);}
+.toast.twn .td{background:var(--amber);}
+
+.feed-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--b3);}
+.feed-item:last-child{border-bottom:none;}
+.feed-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.feed-ic svg{width:14px;height:14px;stroke-width:1.6;fill:none;}
+.feed-tx{flex:1;min-width:0;}
+.feed-tx .ft{font-size:12px;font-weight:600;color:var(--t1);}
+.feed-tx .fd{font-size:10px;color:var(--t3);margin-top:2px;line-height:1.5;}
+.feed-tx .fm{font-size:9px;color:var(--t4);margin-top:3px;}
+
+.tabs{display:flex;gap:2px;background:rgba(11,23,48,0.7);border:1px solid var(--b2);border-radius:11px;padding:3px;margin-bottom:14px;}
+.tab{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--t3);border-radius:8px;cursor:pointer;transition:background .2s,color .2s;}
+.tab.active{background:rgba(56,160,255,0.14);color:var(--cyan);}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{padding:5px 11px;border-radius:8px;background:rgba(11,27,60,0.7);border:1px solid var(--b2);font-size:11px;font-weight:500;color:var(--t2);cursor:pointer;transition:background .18s,border-color .18s;}
+.chip.sel{background:rgba(56,160,255,0.14);border-color:rgba(56,160,255,0.28);color:var(--cyan);}
+
+.pbar{height:5px;border-radius:4px;background:rgba(56,140,255,0.10);overflow:hidden;margin-top:5px;}
+.pbar-f{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--eblue),var(--cyan));}
+
+.vring{
+  width:100px;height:100px;border-radius:50%;
+  border:1.5px solid rgba(56,217,255,0.28);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;position:relative;
+  animation:vringA 2s ease-in-out infinite;
+}
+@keyframes vringA{
+  0%,100%{box-shadow:0 0 0 0 rgba(56,217,255,0.18);}
+  50%{box-shadow:0 0 0 12px rgba(56,217,255,0.08);}
+}
+.vring-i{
+  width:74px;height:74px;border-radius:50%;
+  background:linear-gradient(135deg,#001c4a,#003880);
+  border:1px solid rgba(56,217,255,0.38);
+  display:flex;align-items:center;justify-content:center;
+}
+.vring-i svg{width:30px;height:30px;stroke:var(--cyan);fill:none;stroke-width:1.4;}
+
+.pcard{
+  background:rgba(11,23,48,0.60);
+  border:1px solid var(--b2);
+  border-radius:var(--r2);
+  padding:14px 14px;margin-bottom:9px;
+  backdrop-filter:blur(12px);
+}
+.pcard.feat{
+  border-color:rgba(56,217,255,0.32);
+  background:rgba(11,30,65,0.7);
+  box-shadow:0 0 24px rgba(0,80,200,0.08);
+}
+.pcard .pt{font-size:9.5px;font-weight:700;color:var(--t3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;}
+.pcard .pv{font-family:var(--fh);font-size:26px;font-weight:700;color:var(--t1);line-height:1;}
+.pcard .pv .pm{font-size:11px;font-weight:400;color:var(--t3);}
+.pcard .pd{font-size:10.5px;color:var(--t3);margin:6px 0 10px;line-height:1.5;}
+.pcard .pf{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--t2);margin-bottom:4px;}
+.pcard .pf svg{width:11px;height:11px;stroke:var(--green);fill:none;stroke-width:2;flex-shrink:0;}
+
+.notif-row{
+  background:rgba(11,23,48,0.60);
+  border:1px solid var(--b2);
+  border-radius:var(--r2);padding:11px 13px;
+  display:flex;align-items:flex-start;gap:10px;
+  margin-bottom:6px;cursor:pointer;
+  transition:border-color .18s,background .18s;
+}
+.notif-row:hover{border-color:var(--b1);background:rgba(13,27,56,0.7);}
+.notif-row.unread{border-color:rgba(56,217,255,0.20);background:rgba(11,30,65,0.65);}
+.notif-row.unread .nd{background:var(--cyan);box-shadow:0 0 5px var(--cyan);}
+.notif-row .nd{width:5px;height:5px;border-radius:50%;background:transparent;margin-top:7px;flex-shrink:0;}
+.notif-ic{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.notif-ic svg{width:14px;height:14px;stroke-width:1.6;fill:none;}
+.notif-bd{flex:1;min-width:0;}
+.notif-bd .nt{font-size:12px;font-weight:600;color:var(--t1);}
+.notif-bd .ns{font-size:10px;color:var(--t3);margin-top:2px;line-height:1.5;}
+.notif-bd .nm{font-size:9px;color:var(--t4);margin-top:3px;}
+
 </style>
 </head>
 <body>
-
 <!-- ══ Animated background grid ══ -->
 <canvas id="bg-canvas"></canvas>
+
+<!-- Toast wrap (fixed) -->
+<div class="toast-wrap" id="toastWrap"></div>
 
 <div class="shell" id="shell">
 
@@ -959,34 +1132,37 @@ html,body{
 
     <div class="m-nav">
       <div class="m-section-label">Main</div>
-      <div class="m-item active" onclick="closeMenu()">
+      <div class="m-item active" id="mi-home" onclick="navTo('home')">
         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-hub" onclick="navTo('hub')">
         <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>AI Hub
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-memory" onclick="navTo('memory')">
         <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Shared Memory
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-agents" onclick="navTo('agents')">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>Agents
       </div>
       <div class="m-div"></div>
       <div class="m-section-label">System</div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-auto" onclick="navTo('automation')">
         <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2-2 2M11 12h5" stroke-linecap="round" stroke-linejoin="round"/></svg>Automation
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-devices" onclick="navTo('devices')">
         <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>Devices
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-analytics" onclick="navTo('analytics')">
         <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analytics
       </div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-mkt" onclick="navTo('marketplace')">
         <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Marketplace
       </div>
+      <div class="m-item" id="mi-notif" onclick="navTo('notif')">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>Notifications
+      </div>
       <div class="m-div"></div>
-      <div class="m-item" onclick="closeMenu()">
+      <div class="m-item" id="mi-settings" onclick="navTo('settings')">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings
       </div>
     </div>
@@ -998,9 +1174,9 @@ html,body{
           <span>Terafarm Pro</span>
         </div>
         <p>Unlimited memory, agents, and advanced AI automation.</p>
-        <button class="m-pro-btn" onclick="openModal()">Upgrade Now</button>
+        <button class="m-pro-btn" onclick="closeMenu();openMod('proMod');">Upgrade Now</button>
       </div>
-      <div class="m-signin" onclick="closeMenu();openModal()">
+      <div class="m-signin" onclick="closeMenu();openMod('authMod')">
         <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Sign In / Create Account
       </div>
@@ -1010,7 +1186,7 @@ html,body{
 
 <!-- ══════ TOP BAR ══════ -->
 <div class="topbar">
-  <div class="tb-logo" onclick="openModal()">
+  <div class="tb-logo" onclick="navTo('home')">
     <div class="logo-box">
       <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
         <path d="M16 2L30 10V22L16 30L2 22V10Z" stroke="#38d9ff" stroke-width="1.3" opacity=".48"/>
@@ -1032,10 +1208,15 @@ html,body{
 </div>
 
 <!-- ══════ MAIN SCROLL ══════ -->
-<div class="scroll">
+<div class="scroll" id="mainScroll">
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: HOME (default visible)
+     ════════════════════════════════════════════════════════ -->
+<div class="scr on" id="scr-home">
 
   <!-- HERO -->
-  <div class="hero" onclick="openModal()">
+  <div class="hero" onclick="openMod('cmdMod')">
     <div class="hero-earth"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">AI Ecosystem</div>
@@ -1051,7 +1232,6 @@ html,body{
       </div>
     </div>
 
-    <!-- Refined orbit — cleaner, less visual noise, better symmetry -->
     <div class="orbit-wrap" aria-hidden="true">
       <svg class="orbit-svg" viewBox="0 0 160 148" fill="none" preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -1060,134 +1240,97 @@ html,body{
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <filter id="nodeglow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feGaussianBlur stdDeviation="1.8" result="b"/>
             <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
           <linearGradient id="metag" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#3060d0"/>
-            <stop offset="100%" stop-color="#38d9ff"/>
+            <stop offset="0%" stop-color="#3060d0"/><stop offset="100%" stop-color="#38d9ff"/>
           </linearGradient>
         </defs>
 
-        <!-- Outer faint ring -->
         <circle cx="80" cy="74" r="62" stroke="rgba(56,140,255,0.08)" stroke-width=".6" stroke-dasharray="3 6"/>
-        <!-- Mid ring -->
         <circle cx="80" cy="74" r="42" stroke="rgba(56,140,255,0.06)" stroke-width=".5" stroke-dasharray="2 8"/>
-        <!-- Inner glow ring -->
         <circle cx="80" cy="74" r="22" stroke="rgba(56,200,255,0.28)" stroke-width="1" filter="url(#glow)"/>
         <circle cx="80" cy="74" r="22" stroke="rgba(56,200,255,0.04)" stroke-width="6"/>
 
-        <!-- ── Center ── -->
         <circle cx="80" cy="74" r="19" fill="rgba(0,14,50,0.90)" stroke="rgba(56,200,255,0.42)" stroke-width="1.1"/>
-        <polygon points="80,65 87.8,69.5 87.8,78.5 80,83 72.2,78.5 72.2,69.5"
-                 stroke="rgba(56,200,255,0.60)" stroke-width="1" fill="rgba(0,40,110,0.30)"/>
+        <polygon points="80,65 87.8,69.5 87.8,78.5 80,83 72.2,78.5 72.2,69.5" stroke="rgba(56,200,255,0.60)" stroke-width="1" fill="rgba(0,40,110,0.30)"/>
         <line x1="80" y1="65" x2="80" y2="83" stroke="rgba(56,200,255,0.22)" stroke-width=".65"/>
         <line x1="72.2" y1="69.5" x2="87.8" y2="78.5" stroke="rgba(56,200,255,0.18)" stroke-width=".65"/>
         <line x1="87.8" y1="69.5" x2="72.2" y2="78.5" stroke="rgba(56,200,255,0.18)" stroke-width=".65"/>
         <circle cx="80" cy="74" r="4" fill="rgba(0,80,200,0.95)"/>
         <circle cx="80" cy="74" r="2" fill="#38d9ff"/>
 
-        <!-- ── Connection lines — cleaner, uniform opacity ── -->
-        <!-- top -->
         <line x1="80" y1="52" x2="80" y2="27" stroke="rgba(56,140,255,0.18)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="80,24 78.3,29 81.7,29" fill="rgba(56,140,255,0.36)"/>
-        <!-- top-right -->
         <line x1="95.5" y1="62" x2="113" y2="44" stroke="rgba(56,140,255,0.15)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="116,42 111.5,46.5 116,51" fill="rgba(56,140,255,0.30)"/>
-        <!-- right -->
         <line x1="102" y1="74" x2="128" y2="74" stroke="rgba(56,140,255,0.18)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="131,74 126.5,72 126.5,76" fill="rgba(56,140,255,0.36)"/>
-        <!-- bot-right -->
         <line x1="95.5" y1="86" x2="113" y2="105" stroke="rgba(56,140,255,0.15)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="116,108 111.5,103.5 116,99" fill="rgba(56,140,255,0.30)"/>
-        <!-- bottom -->
         <line x1="80" y1="96" x2="80" y2="122" stroke="rgba(56,140,255,0.15)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="80,125 78.3,120.5 81.7,120.5" fill="rgba(56,140,255,0.30)"/>
-        <!-- bot-left -->
         <line x1="64.5" y1="86" x2="47" y2="105" stroke="rgba(56,140,255,0.13)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="44,108 48.5,103.5 44,99" fill="rgba(56,140,255,0.26)"/>
-        <!-- left -->
         <line x1="58" y1="74" x2="32" y2="74" stroke="rgba(56,140,255,0.18)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="29,74 33.5,72 33.5,76" fill="rgba(56,140,255,0.36)"/>
-        <!-- top-left -->
         <line x1="64.5" y1="62" x2="47" y2="44" stroke="rgba(56,140,255,0.13)" stroke-width=".55" stroke-dasharray="2.5 5"/>
         <polygon points="44,42 48.5,46.5 44,51" fill="rgba(56,140,255,0.26)"/>
 
-        <!-- ── NODES — refined, same visual weight ── -->
-
-        <!-- ① ChatGPT — top (80,12) -->
         <circle cx="80" cy="12" r="12.5" fill="#0a2e22" stroke="rgba(16,163,127,0.45)" stroke-width="1.1" filter="url(#nodeglow)"/>
-        <g transform="translate(80,12)">
-          <g transform="translate(-8.5,-8.5) scale(0.708)">
-            <path d="M22.28 9.26a5.87 5.87 0 00-.5-4.79 5.93 5.93 0 00-6.39-2.85 5.87 5.87 0 00-4.42-1.94 5.93 5.93 0 00-5.65 4.1 5.87 5.87 0 00-3.92 2.85 5.93 5.93 0 00.73 6.95 5.87 5.87 0 00.5 4.79 5.93 5.93 0 006.39 2.85 5.87 5.87 0 004.42 1.94 5.93 5.93 0 005.66-4.1 5.87 5.87 0 003.92-2.85 5.93 5.93 0 00-.74-6.95zM13.3 21.06a3.93 3.93 0 01-2.52-1.02l.12-.07 4.18-2.41a.7.7 0 00.35-.6v-5.9l1.77 1.02a.07.07 0 01.04.05v4.88a3.97 3.97 0 01-3.94 4.05zm-8.47-3.64a3.93 3.93 0 01-.47-2.64l.12.08 4.18 2.41a.7.7 0 00.69 0l5.1-2.95v2.03a.07.07 0 01-.03.06l-4.22 2.44a3.97 3.97 0 01-5.37-1.43zm-1.1-9.27a3.93 3.93 0 012.05-1.73v4.96a.7.7 0 00.34.6l5.1 2.94-1.77 1.02a.07.07 0 01-.06.01L5.16 13.5a3.97 3.97 0 01-.43-5.35zm14.54 3.41l-5.1-2.95 1.77-1.02a.07.07 0 01.06-.01l4.22 2.43a3.97 3.97 0 01-.61 7.17v-4.96a.7.7 0 00-.34-.66zm1.76-2.65l-.12-.08-4.18-2.41a.7.7 0 00-.69 0L10.94 9.4V7.38a.07.07 0 01.03-.06L15.2 4.9a3.97 3.97 0 015.83 4.1zm-11.06 3.63l-1.77-1.02a.07.07 0 01-.04-.05V6.6a3.97 3.97 0 016.5-3.05l-.12.07-4.18 2.41a.7.7 0 00-.35.6l-.04 5.91zm.96-2.08l2.27-1.31 2.27 1.31v2.62l-2.27 1.31-2.27-1.31V12.46z" fill="#10a37f"/>
-          </g>
-        </g>
+        <g transform="translate(80,12)"><g transform="translate(-8.5,-8.5) scale(0.708)">
+          <path d="M22.28 9.26a5.87 5.87 0 00-.5-4.79 5.93 5.93 0 00-6.39-2.85 5.87 5.87 0 00-4.42-1.94 5.93 5.93 0 00-5.65 4.1 5.87 5.87 0 00-3.92 2.85 5.93 5.93 0 00.73 6.95 5.87 5.87 0 00.5 4.79 5.93 5.93 0 006.39 2.85 5.87 5.87 0 004.42 1.94 5.93 5.93 0 005.66-4.1 5.87 5.87 0 003.92-2.85 5.93 5.93 0 00-.74-6.95zM13.3 21.06a3.93 3.93 0 01-2.52-1.02l.12-.07 4.18-2.41a.7.7 0 00.35-.6v-5.9l1.77 1.02a.07.07 0 01.04.05v4.88a3.97 3.97 0 01-3.94 4.05zm-8.47-3.64a3.93 3.93 0 01-.47-2.64l.12.08 4.18 2.41a.7.7 0 00.69 0l5.1-2.95v2.03a.07.07 0 01-.03.06l-4.22 2.44a3.97 3.97 0 01-5.37-1.43zm-1.1-9.27a3.93 3.93 0 012.05-1.73v4.96a.7.7 0 00.34.6l5.1 2.94-1.77 1.02a.07.07 0 01-.06.01L5.16 13.5a3.97 3.97 0 01-.43-5.35zm14.54 3.41l-5.1-2.95 1.77-1.02a.07.07 0 01.06-.01l4.22 2.43a3.97 3.97 0 01-.61 7.17v-4.96a.7.7 0 00-.34-.66zm1.76-2.65l-.12-.08-4.18-2.41a.7.7 0 00-.69 0L10.94 9.4V7.38a.07.07 0 01.03-.06L15.2 4.9a3.97 3.97 0 015.83 4.1zm-11.06 3.63l-1.77-1.02a.07.07 0 01-.04-.05V6.6a3.97 3.97 0 016.5-3.05l-.12.07-4.18 2.41a.7.7 0 00-.35.6l-.04 5.91zm.96-2.08l2.27-1.31 2.27 1.31v2.62l-2.27 1.31-2.27-1.31V12.46z" fill="#10a37f"/>
+        </g></g>
 
-        <!-- ② Claude — top-right (124,30) -->
         <circle cx="124" cy="30" r="12.5" fill="#1a0c02" stroke="rgba(180,90,30,0.42)" stroke-width="1.1" filter="url(#nodeglow)"/>
-        <g transform="translate(124,30)">
-          <g transform="translate(-8.5,-8.5) scale(0.708)">
-            <path d="M12 2.5c-.5 0-.9.4-.9.9v3.5c0 .5.4.9.9.9s.9-.4.9-.9V3.4c0-.5-.4-.9-.9-.9z" fill="#c0601a"/>
-            <path d="M12 16.2c-.5 0-.9.4-.9.9v3.5c0 .5.4.9.9.9s.9-.4.9-.9v-3.5c0-.5-.4-.9-.9-.9z" fill="#c0601a"/>
-            <path d="M16.3 4.3c-.2-.4-.8-.6-1.2-.3l-3 1.7c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l3-1.7c.5-.3.6-.9.3-1.2z" fill="#c0601a"/>
-            <path d="M8.7 16.9c-.2-.4-.8-.6-1.2-.3l-3 1.7c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l3-1.7c.5-.3.6-.9.3-1.2z" fill="#c0601a"/>
-            <path d="M19.7 7.7c-.2-.4-.8-.6-1.2-.3l-1.7 1c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l1.7-1c.5-.3.6-.9.3-1.2z" fill="#c0601a" opacity=".75"/>
-            <path d="M7.3 13.4c-.2-.4-.8-.6-1.2-.3l-1.7 1c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l1.7-1c.5-.3.6-.9.3-1.2z" fill="#c0601a" opacity=".75"/>
-            <path d="M19.7 16.3c.2-.4.1-1-.3-1.2l-1.7-1c-.4-.2-1-.1-1.2.3-.2.4-.1 1 .3 1.2l1.7 1c.5.3 1 .1 1.2-.3z" fill="#c0601a" opacity=".75"/>
-            <path d="M7.3 10.6c.2-.4.1-1-.3-1.2l-1.7-1C4.9 8.2 4.3 8.3 4.1 8.7c-.2.4-.1 1 .3 1.2l1.7 1c.5.3 1 .1 1.2-.3z" fill="#c0601a" opacity=".75"/>
-            <path d="M16.3 19.7c.2-.4.1-1-.3-1.2l-3-1.7c-.4-.2-1-.1-1.2.3-.2.4-.1 1 .3 1.2l3 1.7c.5.3 1 .1 1.2-.3z" fill="#c0601a"/>
-            <path d="M8.7 7.1c.2-.4.1-1-.3-1.2l-3-1.7C5 4 4.4 4.1 4.2 4.5c-.2.4-.1 1 .3 1.2l3 1.7c.5.3 1 .1 1.2-.3z" fill="#c0601a"/>
-            <circle cx="12" cy="12" r="2.4" fill="#c0601a"/>
-          </g>
-        </g>
+        <g transform="translate(124,30)"><g transform="translate(-8.5,-8.5) scale(0.708)">
+          <path d="M12 2.5c-.5 0-.9.4-.9.9v3.5c0 .5.4.9.9.9s.9-.4.9-.9V3.4c0-.5-.4-.9-.9-.9z" fill="#c0601a"/>
+          <path d="M12 16.2c-.5 0-.9.4-.9.9v3.5c0 .5.4.9.9.9s.9-.4.9-.9v-3.5c0-.5-.4-.9-.9-.9z" fill="#c0601a"/>
+          <path d="M16.3 4.3c-.2-.4-.8-.6-1.2-.3l-3 1.7c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l3-1.7c.5-.3.6-.9.3-1.2z" fill="#c0601a"/>
+          <path d="M8.7 16.9c-.2-.4-.8-.6-1.2-.3l-3 1.7c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l3-1.7c.5-.3.6-.9.3-1.2z" fill="#c0601a"/>
+          <path d="M19.7 7.7c-.2-.4-.8-.6-1.2-.3l-1.7 1c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l1.7-1c.5-.3.6-.9.3-1.2z" fill="#c0601a" opacity=".75"/>
+          <path d="M7.3 13.4c-.2-.4-.8-.6-1.2-.3l-1.7 1c-.4.2-.6.8-.3 1.2.2.4.8.6 1.2.3l1.7-1c.5-.3.6-.9.3-1.2z" fill="#c0601a" opacity=".75"/>
+          <path d="M19.7 16.3c.2-.4.1-1-.3-1.2l-1.7-1c-.4-.2-1-.1-1.2.3-.2.4-.1 1 .3 1.2l1.7 1c.5.3 1 .1 1.2-.3z" fill="#c0601a" opacity=".75"/>
+          <path d="M7.3 10.6c.2-.4.1-1-.3-1.2l-1.7-1C4.9 8.2 4.3 8.3 4.1 8.7c-.2.4-.1 1 .3 1.2l1.7 1c.5.3 1 .1 1.2-.3z" fill="#c0601a" opacity=".75"/>
+          <path d="M16.3 19.7c.2-.4.1-1-.3-1.2l-3-1.7c-.4-.2-1-.1-1.2.3-.2.4-.1 1 .3 1.2l3 1.7c.5.3 1 .1 1.2-.3z" fill="#c0601a"/>
+          <path d="M8.7 7.1c.2-.4.1-1-.3-1.2l-3-1.7C5 4 4.4 4.1 4.2 4.5c-.2.4-.1 1 .3 1.2l3 1.7c.5.3 1 .1 1.2-.3z" fill="#c0601a"/>
+          <circle cx="12" cy="12" r="2.4" fill="#c0601a"/>
+        </g></g>
 
-        <!-- ③ Gemini — right (142,74) -->
         <circle cx="142" cy="74" r="12.5" fill="#030c22" stroke="rgba(66,133,244,0.42)" stroke-width="1.1" filter="url(#nodeglow)"/>
-        <g transform="translate(142,74)">
-          <g transform="translate(-8.5,-8.5) scale(0.708)">
-            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="#4285f4"/>
-          </g>
-        </g>
+        <g transform="translate(142,74)"><g transform="translate(-8.5,-8.5) scale(0.708)">
+          <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="#4285f4"/>
+        </g></g>
 
-        <!-- ④ Perplexity — bot-right (124,118) -->
         <circle cx="124" cy="118" r="12.5" fill="#00100f" stroke="rgba(32,178,168,0.38)" stroke-width="1.1" filter="url(#nodeglow)"/>
-        <g transform="translate(124,118)">
-          <g transform="translate(-7.5,-7.5) scale(0.625)">
-            <path d="M12 2L20 8V16L12 22L4 16V8L12 2Z" fill="none" stroke="#20b2a8" stroke-width="1.6" stroke-linejoin="round"/>
-            <line x1="12" y1="5" x2="12" y2="19" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
-            <line x1="5.4" y1="9" x2="18.6" y2="15" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
-            <line x1="18.6" y1="9" x2="5.4" y2="15" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
-          </g>
-        </g>
+        <g transform="translate(124,118)"><g transform="translate(-7.5,-7.5) scale(0.625)">
+          <path d="M12 2L20 8V16L12 22L4 16V8L12 2Z" fill="none" stroke="#20b2a8" stroke-width="1.6" stroke-linejoin="round"/>
+          <line x1="12" y1="5" x2="12" y2="19" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="5.4" y1="9" x2="18.6" y2="15" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
+          <line x1="18.6" y1="9" x2="5.4" y2="15" stroke="#20b2a8" stroke-width="1.3" stroke-linecap="round"/>
+        </g></g>
 
-        <!-- ⑤ Meta AI — bottom (80,136) -->
         <circle cx="80" cy="136" r="12.5" fill="#000918" stroke="rgba(6,104,225,0.42)" stroke-width="1.1" filter="url(#nodeglow)"/>
         <g transform="translate(80,136)">
           <ellipse cx="-4.2" cy="0" rx="3.9" ry="5.6" fill="none" stroke="url(#metag)" stroke-width="1.9" stroke-linecap="round"/>
           <ellipse cx="4.2" cy="0" rx="3.9" ry="5.6" fill="none" stroke="url(#metag)" stroke-width="1.9" stroke-linecap="round"/>
         </g>
 
-        <!-- ⑥ Notion — bot-left (36,118) -->
         <circle cx="36" cy="118" r="12.5" fill="#161616" stroke="rgba(230,230,230,0.38)" stroke-width="1.1" filter="url(#nodeglow)"/>
-        <text x="36" y="123" text-anchor="middle"
-              font-family="Georgia,'Times New Roman',serif"
-              font-size="14" font-weight="900"
-              fill="rgba(240,240,240,0.92)">N</text>
+        <text x="36" y="123" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="14" font-weight="900" fill="rgba(240,240,240,0.92)">N</text>
 
-        <!-- ⑦ Midjourney — left (18,74) -->
         <circle cx="18" cy="74" r="12.5" fill="#06080e" stroke="rgba(200,215,240,0.30)" stroke-width="1.1" filter="url(#nodeglow)"/>
         <polygon points="18,64 18,82 10,80.5" fill="rgba(220,230,255,0.88)"/>
         <polygon points="18,66.5 18,82 26,80.5" fill="rgba(165,185,235,0.55)"/>
         <line x1="9.5" y1="80.5" x2="26.5" y2="80.5" stroke="rgba(200,220,255,0.70)" stroke-width="1.5" stroke-linecap="round"/>
 
-        <!-- ⑧ Copilot — top-left (36,30) -->
         <circle cx="36" cy="30" r="12.5" fill="#00081a" stroke="rgba(0,120,212,0.42)" stroke-width="1.1" filter="url(#nodeglow)"/>
         <path d="M36 20 A10 10 0 0 1 46 30" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round" fill="none"/>
         <path d="M46 30 A10 10 0 0 1 36 40" stroke="#7c4dca" stroke-width="2.2" stroke-linecap="round" fill="none"/>
         <path d="M36 40 A10 10 0 0 1 26 30" stroke="#00b4d8" stroke-width="2.2" stroke-linecap="round" fill="none"/>
         <path d="M26 30 A10 10 0 0 1 36 20" stroke="#00a050" stroke-width="2.2" stroke-linecap="round" fill="none"/>
         <circle cx="36" cy="30" r="2" fill="rgba(255,255,255,0.88)"/>
-
       </svg>
     </div>
   </div>
@@ -1195,8 +1338,8 @@ html,body{
   <!-- SEARCH BAR -->
   <div class="search-wrap">
     <svg class="s-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
-    <input type="text" placeholder="Ask anything across your AI systems…" onclick="openModal()" readonly>
-    <button class="s-btn" onclick="openModal()">
+    <input type="text" placeholder="Ask anything across your AI systems…" onclick="openMod('searchMod')" readonly>
+    <button class="s-btn" onclick="openMod('voiceMod')">
       <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 23h8" stroke-linecap="round"/></svg>
     </button>
   </div>
@@ -1204,154 +1347,91 @@ html,body{
   <!-- MY AI SYSTEMS -->
   <div class="sh">
     <h2>My AI Systems</h2>
-    <span class="sh-edit" onclick="openModal()">Edit</span>
+    <span class="sh-edit" onclick="openMod('customizeMod')">Edit</span>
   </div>
 
   <div class="grid">
-    <!-- Card 1 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(75,158,255,0.05);--ce:rgba(75,158,255,0.16);">
+    <div class="card" onclick="openSys('assistant')" style="--cg:rgba(75,158,255,0.05);--ce:rgba(75,158,255,0.16);">
       <div class="cico t-eb">
         <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M9.5 2a4.5 4.5 0 00-4.5 4.5V7A4 4 0 003 11a4 4 0 002 3.46V16a3 3 0 003 3h8a3 3 0 003-3v-.54A4 4 0 0021 12a4 4 0 00-2-3.46V6.5A4.5 4.5 0 0014.5 2z"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
       </div>
-      <div class="cn">Assistant AI</div>
-      <div class="cs">Main assistant</div>
+      <div class="cn">Assistant AI</div><div class="cs">Main assistant</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 2 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(56,217,255,0.05);--ce:rgba(56,217,255,0.16);">
+    <div class="card" onclick="openSys('schedule')" style="--cg:rgba(56,217,255,0.05);--ce:rgba(56,217,255,0.16);">
       <div class="cico t-cy">
         <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><rect x="7" y="13" width="2" height="2" rx=".4" fill="#38d9ff" stroke="none"/><rect x="11" y="13" width="2" height="2" rx=".4" fill="#38d9ff" stroke="none"/><rect x="15" y="13" width="2" height="2" rx=".4" fill="#38d9ff" stroke="none"/><rect x="7" y="17" width="2" height="2" rx=".4" fill="#38d9ff" stroke="none"/><rect x="11" y="17" width="2" height="2" rx=".4" fill="#38d9ff" stroke="none"/></svg>
       </div>
-      <div class="cn">Schedule AI</div>
-      <div class="cs">Calendar & tasks</div>
+      <div class="cn">Schedule AI</div><div class="cs">Calendar &amp; tasks</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 3 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(29,181,200,0.05);--ce:rgba(29,181,200,0.16);">
-      <div class="cico t-te">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
-      </div>
-      <div class="cn">Home AI</div>
-      <div class="cs">Smart home</div>
+    <div class="card" onclick="openSys('home')" style="--cg:rgba(29,181,200,0.05);--ce:rgba(29,181,200,0.16);">
+      <div class="cico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+      <div class="cn">Home AI</div><div class="cs">Smart home</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 4 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(138,176,212,0.05);--ce:rgba(138,176,212,0.14);">
-      <div class="cico t-sl">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><line x1="5" y1="10" x2="19" y2="10"/></svg>
-      </div>
-      <div class="cn">Car AI</div>
-      <div class="cs">Navigation</div>
+    <div class="card" onclick="openSys('car')" style="--cg:rgba(138,176,212,0.05);--ce:rgba(138,176,212,0.14);">
+      <div class="cico t-sl"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/><line x1="5" y1="10" x2="19" y2="10"/></svg></div>
+      <div class="cn">Car AI</div><div class="cs">Navigation</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 5 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(56,217,255,0.05);--ce:rgba(56,217,255,0.14);">
-      <div class="cico t-cy">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.5"/><path d="M7 13H5a1 1 0 01-1-1v-1a1 1 0 011-1h2M17 13h2a1 1 0 001-1v-1a1 1 0 00-1-1h-2"/><circle cx="10" cy="12" r="1" fill="#38d9ff" stroke="none"/><circle cx="14" cy="12" r="1" fill="#38d9ff" stroke="none"/><line x1="10" y1="15" x2="14" y2="15"/></svg>
-      </div>
-      <div class="cn">Robot AI</div>
-      <div class="cs">Robot partner</div>
+    <div class="card" onclick="openSys('robot')" style="--cg:rgba(56,217,255,0.05);--ce:rgba(56,217,255,0.14);">
+      <div class="cico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.5"/><path d="M7 13H5a1 1 0 01-1-1v-1a1 1 0 011-1h2M17 13h2a1 1 0 001-1v-1a1 1 0 00-1-1h-2"/><circle cx="10" cy="12" r="1" fill="#38d9ff" stroke="none"/><circle cx="14" cy="12" r="1" fill="#38d9ff" stroke="none"/><line x1="10" y1="15" x2="14" y2="15"/></svg></div>
+      <div class="cn">Robot AI</div><div class="cs">Robot partner</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 6 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(0,200,160,0.05);--ce:rgba(0,200,160,0.14);">
-      <div class="cico t-tg">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/></svg>
-      </div>
-      <div class="cn">Finance AI</div>
-      <div class="cs">Investments</div>
+    <div class="card" onclick="openSys('finance')" style="--cg:rgba(0,200,160,0.05);--ce:rgba(0,200,160,0.14);">
+      <div class="cico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/></svg></div>
+      <div class="cn">Finance AI</div><div class="cs">Investments</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 7 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(120,170,230,0.05);--ce:rgba(120,170,230,0.14);">
-      <div class="cico t-pb">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><polyline points="7 13 9.5 11 12 15 14.5 10 17 13" stroke-width="1.3"/></svg>
-      </div>
-      <div class="cn">Health AI</div>
-      <div class="cs">Wellness</div>
+    <div class="card" onclick="openSys('health')" style="--cg:rgba(120,170,230,0.05);--ce:rgba(120,170,230,0.14);">
+      <div class="cico t-pb"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/><polyline points="7 13 9.5 11 12 15 14.5 10 17 13" stroke-width="1.3"/></svg></div>
+      <div class="cn">Health AI</div><div class="cs">Wellness</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 8 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(145,165,220,0.05);--ce:rgba(145,165,220,0.14);">
-      <div class="cico t-in">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="#9090d8" stroke="none"/><circle cx="12" cy="11" r="1" fill="#9090d8" stroke="none"/><circle cx="15" cy="11" r="1" fill="#9090d8" stroke="none"/></svg>
-      </div>
-      <div class="cn">Comms AI</div>
-      <div class="cs">Calls & messages</div>
+    <div class="card" onclick="openSys('comms')" style="--cg:rgba(145,165,220,0.05);--ce:rgba(145,165,220,0.14);">
+      <div class="cico t-in"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="#9090d8" stroke="none"/><circle cx="12" cy="11" r="1" fill="#9090d8" stroke="none"/><circle cx="15" cy="11" r="1" fill="#9090d8" stroke="none"/></svg></div>
+      <div class="cn">Comms AI</div><div class="cs">Calls &amp; messages</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 9 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(100,155,210,0.05);--ce:rgba(100,155,210,0.14);">
-      <div class="cico t-st">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="2" y1="13" x2="22" y2="13"/></svg>
-      </div>
-      <div class="cn">Work AI</div>
-      <div class="cs">Documents</div>
+    <div class="card" onclick="openSys('work')" style="--cg:rgba(100,155,210,0.05);--ce:rgba(100,155,210,0.14);">
+      <div class="cico t-st"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="2" y1="13" x2="22" y2="13"/></svg></div>
+      <div class="cn">Work AI</div><div class="cs">Documents</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 10 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(75,158,255,0.05);--ce:rgba(75,158,255,0.14);">
-      <div class="cico t-eb">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="9" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><circle cx="19" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><path d="M1 2h3l2.5 12h10l2-8H6"/></svg>
-      </div>
-      <div class="cn">Shopping AI</div>
-      <div class="cs">Orders</div>
+    <div class="card" onclick="openSys('shopping')" style="--cg:rgba(75,158,255,0.05);--ce:rgba(75,158,255,0.14);">
+      <div class="cico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="9" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><circle cx="19" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><path d="M1 2h3l2.5 12h10l2-8H6"/></svg></div>
+      <div class="cn">Shopping AI</div><div class="cs">Orders</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 11 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(160,200,255,0.04);--ce:rgba(160,200,255,0.12);">
-      <div class="cico t-ic">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2h0A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>
-      </div>
-      <div class="cn">Travel AI</div>
-      <div class="cs">Trips & booking</div>
+    <div class="card" onclick="openSys('travel')" style="--cg:rgba(160,200,255,0.04);--ce:rgba(160,200,255,0.12);">
+      <div class="cico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2h0A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div>
+      <div class="cn">Travel AI</div><div class="cs">Trips &amp; booking</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
-
-    <!-- Card 12 -->
-    <div class="card" onclick="openModal()" style="--cg:rgba(56,200,255,0.04);--ce:rgba(56,200,255,0.12);">
-      <div class="cico t-ar">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="6" width="20" height="14" rx="3"/><line x1="6" y1="13" x2="10" y2="13"/><line x1="8" y1="11" x2="8" y2="15"/><circle cx="15" cy="12" r="1" fill="#60c0f0" stroke="none"/><circle cx="18" cy="14" r="1" fill="#60c0f0" stroke="none"/></svg>
-      </div>
-      <div class="cn">Entertainment</div>
-      <div class="cs">Media & games</div>
+    <div class="card" onclick="openSys('entertainment')" style="--cg:rgba(56,200,255,0.04);--ce:rgba(56,200,255,0.12);">
+      <div class="cico t-ar"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="6" width="20" height="14" rx="3"/><line x1="6" y1="13" x2="10" y2="13"/><line x1="8" y1="11" x2="8" y2="15"/><circle cx="15" cy="12" r="1" fill="#60c0f0" stroke="none"/><circle cx="18" cy="14" r="1" fill="#60c0f0" stroke="none"/></svg></div>
+      <div class="cn">Entertainment</div><div class="cs">Media &amp; games</div>
       <div class="cst"><div class="dot dg ds"></div>Active</div>
     </div>
   </div>
 
   <!-- CLOUD + SECURITY -->
   <div class="wgrid">
-    <div class="wcard" onclick="openModal()">
-      <div class="wico t-eb">
-        <svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg>
-      </div>
+    <div class="wcard" onclick="openMod('cloudMod')">
+      <div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
       <div class="winfo">
-        <p class="wn">Cloud AI</p>
-        <p class="ws">Compute & storage</p>
-        <p class="wv">24.3 TFLOPS</p>
-        <p class="wvl">Usage today</p>
+        <p class="wn">Cloud AI</p><p class="ws">Compute &amp; storage</p>
+        <p class="wv">24.3 TFLOPS</p><p class="wvl">Usage today</p>
         <div class="wbar"><div class="wbar-fill wbar-cyan"></div></div>
       </div>
     </div>
-    <div class="wcard" onclick="openModal()">
-      <div class="wico t-te">
-        <svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
+    <div class="wcard" onclick="openMod('secMod')">
+      <div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="winfo">
-        <p class="wn">Security AI</p>
-        <p class="ws">Protection & privacy</p>
-        <p class="wb">SAFE</p>
-        <p class="wbl">All systems secure</p>
+        <p class="wn">Security AI</p><p class="ws">Protection &amp; privacy</p>
+        <p class="wb">SAFE</p><p class="wbl">All systems secure</p>
         <div class="wbar"><div class="wbar-fill wbar-teal"></div></div>
       </div>
     </div>
@@ -1359,31 +1439,28 @@ html,body{
 
   <!-- TERAFARM COMMAND -->
   <div class="cmd-wrap">
-    <div class="cmd-h" onclick="openModal()">
-      <div>
-        <h3>Terafarm Command</h3>
-        <p>Quick actions</p>
-      </div>
+    <div class="cmd-h" onclick="openMod('cmdMod')">
+      <div><h3>Terafarm Command</h3><p>Quick actions</p></div>
       <svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div class="cmd-row">
-      <div class="cbtn" onclick="openModal()">
+      <div class="cbtn" onclick="openMod('taskMod')">
         <div class="cbi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg></div>
         <span class="clbl">New Task</span>
       </div>
-      <div class="cbtn" onclick="openModal()">
+      <div class="cbtn" onclick="openMod('bcastMod')">
         <div class="cbi"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="9" cy="11" r="1" fill="rgba(140,190,240,.9)" stroke="none"/><circle cx="12" cy="11" r="1" fill="rgba(140,190,240,.9)" stroke="none"/><circle cx="15" cy="11" r="1" fill="rgba(140,190,240,.9)" stroke="none"/></svg></div>
         <span class="clbl">Message All</span>
       </div>
-      <div class="cbtn" onclick="openModal()">
+      <div class="cbtn" onclick="openMod('studioMod')">
         <div class="cbi"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
         <span class="clbl">AI Studio</span>
       </div>
-      <div class="cbtn" onclick="openModal()">
+      <div class="cbtn" onclick="navTo('automation')">
         <div class="cbi"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l2 2-2 2M11 12h5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <span class="clbl">Automation</span>
       </div>
-      <div class="cbtn" onclick="openModal()">
+      <div class="cbtn" onclick="navTo('settings')">
         <div class="cbi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
         <span class="clbl">Settings</span>
       </div>
@@ -1392,18 +1469,425 @@ html,body{
 
   <div style="height:6px;"></div>
 </div>
+<!-- END SCREEN: HOME -->
+
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: AI HUB
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-hub">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:62%;">
+      <div class="hero-eyebrow">Connected AI</div>
+      <div class="hero-title"><span class="l1">AI</span><span class="l2">HUB</span></div>
+      <div class="hero-sub">Every AI service<br>connected to one memory.</div>
+      <div class="hero-active"><div class="dot dg"></div>6 of 8 connected</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Connected Services</h2><span class="sh-edit" onclick="renderToast('Searching available services…','tinfo')">Browse</span></div>
+  <div class="grid">
+    <div class="card" onclick="openHub('chatgpt')" style="--cg:rgba(16,163,127,0.06);--ce:rgba(16,163,127,0.18);"><div class="cico" style="background:#0a2e22;border:1px solid rgba(16,163,127,0.42);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22.28 9.26a5.87 5.87 0 00-.5-4.79 5.93 5.93 0 00-6.39-2.85 5.87 5.87 0 00-4.42-1.94 5.93 5.93 0 00-5.65 4.1 5.87 5.87 0 00-3.92 2.85 5.93 5.93 0 00.73 6.95 5.87 5.87 0 00.5 4.79 5.93 5.93 0 006.39 2.85 5.87 5.87 0 004.42 1.94 5.93 5.93 0 005.66-4.1 5.87 5.87 0 003.92-2.85 5.93 5.93 0 00-.74-6.95z" fill="#10a37f"/></svg></div><div class="cn">ChatGPT</div><div class="cs">Read &amp; Write</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('claude')" style="--cg:rgba(180,90,30,0.06);--ce:rgba(180,90,30,0.16);"><div class="cico" style="background:#1a0c02;border:1px solid rgba(180,90,30,0.42);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="#c0601a"/><circle cx="12" cy="6" r="1.4" fill="#c0601a"/><circle cx="12" cy="18" r="1.4" fill="#c0601a"/><circle cx="6" cy="12" r="1.4" fill="#c0601a"/><circle cx="18" cy="12" r="1.4" fill="#c0601a"/></svg></div><div class="cn">Claude</div><div class="cs">Read &amp; Write</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('gemini')" style="--cg:rgba(66,133,244,0.06);--ce:rgba(66,133,244,0.16);"><div class="cico" style="background:#030c22;border:1px solid rgba(66,133,244,0.42);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="#4285f4"/></svg></div><div class="cn">Gemini</div><div class="cs">Read only</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('perplexity')" style="--cg:rgba(32,178,168,0.06);--ce:rgba(32,178,168,0.16);"><div class="cico" style="background:#00100f;border:1px solid rgba(32,178,168,0.40);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L20 8V16L12 22L4 16V8L12 2Z" fill="none" stroke="#20b2a8" stroke-width="1.8"/><line x1="12" y1="5" x2="12" y2="19" stroke="#20b2a8" stroke-width="1.4"/><line x1="5.4" y1="9" x2="18.6" y2="15" stroke="#20b2a8" stroke-width="1.4"/></svg></div><div class="cn">Perplexity</div><div class="cs">Read only</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('copilot')" style="--cg:rgba(0,120,212,0.06);--ce:rgba(0,120,212,0.16);"><div class="cico" style="background:#00081a;border:1px solid rgba(0,120,212,0.42);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 4 A8 8 0 0 1 20 12" stroke="#0078d4" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M20 12 A8 8 0 0 1 12 20" stroke="#7c4dca" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M12 20 A8 8 0 0 1 4 12" stroke="#00b4d8" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M4 12 A8 8 0 0 1 12 4" stroke="#00a050" stroke-width="2.2" stroke-linecap="round" fill="none"/></svg></div><div class="cn">Copilot</div><div class="cs">Read &amp; Write</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('notion')" style="--cg:rgba(230,230,230,0.04);--ce:rgba(230,230,230,0.14);"><div class="cico" style="background:#161616;border:1px solid rgba(230,230,230,0.36);"><span style="font-family:Georgia,serif;font-size:14px;font-weight:900;color:rgba(240,240,240,.92);">N</span></div><div class="cn">Notion AI</div><div class="cs">Read &amp; Write</div><div class="cst"><div class="dot dg ds"></div>Synced</div></div>
+    <div class="card" onclick="openHub('midjourney')" style="--cg:rgba(200,215,240,0.04);--ce:rgba(200,215,240,0.12);"><div class="cico" style="background:#06080e;border:1px solid rgba(200,215,240,0.32);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12,4 12,20 4,18.5" fill="rgba(220,230,255,0.88)"/><polygon points="12,7 12,20 20,18.5" fill="rgba(165,185,235,0.55)"/></svg></div><div class="cn">Midjourney</div><div class="cs">Available</div><div class="cst" style="color:var(--t3);"><div class="dot ds" style="background:var(--t4);"></div>Connect</div></div>
+    <div class="card" onclick="openHub('meta')" style="--cg:rgba(6,104,225,0.04);--ce:rgba(6,104,225,0.14);"><div class="cico" style="background:#000918;border:1px solid rgba(6,104,225,0.42);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><ellipse cx="8" cy="12" rx="3" ry="6" fill="none" stroke="#4b9eff" stroke-width="2"/><ellipse cx="16" cy="12" rx="3" ry="6" fill="none" stroke="#38d9ff" stroke-width="2"/></svg></div><div class="cn">Meta AI</div><div class="cs">Available</div><div class="cst" style="color:var(--t3);"><div class="dot ds" style="background:var(--t4);"></div>Connect</div></div>
+  </div>
+
+  <div class="wgrid">
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="winfo"><p class="wn">Add more</p><p class="ws">12 services available</p><p class="wv">PRO</p><p class="wbl">Unlimited connections</p></div></div>
+    <div class="wcard" onclick="navTo('memory')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="winfo"><p class="wn">Memory layer</p><p class="ws">Shared across all</p><p class="wv">1,847</p><p class="wvl">Saved memories</p></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: SHARED MEMORY
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-memory">
+  <div class="hero" style="min-height:130px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Unified Layer</div>
+      <div class="hero-title"><span class="l1">SHARED</span><span class="l2">MEMORY</span></div>
+      <div class="hero-sub">Every AI sees the same<br>memory in real time.</div>
+      <div class="hero-active"><div class="dot dg"></div>Synced across 6 services</div>
+    </div>
+  </div>
+
+  <div class="wgrid">
+    <div class="wcard" onclick="renderToast('Memory backup started','tok')">
+      <div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <div class="winfo"><p class="wn">Total memory</p><p class="ws">All AI combined</p><p class="wv">4.2 GB</p><p class="wvl">Of 50 GB</p><div class="wbar"><div class="wbar-fill wbar-cyan" style="width:8%;"></div></div></div>
+    </div>
+    <div class="wcard" onclick="renderToast('Sync engine: healthy','tok')">
+      <div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      <div class="winfo"><p class="wn">Sync rate</p><p class="ws">Last 24h</p><p class="wb">99.9%</p><p class="wbl">Excellent</p><div class="wbar"><div class="wbar-fill wbar-teal" style="width:99%;"></div></div></div>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <svg class="s-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+    <input type="text" placeholder="Search 1,847 memories…" onclick="renderToast('Searching memory…','tinfo')" readonly>
+    <button class="s-btn" onclick="renderToast('Searching memory…','tinfo')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></button>
+  </div>
+
+  <div class="sh"><h2>Recent Memories</h2><span class="sh-edit" onclick="renderToast('Showing all memories','tinfo')">View all</span></div>
+  <div class="cmd-wrap" style="padding:6px 14px;">
+    <div class="feed-item"><div class="feed-ic t-ic"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="feed-tx"><div class="ft">Travel preferences</div><div class="fd">Window seats, aisle. Direct flights only.</div><div class="fm">Travel AI · 2 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/></svg></div><div class="feed-tx"><div class="ft">Q4 financial goals</div><div class="fd">Save 20%, invest in index funds, review monthly.</div><div class="fm">Finance AI · 6 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-pb"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="feed-tx"><div class="ft">Health: avg sleep 7.4h</div><div class="fd">Improvement of 12% over last month.</div><div class="fm">Health AI · 1 day ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-st"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div class="feed-tx"><div class="ft">Project Atlas brief</div><div class="fd">Q1 timeline, key milestones, owner allocations.</div><div class="fm">Work AI · 2 days ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-te"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="feed-tx"><div class="ft">Evening scene preferences</div><div class="fd">Lights 30%, temperature 21°C, jazz playlist.</div><div class="fm">Home AI · 3 days ago</div></div></div>
+  </div>
+
+  <div class="sh"><h2>Permissions</h2></div>
+  <div class="cmd-wrap" style="padding:4px 14px;">
+    <div class="trow"><div class="trow-info"><div class="tn">ChatGPT</div><div class="td">Read &amp; write memory</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Claude</div><div class="td">Read &amp; write memory</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Gemini</div><div class="td">Read only</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Third-party apps</div><div class="td">External AI services</div></div><div class="tg" onclick="toggleTg(this)"></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: AGENTS
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-agents">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Personal Crew</div>
+      <div class="hero-title"><span class="l1">AI</span><span class="l2">AGENTS</span></div>
+      <div class="hero-sub">Specialist agents working<br>across your memory.</div>
+      <div class="hero-active"><div class="dot dg"></div>6 active · 1 idle</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Your Agents</h2><span class="sh-edit" onclick="openMod('studioMod')">+ Create</span></div>
+  <div class="grid">
+    <div class="card" onclick="openAgent('assistant')"><div class="cico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div class="cn">Personal</div><div class="cs">Coordinator</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openAgent('travel')"><div class="cico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="cn">Travel</div><div class="cs">Plans trips</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openAgent('finance')"><div class="cico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/></svg></div><div class="cn">Finance</div><div class="cs">Tracks spend</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openAgent('home')"><div class="cico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="cn">Home</div><div class="cs">Smart routines</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openAgent('work')"><div class="cico t-st"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div class="cn">Work</div><div class="cs">Summarises</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openAgent('health')"><div class="cico t-pb"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="cn">Health</div><div class="cs">Wellness</div><div class="cst" style="color:var(--t3);"><div class="dot ds" style="background:var(--t4);"></div>Idle</div></div>
+    <div class="card" onclick="openAgent('shopping')"><div class="cico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="9" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><circle cx="19" cy="20" r="1.5" fill="#4b9eff" stroke="none"/><path d="M1 2h3l2.5 12h10l2-8H6"/></svg></div><div class="cn">Shopping</div><div class="cs">Auto-reorder</div><div class="cst"><div class="dot dg ds"></div>Active</div></div>
+    <div class="card" onclick="openMod('studioMod')"><div class="cico" style="background:rgba(56,160,255,0.06);border:1px dashed rgba(56,160,255,0.22);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(140,190,240,0.6)" stroke-width="1.6"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg></div><div class="cn">New Agent</div><div class="cs">Create custom</div><div class="cst" style="color:var(--t3);"><div class="dot ds" style="background:var(--t4);"></div>Studio</div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: AUTOMATION
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-automation">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Workflows</div>
+      <div class="hero-title"><span class="l1">AUTO</span><span class="l2">MATION</span></div>
+      <div class="hero-sub">Multi-step routines<br>across every AI.</div>
+      <div class="hero-active"><div class="dot dg"></div>5 active · 1 paused</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Your Workflows</h2><span class="sh-edit" onclick="openMod('studioMod')">+ Create</span></div>
+  <div class="wgrid">
+    <div class="wcard" onclick="renderToast('Morning Routine running…','tinfo')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="winfo"><p class="wn">Morning Routine</p><p class="ws">Wake-up briefing</p><p class="wv">7:00 AM</p><p class="wvl">Today · ran</p></div></div>
+    <div class="wcard" onclick="renderToast('Travel Planning · ready','tinfo')"><div class="wico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#a0c8f0" fill="none"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="winfo"><p class="wn">Travel Planning</p><p class="ws">Multi-agent flow</p><p class="wv">5 agents</p><p class="wvl">Travel + Schedule</p></div></div>
+    <div class="wcard" onclick="renderToast('Bill Reminder scheduled','tinfo')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div class="winfo"><p class="wn">Bill Reminder</p><p class="ws">3 days before</p><p class="wv">$847</p><p class="wvl">Next: Nov 28</p></div></div>
+    <div class="wcard" onclick="renderToast('Evening Scene active','tok')"><div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="winfo"><p class="wn">Evening Scene</p><p class="ws">Lights · Music · Temp</p><p class="wb">ARMED</p><p class="wbl">Auto · 6:00 PM</p></div></div>
+    <div class="wcard" onclick="renderToast('Work Summary delivered','tok')"><div class="wico t-st"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#8090b8" fill="none"><rect x="2" y="7" width="20" height="14" rx="2"/></svg></div><div class="winfo"><p class="wn">Work Summary</p><p class="ws">Daily digest</p><p class="wv">9:00 AM</p><p class="wvl">Today · sent</p></div></div>
+    <div class="wcard" onclick="renderToast('Shopping reorder ready','tinfo')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><circle cx="9" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/><path d="M1 2h3l2.5 12h10l2-8H6"/></svg></div><div class="winfo"><p class="wn">Shopping Reorder</p><p class="ws">Essentials low</p><p class="wv">3 items</p><p class="wvl">Pending approval</p></div></div>
+  </div>
+
+  <div class="sh"><h2>Toggle</h2></div>
+  <div class="cmd-wrap" style="padding:4px 14px;">
+    <div class="trow"><div class="trow-info"><div class="tn">Morning Routine</div><div class="td">Wake-up briefing &amp; smart home</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Bill Reminder</div><div class="td">Notify 3 days before due</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Smart Home Scene</div><div class="td">Evening: lights + temperature</div></div><div class="tg" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Shopping Reorder</div><div class="td">Auto-reorder when low</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: DEVICES
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-devices">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Connected</div>
+      <div class="hero-title"><span class="l1">DEV</span><span class="l2">ICES</span></div>
+      <div class="hero-sub">Your hardware,<br>synced to memory.</div>
+      <div class="hero-active"><div class="dot dg"></div>7 online · 1 idle</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>All Devices</h2><span class="sh-edit" onclick="renderToast('Scanning for new devices…','tinfo')">+ Add</span></div>
+  <div class="grid">
+    <div class="card" onclick="renderToast('iPhone 15 Pro — online','tok')"><div class="cico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg></div><div class="cn">iPhone 15</div><div class="cs">Primary</div><div class="cst"><div class="dot dg ds"></div>95%</div></div>
+    <div class="card" onclick="renderToast('MacBook Pro — online','tok')"><div class="cico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="2" y="4" width="20" height="14" rx="2"/><line x1="2" y1="18" x2="22" y2="18"/></svg></div><div class="cn">MacBook</div><div class="cs">Work</div><div class="cst"><div class="dot dg ds"></div>88%</div></div>
+    <div class="card" onclick="renderToast('Nest Hub — online','tok')"><div class="cico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="cn">Nest Hub</div><div class="cs">Home</div><div class="cst"><div class="dot dg ds"></div>100%</div></div>
+    <div class="card" onclick="renderToast('Tesla Model 3 — connected','tok')"><div class="cico t-sl"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg></div><div class="cn">Tesla M3</div><div class="cs">Garage</div><div class="cst"><div class="dot dg ds"></div>72%</div></div>
+    <div class="card" onclick="renderToast('Home Robot — idle','twn')"><div class="cico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/></svg></div><div class="cn">Robot</div><div class="cs">Idle 12m</div><div class="cst" style="color:var(--amber);"><div class="dot ds" style="background:var(--amber);box-shadow:0 0 5px var(--amber);"></div>Idle</div></div>
+    <div class="card" onclick="renderToast('Camera — online','tok')"><div class="cico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="cn">Camera</div><div class="cs">Outdoor</div><div class="cst"><div class="dot dg ds"></div>100%</div></div>
+    <div class="card" onclick="renderToast('Apple Watch — synced','tok')"><div class="cico t-pb"><svg viewBox="0 0 24 24" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="4"/></svg></div><div class="cn">Watch</div><div class="cs">Series 9</div><div class="cst"><div class="dot dg ds"></div>82%</div></div>
+    <div class="card" onclick="renderToast('Cloud node — active','tok')"><div class="cico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div><div class="cn">Cloud Node</div><div class="cs">EU-West</div><div class="cst"><div class="dot dg ds"></div>100%</div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: ANALYTICS
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-analytics">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Insights</div>
+      <div class="hero-title"><span class="l1">ANAL</span><span class="l2">YTICS</span></div>
+      <div class="hero-sub">Your AI usage<br>across all systems.</div>
+      <div class="hero-active"><div class="dot dg"></div>Live · last 7 days</div>
+    </div>
+  </div>
+
+  <div class="wgrid">
+    <div class="wcard" onclick="renderToast('AI interactions today: 247','tinfo')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="winfo"><p class="wn">Interactions</p><p class="ws">Today</p><p class="wv">247</p><p class="wvl">+18% vs yesterday</p></div></div>
+    <div class="wcard" onclick="renderToast('Memory syncs: 89 events','tinfo')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="winfo"><p class="wn">Memory syncs</p><p class="ws">This week</p><p class="wv">89</p><p class="wvl">+22% growth</p></div></div>
+    <div class="wcard" onclick="renderToast('Automations: 12 runs','tinfo')"><div class="wico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#00c8a0" fill="none"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div class="winfo"><p class="wn">Automations</p><p class="ws">Ran today</p><p class="wv">12</p><p class="wvl">Saved 3.2 hrs</p></div></div>
+    <div class="wcard" onclick="openMod('secMod')"><div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="winfo"><p class="wn">Security</p><p class="ws">Privacy score</p><p class="wb">98</p><p class="wbl">Excellent</p></div></div>
+  </div>
+
+  <div class="sh"><h2>Daily Interactions</h2><span class="sh-edit" onclick="renderToast('Exporting report…','tinfo')">Export</span></div>
+  <div class="cmd-wrap">
+    <div style="height:96px;display:flex;align-items:flex-end;gap:6px;padding-top:8px;" id="chartBars"></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;padding:0 2px;">
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Mon</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Tue</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Wed</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Thu</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Fri</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Sat</span>
+      <span style="font-size:9px;color:var(--t4);letter-spacing:.05em;">Sun</span>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Cloud Usage</h2></div>
+  <div class="cmd-wrap" style="padding:13px 14px;">
+    <div class="irow"><div class="il">Compute today</div><div class="iv">24.3 TFLOPS</div></div>
+    <div class="irow"><div class="il">Memory stored</div><div class="iv">4.2 GB</div></div>
+    <div class="irow"><div class="il">API calls today</div><div class="iv">1,247</div></div>
+    <div class="irow"><div class="il">Region</div><div class="iv">EU-West (London)</div></div>
+    <div class="irow"><div class="il">Uptime</div><div class="iv">99.98%</div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: MARKETPLACE
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-marketplace">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Modules</div>
+      <div class="hero-title"><span class="l1">MARKET</span><span class="l2">PLACE</span></div>
+      <div class="hero-sub">Expand your AI<br>ecosystem.</div>
+      <div class="hero-active"><div class="dot dg"></div>32 available</div>
+    </div>
+  </div>
+
+  <div class="search-wrap">
+    <svg class="s-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg>
+    <input type="text" placeholder="Search modules, automations, packs…" onclick="renderToast('Search opening…','tinfo')" readonly>
+    <button class="s-btn" onclick="renderToast('Voice search activated','tinfo')"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></button>
+  </div>
+
+  <div class="sh" style="margin-top:14px;"><h2>Featured</h2><span class="sh-edit" onclick="renderToast('All categories','tinfo')">All</span></div>
+  <div class="wgrid">
+    <div class="wcard" onclick="renderToast('Deep Research installed','tok')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M9 11H5a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2v-3a2 2 0 00-2-2zm10 0h-4a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2v-3a2 2 0 00-2-2zM9 3H5a2 2 0 00-2 2v3a2 2 0 002 2h4a2 2 0 002-2V5a2 2 0 00-2-2z"/></svg></div><div class="winfo"><p class="wn">Deep Research</p><p class="ws">Cross-platform</p><p class="wv">FREE</p><p class="wbl">Install</p></div></div>
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-ic"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#a0c8f0" fill="none"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="winfo"><p class="wn">Travel Pro</p><p class="ws">Smart itinerary</p><p class="wv">PRO</p><p class="wbl">Upgrade</p></div></div>
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-tg"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#00c8a0" fill="none"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="winfo"><p class="wn">Finance Pro</p><p class="ws">Real-time portfolio</p><p class="wv">PRO</p><p class="wbl">Upgrade</p></div></div>
+    <div class="wcard" onclick="renderToast('Health Coach installed','tok')"><div class="wico t-pb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#7aaae0" fill="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="winfo"><p class="wn">Health Coach</p><p class="ws">Daily insights</p><p class="wv">FREE</p><p class="wbl">Install</p></div></div>
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="winfo"><p class="wn">Smart Home Suite</p><p class="ws">Full integration</p><p class="wv">PRO</p><p class="wbl">Upgrade</p></div></div>
+    <div class="wcard" onclick="renderToast('Work Pack installed','tok')"><div class="wico t-st"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#8090b8" fill="none"><rect x="2" y="7" width="20" height="14" rx="2"/></svg></div><div class="winfo"><p class="wn">Work Pack</p><p class="ws">Meetings &amp; docs</p><p class="wv">FREE</p><p class="wbl">Install</p></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: NOTIFICATIONS
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-notif">
+  <div class="hero" style="min-height:110px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Recent</div>
+      <div class="hero-title"><span class="l1">NOTIF</span><span class="l2">ICATIONS</span></div>
+      <div class="hero-sub">3 unread events.</div>
+      <div class="hero-active"><div class="dot dg"></div>All systems reporting</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Today</h2><span class="sh-edit" onclick="document.querySelectorAll('.notif-row.unread').forEach(r=>r.classList.remove('unread'));renderToast('All marked as read','tok');">Mark read</span></div>
+  <div class="notif-row unread" onclick="this.classList.remove('unread');renderToast('Memory sync details','tinfo');"><div class="nd"></div><div class="notif-ic t-cy"><svg viewBox="0 0 24 24" stroke="#38d9ff" stroke-width="1.6" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="notif-bd"><div class="nt">Memory synced</div><div class="ns">4 new memories across ChatGPT and Claude</div><div class="nm">2 min ago</div></div></div>
+  <div class="notif-row unread" onclick="this.classList.remove('unread');renderToast('Travel alert opened','tinfo');"><div class="nd"></div><div class="notif-ic t-ic"><svg viewBox="0 0 24 24" stroke="#a0c8f0" stroke-width="1.6" fill="none"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="notif-bd"><div class="nt">Travel AI · price drop</div><div class="ns">SF flight 23% cheaper — review options?</div><div class="nm">1 hour ago</div></div></div>
+  <div class="notif-row unread" onclick="this.classList.remove('unread');renderToast('Schedule overview','tinfo');"><div class="nd"></div><div class="notif-ic t-cy"><svg viewBox="0 0 24 24" stroke="#38d9ff" stroke-width="1.6" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><div class="notif-bd"><div class="nt">Schedule AI</div><div class="ns">Tomorrow: 3 meetings, 2 hrs focus time</div><div class="nm">2 hours ago</div></div></div>
+  <div class="notif-row" onclick="renderToast('Security scan log','tinfo')"><div class="nd"></div><div class="notif-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00e5a0" stroke-width="1.6" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="notif-bd"><div class="nt">Security scan complete</div><div class="ns">No threats detected · Score 98/100</div><div class="nm">4 hours ago</div></div></div>
+  <div class="notif-row" onclick="openMod('cloudMod')"><div class="nd"></div><div class="notif-ic t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff" stroke-width="1.6" fill="none"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div><div class="notif-bd"><div class="nt">Cloud usage update</div><div class="ns">62% of daily compute quota used</div><div class="nm">5 hours ago</div></div></div>
+  <div class="notif-row" onclick="renderToast('Morning Routine details','tinfo')"><div class="nd"></div><div class="notif-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00e5a0" stroke-width="1.6" fill="none"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div class="notif-bd"><div class="nt">Morning Routine</div><div class="ns">Completed at 7:00am · 6 steps</div><div class="nm">8 hours ago</div></div></div>
+  <div class="notif-row" onclick="renderToast('Weekly spending report','tinfo')"><div class="nd"></div><div class="notif-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00c8a0" stroke-width="1.6" fill="none"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="notif-bd"><div class="nt">Finance report ready</div><div class="ns">$847 this week · 12% under budget</div><div class="nm">Yesterday</div></div></div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: SETTINGS
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-settings">
+  <div class="hero" style="min-height:110px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Preferences</div>
+      <div class="hero-title"><span class="l1">SET</span><span class="l2">TINGS</span></div>
+      <div class="hero-sub">Account &amp; system<br>preferences.</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Account</h2></div>
+  <div class="wgrid">
+    <div class="wcard" onclick="openMod('authMod')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="winfo"><p class="wn">Account</p><p class="ws">Profile · Email</p><p class="wv">Free</p><p class="wvl">Tap to manage</p></div></div>
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="winfo"><p class="wn">Subscription</p><p class="ws">Current plan</p><p class="wv">FREE</p><p class="wvl">Upgrade available</p></div></div>
+    <div class="wcard" onclick="openMod('secMod')"><div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="winfo"><p class="wn">Privacy &amp; Security</p><p class="ws">Permissions</p><p class="wb">98</p><p class="wbl">Privacy score</p></div></div>
+    <div class="wcard" onclick="navTo('notif')"><div class="wico t-sl"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#8ab0d4" fill="none"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div><div class="winfo"><p class="wn">Notifications</p><p class="ws">Alerts &amp; reminders</p><p class="wv">8</p><p class="wvl">3 unread</p></div></div>
+  </div>
+
+  <div class="sh"><h2>Preferences</h2></div>
+  <div class="cmd-wrap" style="padding:4px 14px;">
+    <div class="trow"><div class="trow-info"><div class="tn">Memory Encryption</div><div class="td">AES-256 end-to-end</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Two-Factor Auth</div><div class="td">Extra login security</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Privacy Mode</div><div class="td">Limit data shared with AI</div></div><div class="tg" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Voice activation</div><div class="td">"Hey Terafarm" hot-word</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Auto-sync devices</div><div class="td">Background memory sync</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Dark mode</div><div class="td">Always on for Terafarm</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+  </div>
+
+  <div class="sh"><h2>Data</h2></div>
+  <div class="wgrid">
+    <div class="wcard" onclick="renderToast('Exporting your data…','tinfo')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="winfo"><p class="wn">Export data</p><p class="ws">Download backup</p><p class="wv">4.2 GB</p><p class="wvl">All systems</p></div></div>
+    <div class="wcard" onclick="renderToast('Confirmation email sent','twn')"><div class="wico" style="background:rgba(180,20,40,.10);border:1px solid rgba(220,50,70,.20);"><svg viewBox="0 0 24 24" stroke="#e07080" stroke-width="1.6" fill="none"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></div><div class="winfo"><p class="wn" style="color:#e07080;">Delete account</p><p class="ws">Permanent removal</p></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: PROFILE
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-profile">
+  <div class="hero" style="min-height:130px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Your Identity</div>
+      <div class="hero-title"><span class="l1">PRO</span><span class="l2">FILE</span></div>
+      <div class="hero-sub">demo@terafarm.ai<br>Member since 2024.</div>
+      <div class="hero-active"><div class="dot dg"></div>14 systems · 1,847 memories</div>
+    </div>
+    <div class="orbit-wrap">
+      <svg class="orbit-svg" viewBox="0 0 160 148" preserveAspectRatio="xMidYMid meet">
+        <circle cx="80" cy="74" r="38" stroke="rgba(56,200,255,0.20)" stroke-width="1" fill="none"/>
+        <circle cx="80" cy="74" r="34" fill="rgba(0,28,74,0.7)" stroke="rgba(56,217,255,0.3)" stroke-width="1.4"/>
+        <circle cx="80" cy="74" r="14" fill="rgba(0,56,128,0.95)" stroke="rgba(56,217,255,0.5)" stroke-width="1"/>
+        <circle cx="80" cy="69" r="3.5" fill="rgba(180,210,255,0.78)"/>
+        <path d="M72 82 a8 6 0 0 1 16 0" stroke="rgba(180,210,255,0.78)" stroke-width="1.4" fill="none"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wgrid">
+    <div class="wcard" onclick="navTo('hub')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div class="winfo"><p class="wn">Connected AI</p><p class="ws">All platforms</p><p class="wv">6</p><p class="wvl">2 available</p></div></div>
+    <div class="wcard" onclick="navTo('memory')"><div class="wico t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#4b9eff" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="winfo"><p class="wn">Memories</p><p class="ws">Across all AI</p><p class="wv">1,847</p><p class="wvl">+34 today</p></div></div>
+    <div class="wcard" onclick="navTo('devices')"><div class="wico t-te"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#1db5c8" fill="none"><rect x="4" y="2" width="16" height="20" rx="2"/></svg></div><div class="winfo"><p class="wn">Devices</p><p class="ws">Connected</p><p class="wv">8</p><p class="wvl">7 online</p></div></div>
+    <div class="wcard" onclick="openMod('proMod')"><div class="wico t-cy"><svg viewBox="0 0 24 24" stroke-width="1.6" stroke="#38d9ff" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="winfo"><p class="wn">Plan</p><p class="ws">Subscription</p><p class="wv">Free</p><p class="wvl">Upgrade →</p></div></div>
+  </div>
+
+  <div class="sh"><h2>Shortcuts</h2></div>
+  <div class="cmd-wrap">
+    <div class="cmd-row">
+      <div class="cbtn" onclick="openMod('authMod')"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span class="clbl">Edit Profile</span></div>
+      <div class="cbtn" onclick="openMod('secMod')"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span class="clbl">Security</span></div>
+      <div class="cbtn" onclick="navTo('settings')"><div class="cbi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div><span class="clbl">Settings</span></div>
+      <div class="cbtn" onclick="renderToast('Exporting data…','tinfo')"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><span class="clbl">Export</span></div>
+      <div class="cbtn" onclick="renderToast('Signing out…','tinfo')"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><span class="clbl">Sign out</span></div>
+    </div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: ACTIVITY
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-activity">
+  <div class="hero" style="min-height:110px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Live</div>
+      <div class="hero-title"><span class="l1">ACTI</span><span class="l2">VITY</span></div>
+      <div class="hero-sub">Every event,<br>every AI.</div>
+      <div class="hero-active"><div class="dot dg"></div>247 events today</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Recent Activity</h2><span class="sh-edit" onclick="renderToast('Feed refreshed','tok')">Refresh</span></div>
+  <div class="cmd-wrap" style="padding:6px 14px;">
+    <div class="feed-item"><div class="feed-ic t-cy"><svg viewBox="0 0 24 24" stroke="#38d9ff"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="feed-tx"><div class="ft">Memory synced</div><div class="fd">4 new memories across ChatGPT and Claude</div><div class="fm">2 minutes ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00e5a0"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><div class="feed-tx"><div class="ft">Automation completed</div><div class="fd">Morning Routine — 6 steps executed</div><div class="fm">1 hour ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff"><rect x="5" y="2" width="14" height="20" rx="4"/></svg></div><div class="feed-tx"><div class="ft">Device synced</div><div class="fd">Apple Watch · health data uploaded</div><div class="fm">2 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-sl"><svg viewBox="0 0 24 24" stroke="#8ab0d4"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="feed-tx"><div class="ft">AI broadcast sent</div><div class="fd">Daily briefing across 8 systems</div><div class="fm">3 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00e5a0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feed-tx"><div class="ft">Security scan complete</div><div class="fd">No threats · Privacy score 98/100</div><div class="fm">4 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div><div class="feed-tx"><div class="ft">Cloud sync complete</div><div class="fd">24.3 TFLOPS used · all data backed up</div><div class="fm">5 hours ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00c8a0"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="feed-tx"><div class="ft">Finance report generated</div><div class="fd">$847 this week · 12% under budget</div><div class="fm">Yesterday</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-ic"><svg viewBox="0 0 24 24" stroke="#a0c8f0"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="feed-tx"><div class="ft">Travel alert</div><div class="fd">SF flight 23% cheaper — alert triggered</div><div class="fm">Yesterday</div></div></div>
+  </div>
+  <div style="height:6px;"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     SCREEN: SYSTEMS (bottom nav target)
+     ════════════════════════════════════════════════════════ -->
+<div class="scr" id="scr-systems">
+  <div class="hero" style="min-height:120px;cursor:default;">
+    <div class="hero-earth"></div>
+    <div class="hero-content" style="width:60%;">
+      <div class="hero-eyebrow">Your Ecosystem</div>
+      <div class="hero-title"><span class="l1">ALL</span><span class="l2">SYSTEMS</span></div>
+      <div class="hero-sub">14 AI modules<br>connected.</div>
+      <div class="hero-active"><div class="dot dg"></div>All active</div>
+    </div>
+  </div>
+
+  <div class="sh"><h2>Every AI System</h2><span class="sh-edit" onclick="openMod('customizeMod')">Manage</span></div>
+  <div class="grid" id="allSysGrid"></div>
+  <div style="height:6px;"></div>
+</div>
+
+</div><!-- /scroll -->
 
 <!-- BOTTOM NAV -->
 <div class="nav">
-  <div class="ni on" onclick="openModal()">
+  <div class="ni on" id="bn-home" onclick="navTo('home')">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     <span>Home</span>
   </div>
-  <div class="ni" onclick="openModal()">
+  <div class="ni" id="bn-systems" onclick="navTo('systems')">
     <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
     <span>Systems</span>
   </div>
-  <div class="nc" onclick="openModal()">
+  <div class="nc" onclick="openMod('cmdMod')">
     <div class="ncb">
       <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
         <path d="M16 2L30 10V22L16 30L2 22V10Z" stroke="#38d9ff" stroke-width="1.3" opacity=".55"/>
@@ -1415,190 +1899,643 @@ html,body{
       </svg>
     </div>
   </div>
-  <div class="ni" onclick="openModal()">
+  <div class="ni" id="bn-activity" onclick="navTo('activity')">
     <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
     <span>Activity</span>
   </div>
-  <div class="ni" onclick="openModal()">
+  <div class="ni" id="bn-profile" onclick="navTo('profile')">
     <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     <span>Profile</span>
   </div>
 </div>
 
 </div><!-- /shell -->
+<!-- ════════════════ MODALS ════════════════ -->
 
-<!-- MODAL -->
-<div class="mod-ov" id="modOv" onclick="modOutside(event)">
+<!-- AUTH -->
+<div class="mod-ov" id="authMod" onclick="modOutside(event,'authMod')">
   <div class="mod">
     <div class="mod-handle"></div>
-    <div class="mod-x" onclick="closeModal()">
-      <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg>
-    </div>
+    <div class="mod-x" onclick="closeMod('authMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
     <div id="formSec">
-      <h2>Create your account</h2>
-      <p class="sub">Connect your AI world in one interface.</p>
-      <div class="fld" id="fN"><label for="iN">Name</label><input type="text" id="iN" placeholder="Your full name" autocomplete="off" oninput="clrE('fN','eN')"></div>
+      <div class="tabs">
+        <div class="tab active" id="signinTab" onclick="switchAuthTab('signin')">Sign In</div>
+        <div class="tab" id="signupTab" onclick="switchAuthTab('signup')">Create Account</div>
+      </div>
+      <h2 id="authTitle">Welcome back</h2>
+      <p class="sub" id="authSub">Sign in to your Terafarm account.</p>
+      <div class="fld" id="fN" style="display:none;"><label>Name</label><input type="text" id="iN" placeholder="Your full name" oninput="clrE('fN','eN')"></div>
       <div class="emsg" id="eN">Please enter your name</div>
-      <div class="fld" id="fE"><label for="iE">Email</label><input type="email" id="iE" placeholder="your@email.com" autocomplete="off" oninput="clrE('fE','eE')"></div>
+      <div class="fld" id="fE"><label>Email</label><input type="email" id="iE" placeholder="your@email.com" oninput="clrE('fE','eE')"></div>
       <div class="emsg" id="eE">Please enter a valid email</div>
-      <div class="fld" id="fP"><label for="iP">Password</label><input type="password" id="iP" placeholder="Min. 6 characters" oninput="clrE('fP','eP')"></div>
+      <div class="fld" id="fP"><label>Password</label><input type="password" id="iP" placeholder="Min. 6 characters" oninput="clrE('fP','eP')"></div>
       <div class="emsg" id="eP">Password must be at least 6 characters</div>
-      <button class="reg-btn" id="rBtn" onclick="handleReg()">Create Account</button>
+      <button class="reg-btn" id="rBtn" onclick="handleReg()">Sign In</button>
+      <button class="sec-btn" onclick="renderToast('Google sign-in coming soon','tinfo')">Continue with Google</button>
       <p class="reg-note">Early access platform · More systems coming soon.</p>
     </div>
     <div class="succ-scr" id="succSec">
-      <div class="succ-ico">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <h3>You're on the list!</h3>
-      <p>Welcome to Terafarm.<br>Your AI world is being prepared.<br>We'll notify you when access opens.</p>
+      <div class="succ-ico"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3 id="succTitle">You're in!</h3>
+      <p id="succMsg">Welcome to Terafarm.<br>Your AI world is connected.</p>
     </div>
   </div>
 </div>
 
+<!-- COMMAND CENTER -->
+<div class="mod-ov" id="cmdMod" onclick="modOutside(event,'cmdMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('cmdMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>Command Center</h2>
+    <p class="sub">Route any task to any AI in your ecosystem.</p>
+    <div class="fld"><label>What do you need?</label><input type="text" id="cmdInput" placeholder="Ask anything…"></div>
+    <button class="reg-btn" onclick="handleCmd()">Send Command</button>
+
+    <div class="sect-lbl">Quick Commands</div>
+    <div class="cmd-row">
+      <div class="cbtn" onclick="closeMod('cmdMod');openMod('taskMod');"><div class="cbi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg></div><span class="clbl">New Task</span></div>
+      <div class="cbtn" onclick="closeMod('cmdMod');openMod('bcastMod');"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><span class="clbl">Broadcast</span></div>
+      <div class="cbtn" onclick="closeMod('cmdMod');openMod('searchMod');"><div class="cbi"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35" stroke-linecap="round"/></svg></div><span class="clbl">Search</span></div>
+      <div class="cbtn" onclick="closeMod('cmdMod');openMod('voiceMod');"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 23h8" stroke-linecap="round"/></svg></div><span class="clbl">Voice</span></div>
+      <div class="cbtn" onclick="closeMod('cmdMod');openMod('studioMod');"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><span class="clbl">Studio</span></div>
+    </div>
+
+    <div class="sect-lbl">Connected Systems</div>
+    <div class="chips">
+      <div class="chip sel">ChatGPT</div><div class="chip sel">Claude</div><div class="chip sel">Gemini</div><div class="chip sel">Perplexity</div><div class="chip sel">Copilot</div><div class="chip sel">Notion</div>
+    </div>
+
+    <button class="dng-btn" onclick="renderToast('Privacy lock engaged — all AI access paused','tok');closeMod('cmdMod');">Emergency Privacy Lock</button>
+  </div>
+</div>
+
+<!-- SYSTEM DETAIL (shared, content set by JS) -->
+<div class="mod-ov" id="sysMod" onclick="modOutside(event,'sysMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('sysMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div id="sysContent"></div>
+  </div>
+</div>
+
+<!-- HUB DETAIL (shared, content set by JS) -->
+<div class="mod-ov" id="hubMod" onclick="modOutside(event,'hubMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('hubMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div id="hubContent"></div>
+  </div>
+</div>
+
+<!-- AGENT DETAIL (shared, content set by JS) -->
+<div class="mod-ov" id="agentMod" onclick="modOutside(event,'agentMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('agentMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div id="agentContent"></div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="mod-ov" id="searchMod" onclick="modOutside(event,'searchMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('searchMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>AI Search</h2>
+    <p class="sub">Search across all connected AI systems and memory.</p>
+    <div class="fld"><label>Query</label><input type="text" id="srchInput" placeholder="What are you looking for?"></div>
+    <button class="reg-btn" onclick="handleSearch()">Search</button>
+    <div id="srchResults" style="margin-top:14px;"></div>
+    <div class="sect-lbl">Try</div>
+    <div class="chips">
+      <div class="chip" onclick="document.getElementById('srchInput').value='My meetings last week';handleSearch()">Meetings last week</div>
+      <div class="chip" onclick="document.getElementById('srchInput').value='Travel bookings';handleSearch()">Travel bookings</div>
+      <div class="chip" onclick="document.getElementById('srchInput').value='Finance reports';handleSearch()">Finance</div>
+      <div class="chip" onclick="document.getElementById('srchInput').value='Health data';handleSearch()">Health</div>
+    </div>
+    <div class="sect-lbl">Searching</div>
+    <div class="chips">
+      <div class="chip sel">ChatGPT</div><div class="chip sel">Claude</div><div class="chip sel">Gemini</div><div class="chip sel">Memory</div>
+    </div>
+  </div>
+</div>
+
+<!-- VOICE -->
+<div class="mod-ov" id="voiceMod" onclick="modOutside(event,'voiceMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('voiceMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div style="text-align:center;padding:8px 0 4px;">
+      <div class="vring"><div class="vring-i"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 013 3v7a3 3 0 01-6 0V5a3 3 0 013-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 23h8" stroke-linecap="round"/></svg></div></div>
+      <h2 style="margin-bottom:4px;">Listening…</h2>
+      <p class="sub">Speak your command. Terafarm will route it.</p>
+    </div>
+    <div class="sect-lbl">Try saying</div>
+    <div class="chips" style="flex-direction:column;">
+      <div class="chip" style="text-align:left;width:100%;" onclick="closeMod('voiceMod');renderToast('Routing to Schedule AI…','tinfo');">"Schedule a meeting tomorrow at 3pm"</div>
+      <div class="chip" style="text-align:left;width:100%;margin-top:6px;" onclick="closeMod('voiceMod');renderToast('Searching memory…','tinfo');">"What did I say to Claude about Project Atlas?"</div>
+      <div class="chip" style="text-align:left;width:100%;margin-top:6px;" onclick="closeMod('voiceMod');renderToast('Activating Home AI…','tok');">"Turn on the living room lights"</div>
+      <div class="chip" style="text-align:left;width:100%;margin-top:6px;" onclick="closeMod('voiceMod');renderToast('Routing to Finance AI…','tinfo');">"Check my monthly spending"</div>
+    </div>
+    <button class="dng-btn" onclick="closeMod('voiceMod')">Stop Listening</button>
+  </div>
+</div>
+
+<!-- PRO PRICING -->
+<div class="mod-ov" id="proMod" onclick="modOutside(event,'proMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('proMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>Upgrade Terafarm</h2>
+    <p class="sub">Choose the plan that matches your AI life.</p>
+
+    <div class="pcard">
+      <div class="pt">Free</div>
+      <div class="pv">$0<span class="pm">/mo</span></div>
+      <div class="pd">Start connecting your AI world.</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Basic dashboard</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Limited memory · 500MB</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>3 AI systems</div>
+      <button class="sec-btn" onclick="renderToast('You are on the Free plan','tinfo');closeMod('proMod');">Current Plan</button>
+    </div>
+
+    <div class="pcard feat">
+      <div class="pt" style="color:var(--cyan);">Pro · Most Popular</div>
+      <div class="pv">$19<span class="pm">/mo</span></div>
+      <div class="pd">Full AI ecosystem power.</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited AI systems</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Shared memory · 50 GB</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Full automation suite</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>7 AI agents · priority sync</div>
+      <button class="reg-btn" onclick="handleProUpgrade()">Upgrade to Pro</button>
+    </div>
+
+    <div class="pcard">
+      <div class="pt">Ultra</div>
+      <div class="pv">$49<span class="pm">/mo</span></div>
+      <div class="pd">Enterprise-grade AI OS.</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Advanced agents &amp; marketplace</div>
+      <div class="pf"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited memory · API access</div>
+      <button class="sec-btn" onclick="handleProUpgrade()">Get Ultra</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW TASK -->
+<div class="mod-ov" id="taskMod" onclick="modOutside(event,'taskMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('taskMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>New Task</h2>
+    <p class="sub">Assign a task to an AI agent.</p>
+    <div class="fld"><label>Task Title</label><input type="text" id="taskTitle" placeholder="What needs to be done?"></div>
+    <div class="fld"><label>Agent</label><select id="taskAgent"><option>Personal Assistant</option><option>Schedule AI</option><option>Travel Agent</option><option>Finance Agent</option><option>Work Agent</option><option>Home Agent</option></select></div>
+    <div class="fld"><label>AI Platform</label><select><option>Auto (best match)</option><option>ChatGPT</option><option>Claude</option><option>Gemini</option><option>Perplexity</option></select></div>
+    <div class="fld"><label>Schedule</label><input type="text" placeholder="e.g. Tomorrow 9am"></div>
+    <div class="fld"><label>Notes</label><textarea rows="2" placeholder="Additional context…"></textarea></div>
+    <button class="reg-btn" onclick="handleTask()">Create Task</button>
+  </div>
+</div>
+
+<!-- BROADCAST -->
+<div class="mod-ov" id="bcastMod" onclick="modOutside(event,'bcastMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('bcastMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>Broadcast</h2>
+    <p class="sub">Send a command to multiple AI systems at once.</p>
+    <div class="fld"><label>Message</label><textarea rows="3" id="bcastMsg" placeholder="Enter your command or message…"></textarea></div>
+    <div class="sect-lbl">Send to</div>
+    <div class="chips" id="bcastChips"></div>
+    <button class="reg-btn" style="margin-top:12px;" onclick="handleBcast()">Send to Selected</button>
+  </div>
+</div>
+
+<!-- AI STUDIO -->
+<div class="mod-ov" id="studioMod" onclick="modOutside(event,'studioMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('studioMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>AI Studio</h2>
+    <p class="sub">Build agents, automations, and connections.</p>
+    <div class="cmd-row" style="margin-bottom:14px;">
+      <div class="cbtn" onclick="closeMod('studioMod');navTo('agents');renderToast('Agent builder opening…','tinfo');"><div class="cbi"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><span class="clbl">Create Agent</span></div>
+      <div class="cbtn" onclick="closeMod('studioMod');navTo('automation');renderToast('Automation builder opening…','tinfo');"><div class="cbi"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/></svg></div><span class="clbl">Automation</span></div>
+      <div class="cbtn" onclick="renderToast('API connector opening…','tinfo')"><div class="cbi"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/></svg></div><span class="clbl">Connect API</span></div>
+      <div class="cbtn" onclick="renderToast('Workflow designer opening…','tinfo')"><div class="cbi"><svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/></svg></div><span class="clbl">Design Flow</span></div>
+    </div>
+    <div class="sect-lbl">Recent Projects</div>
+    <div class="feed-item"><div class="feed-ic t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="feed-tx"><div class="ft">Morning Routine</div><div class="fd">Automation · last edit 2 days ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-cy"><svg viewBox="0 0 24 24" stroke="#38d9ff"><path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></div><div class="feed-tx"><div class="ft">Travel Agent v2</div><div class="fd">Agent · last edit 5 days ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00c8a0"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/></svg></div><div class="feed-tx"><div class="ft">Finance Digest</div><div class="fd">Workflow · weekly</div></div></div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="mod-ov" id="secMod" onclick="modOutside(event,'secMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('secMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="dhead">
+      <div class="dhead-ic t-te"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10" stroke-width="2"/></svg></div>
+      <div class="dhead-tx"><h2>Security AI</h2><p>Privacy &amp; protection</p></div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;justify-content:center;">
+      <div style="position:relative;width:92px;height:92px;">
+        <svg width="92" height="92" viewBox="0 0 92 92">
+          <circle cx="46" cy="46" r="38" fill="none" stroke="rgba(56,140,255,.10)" stroke-width="7"/>
+          <circle cx="46" cy="46" r="38" fill="none" stroke="#00e5a0" stroke-width="7" stroke-dasharray="234 239" stroke-linecap="round" transform="rotate(-90 46 46)"/>
+        </svg>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:28px;font-weight:700;color:var(--t1);">98</div>
+      </div>
+      <div>
+        <div style="font-size:9px;color:var(--t3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px;">Privacy Score</div>
+        <span class="bdg-grn">All systems secure</span>
+      </div>
+    </div>
+
+    <div class="sect-lbl">Permissions</div>
+    <div class="trow"><div class="trow-info"><div class="tn">Memory Encryption</div><div class="td">AES-256 end-to-end</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Two-Factor Auth</div><div class="td">Extra login security</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Privacy Mode</div><div class="td">Limit data shared with AI</div></div><div class="tg" onclick="toggleTg(this)"></div></div>
+    <div class="trow"><div class="trow-info"><div class="tn">Device Lock</div><div class="td">Auto-lock after 5 minutes</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>
+
+    <div class="sect-lbl">Recent Events</div>
+    <div class="feed-item"><div class="feed-ic t-tg"><svg viewBox="0 0 24 24" stroke="#00e5a0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="feed-tx"><div class="ft">Security scan complete</div><div class="fd">No threats across 14 systems</div><div class="fm">2 min ago</div></div></div>
+    <div class="feed-item"><div class="feed-ic t-eb"><svg viewBox="0 0 24 24" stroke="#4b9eff"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="feed-tx"><div class="ft">New login</div><div class="fd">MacBook Pro · London, UK</div><div class="fm">1 hour ago</div></div></div>
+
+    <button class="dng-btn" onclick="renderToast('Privacy lock active — all AI access paused','tok');closeMod('secMod');">Lock All Memory Access</button>
+  </div>
+</div>
+
+<!-- CLOUD -->
+<div class="mod-ov" id="cloudMod" onclick="modOutside(event,'cloudMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('cloudMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <div class="dhead">
+      <div class="dhead-ic t-eb"><svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/></svg></div>
+      <div class="dhead-tx"><h2>Cloud AI</h2><p>Compute &amp; storage</p></div>
+    </div>
+    <div style="margin-bottom:14px;"><span class="bdg-cy">EU-West (London)</span> <span class="bdg-grn" style="margin-left:5px;">99.98% uptime</span></div>
+    <div class="irow"><div class="il">Compute today</div><div class="iv">24.3 TFLOPS</div></div>
+    <div class="irow"><div class="il">Storage used</div><div class="iv">4.2 / 10 GB</div></div>
+    <div class="irow"><div class="il">API calls</div><div class="iv">1,247</div></div>
+    <div class="irow"><div class="il">Sync status</div><div class="iv"><span class="bdg-grn">All synced</span></div></div>
+    <div style="margin:14px 0 6px;"><div style="font-size:10px;color:var(--t3);margin-bottom:6px;">Storage · 4.2 GB of 10 GB</div><div class="pbar"><div class="pbar-f" style="width:42%;"></div></div></div>
+    <div style="margin-bottom:14px;"><div style="font-size:10px;color:var(--t3);margin-bottom:6px;">Compute · 62% of daily quota</div><div class="pbar"><div class="pbar-f" style="width:62%;"></div></div></div>
+    <button class="reg-btn" onclick="closeMod('cloudMod');openMod('proMod');">Upgrade for more compute</button>
+  </div>
+</div>
+
+<!-- CUSTOMIZE SYSTEMS -->
+<div class="mod-ov" id="customizeMod" onclick="modOutside(event,'customizeMod')">
+  <div class="mod">
+    <div class="mod-handle"></div>
+    <div class="mod-x" onclick="closeMod('customizeMod')"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke-width="2" stroke-linecap="round"/></svg></div>
+    <h2>Manage Systems</h2>
+    <p class="sub">Show, hide, and order your AI modules.</p>
+    <div id="custList"></div>
+    <button class="reg-btn" onclick="renderToast('Layout saved','tok');closeMod('customizeMod');">Save Changes</button>
+  </div>
+</div>
 <script>
-/* ═══════════════════════════════
-   ANIMATED BACKGROUND GRID
-═══════════════════════════════ */
+/* ══════════════════════════ DATA ══════════════════════════ */
+var SYSTEMS = [
+  {id:'assistant',name:'Assistant AI',sub:'Main assistant',theme:'t-eb',services:['ChatGPT','Claude','Gemini'],last:'Asked about project timeline'},
+  {id:'schedule',name:'Schedule AI',sub:'Calendar & tasks',theme:'t-cy',services:['Google Calendar','Notion'],last:'Scheduled 3 meetings today'},
+  {id:'home',name:'Home AI',sub:'Smart home',theme:'t-te',services:['HomeKit','Nest','Hue'],last:'Adjusted temperature at 7am'},
+  {id:'car',name:'Car AI',sub:'Navigation',theme:'t-sl',services:['CarPlay','Google Maps'],last:'Route to office optimised'},
+  {id:'robot',name:'Robot AI',sub:'Robot partner',theme:'t-cy',services:['ROS','Custom API'],last:'Completed household patrol'},
+  {id:'finance',name:'Finance AI',sub:'Investments',theme:'t-tg',services:['Plaid','Stripe','Coinbase'],last:'Portfolio up 2.3% this week'},
+  {id:'health',name:'Health AI',sub:'Wellness',theme:'t-pb',services:['Apple Health','Fitbit','Oura'],last:'Sleep score: 87 — excellent'},
+  {id:'comms',name:'Comms AI',sub:'Calls & messages',theme:'t-in',services:['Gmail','WhatsApp','Slack'],last:'Drafted 4 emails this morning'},
+  {id:'work',name:'Work AI',sub:'Documents',theme:'t-st',services:['Notion','Google Docs','Slack'],last:'Summarised 12 documents'},
+  {id:'shopping',name:'Shopping AI',sub:'Orders',theme:'t-eb',services:['Amazon','DoorDash'],last:'Reordered coffee'},
+  {id:'travel',name:'Travel AI',sub:'Trips & booking',theme:'t-ic',services:['Booking','Airbnb'],last:'Found cheaper SF flight'},
+  {id:'entertainment',name:'Entertainment',sub:'Media & games',theme:'t-ar',services:['Spotify','Netflix'],last:'Added 3 songs to playlist'},
+  {id:'cloud',name:'Cloud AI',sub:'Compute & storage',theme:'t-eb',services:['Google Cloud','AWS'],last:'24.3 TFLOPS used today'},
+  {id:'security',name:'Security AI',sub:'Protection',theme:'t-te',services:['1Password','Bitwarden'],last:'Privacy score: 98/100'}
+];
+
+var SYS_ICONS = {
+  assistant:'<path d="M9.5 2a4.5 4.5 0 00-4.5 4.5V7A4 4 0 003 11a4 4 0 002 3.46V16a3 3 0 003 3h8a3 3 0 003-3v-.54A4 4 0 0021 12a4 4 0 00-2-3.46V6.5A4.5 4.5 0 0014.5 2z"/><line x1="12" y1="7" x2="12" y2="17"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="15" y2="15"/>',
+  schedule:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  home:'<path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/>',
+  car:'<path d="M5 17H3a2 2 0 01-2-2v-3l2-5h14l2 5v3a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/>',
+  robot:'<rect x="7" y="8" width="10" height="9" rx="2"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.5"/>',
+  finance:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5a2.5 2.5 0 015 0c0 1.4-1 1.9-2.5 2.4S9.5 13 9.5 14.5a2.5 2.5 0 005 0"/>',
+  health:'<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>',
+  comms:'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>',
+  work:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>',
+  shopping:'<circle cx="9" cy="20" r="1.5"/><circle cx="19" cy="20" r="1.5"/><path d="M1 2h3l2.5 12h10l2-8H6"/>',
+  travel:'<path d="M21 16v-2l-8-5V3.5A1.5 1.5 0 0011.5 2A1.5 1.5 0 0010 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>',
+  entertainment:'<rect x="2" y="6" width="20" height="14" rx="3"/><line x1="6" y1="13" x2="10" y2="13"/><line x1="8" y1="11" x2="8" y2="15"/>',
+  cloud:'<path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z"/>',
+  security:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'
+};
+
+var HUB_AI = {
+  chatgpt:{name:'ChatGPT',color:'#10a37f',bg:'#0a2e22',status:'Connected',access:'Read & Write',sync:'2 min ago'},
+  claude:{name:'Claude',color:'#c0601a',bg:'#1a0c02',status:'Connected',access:'Read & Write',sync:'5 min ago'},
+  gemini:{name:'Gemini',color:'#4285f4',bg:'#030c22',status:'Connected',access:'Read only',sync:'8 min ago'},
+  perplexity:{name:'Perplexity',color:'#20b2a8',bg:'#00100f',status:'Connected',access:'Read only',sync:'12 min ago'},
+  copilot:{name:'Copilot',color:'#0078d4',bg:'#00081a',status:'Connected',access:'Read & Write',sync:'1 hr ago'},
+  notion:{name:'Notion AI',color:'#e0e0e0',bg:'#161616',status:'Connected',access:'Read & Write',sync:'30 min ago'},
+  midjourney:{name:'Midjourney',color:'#c8d4f8',bg:'#06080e',status:'Available',access:'Not connected',sync:'Never'},
+  meta:{name:'Meta AI',color:'#4b9eff',bg:'#000918',status:'Available',access:'Not connected',sync:'Never'}
+};
+
+var AGENTS = {
+  assistant:{name:'Personal Assistant',theme:'t-eb',goal:'Coordinate daily tasks across every AI system',status:'Active',task:'Drafting tomorrow\'s briefing'},
+  travel:{name:'Travel Agent',theme:'t-ic',goal:'Plan trips, monitor flights and hotels',status:'Active',task:'Monitoring SF flight prices'},
+  finance:{name:'Finance Agent',theme:'t-tg',goal:'Monitor spending and investments',status:'Active',task:'Prepared weekly spend summary'},
+  home:{name:'Home Agent',theme:'t-te',goal:'Manage smart home and routines',status:'Active',task:'Evening scene scheduled for 6pm'},
+  work:{name:'Work Agent',theme:'t-st',goal:'Summarise docs, meetings, and tasks',status:'Active',task:'Summarised 12 documents today'},
+  health:{name:'Health Agent',theme:'t-pb',goal:'Track health and recommend improvements',status:'Idle',task:'Last check: sleep analysis 7am'},
+  shopping:{name:'Shopping Agent',theme:'t-eb',goal:'Reorder essentials and track deliveries',status:'Active',task:'Watching 3 price alerts'}
+};
+
+/* ══════════════════════════ ANIMATED BACKGROUND ══════════════════════════ */
 (function(){
-  var canvas = document.getElementById('bg-canvas');
-  var ctx = canvas.getContext('2d');
-  var W, H, dots = [], grid = [];
-  var GRID_SIZE = 38;
-  var DOT_COUNT = 28;
-
-  function resize(){
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    buildGrid();
-  }
-
-  function buildGrid(){
-    grid = [];
-    var cols = Math.ceil(W / GRID_SIZE) + 1;
-    var rows = Math.ceil(H / GRID_SIZE) + 1;
-    for(var r=0;r<rows;r++){
-      for(var c=0;c<cols;c++){
-        grid.push({x:c*GRID_SIZE, y:r*GRID_SIZE});
-      }
-    }
-  }
-
-  function initDots(){
-    dots = [];
-    for(var i=0;i<DOT_COUNT;i++){
-      dots.push({
-        x: Math.random()*W,
-        y: Math.random()*H,
-        vx: (Math.random()-.5)*0.18,
-        vy: (Math.random()-.5)*0.18,
-        r: Math.random()*1.0+0.4,
-        a: Math.random()*0.5+0.1,
-        pa: Math.random()*Math.PI*2,
-        ps: (Math.random()*.004+.002) * (Math.random()>.5?1:-1)
-      });
-    }
-  }
-
-  function draw(t){
+  var canvas=document.getElementById('bg-canvas'),ctx=canvas.getContext('2d');
+  var W,H,dots=[],grid=[],GRID_SIZE=38,DOT_COUNT=22;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;buildGrid();}
+  function buildGrid(){grid=[];var cols=Math.ceil(W/GRID_SIZE)+1,rows=Math.ceil(H/GRID_SIZE)+1;for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)grid.push({x:c*GRID_SIZE,y:r*GRID_SIZE});}
+  function initDots(){dots=[];for(var i=0;i<DOT_COUNT;i++)dots.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*0.18,vy:(Math.random()-.5)*0.18,r:Math.random()*1.0+0.4,a:Math.random()*0.5+0.1,pa:Math.random()*Math.PI*2,ps:(Math.random()*.004+.002)*(Math.random()>.5?1:-1)});}
+  function draw(){
     ctx.clearRect(0,0,W,H);
-
-    // Grid lines
-    ctx.strokeStyle = 'rgba(56,140,255,0.028)';
-    ctx.lineWidth = .5;
-    var cols = Math.ceil(W/GRID_SIZE)+1;
-    var rows = Math.ceil(H/GRID_SIZE)+1;
+    ctx.strokeStyle='rgba(56,140,255,0.028)';ctx.lineWidth=.5;
+    var cols=Math.ceil(W/GRID_SIZE)+1,rows=Math.ceil(H/GRID_SIZE)+1;
     ctx.beginPath();
-    for(var c=0;c<cols;c++){
-      ctx.moveTo(c*GRID_SIZE,0);
-      ctx.lineTo(c*GRID_SIZE,H);
-    }
-    for(var r=0;r<rows;r++){
-      ctx.moveTo(0,r*GRID_SIZE);
-      ctx.lineTo(W,r*GRID_SIZE);
-    }
+    for(var c=0;c<cols;c++){ctx.moveTo(c*GRID_SIZE,0);ctx.lineTo(c*GRID_SIZE,H);}
+    for(var r=0;r<rows;r++){ctx.moveTo(0,r*GRID_SIZE);ctx.lineTo(W,r*GRID_SIZE);}
     ctx.stroke();
-
-    // Grid intersection dots
     ctx.fillStyle='rgba(56,150,255,0.06)';
-    for(var i=0;i<grid.length;i++){
-      var g=grid[i];
-      if(g.x<W && g.y<H){
-        ctx.beginPath();
-        ctx.arc(g.x,g.y,.9,0,Math.PI*2);
-        ctx.fill();
-      }
-    }
-
-    // Floating particles
+    for(var i=0;i<grid.length;i++){var g=grid[i];if(g.x<W&&g.y<H){ctx.beginPath();ctx.arc(g.x,g.y,.9,0,Math.PI*2);ctx.fill();}}
     for(var i=0;i<dots.length;i++){
-      var d=dots[i];
-      d.x+=d.vx; d.y+=d.vy;
-      d.pa+=d.ps;
-      if(d.x<-10)d.x=W+10;
-      if(d.x>W+10)d.x=-10;
-      if(d.y<-10)d.y=H+10;
-      if(d.y>H+10)d.y=-10;
-      var alpha = d.a * (0.55 + 0.45*Math.sin(d.pa));
-      ctx.beginPath();
-      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(56,180,255,'+alpha.toFixed(3)+')';
-      ctx.fill();
+      var d=dots[i];d.x+=d.vx;d.y+=d.vy;d.pa+=d.ps;
+      if(d.x<-10)d.x=W+10;if(d.x>W+10)d.x=-10;if(d.y<-10)d.y=H+10;if(d.y>H+10)d.y=-10;
+      var a=d.a*(0.55+0.45*Math.sin(d.pa));
+      ctx.beginPath();ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(56,180,255,'+a.toFixed(3)+')';ctx.fill();
     }
-
     requestAnimationFrame(draw);
   }
-
-  window.addEventListener('resize', resize);
-  resize();
-  initDots();
-  requestAnimationFrame(draw);
+  window.addEventListener('resize',resize);
+  resize();initDots();requestAnimationFrame(draw);
 })();
 
-/* ═══════════════════════════════
-   MENU
-═══════════════════════════════ */
+/* ══════════════════════════ NAVIGATION ══════════════════════════ */
+function navTo(id){
+  document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+  var el=document.getElementById('scr-'+id);
+  if(el){el.classList.add('on');document.getElementById('mainScroll').scrollTop=0;}
+  document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('on');});
+  var navMap={home:'bn-home',systems:'bn-systems',activity:'bn-activity',profile:'bn-profile'};
+  if(navMap[id]){var bn=document.getElementById(navMap[id]);if(bn)bn.classList.add('on');}
+  document.querySelectorAll('.m-item').forEach(function(n){n.classList.remove('active');});
+  var menuMap={home:'mi-home',hub:'mi-hub',memory:'mi-memory',agents:'mi-agents',automation:'mi-auto',devices:'mi-devices',analytics:'mi-analytics',marketplace:'mi-mkt',notif:'mi-notif',settings:'mi-settings'};
+  if(menuMap[id]){var mi=document.getElementById(menuMap[id]);if(mi)mi.classList.add('active');}
+  closeMenu();
+}
+
+/* ══════════════════════════ MENU ══════════════════════════ */
 function openMenu(){document.getElementById('mOverlay').classList.add('open');}
 function closeMenu(){document.getElementById('mOverlay').classList.remove('open');}
 function menuOutside(e){if(e.target===document.getElementById('mOverlay'))closeMenu();}
 
-/* ═══════════════════════════════
-   MODAL
-═══════════════════════════════ */
-function openModal(){document.getElementById('modOv').classList.add('open');}
-function closeModal(){document.getElementById('modOv').classList.remove('open');setTimeout(resetForm,360);}
-function modOutside(e){if(e.target===document.getElementById('modOv'))closeModal();}
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeMenu();}});
+/* ══════════════════════════ MODALS ══════════════════════════ */
+function openMod(id){
+  document.getElementById(id).classList.add('open');
+  if(id==='bcastMod')renderBcastChips();
+  if(id==='customizeMod')renderCustList();
+}
+function closeMod(id){
+  document.getElementById(id).classList.remove('open');
+  if(id==='authMod')setTimeout(resetForm,360);
+}
+function modOutside(e,id){if(e.target===document.getElementById(id))closeMod(id);}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.querySelectorAll('.mod-ov.open').forEach(function(m){m.classList.remove('open');});
+    closeMenu();
+    setTimeout(resetForm,360);
+  }
+});
 
+/* ══════════════════════════ TOAST ══════════════════════════ */
+function renderToast(msg,type){
+  type=type||'tinfo';
+  var t=document.createElement('div');
+  t.className='toast '+type;
+  t.innerHTML='<div class="td"></div><span>'+msg+'</span>';
+  document.getElementById('toastWrap').appendChild(t);
+  setTimeout(function(){t.classList.add('show');},10);
+  setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove();},320);},3200);
+}
+
+/* ══════════════════════════ TOGGLE ══════════════════════════ */
+function toggleTg(el){el.classList.toggle('on');}
+
+/* ══════════════════════════ AUTH ══════════════════════════ */
+var authMode='signin';
+function switchAuthTab(m){
+  authMode=m;
+  document.getElementById('signinTab').classList.toggle('active',m==='signin');
+  document.getElementById('signupTab').classList.toggle('active',m==='signup');
+  document.getElementById('fN').style.display=m==='signup'?'':'none';
+  document.getElementById('authTitle').textContent=m==='signin'?'Welcome back':'Create your account';
+  document.getElementById('authSub').textContent=m==='signin'?'Sign in to your Terafarm account.':'Connect your AI world in one interface.';
+  document.getElementById('rBtn').textContent=m==='signin'?'Sign In':'Create Account';
+}
 function clrE(f,e){document.getElementById(f).classList.remove('err');document.getElementById(e).classList.remove('on');}
 function shwE(f,e){document.getElementById(f).classList.add('err');document.getElementById(e).classList.add('on');}
-
 function handleReg(){
-  var n=document.getElementById('iN').value.trim();
   var em=document.getElementById('iE').value.trim();
   var p=document.getElementById('iP').value;
   var ok=true;
-  if(!n){shwE('fN','eN');ok=false;}
+  if(authMode==='signup'){
+    var n=document.getElementById('iN').value.trim();
+    if(!n){shwE('fN','eN');ok=false;}
+  }
   if(!em||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){shwE('fE','eE');ok=false;}
   if(p.length<6){shwE('fP','eP');ok=false;}
   if(!ok)return;
   var b=document.getElementById('rBtn');
-  b.disabled=true;b.textContent='Creating…';
+  b.disabled=true;b.textContent=authMode==='signin'?'Signing in…':'Creating…';
   setTimeout(function(){
     document.getElementById('formSec').style.display='none';
     document.getElementById('succSec').classList.add('on');
-    setTimeout(closeModal,2800);
+    document.getElementById('succTitle').textContent=authMode==='signin'?"Welcome back!":"You're in!";
+    document.getElementById('succMsg').innerHTML=authMode==='signin'?'Your AI ecosystem is ready.':'Welcome to Terafarm.<br>Your AI world is being prepared.';
+    setTimeout(function(){closeMod('authMod');},2800);
   },780);
 }
-
 function resetForm(){
   document.getElementById('formSec').style.display='';
   document.getElementById('succSec').classList.remove('on');
-  var b=document.getElementById('rBtn');b.disabled=false;b.textContent='Create Account';
+  var b=document.getElementById('rBtn');b.disabled=false;b.textContent=authMode==='signin'?'Sign In':'Create Account';
   ['fN','fE','fP'].forEach(function(i){document.getElementById(i).classList.remove('err');});
   ['eN','eE','eP'].forEach(function(i){document.getElementById(i).classList.remove('on');});
   ['iN','iE','iP'].forEach(function(i){document.getElementById(i).value='';});
 }
+
+/* ══════════════════════════ SYSTEM / HUB / AGENT DETAILS ══════════════════════════ */
+function openSys(id){
+  var s=SYSTEMS.find(function(x){return x.id===id;});if(!s)return;
+  var ic=SYS_ICONS[id]||'';
+  document.getElementById('sysContent').innerHTML=
+    '<div class="dhead">'+
+      '<div class="dhead-ic '+s.theme+'"><svg viewBox="0 0 24 24" stroke-width="1.6">'+ic+'</svg></div>'+
+      '<div class="dhead-tx"><h2>'+s.name+'</h2><p>'+s.sub+'</p></div>'+
+    '</div>'+
+    '<div style="margin-bottom:14px;"><span class="bdg-grn">Active</span> <span class="bdg-cy" style="margin-left:5px;">Memory sync on</span></div>'+
+    '<div class="irow"><div class="il">Connected services</div><div class="iv">'+s.services.join(', ')+'</div></div>'+
+    '<div class="irow"><div class="il">Last activity</div><div class="iv">'+s.last+'</div></div>'+
+    '<div class="irow"><div class="il">Sync mode</div><div class="iv">Real-time</div></div>'+
+    '<div class="irow"><div class="il">API calls today</div><div class="iv">'+(Math.floor(Math.random()*200)+50)+'</div></div>'+
+    '<div class="sect-lbl">Settings</div>'+
+    '<div class="trow"><div class="trow-info"><div class="tn">Memory access</div><div class="td">Read shared memory</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+    '<div class="trow"><div class="trow-info"><div class="tn">Automation</div><div class="td">Include in workflows</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+    '<div class="trow"><div class="trow-info"><div class="tn">Notifications</div><div class="td">Alert on important events</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+    '<button class="reg-btn" onclick="renderToast(\''+s.name+' settings saved\',\'tok\');closeMod(\'sysMod\');">Save Settings</button>'+
+    '<button class="sec-btn" onclick="renderToast(\''+s.name+' disconnected\',\'tinfo\');closeMod(\'sysMod\');">Disconnect System</button>';
+  openMod('sysMod');
+}
+
+function openHub(id){
+  var h=HUB_AI[id];if(!h)return;
+  var isConn=h.status==='Connected';
+  document.getElementById('hubContent').innerHTML=
+    '<div class="dhead">'+
+      '<div class="dhead-ic" style="background:'+h.bg+';border:1px solid '+h.color+'66;color:'+h.color+';font-family:var(--fh);font-weight:700;font-size:18px;">'+h.name.charAt(0)+'</div>'+
+      '<div class="dhead-tx"><h2>'+h.name+'</h2><p>AI Service</p></div>'+
+    '</div>'+
+    '<div style="margin-bottom:14px;">'+(isConn?'<span class="bdg-grn">Connected</span>':'<span class="bdg-gy">Not connected</span>')+'</div>'+
+    '<div class="irow"><div class="il">Memory access</div><div class="iv">'+h.access+'</div></div>'+
+    '<div class="irow"><div class="il">Last sync</div><div class="iv">'+h.sync+'</div></div>'+
+    '<div class="irow"><div class="il">Status</div><div class="iv">'+h.status+'</div></div>'+
+    (isConn?(
+      '<div class="sect-lbl">Settings</div>'+
+      '<div class="trow"><div class="trow-info"><div class="tn">Read memory</div><div class="td">Can access shared memory</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+      '<div class="trow"><div class="trow-info"><div class="tn">Write memory</div><div class="td">Can save to shared memory</div></div><div class="tg '+(h.access==='Read & Write'?'on':'')+'" onclick="toggleTg(this)"></div></div>'+
+      '<button class="reg-btn" onclick="renderToast(\''+h.name+' updated\',\'tok\');closeMod(\'hubMod\');">Save Settings</button>'+
+      '<button class="dng-btn" onclick="renderToast(\''+h.name+' disconnected\',\'tinfo\');closeMod(\'hubMod\');">Disconnect</button>'
+    ):(
+      '<button class="reg-btn" onclick="renderToast(\'Connecting to '+h.name+'…\',\'tinfo\');closeMod(\'hubMod\');">Connect '+h.name+'</button>'
+    ));
+  openMod('hubMod');
+}
+
+function openAgent(id){
+  var a=AGENTS[id];if(!a)return;
+  document.getElementById('agentContent').innerHTML=
+    '<div class="dhead">'+
+      '<div class="dhead-ic '+a.theme+'"><svg viewBox="0 0 24 24" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div>'+
+      '<div class="dhead-tx"><h2>'+a.name+'</h2><p>'+a.status+'</p></div>'+
+    '</div>'+
+    '<div style="margin-bottom:14px;">'+(a.status==='Active'?'<span class="bdg-grn">Active</span>':'<span class="bdg-gy">Idle</span>')+'</div>'+
+    '<div class="irow"><div class="il">Goal</div><div class="iv" style="max-width:60%;">'+a.goal+'</div></div>'+
+    '<div class="irow"><div class="il">Last task</div><div class="iv" style="max-width:60%;">'+a.task+'</div></div>'+
+    '<div class="irow"><div class="il">Tasks today</div><div class="iv">'+(Math.floor(Math.random()*12)+3)+'</div></div>'+
+    '<div class="sect-lbl">Configuration</div>'+
+    '<div class="trow"><div class="trow-info"><div class="tn">Auto-run</div><div class="td">Run without confirmation</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+    '<div class="trow"><div class="trow-info"><div class="tn">Memory access</div><div class="td">Read & write shared memory</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>'+
+    '<button class="reg-btn" onclick="renderToast(\''+a.name+' configured\',\'tok\');closeMod(\'agentMod\');">'+(a.status==='Active'?'Configure Agent':'Activate Agent')+'</button>'+
+    '<button class="sec-btn" onclick="renderToast(\''+a.name+' paused\',\'tinfo\');closeMod(\'agentMod\');">Pause Agent</button>';
+  openMod('agentMod');
+}
+
+/* ══════════════════════════ HANDLERS ══════════════════════════ */
+function handleCmd(){
+  var q=document.getElementById('cmdInput').value.trim();
+  if(!q){renderToast('Please enter a command','tinfo');return;}
+  var routes=['ChatGPT','Claude','Gemini','Shared Memory'];
+  var r=routes[Math.floor(Math.random()*routes.length)];
+  renderToast('Routed to '+r,'tok');
+  document.getElementById('cmdInput').value='';
+  closeMod('cmdMod');
+}
+
+function handleSearch(){
+  var q=document.getElementById('srchInput').value.trim();
+  if(!q){renderToast('Please enter a search','tinfo');return;}
+  document.getElementById('srchResults').innerHTML=
+    '<div class="fld" style="background:rgba(56,160,255,.05);">'+
+      '<div style="font-size:9px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px;">Found in shared memory</div>'+
+      '<div style="font-size:12px;color:var(--t1);line-height:1.6;">3 memories match "<span style="color:var(--cyan);">'+q+'</span>". Most recent: 2 days ago in Work AI. Last referenced in a Claude conversation Monday.</div>'+
+    '</div>';
+  renderToast('Searched 8 AI systems','tok');
+}
+
+function handleTask(){
+  var t=document.getElementById('taskTitle').value.trim();
+  var a=document.getElementById('taskAgent').value;
+  if(!t){renderToast('Please enter a task title','tinfo');return;}
+  renderToast('Task assigned to '+a,'tok');
+  closeMod('taskMod');
+}
+
+function handleBcast(){
+  var msg=document.getElementById('bcastMsg').value.trim();
+  if(!msg){renderToast('Please enter a message','tinfo');return;}
+  var sel=document.querySelectorAll('#bcastChips .chip.sel').length;
+  renderToast('Sent to '+sel+' AI systems','tok');
+  closeMod('bcastMod');
+}
+
+function handleProUpgrade(){
+  renderToast('Redirecting to checkout…','tinfo');
+  setTimeout(function(){closeMod('proMod');},600);
+}
+
+/* ══════════════════════════ RENDER HELPERS ══════════════════════════ */
+function renderAllSysGrid(){
+  var el=document.getElementById('allSysGrid');if(!el)return;
+  el.innerHTML=SYSTEMS.map(function(s){
+    return '<div class="card" onclick="openSys(\''+s.id+'\')">'+
+      '<div class="cico '+s.theme+'"><svg viewBox="0 0 24 24" stroke-width="1.6">'+(SYS_ICONS[s.id]||'')+'</svg></div>'+
+      '<div class="cn">'+s.name+'</div><div class="cs">'+s.sub+'</div>'+
+      '<div class="cst"><div class="dot dg ds"></div>Active</div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderBcastChips(){
+  var el=document.getElementById('bcastChips');
+  if(el.children.length>0)return;
+  el.innerHTML=SYSTEMS.slice(0,10).map(function(s){
+    return '<div class="chip sel" onclick="this.classList.toggle(\'sel\')">'+s.name+'</div>';
+  }).join('');
+}
+
+function renderCustList(){
+  var el=document.getElementById('custList');
+  el.innerHTML=SYSTEMS.map(function(s){
+    return '<div class="trow"><div class="trow-info"><div class="tn">'+s.name+'</div><div class="td">'+s.sub+'</div></div><div class="tg on" onclick="toggleTg(this)"></div></div>';
+  }).join('');
+}
+
+function renderChartBars(){
+  var el=document.getElementById('chartBars');if(!el)return;
+  var vals=[142,198,167,221,185,247,210];var max=Math.max.apply(null,vals);
+  el.innerHTML=vals.map(function(v){
+    return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">'+
+      '<div style="font-size:9px;color:var(--t4);">'+v+'</div>'+
+      '<div style="width:100%;height:'+Math.round((v/max)*70)+'px;border-radius:4px 4px 0 0;background:linear-gradient(180deg,rgba(56,217,255,.65),rgba(56,160,255,.22));min-height:4px;box-shadow:0 0 8px rgba(56,200,255,.18);"></div>'+
+    '</div>';
+  }).join('');
+}
+
+/* ══════════════════════════ INIT ══════════════════════════ */
+renderAllSysGrid();
+renderChartBars();
+setTimeout(function(){renderToast('Memory sync complete — 4 new memories saved','tok');},1200);
+
 </script>
 </body>
 </html>
