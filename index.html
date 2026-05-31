@@ -757,6 +757,69 @@
   // (via setBotState) and the overlay text (via setCmd), keeps the existing bot visual
   // states working, and connects the speaking state to CommandEngine → AgentRouter →
   // MemoryEngine → ActivityEngine. No layout/CSS/markup changes.
+  // ════════ Phase B1: SYSTEM BUS (CROSS-AGENT STATE SYNC) ════════
+  // Additive pub/sub coordination layer restoring the old TerafarmOS bus. Engines
+  // EMIT their events here IN ADDITION to the existing direct pipeline, which is
+  // left fully intact. Holds a shared state registry, an agent-status registry and
+  // a platform-sync registry. Data-only — it never touches the DOM (no UI change).
+  var SystemBus = (function(){
+    var _subs      = {};   // event name → [handlers]
+    var _state     = {};   // shared state registry (bus-level)
+    var _agents    = {};   // agent status registry:  name → {status,lastTask,ts}
+    var _platforms = {};   // platform sync registry: name → {synced,ts}
+
+    function subscribe(event, handler){
+      if(typeof handler !== 'function') return function(){};
+      (_subs[event] = _subs[event] || []).push(handler);
+      return function unsubscribe(){
+        var a = _subs[event]; if(!a) return;
+        var i = a.indexOf(handler); if(i !== -1) a.splice(i, 1);
+      };
+    }
+    function emit(event, payload){
+      // handlers are isolated so a bad subscriber can never break the direct pipeline
+      var list = (_subs[event] || []).concat(_subs['*'] || []);
+      list.forEach(function(h){ try { h(payload, event); } catch(e){ console.warn('[SystemBus] handler error: ' + event, e); } });
+      return event;
+    }
+    function getState(key){ return key == null ? null : _state[key]; }
+    function setState(key, value){ _state[key] = value; emit('state:change', { key: key, value: value }); return value; }
+
+    function setAgentStatus(name, status, task){
+      if(!name) return null;
+      _agents[name] = { name: name, status: status || 'active', lastTask: task || null, ts: Date.now() };
+      emit('agent:status', _agents[name]);
+      return _agents[name];
+    }
+    function getAgentStatus(name){ return name ? (_agents[name] || null) : null; }
+    function agents(){ var o = {}; for(var k in _agents) o[k] = _agents[k]; return o; }
+
+    function setPlatformSync(name, synced){
+      if(!name) return null;
+      _platforms[name] = { name: name, synced: synced !== false, ts: Date.now() };
+      emit('platform:sync', _platforms[name]);
+      return _platforms[name];
+    }
+    function platforms(){ var o = {}; for(var k in _platforms) o[k] = _platforms[k]; return o; }
+
+    return {
+      subscribe: subscribe, emit: emit,
+      getState: getState, setState: setState,
+      setAgentStatus: setAgentStatus, getAgentStatus: getAgentStatus, agents: agents,
+      setPlatformSync: setPlatformSync, platforms: platforms
+    };
+  })();
+  var TerafarmBus = SystemBus;   // legacy alias for the old TerafarmOS bus name
+
+  // Internal coordination subscribers — data-only; populate the registries (no DOM, no UI change)
+  SystemBus.subscribe('agents:routed', function(p){
+    (p && p.agents || []).forEach(function(name){ SystemBus.setAgentStatus(name, 'active', p.commandId); });
+  });
+  SystemBus.subscribe('session:persist', function(){
+    var ag = SystemBus.agents();
+    for(var k in ag) SystemBus.setPlatformSync(k, true);   // mark active agents as synced across the ecosystem
+  });
+
   var VoiceEngine = (function(){
     // Default overlay copy per state: [ .cmd-txt , .cmd-sub ]
     var TEXT = {
@@ -868,6 +931,8 @@
       setState('memoryCount', _restored + _timeline.length);   // Req 2: internal memory count (incl. restored)
       console.log('[MemoryEngine] write', mem);
       reflect(mem, meta);                          // Req 4 + 5: reflect into existing UI
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('memory:write', mem);  // B1: cross-agent sync
+      if(typeof MemoryArchive !== 'undefined') MemoryArchive.add(mem);            // B2: persist to long-term archive (emits memory:archive)
       return mem;
     }
 
@@ -891,11 +956,55 @@
 
     return {
       write:    write,
-      timeline: function(){ return _timeline.slice(); },
+      timeline: function(){                                  // B2: in-session writes + restored archive (deduped by id)
+        var seen = {}, out = [];
+        _timeline.forEach(function(m){ seen[m.id] = 1; out.push(m); });
+        if(typeof MemoryArchive !== 'undefined'){ MemoryArchive.all().forEach(function(m){ if(!seen[m.id]) out.push(m); }); }
+        return out;
+      },
       count:    function(){ return _restored + _timeline.length; },                       // Phase 8: cumulative across sessions
       restore:  function(n){ _restored = (typeof n === 'number' && n > 0) ? n : 0; },      // Phase 8: seed from saved session
       latest:   function(){ return _timeline[0] || null; }
     };
+  })();
+
+  // ════════ Phase B2: MEMORY ARCHIVE (LONG-TERM MEMORY TIMELINE) ════════
+  // Persists the memory timeline itself (not just the count). Keeps the last 25 full
+  // memory objects (id/type/source/commandId/text/timestamp/agents/tags) via SessionStore
+  // (localStorage + in-memory fallback). MemoryEngine.timeline() merges these back in on
+  // load. Data layer only — no DOM changes.
+  var MemoryArchive = (function(){
+    var MAX = 25;
+    var _archive = [];   // persisted memory objects, newest first (max 25)
+
+    function load(){
+      var arr = (typeof SessionStore !== 'undefined' && SessionStore.getArchive) ? SessionStore.getArchive() : [];
+      _archive = Array.isArray(arr) ? arr.slice(0, MAX) : [];
+      console.log('[MemoryArchive] loaded', _archive.length, 'memories');
+      return _archive.slice();
+    }
+    function add(mem){
+      if(!mem || !mem.id) return null;
+      // store exactly the 8 canonical fields (Req 3)
+      var rec = {
+        id:        mem.id,
+        type:      mem.type,
+        source:    mem.source,
+        commandId: mem.commandId,
+        text:      mem.text,
+        timestamp: mem.timestamp,
+        agents:    (mem.agents || []).slice(),
+        tags:      (mem.tags   || []).slice()
+      };
+      _archive.unshift(rec);
+      if(_archive.length > MAX) _archive.length = MAX;     // Req 2: last 25 only
+      if(typeof SessionStore !== 'undefined' && SessionStore.setArchive) SessionStore.setArchive(_archive);  // Req 6/7: persist
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('memory:archive', { mem: rec, size: _archive.length });  // Req 8
+      return rec;
+    }
+    function all(){ return _archive.slice(); }
+    function size(){ return _archive.length; }
+    return { load: load, add: add, all: all, size: size, MAX: MAX };
   })();
 
   // ════════ Phase 5: AGENT ROUTER ════════
@@ -927,6 +1036,7 @@
       var agents = (ROUTES[commandId] || []).slice();
       reflect(agents);
       console.log('[AgentRouter] route', commandId, '\u2192', agents);
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('agents:routed', { commandId: commandId, agents: agents });  // B1: cross-agent sync
       return agents;
     }
     return { route: route, get: function(id){ return (ROUTES[id] || []).slice(); } };
@@ -970,6 +1080,7 @@
       setState('lastActivity', events[0] || null);   // Req 7: AppState last activity
       reflect(events);                                // Req 3 + 6: update existing rows
       console.log('[ActivityEngine] log', cmd.id, events.length + ' events');
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('activity:log', { commandId: cmd.id, events: events });  // B1: cross-agent sync
       return events;
     }
     // Update EXISTING Live Activity rows whose agent matches a routed agent.
@@ -1036,6 +1147,7 @@
       ActivityEngine.log(cmd, agents);               // Phase 6: live activity events for routed agents
       SessionStore.persist(cmd, agents);             // Phase 8: save updated session state (Req 2)
       PatternEngine.record(cmd, agents);             // Phase 9: behavioral pattern learning (Req 1)
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('command:run', { id: cmd.id, label: cmd.label, agents: agents, timestamp: cmd.timestamp });  // B1: cross-agent sync
       console.log('[CommandEngine] run', cmd, agents);
       return cmd;
     }
@@ -1080,7 +1192,8 @@
       memoryCount:      0,
       activityCount:    0,
       lastUpdated:      0,
-      commandHistory:   []          // Phase 9: last 10 commands for PatternEngine
+      commandHistory:   [],         // Phase 9: last 10 commands for PatternEngine
+      memoryArchive:    []          // Phase B2: last 25 memory objects (long-term timeline)
     };
 
     function detect(){
@@ -1126,6 +1239,7 @@
         _state.activityCount    = saved.activityCount    || 0;
         _state.lastUpdated      = saved.lastUpdated      || 0;
         _state.commandHistory   = Array.isArray(saved.commandHistory) ? saved.commandHistory.slice(0, 10) : [];
+        _state.memoryArchive    = Array.isArray(saved.memoryArchive)  ? saved.memoryArchive.slice(0, 25)  : [];
       }
       // continuity streak: unchanged same day, +1 next day, reset if a day was missed
       if(_state.lastUpdated){
@@ -1157,6 +1271,7 @@
       _state.memoryCount   = (MemoryEngine && MemoryEngine.count)      ? MemoryEngine.count()            : _state.memoryCount;
       _state.activityCount = (ActivityEngine && ActivityEngine.timeline) ? ActivityEngine.timeline().length : _state.activityCount;
       save();
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('session:persist', { lastCommand: _state.lastCommand, memoryCount: _state.memoryCount, activityCount: _state.activityCount, sessionCount: _state.sessionCount, continuityStreak: _state.continuityStreak });  // B1: cross-agent sync
       console.log('[SessionStore] persist', _state.lastCommand, '| memories:', _state.memoryCount);
     }
 
@@ -1176,7 +1291,9 @@
       state:      function(){ return JSON.parse(JSON.stringify(_state)); },
       available:  function(){ return _ok; },
       getHistory: function(){ return (_state.commandHistory || []).slice(); },                                  // Phase 9
-      setHistory: function(arr){ _state.commandHistory = Array.isArray(arr) ? arr.slice(0, 10) : []; save(); }  // Phase 9
+      setHistory: function(arr){ _state.commandHistory = Array.isArray(arr) ? arr.slice(0, 10) : []; save(); }, // Phase 9
+      getArchive: function(){ return (_state.memoryArchive || []).slice(); },                                   // Phase B2
+      setArchive: function(arr){ _state.memoryArchive = Array.isArray(arr) ? arr.slice(0, 25) : []; save(); }   // Phase B2
     };
   })();
 
@@ -1283,6 +1400,7 @@
       if(typeof SessionStore !== 'undefined' && SessionStore.setHistory) SessionStore.setHistory(_history);  // persist
       analyze();
       reflect();
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('pattern:update', { commandId: cmd.id, repeated: _repeated, routine: _routine, confidence: _confidence });  // B1: cross-agent sync
       console.log('[PatternEngine] record', cmd.id, '| repeated:', _repeated, '| routine:', _routine, '| confidence:', _confidence);
     }
 
@@ -1303,6 +1421,319 @@
     };
   })();
 
+  // ════════ Phase B3: ECOSYSTEM ENGINE (LIVE PLATFORM / AGENT AWARENESS) ════════
+  // Subscribes to the SystemBus (B1) and maintains a live picture of the ecosystem:
+  // an agent registry and a platform registry with lastSeen timestamps, active/idle
+  // status, a sync-confidence and an ecosystem-health score (0–100), plus a connected
+  // platform count. Data layer only — the one optional UI touch (the existing
+  // "Connected across N platforms" line) is guarded so it never clobbers other messages.
+  var EcosystemEngine = (function(){
+    var IDLE_MS = 60000;   // active if seen within 60s, else idle
+    var PLATFORMS = ['Travel','Calendar','Finance','Home','Robot','Health','Car','Comms'];  // the 8 ecosystem platforms
+
+    var _agents    = {};   // name → { name, status, lastSeen, lastTask, routedCount }
+    var _platforms = {};   // name → { name, synced, lastSeen, status }
+    var _health = 0, _syncConfidence = 0, _lastSync = 0;
+
+    // seed the 8 known platforms (connected/available from the start)
+    PLATFORMS.forEach(function(pf){ _platforms[pf] = { name: pf, synced: true, lastSeen: 0, status: 'idle' }; });
+
+    function clamp(n){ return Math.max(0, Math.min(100, Math.round(n))); }
+    function platformOf(agent){ return (agent || '').replace(/\s*AI$/i, '').trim(); }
+
+    function touchAgent(name, task){
+      if(!name) return;
+      var a = _agents[name] || { name: name, status: 'idle', lastSeen: 0, lastTask: null, routedCount: 0 };
+      a.status = 'active'; a.lastSeen = Date.now(); if(task) a.lastTask = task; a.routedCount += 1;
+      _agents[name] = a;
+      var pf = platformOf(name);
+      if(pf && _platforms[pf]){ _platforms[pf].lastSeen = Date.now(); _platforms[pf].status = 'active'; }  // Req 4: lastSeen
+    }
+    function markSynced(){                                   // Req 3: platform sync on session persist
+      _lastSync = Date.now();
+      Object.keys(_platforms).forEach(function(k){ _platforms[k].synced = true; _platforms[k].lastSeen = Date.now(); });
+      recompute();
+    }
+    function refreshStatuses(){
+      var t = Date.now();
+      Object.keys(_agents).forEach(function(k){ _agents[k].status = (t - _agents[k].lastSeen) <= IDLE_MS ? 'active' : 'idle'; });
+      Object.keys(_platforms).forEach(function(k){ _platforms[k].status = (t - _platforms[k].lastSeen) <= IDLE_MS ? 'active' : 'idle'; });
+    }
+    function recompute(){                                    // Req 5: ecosystem health 0–100 (+ sync confidence)
+      refreshStatuses();
+      var pk = Object.keys(_platforms);
+      var syncRatio = pk.length ? pk.filter(function(k){ return _platforms[k].synced; }).length / pk.length : 0;
+      var ak = Object.keys(_agents);
+      var activeRatio = ak.length ? ak.filter(function(k){ return _agents[k].status === 'active'; }).length / ak.length : 0;
+      var recency = _lastSync ? Math.max(0, 1 - (Date.now() - _lastSync) / 300000) : 0;   // decays over 5 min
+      _syncConfidence = clamp(100 * (0.6 * syncRatio + 0.4 * recency));
+      _health         = clamp(100 * (0.4 * syncRatio + 0.35 * activeRatio + 0.25 * recency));
+    }
+    function connectedCount(){                               // Req 6
+      refreshStatuses();
+      return Object.keys(_platforms).filter(function(k){ return _platforms[k].synced; }).length;
+    }
+
+    // Req 8: optionally reflect into the EXISTING "Connected across N platforms" line — only when safe
+    function reflect(){
+      var line = document.querySelector('.sm-line');
+      if(line && /Connected across/i.test(line.textContent || '')){   // never clobber memory/pattern/continuity messages
+        var n = connectedCount();
+        line.textContent = 'Connected across ' + n + ' platform' + (n === 1 ? '' : 's');
+      }
+    }
+
+    function init(){                                         // Req 1: subscribe to the four bus events
+      if(typeof SystemBus === 'undefined') return;
+      SystemBus.subscribe('agents:routed',  function(p){ (p && p.agents || []).forEach(function(name){ touchAgent(name, p.commandId); }); recompute(); });  // Req 2
+      SystemBus.subscribe('activity:log',   function(p){ (p && p.events || []).forEach(function(ev){ if(ev && ev.agent) touchAgent(ev.agent, ev.task); }); recompute(); });
+      SystemBus.subscribe('session:persist', function(){ markSynced(); reflect(); });
+      SystemBus.subscribe('memory:archive',  function(){ recompute(); });
+      recompute();
+      console.log('[EcosystemEngine] online | platforms:', connectedCount(), '| health:', _health);
+    }
+
+    return {
+      init:           init,
+      agents:         function(){ refreshStatuses(); var o = {}; for(var k in _agents)    o[k] = _agents[k];    return o; },
+      platforms:      function(){ refreshStatuses(); var o = {}; for(var k in _platforms) o[k] = _platforms[k]; return o; },
+      health:         function(){ recompute(); return _health; },
+      connectedCount: connectedCount,
+      syncConfidence: function(){ recompute(); return _syncConfidence; }
+    };
+  })();
+
+  // ════════ Phase B4: ENVIRONMENT ENGINE (CONTEXT / CIRCADIAN INTELLIGENCE) ════════
+  // Restores the old ContextEngine. Derives time-of-day, circadian mode, usage depth,
+  // routine window, an environment-confidence score and a single currentContext from
+  // SessionStore / PatternEngine / MemoryArchive / EcosystemEngine signals. Stores the
+  // result on the SystemBus, emits environment:update, and sets an invisible
+  // body[data-context] hook (no CSS targets it → no visual change).
+  var EnvironmentEngine = (function(){
+    var CONTEXTS = ['morning','work','commute','evening','night','deep_session','returning_user'];
+    var DEEP_AT = 5;          // commands this session before it counts as a deep session
+    var _sessionCmds = 0;     // commands run this session
+    var _patternConfidence = 0;
+    var _state = { timeOfDay:'morning', circadianMode:'rising', usageDepth:'idle', usageCount:0,
+                   routineWindow:'start_of_day', environmentConfidence:0, currentContext:'morning' };
+
+    function clamp(n){ return Math.max(0, Math.min(100, Math.round(n))); }
+    function hour(){ return new Date().getHours(); }
+
+    function timeOfDay(h){ return (h>=5&&h<12)?'morning':(h>=12&&h<17)?'afternoon':(h>=17&&h<22)?'evening':'night'; }
+    function circadian(h){ return (h>=5&&h<12)?'rising':(h>=12&&h<17)?'peak':(h>=17&&h<22)?'winding_down':'rest'; }
+    function routineWindow(h){ return (h>=5&&h<9)?'start_of_day':(h>=9&&h<17)?'midday':(h>=17&&h<22)?'end_of_day':'overnight'; }
+    function depthLabel(n){ return n>=DEEP_AT?'deep':n>=3?'moderate':n>=1?'light':'idle'; }
+
+    // gather the signals the context decision is based on (Req 4)
+    function signals(){
+      var s = (typeof SessionStore !== 'undefined' && SessionStore.state) ? SessionStore.state() : {};
+      return {
+        sessionCount:       s.sessionCount || 0,
+        continuityStreak:   s.continuityStreak || 0,
+        commandHistory:     s.commandHistory || [],
+        memoryTimelineSize: (typeof MemoryEngine !== 'undefined' && MemoryEngine.timeline) ? MemoryEngine.timeline().length
+                            : ((typeof MemoryArchive !== 'undefined' && MemoryArchive.size) ? MemoryArchive.size() : 0),
+        ecosystemHealth:    (typeof EcosystemEngine !== 'undefined' && EcosystemEngine.health) ? EcosystemEngine.health() : 0,
+        patternConfidence:  _patternConfidence
+      };
+    }
+
+    function environmentConfidence(sig){
+      var sessF   = Math.min(sig.sessionCount, 10) / 10;
+      var streakF = Math.min(sig.continuityStreak, 7) / 7;
+      var ecoF    = (sig.ecosystemHealth || 0) / 100;
+      var patF    = (sig.patternConfidence || 0) / 100;
+      return clamp(100 * (0.30*sessF + 0.25*streakF + 0.25*ecoF + 0.20*patF));
+    }
+
+    // pick ONE of the seven contexts: usage-driven first, then circadian/commute windows
+    function computeContext(sig){
+      var h = hour();
+      if(_sessionCmds >= DEEP_AT) return 'deep_session';
+      if(sig.sessionCount > 1 && _sessionCmds === 0) return 'returning_user';
+      if((h>=7&&h<9) || (h>=17&&h<19)) return 'commute';
+      if(h>=9 && h<17) return 'work';
+      if(h>=5 && h<7)  return 'morning';
+      if(h>=19 && h<22) return 'evening';
+      return 'night';
+    }
+
+    // Req 7: invisible body[data-context] hook — safe because no CSS targets it
+    function reflectContext(){
+      if(typeof document !== 'undefined' && document.body) document.body.setAttribute('data-context', _state.currentContext);
+    }
+
+    function update(){
+      var sig = signals();
+      var h = hour();
+      _state = {
+        timeOfDay:             timeOfDay(h),
+        circadianMode:         circadian(h),
+        usageDepth:            depthLabel(_sessionCmds),
+        usageCount:            _sessionCmds,
+        routineWindow:         routineWindow(h),
+        environmentConfidence: environmentConfidence(sig),
+        currentContext:        computeContext(sig)
+      };
+      if(typeof SystemBus !== 'undefined'){
+        SystemBus.setState('environment', _state);            // Req 6: store on the bus
+        SystemBus.emit('environment:update', _state);          // Req 5
+      }
+      reflectContext();
+      return _state;
+    }
+
+    function init(){
+      if(typeof SystemBus === 'undefined') return;
+      SystemBus.subscribe('command:run',    function(){ _sessionCmds += 1; update(); });          // Req 2 + 3
+      SystemBus.subscribe('pattern:update', function(p){ if(p && typeof p.confidence === 'number') _patternConfidence = p.confidence; update(); });
+      SystemBus.subscribe('session:persist', function(){ update(); });
+      SystemBus.subscribe('memory:archive',  function(){ update(); });
+      update();                                                // Req 1: detect context on load
+      console.log('[EnvironmentEngine] online | context:', _state.currentContext, '| circadian:', _state.circadianMode, '| confidence:', _state.environmentConfidence);
+    }
+
+    return {
+      init:          init,
+      update:        update,
+      context:       function(){ return _state.currentContext; },
+      state:         function(){ return JSON.parse(JSON.stringify(_state)); },
+      confidence:    function(){ return _state.environmentConfidence; },
+      contexts:      function(){ return CONTEXTS.slice(); }
+    };
+  })();
+
+  // ════════ Phase B5: PREDICTIVE ENGINE (PREDICTIVE ROUTINES + SUGGESTIONS) ════════
+  // Restores the old PredictiveEngine + SuggestionEngine. Reads command history,
+  // environment context, ecosystem health, memory timeline and active agents off the
+  // bus/engines and produces a next-action prediction with a 0–100 confidence, a reason
+  // and suggested agents. Weak predictions (<55) are suppressed. The latest strong
+  // prediction is stored on the SystemBus (prediction:latest) and emitted
+  // (prediction:update). Data layer only — no DOM/CSS/layout change.
+  var PredictiveEngine = (function(){
+    var MIN_CONF = 55;        // weak-prediction guard (Req 5)
+    var CONTEXT_COMMAND = {   // the command typical of each context
+      morning:  'summarize_team',
+      work:     'review_code',
+      commute:  'plan_trip',
+      evening:  'coming_home',
+      night:    'coming_home'
+    };
+    var _seq = 0, _last = null;
+    var _context = null, _envConfidence = 0, _patternConfidence = 0, _activeAgents = [];
+
+    function clamp(n){ return Math.max(0, Math.min(100, Math.round(n))); }
+
+    function dominantCommand(history){
+      var counts = {}, best = null, bestN = 0;
+      (history || []).forEach(function(e){
+        var id = e && e.commandId; if(!id) return;
+        counts[id] = (counts[id] || 0) + 1;
+        if(counts[id] > bestN){ bestN = counts[id]; best = id; }
+      });
+      return { id: best, count: bestN };
+    }
+
+    function signals(){
+      var s = (typeof SessionStore !== 'undefined' && SessionStore.state) ? SessionStore.state() : {};
+      var env = (typeof SystemBus !== 'undefined' && SystemBus.getState) ? SystemBus.getState('environment') : null;
+      return {
+        commandHistory:    s.commandHistory || [],                                                            // Req 2
+        context:           _context || (env && env.currentContext) || 'work',
+        envConfidence:     _envConfidence || (env && env.environmentConfidence) || 0,
+        ecoHealth:         (typeof EcosystemEngine !== 'undefined' && EcosystemEngine.health) ? EcosystemEngine.health() : 0,
+        memSize:           (typeof MemoryEngine !== 'undefined' && MemoryEngine.timeline) ? MemoryEngine.timeline().length : 0,
+        activeAgents:      _activeAgents.length ? _activeAgents : ((typeof EcosystemEngine !== 'undefined' && EcosystemEngine.agents) ? Object.keys(EcosystemEngine.agents()) : []),
+        patternConfidence: _patternConfidence,
+        sessionCount:      s.sessionCount || 0,
+        continuityStreak:  s.continuityStreak || 0
+      };
+    }
+
+    function scoreConfidence(sig, dom, type, suggested){       // Req 4: 0–100
+      var total = (sig.commandHistory && sig.commandHistory.length) || 1;
+      var repeatRatio = Math.max(0, dom.count - 1) / Math.max(1, total - 1);
+      var ctxMatch = (CONTEXT_COMMAND[sig.context] === suggested) ? 1 : 0;
+      var patF = (sig.patternConfidence || 0) / 100;
+      var envF = (sig.envConfidence || 0) / 100;
+      var ecoF = (sig.ecoHealth || 0) / 100;
+      var base = (type === 'resume') ? 0.45 : 0;
+      return clamp(100 * (base + 0.40*repeatRatio + 0.15*ctxMatch + 0.15*patF + 0.15*envF + 0.10*ecoF));
+    }
+
+    function label(id){
+      var c = (typeof CommandEngine !== 'undefined' && CommandEngine.get) ? CommandEngine.get(id) : null;
+      return (c && c.label) || id;
+    }
+
+    // Req 3: produce the prediction object
+    function predict(){
+      var sig = signals();
+      var dom = dominantCommand(sig.commandHistory);
+      var ctx = sig.context;
+      var suggested = null, type = null, reason = null;
+
+      if(ctx === 'returning_user' && sig.commandHistory.length){
+        suggested = sig.commandHistory[0].commandId; type = 'resume';   reason = 'Resume where you left off';
+      } else if(ctx === 'deep_session' && dom.id){
+        suggested = dom.id;                          type = 'routine';  reason = 'Continuing your current focus';
+      } else if(dom.count >= 2){
+        suggested = dom.id;                          type = 'routine';  reason = 'You repeat this often (' + dom.count + '\u00d7)';
+      } else if(CONTEXT_COMMAND[ctx]){
+        suggested = CONTEXT_COMMAND[ctx];            type = 'contextual'; reason = 'Typical for your ' + ctx + ' window';
+      } else if(dom.id){
+        suggested = dom.id;                          type = 'routine';  reason = 'Based on recent activity';
+      }
+      if(!suggested) return null;
+
+      var agents = (typeof AgentRouter !== 'undefined' && AgentRouter.get) ? AgentRouter.get(suggested) : [];
+      return {
+        id:               'pred_' + (++_seq),
+        type:             type,
+        suggestedCommand: suggested,
+        label:            label(suggested),
+        confidence:       scoreConfidence(sig, dom, type, suggested),
+        reason:           reason,
+        agents:           agents,
+        timestamp:        Date.now()
+      };
+    }
+
+    function evaluate(){
+      var p = predict();
+      if(p && p.confidence >= MIN_CONF){           // Req 5: suppress weak predictions
+        _last = p;
+        if(typeof SystemBus !== 'undefined'){
+          SystemBus.setState('prediction:latest', p);   // Req 6
+          SystemBus.emit('prediction:update', p);        // Req 7
+        }
+        console.log('[PredictiveEngine] predict', p.suggestedCommand, p.confidence + '%', '\u00b7', p.reason);
+        return p;
+      }
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('prediction:update', null);   // weak/none: surface nothing
+      return null;
+    }
+
+    function init(){
+      if(typeof SystemBus === 'undefined') return;
+      SystemBus.subscribe('pattern:update',     function(p){ if(p && typeof p.confidence === 'number') _patternConfidence = p.confidence; evaluate(); });   // Req 1
+      SystemBus.subscribe('environment:update', function(p){ if(p){ _context = p.currentContext; _envConfidence = p.environmentConfidence; } evaluate(); });
+      SystemBus.subscribe('memory:archive',     function(){ evaluate(); });
+      SystemBus.subscribe('agents:routed',      function(p){ if(p && p.agents) _activeAgents = p.agents.slice(); evaluate(); });
+      evaluate();
+      console.log('[PredictiveEngine] online');
+    }
+
+    return {
+      init:           init,
+      predict:        predict,                                  // pure (no side effects)
+      evaluate:       evaluate,
+      lastPrediction: function(){ return _last ? JSON.parse(JSON.stringify(_last)) : null; },
+      confidence:     function(){ return _last ? _last.confidence : 0; }
+    };
+  })();
+
   // ════════ WIRE UP EVENTS ════════
   document.addEventListener('DOMContentLoaded', function(){
 
@@ -1312,8 +1743,20 @@
     // Phase 8: restore persisted session state (memory count, last command, agents, streak)
     SessionStore.restore();
 
+    // Phase B2: restore the long-term memory archive (merged into MemoryEngine.timeline())
+    MemoryArchive.load();
+
     // Phase 9: load persisted command history into the PatternEngine
     PatternEngine.load();
+
+    // Phase B3: activate ecosystem awareness (subscribes to the SystemBus)
+    EcosystemEngine.init();
+
+    // Phase B4: activate environment / context intelligence (detects context on load)
+    EnvironmentEngine.init();
+
+    // Phase B5: activate predictive routines (subscribes to the SystemBus)
+    PredictiveEngine.init();
 
     // Header
     $('#burger').addEventListener('click', openMenu);
@@ -1411,6 +1854,10 @@
     document.getElementById('greet').textContent = g + ' 💙';
   })();
 
+
+</script>
+</body>
+</html>
 
 </script>
 </body>
