@@ -224,6 +224,44 @@
   .cmd-txt { font-size:20px; font-weight:600; color:#fff; }
   .cmd-sub { font-size:14px; color:rgba(165,205,245,.6); margin-top:-18px; }
 
+  /* ════════ Phase 10: VOICE AVATAR LAYER ════════ */
+  /* Overlay-only, purely additive. Every effect is driven by #cmdBot[data-state]
+     (set by VoiceEngine). Idle = hidden, no layout impact, base image untouched. */
+  .va-aura, .va-waves, .va-mouth { position:absolute; pointer-events:none; opacity:0; transition:opacity .25s ease; }
+  /* presence ring — distinct from the existing box-shadow glow (a faint border ring) */
+  .va-aura { inset:-12px; border-radius:50%; border:2px solid transparent; }
+  /* energy waves — small bar clusters just left & right of the bot */
+  .va-waves { top:50%; transform:translateY(-50%); display:flex; align-items:center; gap:4px; }
+  .va-waves.va-left  { right:100%; margin-right:14px; flex-direction:row-reverse; }
+  .va-waves.va-right { left:100%;  margin-left:14px; }
+  .va-waves i { display:block; width:3px; height:12px; border-radius:3px; transform-origin:center;
+                background:linear-gradient(180deg, rgba(80,220,255,.95), rgba(40,150,255,.5));
+                box-shadow:0 0 8px rgba(40,190,255,.55); }
+  .va-waves i:nth-child(2){ height:22px; }
+  /* lip-sync mouth — overlay indicator positioned over the bot's mouth area */
+  .va-mouth { left:50%; bottom:21%; transform:translateX(-50%) scaleY(.4); transform-origin:center;
+              width:26px; height:8px; border-radius:6px;
+              background:linear-gradient(180deg, rgba(0,235,255,.85), rgba(0,170,255,.5));
+              box-shadow:0 0 10px rgba(0,220,255,.7); }
+
+  /* LISTENING — soft presence pulse */
+  .cmd-bot[data-state="listening"] .va-aura { opacity:1; border-color:rgba(60,200,255,.45); animation:vaSoft 2s ease-in-out infinite; }
+  /* THINKING — calm processing breathe */
+  .cmd-bot[data-state="thinking"]  .va-aura { opacity:1; border-color:rgba(80,180,255,.4);  animation:vaSoft 1.7s ease-in-out infinite; }
+  /* SPEAKING — energy waves + lip-sync mouth */
+  .cmd-bot[data-state="speaking"]  .va-waves { opacity:1; }
+  .cmd-bot[data-state="speaking"]  .va-waves i             { animation:vaWave .5s ease-in-out infinite; }
+  .cmd-bot[data-state="speaking"]  .va-waves i:nth-child(2){ animation-delay:.15s; }
+  .cmd-bot[data-state="speaking"]  .va-waves i:nth-child(3){ animation-delay:.30s; }
+  .cmd-bot[data-state="speaking"]  .va-mouth { opacity:1; animation:vaLip .5s steps(1,end) infinite; }
+  /* COMPLETED — short one-shot confirmation glow */
+  .cmd-bot[data-state="completed"] .va-aura { opacity:1; border-color:rgba(34,197,94,.7); animation:vaPing .9s ease-out 1 both; }
+
+  @keyframes vaSoft { 0%,100%{ opacity:.35; transform:scale(1);} 50%{ opacity:.85; transform:scale(1.04);} }
+  @keyframes vaWave { 0%,100%{ transform:scaleY(.4); opacity:.55;} 50%{ transform:scaleY(1.3); opacity:1;} }
+  @keyframes vaLip  { 0%{transform:translateX(-50%) scaleY(.35);} 20%{transform:translateX(-50%) scaleY(1);} 40%{transform:translateX(-50%) scaleY(.55);} 60%{transform:translateX(-50%) scaleY(1.25);} 80%{transform:translateX(-50%) scaleY(.7);} 100%{transform:translateX(-50%) scaleY(.35);} }
+  @keyframes vaPing { 0%{ opacity:.9; transform:scale(.96);} 100%{ opacity:0; transform:scale(1.32);} }
+
   /* ── MODAL (SIGNUP) ── */
   .modal-ov { display:none; position:fixed; inset:0; z-index:130; background:rgba(0,8,20,.85);
               backdrop-filter:blur(14px); align-items:flex-end; justify-content:center; }
@@ -563,6 +601,11 @@
       <div class="cmd-ring"></div>
       <img class="cmd-bot-img" id="cmdBotImg" alt="Terafarm Bot">
       <div class="cmd-mglow"></div>
+      <!-- ════════ Phase 10: Voice Avatar Layer (overlay-only, driven by #cmdBot[data-state]) ════════ -->
+      <div class="va-aura" aria-hidden="true"></div>
+      <div class="va-waves va-left" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="va-waves va-right" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="va-mouth" aria-hidden="true"></div>
     </div>
     <div class="cmd-txt">Listening…</div>
     <div class="cmd-sub">Speak a command across all your AI</div>
@@ -597,16 +640,37 @@
   function $(s){ return document.querySelector(s); }
   function $$(s){ return document.querySelectorAll(s); }
 
+  // ── Phase 2: centralized app state ──
+  const AppState = {
+    currentScreen: 'home',
+    voiceState:    'idle',
+    activeCommand: null,
+    activeAgents:  [],     // wired in Phase 5 (Agent Router)
+    memoryCount:   0,      // wired in Phase 4 (Memory Engine)
+    sessionDepth:  0,      // wired in Phase 8 (Persistence)
+    lastAction:    null,
+    lastActivity:  null    // wired in Phase 6 (Activity Engine)
+  };
+  function setState(key, value){
+    AppState[key] = value;
+    console.log('[AppState] ' + key + ' \u2192', value);   // debug only, no UI
+  }
+  console.log('[AppState] init', AppState);
+
+  // ── Phase 1 Fix 4: toast timer in module scope, not window ──
+  var _toastTimer = null;
   function toast(msg){
     var t = $('#toast');
+    if(!t) return;
     t.textContent = msg;
     t.classList.add('show');
-    clearTimeout(window._tt);
-    window._tt = setTimeout(function(){ t.classList.remove('show'); }, 1800);
+    clearTimeout(_toastTimer);
+    _toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 1800);
   }
 
   // ── Screen switching ──
   function showScreen(name){
+    setState('currentScreen', name);            // Phase 2
     $$('.screen').forEach(function(s){ s.classList.remove('active'); });
     var scr = $('#screen-' + name);
     if(scr) scr.classList.add('active');
@@ -624,7 +688,7 @@
 
   // ── Command / voice ──
   function openCommand(){ $('#cmd-ov').classList.add('open'); }
-  function closeCommand(){ $('#cmd-ov').classList.remove('open'); if(typeof clearVoice==='function') clearVoice(); setBotState('idle'); var m=document.querySelector('.cmd-mic'); if(m) m.removeAttribute('data-state'); }
+  function closeCommand(){ VoiceEngine.reset(); }   // Phase 7: delegate to the voice state machine
 
   // ── Modal ──
   function openModal(){
@@ -636,6 +700,7 @@
 
   // ── Bot speaking states + voice sequence ──
   function setBotState(s){
+    setState('voiceState', s);                  // Phase 2
     var c = document.getElementById('botCore'); if(c) c.setAttribute('data-state', s);
     var cb = document.getElementById('cmdBot'); if(cb) cb.setAttribute('data-state', s);
     var states = ['listening','thinking','speaking','completed'];
@@ -648,51 +713,19 @@
     var t = document.querySelector('.cmd-txt'); var s = document.querySelector('.cmd-sub');
     if(t) t.textContent = txt; if(s) s.textContent = sub;
   }
-  var _voiceTimers = [];
-  function clearVoice(){ _voiceTimers.forEach(clearTimeout); _voiceTimers = []; }
+  // Phase 7: the voice session lock + sequence timers now live inside VoiceEngine
+  // (single source of truth). setBotState / setCmd remain the shared primitives.
 
-  function startVoiceSequence(){
-    clearVoice();
-    // Load bot face into overlay (references the same embedded image — no duplication)
-    var homeBot = document.querySelector('.bot-img');
-    var cmdBot = document.getElementById('cmdBotImg');
-    if(homeBot && cmdBot && !cmdBot.getAttribute('src')) cmdBot.src = homeBot.src;
-
-    openCommand();
-    // 1. Listening
-    setCmd('Listening…', 'Speak a command across all your AI');
-    setBotState('listening');
-    // 2. Thinking (2s)
-    _voiceTimers.push(setTimeout(function(){
-      setCmd('Thinking…', 'Searching across your shared memory');
-      setBotState('thinking');
-    }, 2000));
-    // 3. Speaking (4s) — bot face pulses, mouth glows, announces an agent action
-    var actions = [
-      ['Calendar AI · moving your 2 PM to 3 PM', 'Calendar AI · meeting rescheduled to 3 PM'],
-      ['Code AI · checking your GitHub branch',  'Code AI · branch checked, 2 PRs summarized'],
-      ['Travel AI · finding your flights',        'Travel AI · 3 flight options saved'],
-      ['Home AI · adjusting your home',           'Home AI · temperature set, lights ready'],
-      ['Work AI · summarizing team updates',      'Manager AI · team summary ready']
-    ];
-    var pick = actions[Math.floor(Math.random()*actions.length)];
-    _voiceTimers.push(setTimeout(function(){
-      setCmd('Speaking…', pick[0]);
-      setBotState('speaking');
-    }, 4000));
-    // 4. Completed (6s) — agent action done + memory updated
-    _voiceTimers.push(setTimeout(function(){
-      setCmd(pick[1], 'Memory updated across all systems');
-      setBotState('completed');
-      updateAfterVoice(pick[1]);
-    }, 6000));
-    // 5. Auto-return to Home (8s)
-    _voiceTimers.push(setTimeout(function(){
-      closeCommand();
-      showScreen('home');
-      flashMemoryLine();
-    }, 8000));
+  // ── Phase 1 Fix 1: overlay bot face always loads (deterministic preload) ──
+  function preloadBotImage(){
+    var home = document.querySelector('.bot-img');
+    var ov   = document.getElementById('cmdBotImg');
+    if(!home || !ov) return;
+    var src = home.getAttribute('src');
+    if(src && ov.getAttribute('src') !== src) ov.setAttribute('src', src);
   }
+
+  function startVoiceSequence(){ VoiceEngine.start(); }   // Phase 7: delegate to the voice state machine
 
   // Refresh live activity times + shared memory pill after a voice command
   var _lastAction = '✓ Memory updated across all systems';
@@ -703,20 +736,584 @@
     var pill = document.querySelector('.sm-line');
     if(pill) pill.textContent = 'Synced just now · 8 platforms';
   }
-  // Briefly show the agent action in the greeting line after returning Home
+  // Briefly show the agent action in the greeting line after returning Home.
+  // Phase 1 Fix 3: pause the rotator so this pinned line isn't overwritten.
+  var _rotatorPaused = false;
+  var _rotatorResume = null;
   function flashMemoryLine(){
     var el = document.getElementById('greetMsg');
     if(!el) return;
+    _rotatorPaused = true;
+    el.classList.remove('fade');
     el.textContent = _lastAction;
+    clearTimeout(_rotatorResume);
+    _rotatorResume = setTimeout(function(){ _rotatorPaused = false; }, 6000);
   }
 
-  // ── Quick action ──
+  // ════════ Phase 7: VOICE ENGINE ════════
+  // Stable state machine for the voice overlay:
+  //   idle → listening → thinking → speaking → completed → (idle)
+  // Owns the single-session lock and all sequence timers, drives AppState.voiceState
+  // (via setBotState) and the overlay text (via setCmd), keeps the existing bot visual
+  // states working, and connects the speaking state to CommandEngine → AgentRouter →
+  // MemoryEngine → ActivityEngine. No layout/CSS/markup changes.
+  var VoiceEngine = (function(){
+    // Default overlay copy per state: [ .cmd-txt , .cmd-sub ]
+    var TEXT = {
+      idle:      ['Listening\u2026', 'Speak a command across all your AI'],
+      listening: ['Listening\u2026', 'Speak a command across all your AI'],
+      thinking:  ['Thinking\u2026',  'Searching across your shared memory'],
+      speaking:  ['Speaking\u2026',  'Working across your AI'],
+      completed: ['Done',            'Memory updated across all systems']
+    };
+    // Scripted demo turns: [ speaking detail line , completion headline , command id ]
+    var ACTIONS = [
+      ['Calendar AI \u00b7 moving your 2 PM to 3 PM', 'Calendar AI \u00b7 meeting rescheduled to 3 PM', 'schedule_meeting'],
+      ['Code AI \u00b7 checking your GitHub branch',  'Code AI \u00b7 branch checked, 2 PRs summarized', 'review_code'],
+      ['Travel AI \u00b7 finding your flights',       'Travel AI \u00b7 3 flight options saved',         'plan_trip'],
+      ['Home AI \u00b7 adjusting your home',          'Home AI \u00b7 temperature set, lights ready',    'coming_home'],
+      ['Work AI \u00b7 summarizing team updates',     'Manager AI \u00b7 team summary ready',            'summarize_team']
+    ];
+    var _state  = 'idle';
+    var _active = false;     // single-session lock (Req 1, 7)
+    var _timers = [];
+    var _pick   = null;
+
+    function clearTimers(){ _timers.forEach(clearTimeout); _timers = []; }
+
+    // Enter a state: bot visuals + AppState.voiceState (Req 2, 8) and matching overlay text (Req 3)
+    function enter(s, txt, sub){
+      _state = s;
+      setBotState(s);                                  // existing bot states + setState('voiceState', s)
+      var d = TEXT[s] || ['', ''];
+      setCmd(txt != null ? txt : d[0], sub != null ? sub : d[1]);
+    }
+
+    function start(){
+      if(_active) return;                              // Req 1 + 7: one session; ignore duplicate mic taps
+      _active = true;
+      clearTimers();
+      preloadBotImage();
+      openCommand();
+      _pick = ACTIONS[Math.floor(Math.random() * ACTIONS.length)];
+      enter('listening');
+      _timers.push(setTimeout(function(){ enter('thinking'); }, 2000));
+      _timers.push(setTimeout(function(){
+        enter('speaking', null, _pick[0]);
+        CommandEngine.run(_pick[2]);                   // Req 4: speaking state runs the command
+      }, 4000));
+      _timers.push(setTimeout(function(){
+        enter('completed', _pick[1]);                  // Req 5: completed shows the completion headline
+        updateAfterVoice(_pick[1]);                    // activity times + source for the memory-line flash
+      }, 6000));
+      _timers.push(setTimeout(function(){
+        reset();                                       // close overlay + return to idle
+        showScreen('home');
+        flashMemoryLine();
+      }, 8000));
+    }
+
+    // Req 6: safe reset to idle from anywhere (close button / Esc / backdrop / auto-finish)
+    function reset(){
+      clearTimers();
+      var ov = document.getElementById('cmd-ov'); if(ov) ov.classList.remove('open');
+      _active = false;
+      enter('idle');                                   // bot + AppState.voiceState back to idle
+    }
+
+    return {
+      start:    start,
+      reset:    reset,
+      state:    function(){ return _state; },
+      isActive: function(){ return _active; }
+    };
+  })();
+
+  // ════════ Phase 4: SHARED MEMORY ENGINE ════════
+  // Internal memory store fed by CommandEngine. Each successful command writes
+  // ONE memory object: { id, type, source, commandId, text, timestamp, agents, tags }.
+  // agents[] stays empty until Phase 5 (Agent Router); the timeline is in-memory
+  // only until Phase 8 (Session Persistence). Reflects into EXISTING UI only.
+  var MemoryEngine = (function(){
+    var _timeline = [];                 // memory objects, newest first
+    var _seq = 0;
+    var _restored = 0;                  // Phase 8: memory count carried over from a previous session
+    var DISPLAY_BASE = 2847;            // matches the existing "2,847 memories" stat
+
+    var META = {
+      coming_home:      { icon:'🏠', label:'Coming home',      tags:['home','arrival'] },
+      plan_trip:        { icon:'✈️', label:'Plan trip',        tags:['travel','calendar'] },
+      review_code:      { icon:'💻', label:'Review code',      tags:['code','github'] },
+      check_design:     { icon:'🎨', label:'Check design',     tags:['design','ui'] },
+      summarize_team:   { icon:'📊', label:'Summarize team',   tags:['work','comms'] },
+      schedule_meeting: { icon:'📅', label:'Schedule meeting', tags:['calendar','contacts'] },
+      send_flowers:     { icon:'🌹', label:'Send flowers',     tags:['commerce','calendar'] },
+      run_workflow:     { icon:'⚡', label:'Run workflow',     tags:['workflow','agents'] }
+    };
+
+    function write(cmd, agents){
+      if(!cmd || !cmd.id) return null;
+      var meta = META[cmd.id] || { icon:'•', label: cmd.label || cmd.id, tags:[] };
+      var mem = {
+        id:        'mem_' + (++_seq),
+        type:      'command',
+        source:    'command-engine',
+        commandId: cmd.id,
+        text:      cmd.message || cmd.label || cmd.id,
+        timestamp: cmd.timestamp || Date.now(),
+        agents:    (agents || []).slice(),   // Phase 5: routed agents from AgentRouter
+        tags:      meta.tags.slice()
+      };
+      _timeline.unshift(mem);
+      setState('memoryCount', _restored + _timeline.length);   // Req 2: internal memory count (incl. restored)
+      console.log('[MemoryEngine] write', mem);
+      reflect(mem, meta);                          // Req 4 + 5: reflect into existing UI
+      return mem;
+    }
+
+    // Reflect latest memory into EXISTING elements only — no new sections, no CSS.
+    function reflect(mem, meta){
+      var line = document.querySelector('.sm-line');                  // Req 4: shared-memory line
+      if(line) line.textContent = mem.text;
+      var statN = document.querySelector('#screen-memory .stat .n');  // Req 5: existing count stat
+      if(statN) statN.textContent = (DISPLAY_BASE + _restored + _timeline.length).toLocaleString();
+      var firstItem = document.querySelector('#screen-memory .mem-item'); // Req 5: prepend into existing list
+      if(firstItem && firstItem.parentNode){
+        var item = document.createElement('div');
+        item.className = 'mem-item';
+        item.innerHTML =
+          '<div class="mt">' + meta.icon + ' ' + meta.label + '</div>' +
+          '<div class="mb">' + mem.text + '</div>' +
+          '<div class="mtime">Updated just now · synced to all platforms</div>';
+        firstItem.parentNode.insertBefore(item, firstItem);
+      }
+    }
+
+    return {
+      write:    write,
+      timeline: function(){ return _timeline.slice(); },
+      count:    function(){ return _restored + _timeline.length; },                       // Phase 8: cumulative across sessions
+      restore:  function(n){ _restored = (typeof n === 'number' && n > 0) ? n : 0; },      // Phase 8: seed from saved session
+      latest:   function(){ return _timeline[0] || null; }
+    };
+  })();
+
+  // ════════ Phase 5: AGENT ROUTER ════════
+  // Maps each command id → the agents that handle it, and exposes route().
+  // CommandEngine attaches the result to AppState.activeAgents and to the memory object.
+  // Reflection is limited to bumping EXISTING activity rows (no new rows, no CSS).
+  var AgentRouter = (function(){
+    var ROUTES = {
+      coming_home:      ['Home AI', 'Robot AI', 'Security AI'],
+      plan_trip:        ['Travel AI', 'Calendar AI', 'Finance AI', 'Vehicle AI'],
+      review_code:      ['Work AI', 'Cloud AI', 'Security AI'],
+      check_design:     ['Work AI', 'Assistant AI'],
+      summarize_team:   ['Work AI', 'Comms AI', 'Assistant AI'],
+      schedule_meeting: ['Calendar AI', 'Comms AI', 'Work AI'],
+      send_flowers:     ['Shopping AI', 'Calendar AI', 'Comms AI'],
+      run_workflow:     ['Assistant AI', 'Cloud AI', 'Robot AI']
+    };
+    // Minimal reflection: mark EXISTING activity rows whose agent was routed (no new sections)
+    function reflect(agents){
+      if(!agents || !agents.length) return;
+      document.querySelectorAll('.act[data-act]').forEach(function(row){
+        if(agents.indexOf(row.getAttribute('data-act')) !== -1){
+          var t = row.querySelector('.act-time');
+          if(t) t.textContent = 'just now';
+        }
+      });
+    }
+    function route(commandId){
+      var agents = (ROUTES[commandId] || []).slice();
+      reflect(agents);
+      console.log('[AgentRouter] route', commandId, '\u2192', agents);
+      return agents;
+    }
+    return { route: route, get: function(id){ return (ROUTES[id] || []).slice(); } };
+  })();
+
+  // ════════ Phase 6: ACTIVITY ENGINE ════════
+  // Turns each routed command into a live activity feed. Every routed agent
+  // produces one event: { id, commandId, commandLabel, agent, task, status, timestamp }.
+  // Reflects into EXISTING Live Activity rows only (no new rows, no CSS, no new section).
+  var ActivityEngine = (function(){
+    var _timeline = [];          // activity events, newest first
+    var _seq = 0;
+    var TASKS = {
+      coming_home:      'Preparing your home',
+      plan_trip:        'Planning your trip',
+      review_code:      'Reviewing your code',
+      check_design:     'Checking your design',
+      summarize_team:   'Summarizing your team',
+      schedule_meeting: 'Scheduling your meeting',
+      send_flowers:     'Ordering flowers',
+      run_workflow:     'Running your workflow'
+    };
+    function log(cmd, agents){
+      if(!cmd || !agents || !agents.length) return [];
+      var task = TASKS[cmd.id] || (cmd.label + '\u2026');
+      var ts = Date.now();
+      var events = [];
+      agents.forEach(function(agent){
+        var ev = {
+          id:           'act_' + (++_seq),
+          commandId:    cmd.id,
+          commandLabel: cmd.label,
+          agent:        agent,
+          task:         task,
+          status:       'active',
+          timestamp:    ts
+        };
+        _timeline.unshift(ev);
+        events.push(ev);
+      });
+      setState('lastActivity', events[0] || null);   // Req 7: AppState last activity
+      reflect(events);                                // Req 3 + 6: update existing rows
+      console.log('[ActivityEngine] log', cmd.id, events.length + ' events');
+      return events;
+    }
+    // Update EXISTING Live Activity rows whose agent matches a routed agent.
+    // Agents without a matching row (e.g. Security/Vehicle/Work/Cloud/Assistant/Shopping AI)
+    // stay in the internal timeline only — no new rows are created.
+    function reflect(events){
+      events.forEach(function(ev){
+        var row = document.querySelector('.act[data-act="' + ev.agent + '"]');
+        if(!row) return;
+        var desc = row.querySelector('.act-desc'); if(desc) desc.textContent = ev.task;   // task text
+        var time = row.querySelector('.act-time'); if(time) time.textContent = 'just now'; // fresh timestamp
+        // .act-live already shows "Active" in existing markup — left untouched
+      });
+    }
+    return {
+      log:      log,
+      timeline: function(){ return _timeline.slice(); },
+      latest:   function(){ return _timeline[0] || null; }
+    };
+  })();
+
+  // ════════ Phase 3: COMMAND ENGINE ════════
+  // Turns quick actions + voice results into structured commands.
+  // Each command resolves to { id, label, status, timestamp, message }.
+  // No agent routing yet (Phase 5); no memory objects yet (Phase 4).
+  var CommandEngine = (function(){
+    var COMMANDS = {
+      coming_home:      { label: 'Coming home',      message: 'Home routine triggered — lights, climate, locks' },
+      plan_trip:        { label: 'Plan trip',        message: 'Trip drafted — flights, dates, budget, ride' },
+      review_code:      { label: 'Review code',      message: 'Code reviewed — diffs and PRs summarized' },
+      check_design:     { label: 'Check design',     message: 'Design checked — contrast, spacing, hierarchy' },
+      summarize_team:   { label: 'Summarize team',   message: 'Team summary ready — status and blockers' },
+      schedule_meeting: { label: 'Schedule meeting', message: 'Meeting scheduled — invites queued' },
+      send_flowers:     { label: 'Send flowers',     message: 'Flowers ordered — delivery scheduled' },
+      run_workflow:     { label: 'Run workflow',     message: 'Workflow run — steps completed' }
+    };
+    // Map free-text labels (quick-action data-action + voice intents) → command id
+    var LABEL_TO_ID = {
+      'coming home': 'coming_home', 'plan trip': 'plan_trip',
+      'review code': 'review_code', 'check design': 'check_design',
+      'summarize team': 'summarize_team', 'schedule meeting': 'schedule_meeting',
+      'send flowers': 'send_flowers', 'run workflow': 'run_workflow'
+    };
+    function resolveId(input){
+      if(!input) return null;
+      var key = String(input).toLowerCase().trim();
+      if(COMMANDS[key]) return key;                 // already a command id
+      if(LABEL_TO_ID[key]) return LABEL_TO_ID[key];
+      for(var lbl in LABEL_TO_ID){                  // loose match for voice strings
+        if(key.indexOf(lbl) !== -1) return LABEL_TO_ID[lbl];
+      }
+      return null;
+    }
+    function run(input){
+      var id = resolveId(input);
+      if(!id) return null;
+      var def = COMMANDS[id];
+      var cmd = { id: id, label: def.label, status: 'completed', timestamp: Date.now(), message: def.message };
+      var agents = AgentRouter.route(id);            // Phase 5: route command → agents
+      setState('activeCommand', id);                // Phase 2 state hook
+      setState('activeAgents', agents);             // Phase 5: AppState.activeAgents
+      setState('lastAction', cmd.label);
+      MemoryEngine.write(cmd, agents);               // Phase 4/5: memory object incl. routed agents
+      ActivityEngine.log(cmd, agents);               // Phase 6: live activity events for routed agents
+      SessionStore.persist(cmd, agents);             // Phase 8: save updated session state (Req 2)
+      PatternEngine.record(cmd, agents);             // Phase 9: behavioral pattern learning (Req 1)
+      console.log('[CommandEngine] run', cmd, agents);
+      return cmd;
+    }
+    return {
+      run: run,
+      resolveId: resolveId,
+      get: function(id){ return COMMANDS[id] || null; },
+      list: function(){ return Object.keys(COMMANDS); }
+    };
+  })();
+
+  // ── Quick action ── (Phase 3: routed through CommandEngine)
   function runQuickAction(action){
-    toast('⚡ ' + action + ' — sent to your agents');
+    var cmd = CommandEngine.run(action);          // structured command
+    if(!cmd){                                      // fallback for any unmapped action
+      setState('activeCommand', action);
+      setState('lastAction', action);
+      toast('⚡ ' + action + ' — sent to your agents');
+      return;
+    }
+    _lastAction = '✓ ' + cmd.message;             // existing greeting/memory line
+    toast('⚡ ' + cmd.label + ' — sent to your agents');
+    flashMemoryLine();
   }
+
+  // ════════ Phase 8: SESSION STORE (PERSISTENCE) ════════
+  // Remembers core state across reloads. Uses localStorage when available and a
+  // silent in-memory fallback when it is blocked (e.g. sandboxed) — the app never
+  // breaks and never shows a popup. Restored values feed AppState + the engines,
+  // and the existing shared-memory line may subtly reflect continuity. No new UI.
+  var SessionStore = (function(){
+    var KEY = 'terafarm.session.v1';
+    var DAY = 86400000;
+    var _mem = null;                 // in-memory fallback payload (string)
+    var _ok  = detect();             // is localStorage usable in this environment?
+    var _state = {
+      sessionCount:     0,
+      continuityStreak: 0,
+      lastCommand:      null,
+      lastAction:       null,
+      lastAgents:       [],
+      memoryCount:      0,
+      activityCount:    0,
+      lastUpdated:      0,
+      commandHistory:   []          // Phase 9: last 10 commands for PatternEngine
+    };
+
+    function detect(){
+      try {
+        var k = '__tf_probe__';
+        window.localStorage.setItem(k, '1');
+        window.localStorage.removeItem(k);
+        return true;
+      } catch(e){ return false; }            // Req 4: blocked storage → fall back, don't break
+    }
+    function readRaw(){
+      if(_ok){ try { return window.localStorage.getItem(KEY); } catch(e){ _ok = false; } }
+      return _mem;
+    }
+    function writeRaw(str){
+      if(_ok){ try { window.localStorage.setItem(KEY, str); return; } catch(e){ _ok = false; } }
+      _mem = str;                            // fallback keeps state for this session
+    }
+    function load(){
+      var raw = readRaw();
+      if(!raw) return null;
+      try { return JSON.parse(raw); } catch(e){ return null; }
+    }
+    function save(){
+      _state.lastUpdated = Date.now();
+      writeRaw(JSON.stringify(_state));
+    }
+    function dayIndex(ts){
+      var d = new Date(ts);
+      return Math.floor(new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime() / DAY);
+    }
+
+    // Req 1 + 3: restore saved state safely on load, then bump session/streak
+    function restore(){
+      var saved = load();
+      if(saved && typeof saved === 'object'){
+        _state.sessionCount     = saved.sessionCount     || 0;
+        _state.continuityStreak = saved.continuityStreak || 0;
+        _state.lastCommand      = saved.lastCommand      || null;
+        _state.lastAction       = saved.lastAction       || null;
+        _state.lastAgents       = Array.isArray(saved.lastAgents) ? saved.lastAgents : [];
+        _state.memoryCount      = saved.memoryCount      || 0;
+        _state.activityCount    = saved.activityCount    || 0;
+        _state.lastUpdated      = saved.lastUpdated      || 0;
+        _state.commandHistory   = Array.isArray(saved.commandHistory) ? saved.commandHistory.slice(0, 10) : [];
+      }
+      // continuity streak: unchanged same day, +1 next day, reset if a day was missed
+      if(_state.lastUpdated){
+        var diff = dayIndex(Date.now()) - dayIndex(_state.lastUpdated);
+        if(diff === 1) _state.continuityStreak += 1;
+        else if(diff >= 2) _state.continuityStreak = 1;
+      } else {
+        _state.continuityStreak = 1;         // first ever session
+      }
+      _state.sessionCount += 1;              // every boot is a session
+
+      // feed restored values back into the live app (Req 3) — no UI sections added
+      setState('memoryCount',   _state.memoryCount);
+      setState('activeAgents',  _state.lastAgents.slice());
+      setState('activeCommand', _state.lastCommand);
+      setState('lastAction',    _state.lastAction);
+      if(MemoryEngine && MemoryEngine.restore) MemoryEngine.restore(_state.memoryCount);
+      reflectContinuity();
+      save();                                // persist the incremented session/streak
+      console.log('[SessionStore] restored', _state, '| storage:', _ok ? 'localStorage' : 'in-memory fallback');
+    }
+
+    // Req 2: save updated session state on every successful command
+    function persist(cmd, agents){
+      if(!cmd) return;
+      _state.lastCommand   = cmd.id || null;
+      _state.lastAction    = cmd.label || cmd.message || null;
+      _state.lastAgents    = (agents || []).slice();
+      _state.memoryCount   = (MemoryEngine && MemoryEngine.count)      ? MemoryEngine.count()            : _state.memoryCount;
+      _state.activityCount = (ActivityEngine && ActivityEngine.timeline) ? ActivityEngine.timeline().length : _state.activityCount;
+      save();
+      console.log('[SessionStore] persist', _state.lastCommand, '| memories:', _state.memoryCount);
+    }
+
+    // Req 8: existing shared-memory line subtly reflects restored continuity (no new UI)
+    function reflectContinuity(){
+      var n = document.querySelector('#screen-memory .stat .n');
+      if(n && _state.memoryCount > 0) n.textContent = (2847 + _state.memoryCount).toLocaleString();
+      if(_state.sessionCount > 1){
+        var line = document.querySelector('.sm-line');
+        if(line) line.textContent = 'Memory restored \u00b7 ' + _state.continuityStreak + '-day streak';
+      }
+    }
+
+    return {
+      restore:    restore,
+      persist:    persist,
+      state:      function(){ return JSON.parse(JSON.stringify(_state)); },
+      available:  function(){ return _ok; },
+      getHistory: function(){ return (_state.commandHistory || []).slice(); },                                  // Phase 9
+      setHistory: function(arr){ _state.commandHistory = Array.isArray(arr) ? arr.slice(0, 10) : []; save(); }  // Phase 9
+    };
+  })();
+
+  // ════════ Phase 9: PATTERN ENGINE ════════
+  // Lightweight behavioral learning over the command stream. Reads commandId,
+  // timestamp, active agents, continuity streak and session count; keeps only the
+  // last 10 commands (persisted via SessionStore); detects repeated commands,
+  // time-of-day context and a preferred routine; and produces a 0–100 confidence
+  // score. May subtly reflect a learned pattern in the EXISTING memory line, only
+  // when meaningful — no new UI, no CSS, no layout change.
+  var PatternEngine = (function(){
+    var ROUTINE = {
+      coming_home:      'home routine',
+      plan_trip:        'travel preference',
+      review_code:      'workflow routine',
+      run_workflow:     'workflow routine',
+      check_design:     'design routine',
+      summarize_team:   'work routine',
+      schedule_meeting: 'work routine',
+      send_flowers:     'gifting preference'
+    };
+    var _history    = [];     // newest first, max 10
+    var _confidence = 0;
+    var _routine    = null;
+    var _repeated   = false;
+    var _announced  = false;  // have we surfaced the routine once?
+
+    function timeOfDay(ts){
+      var hr = new Date(ts || Date.now()).getHours();
+      if(hr >= 5  && hr < 12) return 'morning';
+      if(hr >= 12 && hr < 17) return 'afternoon';
+      if(hr >= 17 && hr < 22) return 'evening';
+      return 'night';
+    }
+    function dominant(){
+      var counts = {}, best = null, bestN = 0;
+      _history.forEach(function(e){
+        counts[e.commandId] = (counts[e.commandId] || 0) + 1;
+        if(counts[e.commandId] > bestN){ bestN = counts[e.commandId]; best = e.commandId; }
+      });
+      return { id: best, count: bestN };
+    }
+    function clamp(n){ return Math.max(0, Math.min(100, Math.round(n))); }
+
+    // Req 4: confidence 0–100 from real repetition + continuity streak + session familiarity
+    function score(streak, sessions){
+      var total   = _history.length;
+      var dom     = dominant();
+      var repeats = Math.max(0, dom.count - 1);                  // 0 until a command actually recurs
+      var repeatRatio  = repeats / Math.max(1, total - 1);       // 0..1
+      var streakFactor = Math.min(streak  || 0, 7)  / 7;         // 0..1
+      var sessFactor   = Math.min(sessions || 0, 10) / 10;       // 0..1
+      return clamp(100 * (0.55 * repeatRatio + 0.25 * streakFactor + 0.20 * sessFactor));
+    }
+
+    // Req 2: reads commandId/timestamp/agents (from history) + continuityStreak/sessionCount (from SessionStore)
+    function analyze(){
+      var s = (typeof SessionStore !== 'undefined' && SessionStore.state)
+                ? SessionStore.state() : { continuityStreak: 0, sessionCount: 0 };
+      var dom = dominant();
+      _repeated   = dom.count >= 2;
+      _routine    = dom.id ? (ROUTINE[dom.id] || 'routine') : null;
+      _confidence = score(s.continuityStreak, s.sessionCount);
+      setState('patternConfidence', _confidence);
+      return {
+        repeated:   _repeated,
+        routine:    _routine,
+        confidence: _confidence,
+        dominant:   dom.id,
+        timeOfDay:  timeOfDay(_history[0] && _history[0].timestamp)
+      };
+    }
+
+    function message(){
+      if(!_repeated){
+        if(_confidence >= 60) return 'Routine confidence \u00b7 ' + _confidence + '%';
+        return null;                                   // not enough signal — leave the line as-is
+      }
+      if(!_announced){
+        _announced = true;
+        var tod = timeOfDay(_history[0] && _history[0].timestamp);
+        var dom = dominant().id;
+        if(dom === 'plan_trip')                              return 'Travel preference updated';
+        if(dom === 'review_code' || dom === 'run_workflow')  return 'Repeated workflow detected';
+        if(tod === 'morning')                                return 'Pattern learned \u00b7 morning routine';
+        return 'Pattern learned \u00b7 ' + (_routine || 'routine');
+      }
+      return 'Routine confidence \u00b7 ' + _confidence + '%';
+    }
+
+    // Req 5: subtly reflect a learned pattern in the EXISTING memory line, only when meaningful
+    function reflect(){
+      var msg = message();
+      if(!msg) return;
+      var line = document.querySelector('.sm-line');
+      if(line) line.textContent = msg;
+    }
+
+    // Req 1: called on every successful command
+    function record(cmd, agents){
+      if(!cmd || !cmd.id) return;
+      _history.unshift({ commandId: cmd.id, timestamp: cmd.timestamp || Date.now(), agents: (agents || []).slice() });
+      if(_history.length > 10) _history.length = 10;        // Req 3: last 10 only
+      if(typeof SessionStore !== 'undefined' && SessionStore.setHistory) SessionStore.setHistory(_history);  // persist
+      analyze();
+      reflect();
+      console.log('[PatternEngine] record', cmd.id, '| repeated:', _repeated, '| routine:', _routine, '| confidence:', _confidence);
+    }
+
+    // Boot: pull persisted history, compute confidence — no DOM write (SessionStore owns the load-time line)
+    function load(){
+      if(typeof SessionStore !== 'undefined' && SessionStore.getHistory) _history = SessionStore.getHistory();
+      if(_history.length) analyze();
+      console.log('[PatternEngine] loaded', _history.length, 'commands | confidence:', _confidence);
+    }
+
+    return {
+      record:     record,
+      load:       load,
+      analyze:    analyze,
+      confidence: function(){ return _confidence; },
+      routine:    function(){ return _routine; },
+      history:    function(){ return _history.slice(); }
+    };
+  })();
 
   // ════════ WIRE UP EVENTS ════════
   document.addEventListener('DOMContentLoaded', function(){
+
+    // Phase 1 Fix 1: preload overlay bot face before first mic tap
+    preloadBotImage();
+
+    // Phase 8: restore persisted session state (memory count, last command, agents, streak)
+    SessionStore.restore();
+
+    // Phase 9: load persisted command history into the PatternEngine
+    PatternEngine.load();
 
     // Header
     $('#burger').addEventListener('click', openMenu);
@@ -797,6 +1394,7 @@
     if(!el) return;
     var i = 0;
     setInterval(function(){
+      if(_rotatorPaused) return;                // Phase 1 Fix 3: skip while a line is pinned
       el.classList.add('fade');
       setTimeout(function(){
         i = (i + 1) % msgs.length;
