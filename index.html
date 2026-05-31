@@ -1012,15 +1012,19 @@
   // CommandEngine attaches the result to AppState.activeAgents and to the memory object.
   // Reflection is limited to bumping EXISTING activity rows (no new rows, no CSS).
   var AgentRouter = (function(){
+    // C1: routes use ONLY the 8 visible agents (Travel, Calendar, Finance, Home,
+    // Robot, Health, Car, Comms) so every routed agent maps to a real Live Activity
+    // row. Previously routed phantom names (Work/Cloud/Assistant/Shopping/Security/
+    // Vehicle) had no row, and Car/Health never lit up.
     var ROUTES = {
-      coming_home:      ['Home AI', 'Robot AI', 'Security AI'],
-      plan_trip:        ['Travel AI', 'Calendar AI', 'Finance AI', 'Vehicle AI'],
-      review_code:      ['Work AI', 'Cloud AI', 'Security AI'],
-      check_design:     ['Work AI', 'Assistant AI'],
-      summarize_team:   ['Work AI', 'Comms AI', 'Assistant AI'],
-      schedule_meeting: ['Calendar AI', 'Comms AI', 'Work AI'],
-      send_flowers:     ['Shopping AI', 'Calendar AI', 'Comms AI'],
-      run_workflow:     ['Assistant AI', 'Cloud AI', 'Robot AI']
+      coming_home:      ['Home AI', 'Robot AI', 'Health AI', 'Car AI'],
+      plan_trip:        ['Travel AI', 'Calendar AI', 'Finance AI', 'Car AI'],
+      review_code:      ['Robot AI', 'Comms AI'],
+      check_design:     ['Robot AI', 'Comms AI'],
+      summarize_team:   ['Comms AI', 'Calendar AI'],
+      schedule_meeting: ['Calendar AI', 'Comms AI'],
+      send_flowers:     ['Finance AI', 'Calendar AI', 'Comms AI'],
+      run_workflow:     ['Robot AI', 'Home AI', 'Car AI']
     };
     // Minimal reflection: mark EXISTING activity rows whose agent was routed (no new sections)
     function reflect(agents){
@@ -1084,8 +1088,8 @@
       return events;
     }
     // Update EXISTING Live Activity rows whose agent matches a routed agent.
-    // Agents without a matching row (e.g. Security/Vehicle/Work/Cloud/Assistant/Shopping AI)
-    // stay in the internal timeline only — no new rows are created.
+    // Routes now map to the 8 visible agents, so every routed agent has a row.
+    // Any future unmatched agent would stay in the internal timeline only.
     function reflect(events){
       events.forEach(function(ev){
         var row = document.querySelector('.act[data-act="' + ev.agent + '"]');
@@ -1836,12 +1840,35 @@
     var el = document.getElementById('greetMsg');
     if(!el) return;
     var i = 0;
+    // C1: rebuild the rotation each tick so intelligence already computed by the
+    // engines surfaces in the EXISTING greeting line (no new element/panel).
+    function liveLines(){
+      var out = [];
+      try {                                                   // PredictiveEngine — next action
+        var p = (typeof SystemBus !== 'undefined' && SystemBus.getState) ? SystemBus.getState('prediction:latest') : null;
+        if(p && (p.reason || p.label)) out.push('\uD83D\uDD2E ' + (p.reason || ('Suggested: ' + p.label)));
+      } catch(e){}
+      try {                                                   // EcosystemEngine — connected systems + health
+        if(typeof EcosystemEngine !== 'undefined' && EcosystemEngine.connectedCount)
+          out.push('\uD83D\uDD17 ' + EcosystemEngine.connectedCount() + ' systems \u00b7 ' + EcosystemEngine.health() + '% synced');
+      } catch(e){}
+      try {                                                   // EnvironmentEngine — current context
+        var env = (typeof SystemBus !== 'undefined' && SystemBus.getState) ? SystemBus.getState('environment') : null;
+        if(env && env.currentContext){
+          var CL = { morning:'Morning routine', work:'Work mode', commute:'On the move', evening:'Evening', night:'Late night', deep_session:'Deep focus', returning_user:'Welcome back' };
+          var DL = { rising:'starting up', peak:'peak focus', winding_down:'winding down', rest:'resting' };
+          out.push('\uD83E\uDDED ' + (CL[env.currentContext] || env.currentContext) + (env.circadianMode ? ' \u00b7 ' + (DL[env.circadianMode] || env.circadianMode) : ''));
+        }
+      } catch(e){}
+      return out.concat(msgs);                                // live intelligence first, then the canned lines
+    }
     setInterval(function(){
       if(_rotatorPaused) return;                // Phase 1 Fix 3: skip while a line is pinned
+      var live = liveLines();
       el.classList.add('fade');
       setTimeout(function(){
-        i = (i + 1) % msgs.length;
-        el.textContent = msgs[i];
+        i = (i + 1) % live.length;
+        el.textContent = live[i];
         el.classList.remove('fade');
       }, 400);
     }, 3500);
@@ -1854,10 +1881,6 @@
     document.getElementById('greet').textContent = g + ' 💙';
   })();
 
-
-</script>
-</body>
-</html>
 
 </script>
 </body>
