@@ -580,6 +580,52 @@
     #screen-home .core-zone .aura { width:252px !important; height:252px !important; }
   }
 
+
+  /* HOME FINAL ROADMAP PASS — critical hierarchy, no redesign */
+  #screen-home .sm-pill { margin:-10px 0 18px; }
+  #screen-home .sm-sub, #screen-home .sm-line { display:none !important; }
+
+  /* Connected AI chips: readable names under the robot, still compact */
+  #screen-home .csys { margin:16px 0 14px; }
+  #screen-home .csys-row { gap:7px; }
+  #screen-home .csys-ico {
+    width:auto; min-width:44px; height:32px; padding:0 7px; gap:4px;
+    border-radius:18px; font-size:10px; font-weight:700;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  #screen-home .csys-mark { font-size:12px; line-height:1; color:rgba(80,205,255,.92); }
+  #screen-home .csys-name { font-size:9px; color:rgba(210,232,255,.82); letter-spacing:.01em; }
+
+  /* Home robot glow: 2x calmer, smaller dark ring; speaking overlay untouched */
+  #screen-home .core {
+    box-shadow:0 0 0 3px rgba(0,70,150,.14), 0 0 20px rgba(0,125,255,.22), 0 0 38px rgba(0,80,200,.10) !important;
+  }
+  #screen-home .core-zone .aura {
+    width:178px !important; height:178px !important; opacity:.62 !important;
+    background:radial-gradient(circle, transparent 0 44%, rgba(35,150,255,.16) 46%, rgba(20,80,160,.10) 50%, transparent 55%, transparent 100%) !important;
+    box-shadow:0 0 14px rgba(20,120,255,.24), 0 0 28px rgba(0,80,190,.12), inset 0 0 12px rgba(40,155,255,.10) !important;
+    filter:drop-shadow(0 0 8px rgba(30,145,255,.22)) !important;
+    animation:homeFinalGlow 3.8s ease-in-out infinite !important;
+  }
+  #screen-home .core-zone .aura::before {
+    -webkit-mask:radial-gradient(circle, transparent 0 46%, #000 47.5% 50%, transparent 52% 100%) !important;
+            mask:radial-gradient(circle, transparent 0 46%, #000 47.5% 50%, transparent 52% 100%) !important;
+    opacity:.42 !important;
+  }
+  #screen-home .core-zone .aura::after { opacity:.34 !important; filter:blur(9px) !important; }
+  #screen-home .core-zone .vwave { opacity:.42; }
+  #screen-home .core-zone .vwave-l { transform:translate(-132px,-50%) !important; }
+  #screen-home .core-zone .vwave-r { transform:translate(108px,-50%) !important; }
+  @keyframes homeFinalGlow {
+    0%,100% { transform:translate(-50%,-50%) scale(.985); opacity:.48; }
+    50% { transform:translate(-50%,-50%) scale(1.018); opacity:.72; }
+  }
+  @media (min-width:1200px){
+    #screen-home .core-zone .aura { width:226px !important; height:226px !important; }
+    #screen-home .core-zone .vwave-l { transform:translate(-172px,-50%) !important; }
+    #screen-home .core-zone .vwave-r { transform:translate(138px,-50%) !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -632,37 +678,25 @@
       <div class="idl-sub">Your AI memory coordinator</div>
     </div>
 
-    <!-- CONNECTED SYSTEMS (clarity) -->
+    <!-- CONNECTED AI CHIPS — clear, readable, self-contained -->
     <div class="csys">
+      <div class="csys-cap">CONNECTED AI</div>
       <div class="csys-row">
-        <div class="csys-ico" title="ChatGPT"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7.4 4.3v8.6L12 21l-7.4-4.3V7.3L12 3z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/></svg></div>
-        <div class="csys-ico" title="Claude"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="3.5" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="20.5" y2="12"/><line x1="6.2" y1="6.2" x2="9.3" y2="9.3"/><line x1="14.7" y1="14.7" x2="17.8" y2="17.8"/><line x1="17.8" y1="6.2" x2="14.7" y2="9.3"/><line x1="9.3" y1="14.7" x2="6.2" y2="17.8"/></svg></div>
-        <div class="csys-ico" title="Gemini"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2c.7 5.1 4.2 8.6 9.3 9.3C16.2 12 12.7 15.5 12 20.6 11.3 15.5 7.8 12 2.7 11.3 7.8 10.6 11.3 7.1 12 2z"/></svg></div>
-        <div class="csys-ico" title="Grok"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5.5" y1="5.5" x2="18.5" y2="18.5"/><line x1="18.5" y1="5.5" x2="5.5" y2="18.5"/></svg></div>
-        <div class="csys-ico" title="Calendar">📅</div>
-        <div class="csys-ico" title="Home">🏠</div>
+        <div class="csys-ico" title="ChatGPT"><span class="csys-mark">◎</span><span class="csys-name">GPT</span></div>
+        <div class="csys-ico" title="Claude"><span class="csys-mark">✳</span><span class="csys-name">Claude</span></div>
+        <div class="csys-ico" title="Gemini"><span class="csys-mark">✦</span><span class="csys-name">Gemini</span></div>
+        <div class="csys-ico" title="Grok"><span class="csys-mark">𝕏</span><span class="csys-name">Grok</span></div>
+        <div class="csys-ico" title="Calendar AI"><span class="csys-mark">📅</span><span class="csys-name">Calendar</span></div>
+        <div class="csys-ico" title="Home AI"><span class="csys-mark">🏠</span><span class="csys-name">Home</span></div>
       </div>
     </div>
 
     <!-- SHARED MEMORY PILL -->
     <div class="sm-pill">
       <div class="sm-badge"><span class="sm-dot"></span>SHARED MEMORY ACTIVE</div>
-      <div class="sm-sub">One Memory Across All AI</div>
-      <div class="sm-line">Connected across 8 platforms</div>
     </div>
 
-    <!-- MY WORLD (human-first hierarchy) -->
-    <div class="scr-head"><h2>My World</h2><p>Everything Terafarm understands about you.</p></div>
-    <div class="agent-grid">
-      <div class="agent" data-nav="work-hub"><div class="ai" style="background:rgba(20,80,160,.4)">💼</div><div class="an">Work</div><div class="ad">127 memories</div></div>
-      <div class="agent" data-nav="projects-hub"><div class="ai" style="background:rgba(60,40,170,.35)">🚀</div><div class="an">Projects</div><div class="ad">7 active</div></div>
-      <div class="agent" data-nav="learning-hub"><div class="ai" style="background:rgba(30,90,200,.35)">🎓</div><div class="an">Learning</div><div class="ad">42 topics</div></div>
-      <div class="agent" data-nav="people-hub"><div class="ai" style="background:rgba(20,110,60,.35)">👥</div><div class="an">People</div><div class="ad">54 relationships</div></div>
-      <div class="agent" data-nav="life-hub"><div class="ai" style="background:rgba(90,50,160,.35)">🏠</div><div class="an">Home</div><div class="ad">86 memories</div></div>
-      <div class="agent" data-nav="health-hub"><div class="ai" style="background:rgba(180,30,70,.32)">❤️</div><div class="an">Health</div><div class="ad">31 memories</div></div>
-      <div class="agent" data-nav="device-center"><div class="ai" style="background:rgba(120,80,15,.4)">📱</div><div class="an">Devices</div><div class="ad">11 connected</div></div>
-      <div class="agent" data-nav="goals-center"><div class="ai" style="background:rgba(180,60,40,.3)">🎯</div><div class="an">Goals</div><div class="ad">12 active</div></div>
-    </div>
+
 
 
 <!--
@@ -764,45 +798,45 @@
     </div>
 
     <!-- LIVE ACTIVITY -->
-    <div class="seclbl"><span class="t">LIVE ACTIVITY</span><span class="a" data-nav="agents">See all</span></div>
+    <div class="seclbl"><span class="t">CONNECTED AI SYSTEMS</span><span class="a" data-nav="agents">See all</span></div>
 
-    <div class="act" data-act="Travel AI"><div class="act-ico" style="background:rgba(30,90,200,.35)">✈️</div>
-      <div class="act-body"><div class="act-name">Travel</div><div class="act-desc">Finding flights</div></div>
+    <div class="act" data-act="ChatGPT"><div class="act-ico" style="background:rgba(30,90,200,.35)">◎</div>
+      <div class="act-body"><div class="act-name">ChatGPT</div><div class="act-desc">Communication memory active</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">2m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Calendar AI"><div class="act-ico" style="background:rgba(180,60,40,.3)">📅</div>
-      <div class="act-body"><div class="act-name">Calendar</div><div class="act-desc">Checking meetings</div></div>
+    <div class="act" data-act="Claude"><div class="act-ico" style="background:rgba(120,80,200,.35)">✳</div>
+      <div class="act-body"><div class="act-name">Claude</div><div class="act-desc">Code and UI context synced</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">3m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Finance AI"><div class="act-ico" style="background:rgba(20,110,60,.35)">💵</div>
-      <div class="act-body"><div class="act-name">Money</div><div class="act-desc">Estimating budget</div></div>
+    <div class="act" data-act="Gemini"><div class="act-ico" style="background:rgba(20,120,150,.35)">✦</div>
+      <div class="act-body"><div class="act-name">Gemini</div><div class="act-desc">Research memory available</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">4m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Home AI"><div class="act-ico" style="background:rgba(90,50,160,.35)">🏡</div>
-      <div class="act-body"><div class="act-name">Home</div><div class="act-desc">Preparing your home</div></div>
+    <div class="act" data-act="Grok"><div class="act-ico" style="background:rgba(80,80,120,.35)">𝕏</div>
+      <div class="act-body"><div class="act-name">Grok</div><div class="act-desc">Fast answer context synced</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">5m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Robot AI"><div class="act-ico" style="background:rgba(60,40,170,.35)">🤖</div>
-      <div class="act-body"><div class="act-name">Robot</div><div class="act-desc">Running automations</div></div>
+    <div class="act" data-act="Perplexity"><div class="act-ico" style="background:rgba(20,110,120,.35)">⌕</div>
+      <div class="act-body"><div class="act-name">Perplexity</div><div class="act-desc">Web research context ready</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">6m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Health AI"><div class="act-ico" style="background:rgba(180,30,70,.32)">❤️</div>
-      <div class="act-body"><div class="act-name">Health</div><div class="act-desc">Monitoring wellness</div></div>
+    <div class="act" data-act="Copilot"><div class="act-ico" style="background:rgba(30,90,200,.35)">⌘</div>
+      <div class="act-body"><div class="act-name">Copilot</div><div class="act-desc">Work assistant memory synced</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">7m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Car AI"><div class="act-ico" style="background:rgba(120,80,15,.4)">🚗</div>
-      <div class="act-body"><div class="act-name">Car</div><div class="act-desc">Navigation ready</div></div>
+    <div class="act" data-act="Calendar AI"><div class="act-ico" style="background:rgba(180,60,40,.3)">📅</div>
+      <div class="act-body"><div class="act-name">Calendar AI</div><div class="act-desc">Schedule memory connected</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">8m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
-    <div class="act" data-act="Comms AI"><div class="act-ico" style="background:rgba(20,80,160,.4)">💬</div>
-      <div class="act-body"><div class="act-name">Comms</div><div class="act-desc">Managing messages</div></div>
+    <div class="act" data-act="Home AI"><div class="act-ico" style="background:rgba(90,50,160,.35)">🏠</div>
+      <div class="act-body"><div class="act-name">Home AI</div><div class="act-desc">Device context connected</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">9m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
@@ -813,6 +847,19 @@
         <circle cx="12" cy="12" r="3.5" fill="rgba(0,200,255,.9)"/></svg></div>
       <div class="body"><div class="ttl">All systems in sync</div><div class="sub">Memory updated successfully</div></div>
       <div class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    </div>
+
+    <!-- MY WORLD — moved lower so Quick Actions and active AI are primary -->
+    <div class="scr-head"><h2>My World</h2><p>Everything Terafarm understands about you.</p></div>
+    <div class="agent-grid">
+      <div class="agent" data-nav="work-hub"><div class="ai" style="background:rgba(20,80,160,.4)">💼</div><div class="an">Work</div><div class="ad">127 memories</div></div>
+      <div class="agent" data-nav="projects-hub"><div class="ai" style="background:rgba(60,40,170,.35)">🚀</div><div class="an">Projects</div><div class="ad">7 active</div></div>
+      <div class="agent" data-nav="learning-hub"><div class="ai" style="background:rgba(30,90,200,.35)">🎓</div><div class="an">Learning</div><div class="ad">42 topics</div></div>
+      <div class="agent" data-nav="people-hub"><div class="ai" style="background:rgba(20,110,60,.35)">👥</div><div class="an">People</div><div class="ad">54 relationships</div></div>
+      <div class="agent" data-nav="life-hub"><div class="ai" style="background:rgba(90,50,160,.35)">🏠</div><div class="an">Home</div><div class="ad">86 memories</div></div>
+      <div class="agent" data-nav="health-hub"><div class="ai" style="background:rgba(180,30,70,.32)">❤️</div><div class="an">Health</div><div class="ad">31 memories</div></div>
+      <div class="agent" data-nav="device-center"><div class="ai" style="background:rgba(120,80,15,.4)">📱</div><div class="an">Devices</div><div class="ad">11 connected</div></div>
+      <div class="agent" data-nav="goals-center"><div class="ai" style="background:rgba(180,60,40,.3)">🎯</div><div class="an">Goals</div><div class="ad">12 active</div></div>
     </div>
 
   </div>
