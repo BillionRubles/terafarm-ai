@@ -626,6 +626,447 @@
     #screen-home .core-zone .vwave-r { transform:translate(138px,-50%) !important; }
   }
 
+
+  /* ════════ TERAFARM FINAL POLISH — ChatGPT handoff pass ════════ */
+  :root {
+    --tf-bg:#0d1420;
+    --tf-card:#111927;
+    --tf-border:rgba(80,140,255,.12);
+    --tf-hover:rgba(70,120,255,.12);
+  }
+
+  /* Connected AI: one-line mobile rail, never wraps */
+  #screen-home .csys { margin:16px -16px 18px; overflow:hidden; }
+  #screen-home .csys-cap { margin-left:16px; margin-right:16px; }
+  #screen-home .csys-row {
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    gap:8px !important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:0 16px 2px;
+    scroll-snap-type:x proximity;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  #screen-home .csys-row::-webkit-scrollbar { display:none; }
+  #screen-home .csys-ico {
+    flex:0 0 auto;
+    min-width:auto !important;
+    height:30px !important;
+    padding:0 10px !important;
+    border-radius:16px !important;
+    background:rgba(17,25,39,.92) !important;
+    border:1px solid rgba(80,140,255,.16) !important;
+    scroll-snap-align:start;
+  }
+  #screen-home .csys-mark { font-size:11px !important; }
+  #screen-home .csys-name { font-size:9px !important; }
+
+  /* Shared Memory pill: only the badge remains */
+  #screen-home .sm-sub,
+  #screen-home .sm-line { display:none !important; }
+  #screen-home .sm-pill { margin:2px 0 26px !important; }
+
+  /* My World: premium breathing room */
+  #screen-home .scr-head {
+    margin-top:24px !important;
+    margin-bottom:16px !important;
+  }
+
+  /* Agents: larger ecosystem, same visual system */
+  #screen-agents .agent-grid { gap:10px !important; padding-bottom:18px; }
+  #screen-agents .agent {
+    background:var(--tf-card) !important;
+    border:1px solid var(--tf-border) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+  }
+  #screen-agents .agent:active { background:var(--tf-hover) !important; }
+  #screen-agents .agent .ad { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+  /* Menu: same OS palette as Home */
+  .menu {
+    background:var(--tf-bg) !important;
+    border-right:1px solid var(--tf-border) !important;
+  }
+  .menu-head,
+  .menu-foot { border-color:var(--tf-border) !important; }
+  .menu-item { color:rgba(220,235,255,.78) !important; }
+  .menu-item svg { stroke:rgba(70,185,255,.72) !important; }
+  .menu-item.on,
+  .menu-item:active {
+    background:var(--tf-hover) !important;
+    color:#fff !important;
+  }
+  .menu-x,
+  .menu-signin,
+  .menu-pro {
+    background:var(--tf-card) !important;
+    border:1px solid var(--tf-border) !important;
+    box-shadow:none !important;
+  }
+  .menu-pro b { color:rgba(125,195,255,.92) !important; }
+  .menu-pro button,
+  .modal-btn,
+  .pf-signin {
+    background:linear-gradient(135deg,#176ee8,#2f8cff) !important;
+    box-shadow:0 4px 18px rgba(47,140,255,.22) !important;
+  }
+
+  /* Auth modal: darker, softer, native Terafarm OS */
+  .modal-ov {
+    background:rgba(0,8,20,.78) !important;
+    backdrop-filter:blur(12px) !important;
+  }
+  .modal {
+    background:var(--tf-card) !important;
+    border:1px solid var(--tf-border) !important;
+    border-bottom:none !important;
+    box-shadow:0 -18px 60px rgba(0,20,60,.24) !important;
+  }
+  .modal-x,
+  .fld {
+    background:rgba(13,20,32,.92) !important;
+    border:1px solid var(--tf-border) !important;
+    box-shadow:none !important;
+  }
+  .fld input::placeholder { color:rgba(150,180,215,.38) !important; }
+  .modal-note { color:rgba(150,190,235,.42) !important; }
+
+
+  /* ════════ FINAL GEOMETRY LOCK — ChatGPT final pass ════════ */
+  /* Keep all existing layout. Only correct Home-axis geometry. */
+
+  /* Sound waves: equal distance from robot circle on both sides */
+  #screen-home .core-zone .vwave {
+    width:29px !important;
+    opacity:.42 !important;
+  }
+  #screen-home .core-zone .vwave-l {
+    transform:translate(-122px,-50%) !important;
+  }
+  #screen-home .core-zone .vwave-r {
+    transform:translate(93px,-50%) !important;
+  }
+
+  /* Connected AI: centered rail, same vertical axis as robot and memory pill */
+  #screen-home .csys {
+    margin:16px 0 18px !important;
+    overflow:visible !important;
+    text-align:center !important;
+  }
+  #screen-home .csys-cap {
+    margin-left:0 !important;
+    margin-right:0 !important;
+    text-align:center !important;
+  }
+  #screen-home .csys-row {
+    display:inline-flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    align-items:center !important;
+    gap:8px !important;
+    width:max-content !important;
+    max-width:100% !important;
+    margin:0 auto !important;
+    padding:0 8px 2px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    scroll-snap-type:none !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+  }
+  #screen-home .csys-row::-webkit-scrollbar { display:none !important; }
+  #screen-home .csys-ico {
+    flex:0 0 auto !important;
+    height:30px !important;
+    padding:0 9px !important;
+    border-radius:16px !important;
+  }
+
+  /* Shared Memory badge: locked to center axis */
+  #screen-home .sm-pill {
+    text-align:center !important;
+    margin:2px 0 26px !important;
+  }
+
+  @media (min-width:1200px){
+    #screen-home .core-zone .vwave-l { transform:translate(-153px,-50%) !important; }
+    #screen-home .core-zone .vwave-r { transform:translate(124px,-50%) !important; }
+  }
+
+
+  /* ════════ FINAL CONNECTED AI AXIS FIX — do not move robot/sound/hero ════════ */
+  /* Fix: Connected AI rail was visually shifted left because JS pre-scrolled it.
+     New behavior: the rail viewport is centered under the robot; chips stay one line. */
+  #screen-home .csys {
+    width:100% !important;
+    margin:16px 0 18px !important;
+    overflow:visible !important;
+    text-align:center !important;
+  }
+
+  #screen-home .csys-cap {
+    width:100% !important;
+    text-align:center !important;
+    margin:0 0 8px !important;
+  }
+
+  #screen-home .csys-row {
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:7px !important;
+
+    width:fit-content !important;
+    max-width:calc(100vw - 32px) !important;
+    margin:0 auto !important;
+    padding:0 2px 3px !important;
+
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    scroll-snap-type:none !important;
+  }
+
+  #screen-home .csys-row::-webkit-scrollbar {
+    display:none !important;
+  }
+
+  #screen-home .csys-ico {
+    flex:0 0 auto !important;
+    height:28px !important;
+    padding:0 8px !important;
+    border-radius:15px !important;
+  }
+
+  #screen-home .csys-mark {
+    font-size:10px !important;
+  }
+
+  #screen-home .csys-name {
+    font-size:8.5px !important;
+  }
+
+  @media (min-width:768px){
+    #screen-home .csys-row {
+      max-width:min(720px, calc(100vw - 48px)) !important;
+      justify-content:center !important;
+    }
+  }
+
+  @media (min-width:1200px){
+    #screen-home .csys-row {
+      max-width:min(900px, calc(100vw - 64px)) !important;
+      justify-content:center !important;
+    }
+  }
+
+
+
+  /* ════════ TRUE FINAL FIX — Connected AI stays centered under robot ════════ */
+  /* This overrides all earlier csys attempts. Robot, sound waves, hero, nav untouched. */
+  html, body {
+    max-width:100% !important;
+    overflow-x:hidden !important;
+  }
+
+  #screen-home .wrap {
+    overflow-x:hidden !important;
+  }
+
+  #screen-home .csys {
+    width:100% !important;
+    max-width:100% !important;
+    margin:16px auto 18px !important;
+    padding:0 !important;
+    overflow:hidden !important;
+    text-align:center !important;
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+  }
+
+  #screen-home .csys-cap {
+    width:100% !important;
+    margin:0 0 8px !important;
+    padding:0 !important;
+    text-align:center !important;
+    transform:none !important;
+  }
+
+  #screen-home .csys-row {
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:7px !important;
+
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 auto !important;
+    padding:0 16px 4px !important;
+    box-sizing:border-box !important;
+
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    -webkit-overflow-scrolling:touch !important;
+    scrollbar-width:none !important;
+    scroll-snap-type:none !important;
+
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+  }
+
+  #screen-home .csys-row::-webkit-scrollbar {
+    display:none !important;
+  }
+
+  #screen-home .csys-ico {
+    flex:0 0 auto !important;
+    height:28px !important;
+    padding:0 8px !important;
+    border-radius:15px !important;
+  }
+
+  #screen-home .sm-pill {
+    width:100% !important;
+    text-align:center !important;
+    margin:2px auto 26px !important;
+    transform:none !important;
+  }
+
+  @media (max-width:767px){
+    #screen-home .csys-row {
+      justify-content:flex-start !important;
+    }
+  }
+
+  @media (min-width:768px){
+    #screen-home .csys-row {
+      justify-content:center !important;
+      overflow-x:hidden !important;
+    }
+  }
+
+
+
+  /* ════════ HACKATHON FINAL CENTER LOCK — Connected AI only ════════ */
+  /* Purpose: keep the AI chips visually centered under the robot on phone and desktop. */
+  /* Nothing here touches robot, sound waves, hero, quick actions, menu, auth, or nav. */
+  #screen-home .csys {
+    width:100% !important;
+    max-width:100% !important;
+    margin:16px auto 18px !important;
+    padding:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+    overflow:visible !important;
+    text-align:center !important;
+    position:relative !important;
+    left:auto !important;
+    right:auto !important;
+    transform:none !important;
+  }
+
+  #screen-home .csys-cap {
+    width:100% !important;
+    margin:0 0 8px !important;
+    padding:0 !important;
+    text-align:center !important;
+  }
+
+  #screen-home .csys-row {
+    width:auto !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    box-sizing:border-box !important;
+
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+
+    overflow:visible !important;
+    scrollbar-width:none !important;
+    scroll-snap-type:none !important;
+    transform:none !important;
+    left:auto !important;
+    right:auto !important;
+  }
+
+  #screen-home .csys-row::-webkit-scrollbar {
+    display:none !important;
+  }
+
+  #screen-home .csys-ico {
+    flex:0 0 auto !important;
+    height:28px !important;
+    min-width:0 !important;
+    padding:0 8px !important;
+    border-radius:15px !important;
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:4px !important;
+  }
+
+  #screen-home .csys-mark {
+    font-size:10px !important;
+    line-height:1 !important;
+  }
+
+  #screen-home .csys-name {
+    font-size:8.5px !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+  }
+
+  /* Phone: show the clean core set only, centered. No second line, no left drift. */
+  @media (max-width:767px){
+    #screen-home .csys-row {
+      gap:5px !important;
+      max-width:calc(100vw - 28px) !important;
+      overflow:hidden !important;
+    }
+    #screen-home .csys-ico {
+      height:27px !important;
+      padding:0 6px !important;
+      border-radius:14px !important;
+    }
+    #screen-home .csys-mark { font-size:9.5px !important; }
+    #screen-home .csys-name { font-size:8px !important; }
+
+    /* Keep: GPT, Claude, Gemini, Grok, Calendar, Home. Hide extra desktop chips. */
+    #screen-home .csys-ico:nth-child(6),
+    #screen-home .csys-ico:nth-child(8),
+    #screen-home .csys-ico:nth-child(9) {
+      display:none !important;
+    }
+  }
+
+  /* Desktop/tablet: show full ecosystem row, centered under the robot. */
+  @media (min-width:768px){
+    #screen-home .csys-row {
+      max-width:none !important;
+      overflow:visible !important;
+    }
+    #screen-home .csys-ico {
+      display:inline-flex !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -687,7 +1128,10 @@
         <div class="csys-ico" title="Gemini"><span class="csys-mark">✦</span><span class="csys-name">Gemini</span></div>
         <div class="csys-ico" title="Grok"><span class="csys-mark">𝕏</span><span class="csys-name">Grok</span></div>
         <div class="csys-ico" title="Calendar AI"><span class="csys-mark">📅</span><span class="csys-name">Calendar</span></div>
+        <div class="csys-ico" title="Drive AI"><span class="csys-mark">📂</span><span class="csys-name">Drive</span></div>
         <div class="csys-ico" title="Home AI"><span class="csys-mark">🏠</span><span class="csys-name">Home</span></div>
+        <div class="csys-ico" title="Car AI"><span class="csys-mark">🚗</span><span class="csys-name">Car</span></div>
+        <div class="csys-ico" title="Robot AI"><span class="csys-mark">🤖</span><span class="csys-name">Robot</span></div>
       </div>
     </div>
 
@@ -944,14 +1388,31 @@
   <div class="wrap">
     <div class="scr-head"><h2>AI Agents</h2><p>One command, many agents working for you</p></div>
     <div class="agent-grid">
-      <div class="agent" data-act="Travel AI"><div class="ai" style="background:rgba(30,90,200,.35)">✈️</div><div class="an">Travel AI</div><div class="ad">Trips & booking</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Work AI"><div class="ai" style="background:rgba(30,90,200,.35)">💼</div><div class="an">Work AI</div><div class="ad">Briefs & focus</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Projects AI"><div class="ai" style="background:rgba(80,50,170,.35)">🚀</div><div class="an">Projects AI</div><div class="ad">Build roadmap</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Research AI"><div class="ai" style="background:rgba(20,110,150,.35)">🔎</div><div class="an">Research AI</div><div class="ad">Signals & sources</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Learning AI"><div class="ai" style="background:rgba(70,80,180,.35)">🎓</div><div class="an">Learning AI</div><div class="ad">Courses & skills</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Design AI"><div class="ai" style="background:rgba(160,70,120,.32)">🎨</div><div class="an">Design AI</div><div class="ad">UI & visuals</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Code AI"><div class="ai" style="background:rgba(25,100,170,.35)">💻</div><div class="an">Code AI</div><div class="ad">Build & debug</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Email AI"><div class="ai" style="background:rgba(20,90,160,.35)">✉️</div><div class="an">Email AI</div><div class="ad">Inbox & replies</div><div class="as"><span class="dot"></span>Active</div></div>
       <div class="agent" data-act="Calendar AI"><div class="ai" style="background:rgba(180,60,40,.3)">📅</div><div class="an">Calendar AI</div><div class="ad">Schedule & tasks</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Notes AI"><div class="ai" style="background:rgba(120,90,30,.35)">📝</div><div class="an">Notes AI</div><div class="ad">Ideas & notes</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Drive AI"><div class="ai" style="background:rgba(45,95,160,.35)">📂</div><div class="an">Drive AI</div><div class="ad">Files & docs</div><div class="as"><span class="dot"></span>Active</div></div>
       <div class="agent" data-act="Finance AI"><div class="ai" style="background:rgba(20,110,60,.35)">💵</div><div class="an">Finance AI</div><div class="ad">Money & budget</div><div class="as"><span class="dot"></span>Active</div></div>
-      <div class="agent" data-act="Home AI"><div class="ai" style="background:rgba(90,50,160,.35)">🏡</div><div class="an">Home AI</div><div class="ad">Smart home</div><div class="as"><span class="dot"></span>Active</div></div>
-      <div class="agent" data-act="Robot AI"><div class="ai" style="background:rgba(60,40,170,.35)">🤖</div><div class="an">Robot AI</div><div class="ad">Automations</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Travel AI"><div class="ai" style="background:rgba(30,90,200,.35)">✈️</div><div class="an">Travel AI</div><div class="ad">Trips & booking</div><div class="as"><span class="dot"></span>Active</div></div>
       <div class="agent" data-act="Health AI"><div class="ai" style="background:rgba(180,30,70,.32)">❤️</div><div class="an">Health AI</div><div class="ad">Wellness</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Security AI"><div class="ai" style="background:rgba(20,120,115,.35)">🔐</div><div class="an">Security AI</div><div class="ad">Privacy & access</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Home AI"><div class="ai" style="background:rgba(90,50,160,.35)">🏡</div><div class="an">Home AI</div><div class="ad">Smart home</div><div class="as"><span class="dot"></span>Active</div></div>
       <div class="agent" data-act="Car AI"><div class="ai" style="background:rgba(120,80,15,.4)">🚗</div><div class="an">Car AI</div><div class="ad">Navigation</div><div class="as"><span class="dot"></span>Active</div></div>
-      <div class="agent" data-act="Comms AI"><div class="ai" style="background:rgba(20,80,160,.4)">💬</div><div class="an">Comms AI</div><div class="ad">Calls & messages</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Robot AI"><div class="ai" style="background:rgba(60,40,170,.35)">🤖</div><div class="an">Robot AI</div><div class="ad">Automations</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Cloud AI"><div class="ai" style="background:rgba(35,105,170,.35)">☁️</div><div class="an">Cloud AI</div><div class="ad">Sync & compute</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Communication AI"><div class="ai" style="background:rgba(20,80,160,.4)">💬</div><div class="an">Communication AI</div><div class="ad">Calls & messages</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Shopping AI"><div class="ai" style="background:rgba(120,60,120,.32)">🛒</div><div class="an">Shopping AI</div><div class="ad">Orders & lists</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Entertainment AI"><div class="ai" style="background:rgba(80,70,160,.35)">🎧</div><div class="an">Entertainment AI</div><div class="ad">Media & fun</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Document AI"><div class="ai" style="background:rgba(55,90,145,.35)">📄</div><div class="an">Document AI</div><div class="ad">PDFs & contracts</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Meeting AI"><div class="ai" style="background:rgba(35,120,145,.35)">🎙️</div><div class="an">Meeting AI</div><div class="ad">Calls & summaries</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Knowledge AI"><div class="ai" style="background:rgba(70,60,160,.35)">🧠</div><div class="an">Knowledge AI</div><div class="ad">Memory graph</div><div class="as"><span class="dot"></span>Active</div></div>
+      <div class="agent" data-act="Automation AI"><div class="ai" style="background:rgba(60,90,120,.35)">⚙️</div><div class="an">Automation AI</div><div class="ad">Routines</div><div class="as"><span class="dot"></span>Active</div></div>
     </div>
   </div>
   </section>
@@ -2579,6 +3040,18 @@
     document.getElementById('greet').textContent = g + ' 💙';
   })();
 
+
+
+  // CONNECTED AI: no forced scroll. CSS keeps the rail centered.
+  (function(){
+    function resetConnectedAI(){
+      var row = document.querySelector('#screen-home .csys-row');
+      if(row) row.scrollLeft = 0;
+    }
+    window.addEventListener('load', resetConnectedAI);
+    window.addEventListener('resize', resetConnectedAI);
+    document.addEventListener('DOMContentLoaded', resetConnectedAI);
+  })();
 
 </script>
 </body>
