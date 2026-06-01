@@ -881,6 +881,202 @@
   }
   console.log('[AppState] init', AppState);
 
+
+  // ════════ TERAFARM V2 — PHASE 2.5: ARCHITECTURE LOCK ════════
+  // Architecture-only scaffold. No UI, colors, robot, layout, navigation,
+  // responsive rules, Home, or Work Hub visuals are changed by this block.
+  // Core loop: User → Identity → Memory → Work/Learning/Devices/AI → Coordination → Actions → Memory Update.
+
+  const SCREENS = {
+    home: {
+      id: 'home',
+      title: 'Home',
+      icon: '🏠',
+      priority: 0,
+      description: 'Main Terafarm command and memory overview'
+    },
+    work: {
+      id: 'work',
+      title: 'Work Hub',
+      icon: '💼',
+      priority: 1,
+      description: 'Projects, tasks, meetings and work memory'
+    },
+    learning: {
+      id: 'learning',
+      title: 'Learning Hub',
+      icon: '🎓',
+      priority: 2,
+      description: 'Courses, research, books, topics and skills'
+    },
+    devices: {
+      id: 'devices',
+      title: 'Device Center',
+      icon: '📱',
+      priority: 3,
+      description: 'Phone, laptop, watch, home, car and robots'
+    },
+    ai: {
+      id: 'ai',
+      title: 'AI Systems',
+      icon: '🤖',
+      priority: 4,
+      description: 'Connected AI systems and memory permissions'
+    },
+    memory: {
+      id: 'memory',
+      title: 'Shared Memory',
+      icon: '🧠',
+      priority: 5,
+      description: 'User-owned memory across all systems'
+    },
+    automation: {
+      id: 'automation',
+      title: 'Automations',
+      icon: '⚡',
+      priority: 6,
+      description: 'One command triggers many actions'
+    }
+  };
+
+  const memoryState = {
+    identity: {
+      profile: {},
+      preferences: {},
+      goals: []
+    },
+    work: {
+      projects: [],
+      tasks: [],
+      meetings: [],
+      documents: [],
+      research: []
+    },
+    learning: {
+      courses: [],
+      books: [],
+      topics: [],
+      skills: [],
+      notes: []
+    },
+    devices: {
+      phone: {},
+      laptop: {},
+      watch: {},
+      car: {},
+      home: {},
+      robots: []
+    },
+    aiSystems: {
+      chatgpt: {},
+      claude: {},
+      gemini: {},
+      grok: {},
+      custom: []
+    },
+    automations: {
+      routines: [],
+      triggers: [],
+      actions: []
+    },
+    timeline: [],
+    relationships: []
+  };
+
+  function dispatchCommand(command, context = {}) {
+    const event = {
+      id: Date.now(),
+      command,
+      context,
+      createdAt: new Date().toISOString(),
+      status: 'received'
+    };
+
+    console.log('Terafarm command received:', event);
+    return event;
+  }
+
+  function updateMemory(domain, payload) {
+    const memoryEvent = {
+      id: Date.now(),
+      domain,
+      payload,
+      updatedAt: new Date().toISOString()
+    };
+
+    memoryState.timeline.push(memoryEvent);
+    console.log('Memory updated:', memoryEvent);
+    return memoryEvent;
+  }
+
+  /*
+  FUTURE DATABASE STRUCTURE
+
+  users
+    identity
+    preferences
+    goals
+
+  projects
+    userId
+    title
+    status
+    memory
+
+  tasks
+    projectId
+    title
+    status
+    dueDate
+
+  documents
+    projectId
+    title
+    source
+    summary
+
+  learning
+    userId
+    courses
+    books
+    topics
+    skills
+
+  devices
+    userId
+    type
+    status
+    permissions
+
+  aiSystems
+    userId
+    provider
+    memoryAccess
+    lastSync
+
+  automations
+    userId
+    trigger
+    actions
+    systems
+
+  memory
+    userId
+    domain
+    objectType
+    content
+    relationships
+    updatedAt
+  */
+
+  // Expose the architecture safely for debugging and future phases.
+  window.TerafarmArchitecture = {
+    SCREENS,
+    memoryState,
+    dispatchCommand,
+    updateMemory
+  };
+
   // ── Phase 1 Fix 4: toast timer in module scope, not window ──
   var _toastTimer = null;
   function toast(msg){
