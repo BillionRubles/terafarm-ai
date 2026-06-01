@@ -314,7 +314,7 @@
            pointer-events:none; z-index:0; opacity:.2; }
   .vwave-l { transform:translate(-104px,-50%); flex-direction:row-reverse; }
   .vwave-r { transform:translate(104px,-50%); }
-  .vwave i { width:2px; height:12px; border-radius:2px;
+  .vwave i { width:5px; height:12px; border-radius:3px;
              background:linear-gradient(rgba(60,200,255,.95), rgba(0,150,255,.3));
              filter:drop-shadow(0 0 3px rgba(40,180,255,.55));
              animation:softWave 3.4s ease-in-out infinite; }
@@ -331,6 +331,23 @@
   @keyframes auraBreath {
     0%,100%{ transform:translate(-50%,-50%) scale(1);    opacity:.5; }
     50%    { transform:translate(-50%,-50%) scale(1.09); opacity:.85; }
+  }
+  /* ════════ RESPONSIVE — tablet & desktop (mobile base 0–768px unchanged) ════════ */
+  @media (min-width: 768px) {
+    .top, .screen .wrap { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .nav { padding-left: max(4px, calc((100% - 720px) / 2)); padding-right: max(4px, calc((100% - 720px) / 2)); }
+    .agent-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 1200px) {
+    .top, .screen .wrap { max-width: 960px; margin-left: auto; margin-right: auto; }
+    .nav { padding-left: max(4px, calc((100% - 960px) / 2)); padding-right: max(4px, calc((100% - 960px) / 2)); }
+    .agent-grid { grid-template-columns: repeat(4, 1fr); }
+    /* assistant block / robot ~30% larger on desktop */
+    .core-zone { min-height: 244px; }
+    .core { width: 220px; height: 220px; }
+    .aura { width: 228px; height: 228px; }
+    .vwave-l { transform: translate(-135px, -50%); }
+    .vwave-r { transform: translate(135px, -50%); }
   }
 </style>
 </head>
@@ -354,7 +371,7 @@
 
     <div class="greet">
       <h2 id="greet">Good morning 💙</h2>
-      <p id="greetMsg" class="greet-msg">Your memory is active across 8 connected AI systems</p>
+      <p id="greetMsg" class="greet-msg">🔗 Active across 8 AI systems</p>
     </div>
 
     <!-- MEMORY CORE -->
@@ -387,10 +404,10 @@
     <!-- CONNECTED SYSTEMS (clarity) -->
     <div class="csys">
       <div class="csys-row">
-        <div class="csys-ico" title="ChatGPT">GPT</div>
-        <div class="csys-ico" title="Claude">Cl</div>
-        <div class="csys-ico" title="Gemini">Ge</div>
-        <div class="csys-ico" title="Grok">Gr</div>
+        <div class="csys-ico" title="ChatGPT"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7.4 4.3v8.6L12 21l-7.4-4.3V7.3L12 3z"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/></svg></div>
+        <div class="csys-ico" title="Claude"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="3.5" x2="12" y2="8"/><line x1="12" y1="16" x2="12" y2="20.5"/><line x1="3.5" y1="12" x2="8" y2="12"/><line x1="16" y1="12" x2="20.5" y2="12"/><line x1="6.2" y1="6.2" x2="9.3" y2="9.3"/><line x1="14.7" y1="14.7" x2="17.8" y2="17.8"/><line x1="17.8" y1="6.2" x2="14.7" y2="9.3"/><line x1="9.3" y1="14.7" x2="6.2" y2="17.8"/></svg></div>
+        <div class="csys-ico" title="Gemini"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2c.7 5.1 4.2 8.6 9.3 9.3C16.2 12 12.7 15.5 12 20.6 11.3 15.5 7.8 12 2.7 11.3 7.8 10.6 11.3 7.1 12 2z"/></svg></div>
+        <div class="csys-ico" title="Grok"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="5.5" y1="5.5" x2="18.5" y2="18.5"/><line x1="18.5" y1="5.5" x2="5.5" y2="18.5"/></svg></div>
         <div class="csys-ico" title="Calendar">📅</div>
         <div class="csys-ico" title="Home">🏠</div>
       </div>
@@ -401,6 +418,19 @@
       <div class="sm-badge"><span class="sm-dot"></span>SHARED MEMORY ACTIVE</div>
       <div class="sm-sub">One Memory Across All AI</div>
       <div class="sm-line">Connected across 8 platforms</div>
+    </div>
+
+    <!-- MY WORLD (human-first hierarchy) -->
+    <div class="scr-head"><h2>My World</h2><p>Everything Terafarm understands about you.</p></div>
+    <div class="agent-grid">
+      <div class="agent" data-nav="work-hub"><div class="ai" style="background:rgba(20,80,160,.4)">💼</div><div class="an">Work</div><div class="ad">127 memories</div></div>
+      <div class="agent" data-nav="projects-hub"><div class="ai" style="background:rgba(60,40,170,.35)">🚀</div><div class="an">Projects</div><div class="ad">7 active</div></div>
+      <div class="agent" data-nav="learning-hub"><div class="ai" style="background:rgba(30,90,200,.35)">🎓</div><div class="an">Learning</div><div class="ad">42 topics</div></div>
+      <div class="agent" data-nav="people-hub"><div class="ai" style="background:rgba(20,110,60,.35)">👥</div><div class="an">People</div><div class="ad">54 relationships</div></div>
+      <div class="agent" data-nav="life-hub"><div class="ai" style="background:rgba(90,50,160,.35)">🏠</div><div class="an">Home</div><div class="ad">86 memories</div></div>
+      <div class="agent" data-nav="health-hub"><div class="ai" style="background:rgba(180,30,70,.32)">❤️</div><div class="an">Health</div><div class="ad">31 memories</div></div>
+      <div class="agent" data-nav="device-center"><div class="ai" style="background:rgba(120,80,15,.4)">📱</div><div class="an">Devices</div><div class="ad">11 connected</div></div>
+      <div class="agent" data-nav="goals-center"><div class="ai" style="background:rgba(180,60,40,.3)">🎯</div><div class="an">Goals</div><div class="ad">12 active</div></div>
     </div>
 
 
@@ -667,6 +697,87 @@
   </section>
 
   <!-- ════════ BOTTOM NAV ════════ -->
+  <!-- ════════ MY WORLD HUBS (placeholder screens) ════════ -->
+  <section class="screen" id="screen-work-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Work Hub</h2><p>Everything Terafarm understands about your work.</p></div>
+    <div class="mem-item"><div class="mt">Current focus</div><div class="mb">Building the Terafarm hackathon demo — reviewing PRs and design checks.</div><div class="mtime">Updated today</div></div>
+    <div class="mem-item"><div class="mt">Coding style</div><div class="mb">Single-file builds, compact code, clear architecture.</div><div class="mtime">Synced to Claude, Robot AI</div></div>
+    <div class="mem-item"><div class="mt">Meetings</div><div class="mb">Mornings for deep work; meetings in the afternoon.</div><div class="mtime">Synced to Calendar AI</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-projects-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Projects Hub</h2><p>Your active projects and where each one stands.</p></div>
+    <div class="mem-item"><div class="mt">Terafarm</div><div class="mb">Personal AI OS — one shared memory across every AI.</div><div class="mtime">Active · main focus</div></div>
+    <div class="mem-item"><div class="mt">FreightCapsule</div><div class="mb">Autonomous freight-transport concept.</div><div class="mtime">Active</div></div>
+    <div class="mem-item"><div class="mt">ChargingTube</div><div class="mb">EV charging-infrastructure project.</div><div class="mtime">Active</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-learning-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Learning Hub</h2><p>Topics you're learning and exploring.</p></div>
+    <div class="mem-item"><div class="mt">AI / LLMs</div><div class="mb">Architecture, agents, prompting and orchestration.</div><div class="mtime">42 topics</div></div>
+    <div class="mem-item"><div class="mt">Systems engineering</div><div class="mb">Energy, freight and robotics systems.</div><div class="mtime">Ongoing</div></div>
+    <div class="mem-item"><div class="mt">Saved references</div><div class="mb">Notes and decisions kept for reuse.</div><div class="mtime">Synced to Claude</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-people-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>People Memory</h2><p>The relationships Terafarm keeps in context.</p></div>
+    <div class="mem-item"><div class="mt">Team</div><div class="mb">Small engineering team; direct, low-ceremony comms.</div><div class="mtime">Synced to Comms AI</div></div>
+    <div class="mem-item"><div class="mt">Network</div><div class="mb">LinkedIn-first outreach, engineering tone.</div><div class="mtime">Synced to Social AI</div></div>
+    <div class="mem-item"><div class="mt">Collaborators</div><div class="mb">Context shared so every AI greets them consistently.</div><div class="mtime">54 relationships</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-life-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Home Memory</h2><p>Your home, routines and everyday life.</p></div>
+    <div class="mem-item"><div class="mt">Arrival routine</div><div class="mb">Warm lights, climate 21°C, locks; calm mode in the evening.</div><div class="mtime">Synced to Home AI</div></div>
+    <div class="mem-item"><div class="mt">Devices</div><div class="mb">Smart-home and robot automations pause when away.</div><div class="mtime">Synced to Robot AI</div></div>
+    <div class="mem-item"><div class="mt">Rhythms</div><div class="mb">Quiet evenings; protected sleep.</div><div class="mtime">86 memories</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-health-hub">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Health Memory</h2><p>Your wellness goals and habits.</p></div>
+    <div class="mem-item"><div class="mt">Wellness</div><div class="mb">Evening wind-down / calm mode; watch tracking.</div><div class="mtime">Synced to Health AI</div></div>
+    <div class="mem-item"><div class="mt">Sleep &amp; screens</div><div class="mb">7+ hours; fewer screens after 10 PM.</div><div class="mtime">Synced to Watch AI</div></div>
+    <div class="mem-item"><div class="mt">Habits</div><div class="mb">Steady routines over intensity.</div><div class="mtime">31 memories</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-device-center">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Device Center</h2><p>The devices connected to your memory.</p></div>
+    <div class="mem-item"><div class="mt">Phone &amp; Watch</div><div class="mb">Always-on, synced to your memory.</div><div class="mtime">Connected</div></div>
+    <div class="mem-item"><div class="mt">Car &amp; Home</div><div class="mb">Routes and arrival routines ready.</div><div class="mtime">Connected</div></div>
+    <div class="mem-item"><div class="mt">Robots</div><div class="mb">Automations paused when away.</div><div class="mtime">11 connected</div></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-goals-center">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Goals Center</h2><p>The goals Terafarm is helping you reach.</p></div>
+    <div class="mem-item"><div class="mt">Ship Terafarm</div><div class="mb">Get the hackathon build demo-ready.</div><div class="mtime">Active</div></div>
+    <div class="mem-item"><div class="mt">Grow the network</div><div class="mb">Consistent voice across platforms.</div><div class="mtime">Active</div></div>
+    <div class="mem-item"><div class="mt">Health &amp; focus</div><div class="mb">Protect mornings and sleep.</div><div class="mtime">12 active</div></div>
+  </div>
+  </section>
+
   <div class="nav">
     <div class="nav-i on" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Home</span></div>
     <div class="nav-i" data-nav="memory"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg><span>Memory</span></div>
@@ -1942,7 +2053,7 @@
   // ── Rotating message line inside greeting (no floating box, no layout shift) ──
   (function(){
     var msgs = [
-      'Your memory is active across 8 connected AI systems',
+      '🔗 Active across 8 AI systems',
       'Code ready · GitHub checked',
       'Design checked · 4 UI fixes',
       'Team summary ready',
