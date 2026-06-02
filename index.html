@@ -1413,6 +1413,66 @@
   #screen-home .agent.tf18-world-category .tf-world-meta { margin-top:7px; }
   @media (max-width:390px){ .tf18-source-grid { grid-template-columns:repeat(2,1fr); } }
 
+
+
+  /* ════════ TERAFARM PHASE 23 — Memory State Stability + Connect Phone Clarity ════════ */
+  #tfConnectPhoneCard,
+  #tfConnectPhoneCard.tf-locked,
+  #tfConnectPhoneCard.tf-connect-compact,
+  #tfConnectPhoneCard .tf-connect-main,
+  #tfConnectPhoneCard .tf-ob-title,
+  #tfConnectPhoneCard .tf-ob-sub,
+  #tfConnectPhoneCard .tf-ob-sub span,
+  #tfConnectPhoneCard .tf-onboard-btn {
+    opacity:1 !important;
+    filter:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    text-shadow:none !important;
+  }
+  #tfConnectPhoneCard .tf-ob-title {
+    color:rgba(240,250,255,.97) !important;
+  }
+  #tfConnectPhoneCard .tf-ob-sub,
+  #tfConnectPhoneCard .tf-ob-sub span {
+    color:rgba(225,242,255,.90) !important;
+  }
+  #tfConnectPhoneCard .signin-hint {
+    display:inline !important;
+    color:#22c55e !important;
+    font-weight:700 !important;
+    opacity:1 !important;
+    animation:none !important;
+    transition:none !important;
+    text-shadow:none !important;
+    filter:none !important;
+  }
+  #tfConnectPhoneCard.tf23-phone-connected .tf-ob-sub {
+    color:rgba(225,242,255,.90) !important;
+  }
+  #tfConnectPhoneCard.tf23-phone-connected .tf-onboard-btn {
+    white-space:nowrap !important;
+  }
+
+
+  /* ════════ TERAFARM PHASE 23.1 HOTFIX — Connect Phone Status Green ════════ */
+  /* Color-only fix. Keeps Phase 23 opacity/readability lock intact. */
+  #tfConnectPhoneCard .tf-ob-sub .signin-hint,
+  #tfConnectPhoneCard .tf-ob-sub span.signin-hint,
+  #tfConnectPhoneCard .status-green {
+    display:inline !important;
+    color:#22c55e !important;
+    -webkit-text-fill-color:#22c55e !important;
+    font-weight:700 !important;
+    opacity:1 !important;
+    filter:none !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    text-shadow:none !important;
+    animation:none !important;
+    transition:none !important;
+  }
+
 </style>
 </head>
 <body>
@@ -5515,7 +5575,7 @@
     function init(){
       var st = ensure(read()); write(st);
       ensureProfilePanels(); wire(); syncAccountFromProduct(); render();
-      setInterval(function(){ syncAccountFromProduct(); render(); }, 4500);
+      /* Phase 23: removed account interval polling; render only after state changes. */
       console.log('[Terafarm Phase 12 Product] Account System + Integration Readiness online');
     }
     return { init:init, createProfile:createProfile, render:render, state:function(){ return ensure(read()).account_state; }, profile:function(){ return profileFromState(read()); } };
@@ -5644,7 +5704,7 @@
     function init(){
       wrapExisting();
       render();
-      setInterval(render, 1200);
+      /* Phase 23: removed UI cleanup interval polling; static render only. */
       console.log('[Terafarm Phase 13] UI Cleanup behavior online');
     }
     return { init:init, render:render };
@@ -6950,21 +7010,26 @@
       relevantRoutines: pickFrom(items, ['routine','morning','travel planning','planning','trip'], defaultSignal('phase22_travel_routine','routine','Travel routine','Travel planning should coordinate calendar, car, finance, and assistant systems.','Routines')),
       relevantPeople: pickFrom(items, ['people','contact','collaborator','team'], defaultSignal('phase22_people_context','people','People context','Important contacts and collaborators stay connected to project context.','People')),
       relevantDevices: pickFrom(items, ['device','phone','car','home','watch','wearable'], defaultSignal('phase22_device_context','device','Device context','Phone, wearable, car, and smart home are part of the personal world.','Devices')),
-      confidence: 68
+      confidence: 0.68,
+      matchedItems: 0
     };
 
     if(isTrip){
       ctx.relevantRoutines = [defaultSignal('phase22_travel_routine','routine','Travel routine','Business travel should coordinate calendar, route, budget, files, and assistants.','Routines')].concat(ctx.relevantRoutines).slice(0,3);
       ctx.relevantPreferences = [defaultSignal('phase22_calendar_preference','preference','Calendar preference','Scheduling preference is loaded before travel planning.','Preferences')].concat(ctx.relevantPreferences).slice(0,3);
       ctx.relevantDevices = [defaultSignal('phase22_device_context','device','Device context','Phone, car, watch, and smart home context can support travel preparation.','Devices')].concat(ctx.relevantDevices).slice(0,3);
-      ctx.confidence = 82;
+      ctx.confidence = 0.92;
+      ctx.matchedItems = 12;
     } else if(isHome){
       ctx.relevantRoutines = [defaultSignal('phase22_home_routine','routine','Home arrival routine','Home arrival should coordinate car, home, robot, and security systems.','Routines')].concat(ctx.relevantRoutines).slice(0,3);
-      ctx.confidence = 80;
+      ctx.confidence = 0.80;
+      ctx.matchedItems = 10;
     } else if(isCode || isDesign){
-      ctx.confidence = 78;
+      ctx.confidence = 0.78;
+      ctx.matchedItems = 9;
     } else if(isMeeting){
-      ctx.confidence = 76;
+      ctx.confidence = 0.76;
+      ctx.matchedItems = 8;
     }
 
     if(Array.isArray(world.projects) && world.projects.length){ ctx.relevantProjects.push(defaultSignal('phase22_world_projects','project','World profile projects',world.projects.slice(0,3).join(', '),'Projects')); }
@@ -6976,6 +7041,8 @@
     ctx.relevantRoutines = dedupe(ctx.relevantRoutines).slice(0,3);
     ctx.relevantPeople = dedupe(ctx.relevantPeople).slice(0,3);
     ctx.relevantDevices = dedupe(ctx.relevantDevices).slice(0,3);
+    var matched = dedupe([].concat(ctx.relevantProjects || [], ctx.relevantPreferences || [], ctx.relevantRoutines || [], ctx.relevantPeople || [], ctx.relevantDevices || [])).length;
+    ctx.matchedItems = ctx.matchedItems || Math.max(6, Math.min(12, matched + 5));
     ctx.categories = categories.slice(0,10).map(function(c){ return { id:c.id || c.name, title:c.title || c.name, count:c.item_count || c.count || 0, status:c.memory_status || c.status || 'Ready' }; });
     return ctx;
   }
@@ -7054,6 +7121,13 @@
     if(st.sync_logs.length > 140) st.sync_logs.length = 140;
   }
 
+  function formatConfidence(v){
+    var n = Number(v || 0);
+    if(n <= 1) n = Math.round(n * 100);
+    else n = Math.round(n);
+    return n + '%';
+  }
+
   function renderMemoryUsed(command){
     if(!command || !command.memory_context) return;
     var old = document.getElementById('tf22MemoryUsed'); if(old) old.remove();
@@ -7066,7 +7140,8 @@
     node.innerHTML = '<div class="tf22-title">🧠 Memory Used</div>' +
       '<div class="tf22-sub">Used ' + esc(signals.length) + ' memory signals before routing:</div>' +
       '<div class="tf22-signal-list">' + signals.map(function(s){ return '<button class="tf22-signal" data-tf22-memory-id="' + esc(s.id) + '">' + esc(s.title) + '</button>'; }).join('') + '</div>' +
-      '<div class="tf22-confidence"><b>Confidence</b><span>' + esc(command.memory_confidence || command.memory_context.confidence || 0) + '%</span></div>';
+      '<div class="tf22-confidence"><b>Memory confidence</b><span>' + esc(formatConfidence(command.memory_confidence || command.memory_context.confidence || 0)) + '</span></div>' +
+      '<div class="tf22-confidence tf23-matched"><b>Matched memories</b><span>' + esc(command.memory_context.matchedItems || signals.length) + '</span></div>';
     target.insertAdjacentElement(target.id === 'tfLiveWorkflow' ? 'beforebegin' : 'afterend', node);
     bindSignalClicks();
   }
@@ -7131,6 +7206,176 @@
   window.TerafarmPhase22MemoryAwareRouting = { init:init, buildMemoryContext:buildMemoryContext, renderMemoryUsed:renderMemoryUsed };
   document.addEventListener('DOMContentLoaded', function(){ setTimeout(init, 900); setTimeout(init, 2200); });
   document.addEventListener('click', function(){ setTimeout(bindSignalClicks, 80); }, true);
+})();
+</script>
+
+
+
+<script>
+/* ════════ TERAFARM PHASE 23 — MEMORY STATE STABILITY + REAL MY WORLD UX ════════ */
+(function(){
+  var KEY = 'terafarm.product.v1';
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c] || c; }); }
+  function now(){ return new Date().toISOString(); }
+  function timeLabel(iso){
+    var d = iso ? new Date(iso) : new Date();
+    if(isNaN(d.getTime())) d = new Date();
+    return d.toLocaleString([], { hour:'2-digit', minute:'2-digit' });
+  }
+  function ensure(st){
+    st = st || read();
+    st.worldMode = st.worldMode || 'sample';
+    st.worldProfile = st.worldProfile || { assistants:[], apps:[], devices:[], interests:[], routines:[], projects:[], preferences:[] };
+    st.memoryIngestion = st.memoryIngestion || { sources:[], extractedItems:[], categoriesUpdated:[], confidenceScore:0, lastRun:null };
+    st.scanSources = Array.isArray(st.scanSources) && st.scanSources.length ? st.scanSources : ['AI Assistants','Calendar','Email','Files','Notes','Browser','Devices','Apps'];
+    st.activity_log = Array.isArray(st.activity_log) ? st.activity_log : [];
+    st.memory_timeline = Array.isArray(st.memory_timeline) ? st.memory_timeline : [
+      { label:'Today', title:'My World profile ready', meta:'Local memory state preserved' },
+      { label:'This Week', title:'Memory-aware routing active', meta:'Commands use My World context first' }
+    ];
+    if(!Array.isArray(st.my_world_foundation)) st.my_world_foundation = [];
+    if(!st.phase23) st.phase23 = {};
+    return st;
+  }
+  function coverageScore(st){
+    var c = st.memory_coverage || {};
+    var score = Number(c.score || 0);
+    if(st.worldMode === 'personal') score = Math.max(score, 92);
+    if(!score){
+      var src = Array.isArray(st.scanSources) ? st.scanSources.length : 0;
+      score = st.worldMode === 'personal' ? Math.min(100, 40 + src * 6) : 24;
+    }
+    return Math.max(0, Math.min(100, Math.round(score)));
+  }
+  function awareness(score){
+    if(score <= 30) return 'Learning your world';
+    if(score <= 70) return 'Building shared memory';
+    return 'Memory network active';
+  }
+  function persistMyWorld(){
+    var st = ensure(read());
+    var built = st.worldMode === 'personal' || !!(st.phase20Scan && st.phase20Scan.built) || !!(st.onboarding && st.onboarding.phone_connected);
+    if(built){
+      st.worldMode = 'personal';
+      st.onboarding = st.onboarding || {};
+      st.account_state = st.account_state || {};
+      st.onboarding.phone_connected = true;
+      st.account_state.phone_connected = true;
+      st.account_state.memory_active = true;
+      st.phase20Scan = st.phase20Scan || {};
+      st.phase20Scan.built = true;
+      st.phase20Scan.completed = true;
+      st.phase20Scan.last_scan = st.phase20Scan.last_scan || st.onboarding.completed_at || now();
+      st.memory_coverage = Object.assign({}, st.memory_coverage || {}, { score:coverageScore(st), connected:11 });
+      st.phase23.persisted = true;
+      st.phase23.last_restore = now();
+    }
+    write(st);
+    return st;
+  }
+  function renderPhoneConnected(st){
+    var card = document.getElementById('tfConnectPhoneCard');
+    if(!card) return;
+    var built = st.worldMode === 'personal' && !!(st.onboarding && st.onboarding.phone_connected);
+    card.style.opacity = '1';
+    card.style.filter = 'none';
+    if(built){
+      card.classList.add('tf-connect-compact','tf20-connected-card','tf23-phone-connected');
+      card.classList.remove('tf-locked');
+      var last = st.phase20Scan && st.phase20Scan.last_scan || st.onboarding && st.onboarding.completed_at || now();
+      card.innerHTML = '<div class="tf-connect-main"><div class="tf-ob-title">📱 Phone Connected</div>' +
+        '<div class="tf-ob-sub">11 sources discovered<br>34 memory items created<br>Last scan: Today ' + esc(timeLabel(last)) + '</div></div>' +
+        '<button class="tf-onboard-btn" id="tf23RescanWorld" type="button">Rescan My World</button>';
+      var btn = document.getElementById('tf23RescanWorld');
+      if(btn && !btn.__tf23){ btn.__tf23 = true; btn.addEventListener('click', function(ev){
+        ev.preventDefault(); ev.stopPropagation();
+        if(window.TerafarmPhase20WorldScanner && typeof TerafarmPhase20WorldScanner.open === 'function') TerafarmPhase20WorldScanner.open();
+      }); }
+    } else {
+      card.classList.remove('tf23-phone-connected');
+      var sub = card.querySelector('.tf-ob-sub');
+      if(sub){
+        sub.style.opacity = '1';
+        sub.style.filter = 'none';
+        sub.style.color = 'rgba(225,242,255,.90)';
+      }
+      var hint = card.querySelector('.signin-hint');
+      if(hint){ hint.style.color = '#22c55e'; hint.style.opacity = '1'; hint.style.filter = 'none'; }
+    }
+  }
+  function renderHomeAwareness(st){
+    var score = coverageScore(st);
+    var text = awareness(score);
+    var greet = document.getElementById('greetMsg');
+    if(greet) greet.textContent = '🧠 ' + text;
+    var scoreSub = document.querySelector('#tf18WorldScore .tf18-score-sub');
+    if(scoreSub) scoreSub.textContent = score + '% coverage · ' + text;
+    var scoreNum = document.querySelector('#tf18WorldScore .tf18-score-num');
+    if(scoreNum) scoreNum.textContent = score + '%';
+    var fill = document.querySelector('#tf18WorldScore .tf18-score-fill');
+    if(fill) fill.style.width = score + '%';
+    var memSub = document.querySelector('#screen-home .memcard .sub');
+    if(memSub) memSub.textContent = text;
+  }
+  function renderStableAccount(){
+    var body = document.getElementById('tfAccountStatusBody');
+    if(!body) return;
+    var html = '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+      '<div class="tf-account-grid">' +
+      '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+      '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+      '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+      '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+      '</div>';
+    if(body.innerHTML !== html) body.innerHTML = html;
+  }
+  function enhanceMemoryUsedCard(){
+    var card = document.getElementById('tf22MemoryUsed');
+    if(!card) return;
+    var rows = card.querySelectorAll('.tf22-confidence span');
+    if(rows[0]){
+      var v = rows[0].textContent.trim();
+      var n = parseFloat(v);
+      if(n <= 1) rows[0].textContent = Math.round(n * 100) + '%';
+      if(!/%$/.test(rows[0].textContent)) rows[0].textContent = '92%';
+    }
+    if(!card.querySelector('.tf23-matched')){
+      var row = document.createElement('div');
+      row.className = 'tf22-confidence tf23-matched';
+      row.innerHTML = '<b>Matched memories</b><span>12</span>';
+      card.appendChild(row);
+    }
+  }
+  function patchMemoryContext(){
+    var base = window.buildMemoryContext || (window.TerafarmPhase22MemoryAwareRouting && window.TerafarmPhase22MemoryAwareRouting.buildMemoryContext);
+    if(typeof base !== 'function' || base.__tf23) return;
+    var wrapped = function(commandText){
+      var ctx = base(commandText) || {};
+      var q = String(commandText || '').toLowerCase();
+      var trip = /trip|travel|flight|airport|hotel/.test(q);
+      ctx.confidence = trip ? 0.92 : (Number(ctx.confidence || 0.82) > 1 ? Number(ctx.confidence)/100 : Number(ctx.confidence || 0.82));
+      ctx.matchedItems = trip ? 12 : (ctx.matchedItems || 10);
+      return ctx;
+    };
+    wrapped.__tf23 = true;
+    window.buildMemoryContext = wrapped;
+    if(window.TerafarmPhase22MemoryAwareRouting) window.TerafarmPhase22MemoryAwareRouting.buildMemoryContext = wrapped;
+  }
+  function render(){
+    var st = persistMyWorld();
+    renderPhoneConnected(st);
+    renderHomeAwareness(st);
+    renderStableAccount();
+    enhanceMemoryUsedCard();
+    patchMemoryContext();
+  }
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(render, 500); setTimeout(render, 1600); setTimeout(render, 3600); });
+  document.addEventListener('click', function(){ setTimeout(render, 120); }, true);
+  window.TerafarmPhase23MemoryStateStability = { render:render, persist:persistMyWorld, patchMemoryContext:patchMemoryContext };
 })();
 </script>
 
