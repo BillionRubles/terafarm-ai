@@ -1226,7 +1226,7 @@
   .tf-mode-card b { display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(130,195,255,.78); margin-bottom:4px; }
   .tf-mode-card span { display:block; font-size:12px; color:rgba(220,238,255,.78); line-height:1.35; }
   .tf-onboard-card.tf-locked { opacity:.72; }
-  .tf-onboard-card.tf-locked .tf-ob-sub::after { content:' Sign in to activate.'; color:rgba(130,195,255,.95); }
+  .tf-onboard-card.tf-locked .tf-ob-sub::after { content:'' !important; display:none !important; }
 
 
 
@@ -1303,6 +1303,43 @@
   .tf-auth-options { display:grid; gap:8px; margin:10px 0 4px; }
   .tf-auth-option { width:100%; padding:11px 12px; border-radius:12px; border:1px solid rgba(80,140,255,.14); background:rgba(13,20,32,.92); color:rgba(235,248,255,.92); font-size:13px; font-weight:700; cursor:pointer; }
   .tf-auth-option:active { opacity:.85; transform:scale(.99); }
+
+
+
+  /* ════════ TERAFARM PHASE 15.2 — Connect Phone Static Fix ════════ */
+  /* Bug fix only: Connect Phone card, button, wrapper, and hint stay fully static. */
+  #tfConnectPhoneCard,
+  #tfConnectPhoneCard *,
+  #tfConnectPhoneCard::before,
+  #tfConnectPhoneCard::after,
+  #tfConnectPhoneCard .tf-ob-title,
+  #tfConnectPhoneCard .tf-ob-sub,
+  #tfConnectPhoneCard .tf-onboard-btn,
+  #tfConnectPhoneCard.tf-locked,
+  #tfConnectPhoneCard.tf-locked .tf-ob-sub,
+  #tfConnectPhoneCard.tf-locked .tf-ob-sub::before,
+  #tfConnectPhoneCard.tf-locked .tf-ob-sub::after {
+    animation:none !important;
+    transition:none !important;
+    filter:none !important;
+    text-shadow:none !important;
+  }
+  #tfConnectPhoneCard.tf-locked .tf-ob-sub::after {
+    content:"" !important;
+    display:none !important;
+  }
+  #tfConnectPhoneCard .signin-hint {
+    display:inline !important;
+    margin:0 !important;
+    color:#22c55e !important;
+    font-size:inherit !important;
+    font-weight:700 !important;
+    letter-spacing:inherit !important;
+    text-shadow:none !important;
+    animation:none !important;
+    transition:none !important;
+    filter:none !important;
+  }
 
 </style>
 </head>
@@ -1519,6 +1556,21 @@
     <div class="act" data-act="Home AI"><div class="act-ico" style="background:rgba(90,50,160,.35)">🏠</div>
       <div class="act-body"><div class="act-name">Home AI</div><div class="act-desc">Device context connected</div></div>
       <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">9m ago</div></div>
+      <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+
+    <div class="act" data-act="Google Drive"><div class="act-ico" style="background:rgba(45,95,160,.35)">📂</div>
+      <div class="act-body"><div class="act-name">Drive</div><div class="act-desc">Files and document context ready</div></div>
+      <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">10m ago</div></div>
+      <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+
+    <div class="act" data-act="Tesla"><div class="act-ico" style="background:rgba(120,80,15,.4)">🚗</div>
+      <div class="act-body"><div class="act-name">Car</div><div class="act-desc">Route and arrival context ready</div></div>
+      <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">11m ago</div></div>
+      <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+
+    <div class="act" data-act="Robot"><div class="act-ico" style="background:rgba(60,40,170,.35)">🤖</div>
+      <div class="act-body"><div class="act-name">Robot</div><div class="act-desc">Home task context ready</div></div>
+      <div class="act-right"><div class="act-live"><span class="dot"></span>Active</div><div class="act-time">12m ago</div></div>
       <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
 
     <!-- MEMORY STATUS -->
@@ -4456,7 +4508,7 @@
       var card = document.createElement('div');
       card.id = 'tfConnectPhoneCard';
       card.className = 'tf-onboard-card';
-      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
       anchor.parentNode.insertBefore(card, anchor.nextSibling);
       card.querySelector('button').addEventListener('click', open);
       refreshHomeCard();
@@ -5442,7 +5494,7 @@
       } else {
         card.classList.remove('tf-connect-compact');
         if(!card.querySelector('.tf-ob-title') || card.querySelector('.tf-ob-title').textContent.indexOf('Connect Phone') === -1){
-          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
           var btn = card.querySelector('button'); if(btn) btn.addEventListener('click', openPhone);
         }
         card.classList.toggle('tf-locked', !signed);
@@ -5532,13 +5584,14 @@
       {id:'home_assistant', name:'Home Assistant', provider:'Home Assistant', category:'Smart Home', icon:'🏠', actions:['control_lights','set_climate','away_mode']},
       {id:'tesla', name:'Tesla', provider:'Tesla / Car', category:'Vehicle', icon:'🚗', actions:['prepare_route','check_charge','start_climate']},
       {id:'wearables', name:'Wearables', provider:'Apple / Google / Samsung', category:'Health', icon:'⌚', actions:['read_activity','read_sleep','health_context']},
+      {id:'robot', name:'Robot', provider:'Robot Device', category:'Robotics', icon:'🤖', actions:['pause_robot','resume_tasks','sync_home_context']},
       {id:'custom_api', name:'Custom API', provider:'External', category:'Developer', icon:'{}', actions:['call_endpoint','send_context','receive_events']}
     ];
     var COMMAND_SYSTEMS = {
       plan_trip:['gemini','google_calendar','gmail','google_drive','tesla','chatgpt'],
       review_code:['chatgpt','claude','github','vercel'],
       check_design:['chatgpt','claude','gemini','google_drive'],
-      coming_home:['home_assistant','tesla','wearables'],
+      coming_home:['home_assistant','tesla','wearables','robot'],
       schedule_meeting:['google_calendar','gmail','chatgpt'],
       summarize_team:['gmail','google_calendar','chatgpt','gemini'],
       send_flowers:['google_calendar','gmail','chatgpt'],
@@ -5734,14 +5787,34 @@
     }
     function renderPanels(){
       var st = ensure(read());
-      var label = null; document.querySelectorAll('#screen-home .seclbl .t').forEach(function(t){ if((t.textContent||'').indexOf('CONNECTED AI SYSTEMS') !== -1) label = t.closest('.seclbl'); });
-      if(label && !document.getElementById('tf14ConnectRow')) label.insertAdjacentHTML('afterend', '<div id="tf14ConnectRow" class="tf14-connect-row"><button type="button" class="tf14-connect-btn" id="tf14ConnectBtn">+ Connect System</button></div><div id="tf14MemoryPanel" class="tf14-memory-panel"></div><div id="tf14FeedPanel" class="tf14-feed-panel"></div>');
-      var btn = document.getElementById('tf14ConnectBtn'); if(btn && !btn.__tf14){ btn.__tf14 = true; btn.addEventListener('click', openConnect); }
+
+      ['tf14ConnectRow','tf14MemoryPanel','tf14FeedPanel'].forEach(function(id){
+        var existing = document.getElementById(id);
+        if(existing && existing.closest && existing.closest('#screen-home')) existing.remove();
+      });
+
+      var agentsHead = document.querySelector('#screen-agents .scr-head');
+      if(agentsHead && !document.getElementById('tf14IntegrationHub')){
+        agentsHead.insertAdjacentHTML('afterend',
+          '<div id="tf14IntegrationHub">' +
+          '<div class="seclbl"><span class="t">INTEGRATIONS</span><span class="a">Manage</span></div>' +
+          '<div id="tf14ConnectRow" class="tf14-connect-row"><button type="button" class="tf14-connect-btn" id="tf14ConnectBtn">+ Connect System</button></div>' +
+          '<div id="tf14MemoryPanel" class="tf14-memory-panel"></div>' +
+          '<div id="tf14FeedPanel" class="tf14-feed-panel"></div>' +
+          '</div>'
+        );
+      }
+
+      var btn = document.getElementById('tf14ConnectBtn');
+      if(btn && !btn.__tf14){ btn.__tf14 = true; btn.addEventListener('click', openConnect); }
+
       var active = (st.integration_systems || []).filter(function(s){ return s.connection_status === 'connected'; });
       var shared = active.reduce(function(n,s){ return n + Number(s.memory_items_shared || 0); }, 0);
       var last = active.map(function(s){ return s.last_sync; }).filter(Boolean).sort().pop();
-      var panel = document.getElementById('tf14MemoryPanel'); if(panel) panel.innerHTML = '<div class="tf14-panel-title">Shared Memory Visibility</div><div class="tf14-panel-sub">Systems using memory, shared items, sync health, and last memory sync.</div><div class="tf14-kpi-grid"><div class="tf14-kpi"><b>Systems Using Memory</b><span>'+esc(active.length)+'</span></div><div class="tf14-kpi"><b>Memory Items Shared</b><span>'+esc(shared || (st.memory_items||[]).length)+'</span></div><div class="tf14-kpi"><b>Last Memory Sync</b><span>'+esc(short(last))+'</span></div><div class="tf14-kpi"><b>Sync Health</b><span>'+esc(active.some(function(s){return s.sync_health==='Restricted';}) ? 'Restricted' : 'Healthy')+'</span></div></div>';
-      var feedPanel = document.getElementById('tf14FeedPanel'); if(feedPanel){
+      var panel = document.getElementById('tf14MemoryPanel');
+      if(panel) panel.innerHTML = '<div class="tf14-panel-title">Shared Memory Visibility</div><div class="tf14-panel-sub">Systems using memory, shared items, sync health, and last memory sync.</div><div class="tf14-kpi-grid"><div class="tf14-kpi"><b>Systems Using Memory</b><span>'+esc(active.length)+'</span></div><div class="tf14-kpi"><b>Memory Items Shared</b><span>'+esc(shared || (st.memory_items||[]).length)+'</span></div><div class="tf14-kpi"><b>Last Memory Sync</b><span>'+esc(short(last))+'</span></div><div class="tf14-kpi"><b>Sync Health</b><span>'+esc(active.some(function(s){return s.sync_health==='Restricted';}) ? 'Restricted' : 'Healthy')+'</span></div></div>';
+      var feedPanel = document.getElementById('tf14FeedPanel');
+      if(feedPanel){
         var items = (st.integration_activity || []).slice(0,6);
         feedPanel.innerHTML = '<div class="tf14-panel-title">Activity Feed</div>' + (items.length ? items.map(function(a){ return '<div class="tf14-feed-item"><div class="tf14-feed-title">'+esc(a.title)+'</div><div class="tf14-feed-meta">'+esc(a.detail)+' · '+esc(short(a.created_at))+'</div></div>'; }).join('') : '<div class="tf14-feed-item"><div class="tf14-feed-title">Integration hub ready</div><div class="tf14-feed-meta">Run a command to create persistent activity.</div></div>');
       }
@@ -5870,7 +5943,7 @@
         if(rescan && !rescan.__tf16){ rescan.__tf16 = true; rescan.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
       } else {
         card.classList.remove('tf-connect-compact','tf-locked');
-        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" id="tf16ConnectPhoneBtn" type="button">Connect Phone</button>';
+        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" id="tf16ConnectPhoneBtn" type="button">Connect Phone</button>';
         var btn = document.getElementById('tf16ConnectPhoneBtn');
         if(btn && !btn.__tf16){ btn.__tf16 = true; btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
       }
@@ -5944,5 +6017,72 @@
   });
 
 </script>
+
+
+<script>
+/* Terafarm Phase 17 guard: Home clarity cleanup after all phase scripts run. */
+(function(){
+  function cleanHomeClarity(){
+    ['tf14ConnectRow','tf14MemoryPanel','tf14FeedPanel'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el && el.closest && el.closest('#screen-home')) el.remove();
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    cleanHomeClarity();
+    setTimeout(cleanHomeClarity, 50);
+    setTimeout(cleanHomeClarity, 500);
+  });
+  window.TerafarmPhase17HomeClarity = { clean: cleanHomeClarity };
+})();
+
+
+  // ════════ TERAFARM PHASE 15.2: CONNECT PHONE STATIC UI FIX ════════
+  // Bug fix only: restore inline green hint and remove every Connect Phone animation/glow.
+  (function(){
+    function applyStaticConnectPhoneFix(){
+      var card = document.getElementById('tfConnectPhoneCard');
+      if(!card) return;
+      card.style.animation = 'none';
+      card.style.transition = 'none';
+      card.style.filter = 'none';
+      card.style.textShadow = 'none';
+      var btn = card.querySelector('.tf-onboard-btn');
+      if(btn){
+        btn.style.animation = 'none';
+        btn.style.transition = 'none';
+        btn.style.filter = 'none';
+        btn.style.textShadow = 'none';
+      }
+      var sub = card.querySelector('.tf-ob-sub');
+      if(!sub) return;
+      var isConnected = /Systems Detected|Memory Profile Active|Digital identity initialized/i.test(sub.textContent || '');
+      if(isConnected) return;
+      sub.innerHTML = 'Scan allowed apps, AI systems, devices, and cloud tools to build My World. <span class="signin-hint">Sign in to activate.</span>';
+      var hint = sub.querySelector('.signin-hint');
+      if(hint){
+        hint.style.display = 'inline';
+        hint.style.margin = '0';
+        hint.style.color = '#22c55e';
+        hint.style.fontWeight = '700';
+        hint.style.animation = 'none';
+        hint.style.transition = 'none';
+        hint.style.filter = 'none';
+        hint.style.textShadow = 'none';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(applyStaticConnectPhoneFix, 0);
+      setTimeout(applyStaticConnectPhoneFix, 250);
+      setTimeout(applyStaticConnectPhoneFix, 900);
+    });
+    var observer = new MutationObserver(function(){ applyStaticConnectPhoneFix(); });
+    document.addEventListener('DOMContentLoaded', function(){
+      observer.observe(document.body, { childList:true, subtree:true });
+    });
+    window.TerafarmPhase152ConnectPhoneStaticFix = { apply: applyStaticConnectPhoneFix };
+  })();
+</script>
+
 </body>
 </html>
