@@ -1228,6 +1228,62 @@
   .tf-onboard-card.tf-locked { opacity:.72; }
   .tf-onboard-card.tf-locked .tf-ob-sub::after { content:' Sign in to activate.'; color:rgba(130,195,255,.95); }
 
+
+
+  /* ════════ TERAFARM PHASE 13 — UI CLEANUP BEHAVIOR ════════ */
+  .tf-phase13-hidden { display:none !important; }
+  .tf-account-action { width:100%; margin-top:12px; padding:12px 14px; border:0; border-radius:13px; background:linear-gradient(135deg,#176ee8,#2f8cff); color:#fff; font-size:14px; font-weight:800; cursor:pointer; box-shadow:0 4px 18px rgba(47,140,255,.22); }
+  .tf-account-action:active { transform:scale(.98); opacity:.9; }
+  #tfConnectPhoneCard.tf-connect-compact { padding:10px 12px !important; margin:10px 0 12px !important; display:flex; align-items:center; gap:10px; justify-content:space-between; }
+  #tfConnectPhoneCard.tf-connect-compact .tf-connect-main { flex:1; min-width:0; }
+  #tfConnectPhoneCard.tf-connect-compact .tf-ob-title { font-size:14px !important; font-weight:800; margin:0 0 3px !important; }
+  #tfConnectPhoneCard.tf-connect-compact .tf-ob-sub { font-size:11.5px !important; line-height:1.35 !important; margin:0 !important; color:rgba(165,205,245,.66); }
+  #tfConnectPhoneCard.tf-connect-compact .tf-onboard-btn { width:auto !important; margin:0 !important; padding:9px 11px !important; border-radius:11px !important; font-size:12px !important; flex:0 0 auto; box-shadow:none !important; }
+
+
+
+  /* ════════ TERAFARM PHASE 14 — Real Integration Hub ════════ */
+  .tf14-status-badge { display:inline-flex; align-items:center; gap:5px; padding:4px 8px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.04em; border:1px solid rgba(80,140,255,.16); color:rgba(220,238,255,.88); background:rgba(13,20,32,.72); white-space:nowrap; }
+  .tf14-status-badge.connected { color:#22c55e; background:rgba(34,197,94,.10); border-color:rgba(34,197,94,.24); }
+  .tf14-status-badge.syncing { color:#67e8f9; background:rgba(103,232,249,.09); border-color:rgba(103,232,249,.20); }
+  .tf14-status-badge.permission_required { color:#f59e0b; background:rgba(245,158,11,.10); border-color:rgba(245,158,11,.22); }
+  .tf14-status-badge.disconnected { color:#94a3b8; background:rgba(148,163,184,.08); border-color:rgba(148,163,184,.18); }
+  .tf14-status-badge.error { color:#ef4444; background:rgba(239,68,68,.10); border-color:rgba(239,68,68,.22); }
+  .tf14-mini { font-size:11px; color:rgba(150,190,235,.52); margin-top:4px; line-height:1.35; }
+  .tf14-connect-row { margin:10px 0 10px; }
+  .tf14-connect-btn { width:100%; padding:12px 14px; border-radius:13px; border:1px solid rgba(80,140,255,.16); background:rgba(17,25,39,.92); color:rgba(235,248,255,.92); font-size:14px; font-weight:800; cursor:pointer; }
+  .tf14-connect-btn:active { transform:scale(.99); background:rgba(70,120,255,.12); }
+  .tf14-memory-panel, .tf14-feed-panel { background:#111927; border:1px solid rgba(80,140,255,.12); border-radius:15px; padding:14px 15px; margin:10px 0 12px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+  .tf14-panel-title { font-size:14px; font-weight:800; color:rgba(240,250,255,.96); margin-bottom:8px; }
+  .tf14-panel-sub { font-size:12px; color:rgba(165,205,245,.62); line-height:1.4; }
+  .tf14-kpi-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px; }
+  .tf14-kpi { background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.10); border-radius:11px; padding:9px; }
+  .tf14-kpi b { display:block; font-size:10px; letter-spacing:.08em; color:rgba(150,190,235,.55); text-transform:uppercase; margin-bottom:4px; }
+  .tf14-kpi span { display:block; font-size:12px; color:rgba(235,248,255,.9); line-height:1.3; }
+  .tf14-feed-item { padding:9px 0; border-top:1px solid rgba(255,255,255,.055); }
+  .tf14-feed-item:first-child { border-top:0; }
+  .tf14-feed-title { font-size:13px; font-weight:700; color:rgba(235,248,255,.92); }
+  .tf14-feed-meta { font-size:11px; color:rgba(150,190,235,.52); margin-top:2px; line-height:1.35; }
+  .tf14-modal { display:none; position:fixed; inset:0; z-index:190; background:rgba(0,8,20,.84); backdrop-filter:blur(14px); align-items:flex-end; justify-content:center; }
+  .tf14-modal.open { display:flex; }
+  .tf14-sheet { width:100%; max-width:460px; max-height:88vh; overflow:auto; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:none; border-radius:26px 26px 0 0; padding:24px 20px 34px; position:relative; box-shadow:0 -18px 60px rgba(0,20,60,.26); }
+  .tf14-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(13,20,32,.92); border:1px solid rgba(80,140,255,.14); color:#dbeafe; font-size:20px; line-height:1; cursor:pointer; }
+  .tf14-sheet h3 { font-size:21px; color:#fff; margin:0 42px 6px 0; }
+  .tf14-sheet p { color:rgba(165,205,245,.68); font-size:14px; line-height:1.5; margin-bottom:14px; }
+  .tf14-perm-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:11px 0; border-top:1px solid rgba(255,255,255,.055); }
+  .tf14-perm-row:first-child { border-top:0; }
+  .tf14-perm-text b { display:block; font-size:13px; color:rgba(235,248,255,.92); }
+  .tf14-perm-text span { display:block; font-size:11px; color:rgba(150,190,235,.52); margin-top:2px; }
+  .tf14-toggle { width:48px; height:26px; border-radius:999px; border:1px solid rgba(80,140,255,.18); background:rgba(148,163,184,.14); position:relative; cursor:pointer; flex:0 0 auto; }
+  .tf14-toggle::after { content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:rgba(220,238,255,.86); transition:.18s; }
+  .tf14-toggle.on { background:rgba(34,197,94,.20); border-color:rgba(34,197,94,.34); }
+  .tf14-toggle.on::after { left:25px; background:#22c55e; }
+  .tf14-system-option { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px; border-radius:12px; margin-bottom:8px; background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.12); cursor:pointer; }
+  .tf14-system-option:active { background:rgba(70,120,255,.12); }
+  .tf14-system-option b { font-size:14px; color:rgba(235,248,255,.92); }
+  .tf14-system-option span { font-size:11px; color:rgba(150,190,235,.56); }
+  .tf14-pill { display:inline-flex; margin:4px 5px 0 0; padding:5px 8px; border-radius:999px; background:rgba(58,143,255,.10); border:1px solid rgba(58,143,255,.16); color:rgba(218,238,255,.9); font-size:11px; font-weight:700; }
+
 </style>
 </head>
 <body>
@@ -1797,6 +1853,51 @@
   function $(s){ return document.querySelector(s); }
   function $$(s){ return document.querySelectorAll(s); }
 
+  // ════════ TERAFARM PHASE 15 — LOAD STATE BUG FIX ════════
+  // Startup guard: modals and scans never auto-open during boot.
+  // Transient UI state is cleared on every fresh page load.
+  var appBooting = true;
+  window.appBooting = true;
+  window.connectPhoneModalOpen = false;
+  window.accountModalOpen = false;
+  window.scanModalOpen = false;
+  window.tfPendingConnectPhoneAfterAccount = false;
+
+  function tfSafeReadProductState(){
+    try { return JSON.parse(localStorage.getItem('terafarm.product.v1') || '{}') || {}; } catch(e){ return {}; }
+  }
+  function tfSafeWriteProductState(st){
+    try { localStorage.setItem('terafarm.product.v1', JSON.stringify(st || {})); } catch(e){}
+  }
+  function tfResetTransientUiState(){
+    var st = tfSafeReadProductState();
+    st.scan_in_progress = false;
+    st.onboarding_open = false;
+    st.connect_modal_open = false;
+    st.scanModalOpen = false;
+    st.connectPhoneModalOpen = false;
+    st.accountModalOpen = false;
+    if(!st.onboarding) st.onboarding = { phone_connected:false, scan_state:'Ready to connect', detected_systems:[] };
+    if(!st.onboarding.phone_connected){
+      st.onboarding.scan_state = 'Ready to connect';
+      st.onboarding.detected_systems = [];
+      delete st.onboarding.current_step;
+      delete st.onboarding.scan_running;
+      delete st.onboarding.open;
+    }
+    tfSafeWriteProductState(st);
+  }
+  function tfCloseAllModals(){
+    ['modal-ov','tfOnboardModal','cmd-ov','menu-ov','tfMemoryDetail','tfServiceDetail','tfConnectorDetail','tfCommandDetail','tf14SystemModal'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.classList.remove('open');
+    });
+    window.connectPhoneModalOpen = false;
+    window.accountModalOpen = false;
+    window.scanModalOpen = false;
+  }
+  tfResetTransientUiState();
+
   // ── Phase 2: centralized app state ──
   const AppState = {
     currentScreen: 'home',
@@ -2045,11 +2146,13 @@
 
   // ── Modal ──
   function openModal(){
+    if(window.appBooting) return;
     $('#modal-form').style.display = '';
     $('#modal-succ').style.display = 'none';
     $('#modal-ov').classList.add('open');
+    window.accountModalOpen = true;
   }
-  function closeModal(){ $('#modal-ov').classList.remove('open'); }
+  function closeModal(){ var m = $('#modal-ov'); if(m) m.classList.remove('open'); window.accountModalOpen = false; }
 
   // ── Bot speaking states + voice sequence ──
   function setBotState(s){
@@ -4324,8 +4427,8 @@
       document.getElementById('tfOnboardClose').addEventListener('click', close);
       document.getElementById('tfStartPhoneScan').addEventListener('click', startScan);
     }
-    function open(){ ensureModal(); document.getElementById('tfOnboardModal').classList.add('open'); }
-    function close(){ var m=document.getElementById('tfOnboardModal'); if(m) m.classList.remove('open'); }
+    function open(){ if(window.appBooting) return; ensureModal(); var m=document.getElementById('tfOnboardModal'); if(m){ m.classList.add('open'); window.connectPhoneModalOpen = true; } }
+    function close(){ var m=document.getElementById('tfOnboardModal'); if(m) m.classList.remove('open'); window.connectPhoneModalOpen = false; window.scanModalOpen = false; }
     function ensureHomeCard(){
       if(document.getElementById('tfConnectPhoneCard')) return;
       var anchor = document.querySelector('#screen-home .sm-pill');
@@ -4441,6 +4544,8 @@
       }
     }
     function startScan(){
+      if(window.appBooting) return;
+      window.scanModalOpen = true;
       ensureModal();
       var btn = document.getElementById('tfStartPhoneScan');
       if(btn){ btn.disabled = true; btn.textContent = 'Scanning...'; }
@@ -4462,10 +4567,17 @@
       }, 10000);
     }
     function maybeOpenFirstRun(){
-      var st = ensureArrays(read());
-      if(!(st.onboarding && st.onboarding.phone_connected)) setTimeout(open, 450);
+      // Phase 15: never auto-open Connect Phone on page load.
+      return;
     }
-    function init(){ ensureModal(); ensureHomeCard(); renderModalFromState(); maybeOpenFirstRun(); console.log('[Terafarm Phase 9] Onboarding + Connect Phone Simulation online'); }
+    function init(){
+      ensureModal();
+      close();
+      ensureHomeCard();
+      renderModalFromState();
+      close();
+      console.log('[Terafarm Phase 9] Onboarding + Connect Phone product flow online');
+    }
     return { init:init, open:open, startScan:startScan, refresh:refreshAll };
   })();
 
@@ -5212,6 +5324,14 @@
           var p = (document.getElementById('m-pass') || {}).value || '';
           if(!n.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.trim()) || p.length < 6) return;
           createProfile(n.trim(), em.trim());
+          if(window.tfPendingConnectPhoneAfterAccount){
+            window.tfPendingConnectPhoneAfterAccount = false;
+            if(typeof closeModal === 'function') closeModal();
+            setTimeout(function(){
+              if(window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.open === 'function') TerafarmPhase9Onboarding.open();
+              if(window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.startScan === 'function') TerafarmPhase9Onboarding.startScan();
+            }, 120);
+          }
           setTimeout(render, 2500);
         });
       }
@@ -5256,183 +5376,404 @@
     setTimeout(function(){ if(window.TerafarmPhase12ProductAccounts) TerafarmPhase12ProductAccounts.init(); }, 40);
   });
 
-</script>
 
-
-  <!-- ════════ TERAFARM PHASE 13 — HOME ONBOARDING CLEANUP ════════ -->
-  <style>
-    /* Behavior/visibility only: account belongs to Profile, Home keeps one onboarding action. */
-    #tfHomeAccountCard { display:none !important; }
-    #tfConnectPhoneCard.tf-phone-compact { padding:10px 12px !important; margin:10px 0 12px !important; }
-    #tfConnectPhoneCard.tf-phone-compact .tf-ob-title { font-size:15px !important; }
-    #tfConnectPhoneCard.tf-phone-compact .tf-ob-sub { font-size:12px !important; line-height:1.35 !important; margin-top:3px !important; }
-    #tfConnectPhoneCard.tf-phone-compact .tf-onboard-btn { margin-top:8px !important; padding:9px 10px !important; font-size:13px !important; }
-  </style>
-  <script>
-  // Phase 13 Home Onboarding Cleanup
-  // Product behavior only. Removes Account clutter from Home, routes registration
-  // through Connect Phone, then continues the phone scan automatically.
-  window.TerafarmPhase13HomeOnboardingCleanup = (function(){
+  // ════════ TERAFARM PHASE 13: UI CLEANUP BEHAVIOR ════════
+  // Product behavior only: Home auto-collapses onboarding cards as account + phone state progresses.
+  window.TerafarmPhase13UICleanup = (function(){
     var KEY = 'terafarm.product.v1';
-    var pendingPhoneScan = false;
     function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
-    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
     function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
     function short(isoText){ if(!isoText) return '—'; var d = new Date(isoText); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
-    function isSigned(st){ return !!(st.account_state && st.account_state.signed_in); }
-    function isPhoneConnected(st){ return !!(st.onboarding && st.onboarding.phone_connected); }
-    function accountType(st){ if(!(st.account_state && st.account_state.signed_in)) return 'Guest'; var p = st.account_profile || {}; if(String(p.plan || '').toLowerCase().indexOf('pro') >= 0) return 'Pro'; return 'Free'; }
-    function removeHomeAccount(){ var c = document.getElementById('tfHomeAccountCard'); if(c) c.remove(); }
-    function closeAccountModal(){ var m = document.getElementById('modal-ov'); if(m) m.classList.remove('open'); }
-    function openAccountModal(){ if(typeof openModal === 'function') openModal(); else { var m = document.getElementById('modal-ov'); if(m) m.classList.add('open'); } }
-    function openPhoneModal(){ if(window.TerafarmPhase9Onboarding && typeof window.TerafarmPhase9Onboarding.open === 'function') window.TerafarmPhase9Onboarding.open(); }
-    function startPhoneScan(){
-      openPhoneModal();
-      setTimeout(function(){
-        if(window.TerafarmPhase9Onboarding && typeof window.TerafarmPhase9Onboarding.startScan === 'function') window.TerafarmPhase9Onboarding.startScan();
-        setTimeout(render, 200);
-        setTimeout(render, 10550);
-      }, 250);
+    function accountType(st){ if(st.account_profile && /pro/i.test(st.account_profile.plan || '')) return 'Pro'; if(st.account_state && st.account_state.signed_in) return 'Free'; return 'Guest'; }
+    function stats(st){
+      var connected = (st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
+      var mem = (st.memory_items || []).length || 0;
+      var detected = (st.onboarding && st.onboarding.detected_systems || []).length || connected || 0;
+      var last = (st.onboarding && st.onboarding.completed_at) || (st.account_profile && st.account_profile.last_active) || null;
+      return { connected:connected, mem:mem, detected:detected, last:last };
     }
-    function renderConnectPhoneCard(){
-      removeHomeAccount();
+    function openAccount(){ if(window.appBooting) return; if(typeof openModal === 'function') openModal(); }
+    function openPhone(){
+      if(window.appBooting) return;
+      var st = read();
+      var signed = !!(st.account_state && st.account_state.signed_in);
+      if(!signed){
+        window.tfPendingConnectPhoneAfterAccount = true;
+        var m = document.getElementById('tfOnboardModal'); if(m) m.classList.remove('open');
+        if(typeof openModal === 'function') openModal();
+        return;
+      }
+      if(window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.open === 'function') TerafarmPhase9Onboarding.open();
+      else { var m2 = document.getElementById('tfOnboardModal'); if(m2){ m2.classList.add('open'); window.connectPhoneModalOpen = true; } }
+    }
+    function updateHomeAccount(st){
+      var card = document.getElementById('tfHomeAccountCard');
+      if(!card) return;
+      var signed = !!(st.account_state && st.account_state.signed_in);
+      card.classList.toggle('tf-phase13-hidden', signed);
+      if(signed) return;
+      card.innerHTML = '<h3>Product Account</h3>' +
+        '<p>Sign in to unlock Connect Phone and start building shared memory.</p>' +
+        '<button class="tf-account-action" id="tfHomeCreateAccount" type="button">Create Account</button>';
+      var btn = document.getElementById('tfHomeCreateAccount');
+      if(btn && !btn.__tf13){ btn.__tf13 = true; btn.addEventListener('click', openAccount); }
+    }
+    function updateConnectPhone(st){
       var card = document.getElementById('tfConnectPhoneCard');
       if(!card) return;
-      var st = read();
-      var connected = isPhoneConnected(st);
-      var detected = (st.onboarding && st.onboarding.detected_systems) || [];
-      card.classList.toggle('tf-phone-compact', connected);
-      if(!connected){
-        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div>' +
-          '<div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div>' +
-          '<button class="tf-onboard-btn" type="button" id="tfCleanConnectPhoneBtn">Connect Phone</button>';
+      var signed = !!(st.account_state && st.account_state.signed_in);
+      var connected = !!(st.account_state && st.account_state.phone_connected) || !!(st.onboarding && st.onboarding.phone_connected);
+      var s = stats(st);
+      if(connected){
+        card.classList.add('tf-connect-compact');
+        card.classList.remove('tf-locked');
+        card.innerHTML = '<div class="tf-connect-main">' +
+          '<div class="tf-ob-title">📱 Phone Connected</div>' +
+          '<div class="tf-ob-sub">Systems Detected: ' + esc(s.detected) + ' · Memory Profile Active · Last Scan: ' + esc(short(s.last)) + '</div>' +
+          '</div><button class="tf-onboard-btn" id="tfRescanPhone" type="button">Rescan</button>';
+        var rescan = document.getElementById('tfRescanPhone');
+        if(rescan && !rescan.__tf13){ rescan.__tf13 = true; rescan.addEventListener('click', openPhone); }
       } else {
-        card.innerHTML = '<div class="tf-ob-title">📱 Phone Connected</div>' +
-          '<div class="tf-ob-sub">Systems Detected: ' + esc(detected.length || 0) + '<br>Memory Profile Active<br>Last Scan: ' + esc(short(st.onboarding && st.onboarding.completed_at) || 'just now') + '</div>' +
-          '<button class="tf-onboard-btn" type="button" id="tfCleanConnectPhoneBtn">Rescan</button>';
-      }
-      var btn = document.getElementById('tfCleanConnectPhoneBtn');
-      if(btn && !btn.__tfCleanWired){
-        btn.__tfCleanWired = true;
-        btn.addEventListener('click', function(e){
-          e.preventDefault();
-          e.stopPropagation();
-          var state = read();
-          if(!isSigned(state)){
-            pendingPhoneScan = true;
-            openAccountModal();
-            if(typeof showToast === 'function') showToast('Create your account to connect your phone.');
-            return;
-          }
-          startPhoneScan();
-        });
+        card.classList.remove('tf-connect-compact');
+        if(!card.querySelector('.tf-ob-title') || card.querySelector('.tf-ob-title').textContent.indexOf('Connect Phone') === -1){
+          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+          var btn = card.querySelector('button'); if(btn) btn.addEventListener('click', openPhone);
+        }
+        card.classList.toggle('tf-locked', !signed);
       }
     }
-    function renderProfileAccount(){
+    function updateProfileAccount(st){
       var body = document.getElementById('tfAccountStatusBody');
       if(!body) return;
-      var st = read();
-      var signed = isSigned(st);
-      var p = st.account_profile || {};
-      var name = signed ? (p.name || 'Terafarm User') : 'Guest';
-      var email = signed ? (p.email || 'user@terafarm.ai') : 'Not signed in';
-      var memoryStatus = isPhoneConnected(st) ? 'active' : (signed ? 'ready' : 'locked');
-      var connectedCount = (st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
-      var memoryCount = (st.memory_items || []).length || 0;
-      var lastSync = (st.onboarding && st.onboarding.completed_at) || p.last_active || null;
-      body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + esc(signed ? 'Signed In' : 'Guest') + '</div>' +
+      var signed = !!(st.account_state && st.account_state.signed_in);
+      var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' };
+      var s = stats(st);
+      body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
         '<div class="tf-account-grid">' +
-        '<div class="tf-account-kv"><b>Name</b><span>' + esc(name) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Email</b><span>' + esc(email) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(signed ? (p.plan || 'Free') : 'Guest') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Name</b><span>' + esc(signed ? p.name : 'Guest User') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Email</b><span>' + esc(signed ? p.email : 'Not signed in') + '</span></div>' +
         '<div class="tf-account-kv"><b>Account Type</b><span>' + esc(accountType(st)) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc(memoryStatus) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(connectedCount) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(memoryCount) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(lastSync)) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : (signed ? 'ready' : 'locked')) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
         '</div>';
     }
-    function updateProfileHeader(){
-      var st = read(); var signed = isSigned(st); var p = st.account_profile || {};
-      var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? (p.name || 'Terafarm User') : 'Your Account';
-      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? (p.email || 'user@terafarm.ai') : 'Not signed in';
-      var pfBtn = document.getElementById('pf-signin'); if(pfBtn) pfBtn.textContent = signed ? 'Account Active' : 'Sign In / Create Account';
+    function updatePriority(st){
+      var greet = document.getElementById('greetMsg');
+      var connected = !!(st.account_state && st.account_state.phone_connected) || !!(st.onboarding && st.onboarding.phone_connected);
+      if(greet && connected) greet.textContent = '🧠 Shared Memory Active';
+      var memcard = document.querySelector('#screen-home .memcard .sub');
+      if(memcard && connected) memcard.textContent = 'Memory profile active across connected systems';
     }
     function render(){
-      removeHomeAccount();
-      renderConnectPhoneCard();
-      renderProfileAccount();
-      updateProfileHeader();
-    }
-    function createAccountAndContinue(){
-      var n = (document.getElementById('m-name') || {}).value || '';
-      var em = (document.getElementById('m-email') || {}).value || '';
-      var p = (document.getElementById('m-pass') || {}).value || '';
-      if(!n.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.trim()) || p.length < 6) return false;
-      if(window.TerafarmPhase12ProductAccounts && typeof window.TerafarmPhase12ProductAccounts.createProfile === 'function'){
-        window.TerafarmPhase12ProductAccounts.createProfile(n.trim(), em.trim());
-      } else {
-        var st = read(); var now = new Date().toISOString();
-        st.account_state = { guest:false, signed_in:true, onboarded:false, phone_connected:false, memory_active:false };
-        st.account_profile = { user_id:'tf_user_' + Date.now(), name:n.trim(), email:em.trim(), plan:'Free', created_at:now, last_active:now, memory_status:'ready', connected_services_count:0, memory_items_count:(st.memory_items || []).length || 0 };
-        write(st);
-      }
-      closeAccountModal();
-      render();
-      if(pendingPhoneScan){ pendingPhoneScan = false; startPhoneScan(); }
-      return true;
-    }
-    function wire(){
-      document.addEventListener('click', function(e){
-        var target = e.target && e.target.closest ? e.target.closest('#tfConnectPhoneCard .tf-onboard-btn') : null;
-        if(!target) return;
-        e.preventDefault();
-        e.stopPropagation();
-        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
-        var st = read();
-        if(!isSigned(st)){ pendingPhoneScan = true; openAccountModal(); return; }
-        startPhoneScan();
-      }, true);
-      document.addEventListener('click', function(e){
-        var target = e.target && e.target.closest ? e.target.closest('#modal-create') : null;
-        if(!target) return;
-        if(!pendingPhoneScan) return;
-        if(createAccountAndContinue()){
-          e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation) e.stopImmediatePropagation();
-        }
-      }, true);
-      if(window.TerafarmPhase9Onboarding && !window.TerafarmPhase9Onboarding.__tfCleanWrapped){
-        var oldRefresh = window.TerafarmPhase9Onboarding.refresh;
-        if(typeof oldRefresh === 'function') window.TerafarmPhase9Onboarding.refresh = function(){ var r = oldRefresh.apply(this, arguments); render(); return r; };
-        var oldStart = window.TerafarmPhase9Onboarding.startScan;
-        if(typeof oldStart === 'function') window.TerafarmPhase9Onboarding.startScan = function(){ var r = oldStart.apply(this, arguments); setTimeout(render, 200); setTimeout(render, 10550); return r; };
-        window.TerafarmPhase9Onboarding.__tfCleanWrapped = true;
-      }
-      if(window.TerafarmPhase12ProductAccounts && !window.TerafarmPhase12ProductAccounts.__tfCleanWrapped){
-        var oldRender = window.TerafarmPhase12ProductAccounts.render;
-        if(typeof oldRender === 'function') window.TerafarmPhase12ProductAccounts.render = function(){ var r = oldRender.apply(this, arguments); render(); return r; };
-        window.TerafarmPhase12ProductAccounts.__tfCleanWrapped = true;
-      }
-    }
-    function closeAutoPhoneModal(){
-      // Phase 9 opened the scan sheet on first run; Home now presents the single onboarding card instead.
-      var m = document.getElementById('tfOnboardModal');
       var st = read();
-      if(m && !isPhoneConnected(st)) m.classList.remove('open');
+      updateHomeAccount(st);
+      updateConnectPhone(st);
+      updateProfileAccount(st);
+      updatePriority(st);
+    }
+    function wrapExisting(){
+      if(window.TerafarmPhase12ProductAccounts && !window.TerafarmPhase12ProductAccounts.__tf13Wrapped){
+        var oldRender = window.TerafarmPhase12ProductAccounts.render;
+        if(typeof oldRender === 'function'){
+          window.TerafarmPhase12ProductAccounts.render = function(){ var r = oldRender.apply(this, arguments); setTimeout(render, 0); return r; };
+        }
+        window.TerafarmPhase12ProductAccounts.__tf13Wrapped = true;
+      }
+      if(window.TerafarmPhase9Onboarding && !window.TerafarmPhase9Onboarding.__tf13Wrapped){
+        var oldRefresh = window.TerafarmPhase9Onboarding.refresh;
+        if(typeof oldRefresh === 'function'){
+          window.TerafarmPhase9Onboarding.refresh = function(){ var r = oldRefresh.apply(this, arguments); setTimeout(render, 0); return r; };
+        }
+        window.TerafarmPhase9Onboarding.__tf13Wrapped = true;
+      }
     }
     function init(){
-      wire();
-      setTimeout(function(){ removeHomeAccount(); closeAutoPhoneModal(); render(); }, 80);
-      setTimeout(function(){ removeHomeAccount(); closeAutoPhoneModal(); render(); }, 520);
-      setInterval(function(){ removeHomeAccount(); render(); }, 2500);
-      console.log('[Terafarm Phase 13] Home Onboarding Cleanup active');
+      wrapExisting();
+      render();
+      setInterval(render, 1200);
+      console.log('[Terafarm Phase 13] UI Cleanup behavior online');
     }
     return { init:init, render:render };
   })();
-  document.addEventListener('DOMContentLoaded', function(){
-    setTimeout(function(){ if(window.TerafarmPhase13HomeOnboardingCleanup) window.TerafarmPhase13HomeOnboardingCleanup.init(); }, 120);
-  });
-  </script>
 
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase13UICleanup) TerafarmPhase13UICleanup.init(); }, 90);
+  });
+
+
+
+  // ════════ TERAFARM PHASE 14: REAL INTEGRATION HUB ════════
+  // Product behavior only. Converts connected systems into a managed shared-memory integration layer.
+  window.TerafarmPhase14IntegrationHub = (function(){
+    var KEY = 'terafarm.product.v1';
+    var DEFAULT_PERMS = { read_memory:true, write_memory:true, receive_context:true, execute_actions:true, enabled:true };
+    var STATUS = { connected:'Connected', syncing:'Syncing', permission_required:'Permission Required', disconnected:'Disconnected', error:'Error' };
+    var READY = ['Prototype','OAuth Ready','API Ready','Connected'];
+    var SYSTEMS = [
+      {id:'chatgpt', name:'ChatGPT', provider:'OpenAI', category:'AI Assistant', icon:'◎', actions:['receive_context','summarize_memory','assist_command']},
+      {id:'claude', name:'Claude', provider:'Anthropic', category:'AI Assistant', icon:'✳', actions:['receive_context','review_code','check_design']},
+      {id:'gemini', name:'Gemini', provider:'Google', category:'AI Assistant', icon:'✦', actions:['generate_plan','analyze_context','research']},
+      {id:'grok', name:'Grok', provider:'xAI', category:'AI Assistant', icon:'𝕏', actions:['fast_answer','social_context']},
+      {id:'perplexity', name:'Perplexity', provider:'Perplexity', category:'Research', icon:'⌕', actions:['web_research','source_summary']},
+      {id:'google_calendar', name:'Google Calendar', provider:'Google', category:'Productivity', icon:'📅', actions:['check_availability','create_event','update_event']},
+      {id:'gmail', name:'Gmail', provider:'Google', category:'Communication', icon:'✉', actions:['read_inbox','draft_email','scan_travel_emails']},
+      {id:'google_drive', name:'Google Drive', provider:'Google', category:'Files', icon:'📂', actions:['read_files','summarize_docs','create_doc']},
+      {id:'github', name:'GitHub', provider:'GitHub', category:'Developer', icon:'⌘', actions:['read_repo','review_code','create_issue']},
+      {id:'vercel', name:'Vercel', provider:'Vercel', category:'Cloud', icon:'▲', actions:['read_deployments','check_status']},
+      {id:'home_assistant', name:'Home Assistant', provider:'Home Assistant', category:'Smart Home', icon:'🏠', actions:['control_lights','set_climate','away_mode']},
+      {id:'tesla', name:'Tesla', provider:'Tesla / Car', category:'Vehicle', icon:'🚗', actions:['prepare_route','check_charge','start_climate']},
+      {id:'wearables', name:'Wearables', provider:'Apple / Google / Samsung', category:'Health', icon:'⌚', actions:['read_activity','read_sleep','health_context']},
+      {id:'custom_api', name:'Custom API', provider:'External', category:'Developer', icon:'{}', actions:['call_endpoint','send_context','receive_events']}
+    ];
+    var COMMAND_SYSTEMS = {
+      plan_trip:['gemini','google_calendar','gmail','google_drive','tesla','chatgpt'],
+      review_code:['chatgpt','claude','github','vercel'],
+      check_design:['chatgpt','claude','gemini','google_drive'],
+      coming_home:['home_assistant','tesla','wearables'],
+      schedule_meeting:['google_calendar','gmail','chatgpt'],
+      summarize_team:['gmail','google_calendar','chatgpt','gemini'],
+      send_flowers:['google_calendar','gmail','chatgpt'],
+      prepare_morning:['google_calendar','home_assistant','tesla','wearables','gemini'],
+      general_memory_update:['chatgpt','gemini']
+    };
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function iso(){ return new Date().toISOString(); }
+    function short(isoText){ if(!isoText) return '—'; var d = new Date(isoText); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function slug(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,''); }
+    function ensure(st){
+      st = st || read();
+      ['memory_items','commands','sync_logs','connectors','connector_logs','connected_services','integration_activity'].forEach(function(k){ if(!Array.isArray(st[k])) st[k] = []; });
+      if(!st.integration_permissions) st.integration_permissions = {};
+      var byId = {}; (st.integration_systems || []).forEach(function(x){ byId[x.id]=x; });
+      var existingNames = {}; (st.connected_services || []).forEach(function(s){ existingNames[slug(s.name || s.id)] = true; });
+      st.integration_systems = SYSTEMS.map(function(base, idx){
+        var old = byId[base.id] || {};
+        var connected = existingNames[slug(base.name)] || idx < 8 || (old.connection_status && old.connection_status !== 'disconnected');
+        var sys = Object.assign({}, base, old);
+        sys.connection_status = sys.connection_status || (connected ? 'connected' : 'disconnected');
+        sys.integration_readiness = sys.integration_readiness || (connected ? 'Connected' : (idx < 10 ? 'API Ready' : 'Prototype'));
+        sys.connected_since = sys.connected_since || (connected ? iso() : null);
+        sys.last_sync = sys.last_sync || null;
+        sys.memory_items_shared = Number(sys.memory_items_shared || 0);
+        sys.sync_health = sys.sync_health || (connected ? 'Healthy' : 'Waiting');
+        sys.permissions = Object.assign({}, DEFAULT_PERMS, st.integration_permissions[base.id] || {}, sys.permissions || {});
+        st.integration_permissions[base.id] = sys.permissions;
+        return sys;
+      });
+      write(st); return st;
+    }
+    function getSystem(id){ var st = ensure(read()); return (st.integration_systems || []).filter(function(s){ return s.id === id || slug(s.name) === id; })[0] || null; }
+    function feed(title, detail, systemId){
+      var st = ensure(read());
+      st.integration_activity.unshift({ id:'act_'+Date.now()+'_'+Math.random().toString(16).slice(2), title:title, detail:detail, system_id:systemId||'', created_at:iso() });
+      if(st.integration_activity.length > 60) st.integration_activity.length = 60;
+      write(st);
+    }
+    function upsertConnectedService(sys){
+      var st = ensure(read());
+      var found = false;
+      st.connected_services = (st.connected_services || []).map(function(s){
+        if(slug(s.name || s.id) === slug(sys.name) || s.id === sys.id){ found = true; return Object.assign({}, s, { id:sys.id, name:sys.name, status:sys.connection_status === 'connected' ? 'connected' : sys.connection_status, permission_level: permissionLabel(sys), last_sync:sys.last_sync, memory_access:memoryAccessLabel(sys), sync_status:sys.sync_health }); }
+        return s;
+      });
+      if(!found){ st.connected_services.unshift({ id:sys.id, name:sys.name, category:sys.category, status:sys.connection_status, permission_level:permissionLabel(sys), last_sync:sys.last_sync, connected_agents:[], memory_access:memoryAccessLabel(sys), sync_status:sys.sync_health }); }
+      write(st);
+    }
+    function memoryAccessLabel(sys){
+      var p = sys.permissions || DEFAULT_PERMS;
+      if(!p.enabled) return 'disabled';
+      if(p.read_memory && p.write_memory) return 'read + write';
+      if(p.read_memory) return 'read only';
+      if(p.receive_context) return 'context only';
+      return 'private';
+    }
+    function permissionLabel(sys){
+      var p = sys.permissions || DEFAULT_PERMS;
+      if(!p.enabled) return 'off';
+      if(p.read_memory && p.write_memory && p.receive_context && p.execute_actions) return 'full';
+      if(p.read_memory && !p.write_memory) return 'read_only';
+      return 'limited';
+    }
+    function detectIntent(input){
+      if(window.TerafarmPhase11CommandLibrary && TerafarmPhase11CommandLibrary.detect) return TerafarmPhase11CommandLibrary.detect(input);
+      if(window.TerafarmPhase4Router && TerafarmPhase4Router.detectIntent) return TerafarmPhase4Router.detectIntent(input);
+      return 'general_memory_update';
+    }
+    function systemsForIntent(intent){ return (COMMAND_SYSTEMS[intent] || COMMAND_SYSTEMS.general_memory_update).slice(); }
+    function restrictionFor(intent){
+      var st = ensure(read());
+      var ids = systemsForIntent(intent);
+      var restricted = [];
+      ids.forEach(function(id){ var sys = (st.integration_systems || []).filter(function(s){ return s.id === id; })[0]; if(sys && sys.permissions && sys.permissions.enabled && sys.permissions.write_memory === false) restricted.push(sys); });
+      return restricted;
+    }
+    function markSync(intent, blocked){
+      var st = ensure(read()); var now = iso(); var ids = systemsForIntent(intent);
+      st.integration_systems = (st.integration_systems || []).map(function(sys){
+        if(ids.indexOf(sys.id) >= 0){
+          sys.connection_status = sys.connection_status === 'disconnected' ? 'permission_required' : 'connected';
+          sys.last_sync = now;
+          sys.sync_health = blocked ? 'Restricted' : 'Healthy';
+          sys.memory_items_shared = Math.max(Number(sys.memory_items_shared || 0), (st.memory_items || []).length);
+        }
+        return sys;
+      });
+      ids.forEach(function(id){ var sys = (st.integration_systems || []).filter(function(s){ return s.id === id; })[0]; if(sys){
+        st.integration_activity.unshift({ id:'act_'+Date.now()+'_'+id, title:sys.name + (blocked ? ' permission enforced' : ' synchronized'), detail: blocked ? 'Context delivered. Memory write restricted by permission settings.' : 'Shared memory context synchronized for ' + intent, system_id:id, created_at:now });
+      }});
+      if(st.integration_activity.length > 60) st.integration_activity.length = 60;
+      write(st);
+    }
+    function applyRestrictionIfNeeded(input, before){
+      var intent = detectIntent(input);
+      var restricted = restrictionFor(intent);
+      if(!restricted.length){ markSync(intent, false); return {blocked:false, intent:intent, restricted:[]}; }
+      var st = ensure(read());
+      st.memory_items = before.memory_items;
+      var names = restricted.map(function(s){ return s.name; }).join(', ');
+      var now = iso();
+      st.sync_logs.unshift({ id:'perm_'+Date.now(), title:'Permission enforced', detail:names + ' received context. Memory write blocked by integration permissions.', source:'Integration Hub', agents:names.split(', '), created_at:now });
+      if(st.commands && st.commands[0]){
+        st.commands[0].permission_restriction = names + ' write memory disabled';
+        var tl = Array.isArray(st.commands[0].workflow_timeline) ? st.commands[0].workflow_timeline : [];
+        tl.push({ label:'Permission enforced', detail:names + ' received context. Memory write blocked. Memory unchanged.', status:'completed' });
+        st.commands[0].workflow_timeline = tl;
+        st.commands[0].final_result = (st.commands[0].final_result || 'Command completed.') + ' Permission restriction applied: memory write blocked for ' + names + '.';
+      }
+      st.integration_activity.unshift({ id:'act_perm_'+Date.now(), title:names + ' write blocked', detail:'System received context while Write Memory was OFF. Memory unchanged.', system_id:restricted[0].id, created_at:now });
+      if(st.integration_activity.length > 60) st.integration_activity.length = 60;
+      write(st); markSync(intent, true);
+      return {blocked:true, intent:intent, restricted:restricted};
+    }
+    function badge(status){ var key = String(status || 'disconnected').toLowerCase().replace(/\s+/g,'_'); return '<span class="tf14-status-badge '+esc(key)+'">'+esc(STATUS[key] || status || 'Disconnected')+'</span>'; }
+    function ensureModal(){
+      if(document.getElementById('tf14SystemModal')) return;
+      var m = document.createElement('div');
+      m.id = 'tf14SystemModal'; m.className = 'tf14-modal';
+      m.innerHTML = '<div class="tf14-sheet"><button class="tf14-close" id="tf14Close">×</button><div id="tf14Body"></div></div>';
+      document.body.appendChild(m);
+      m.addEventListener('click', function(e){ if(e.target === m) close(); });
+      document.getElementById('tf14Close').addEventListener('click', close);
+    }
+    function close(){ var m=document.getElementById('tf14SystemModal'); if(m) m.classList.remove('open'); }
+    function openSystem(id){
+      ensureModal(); var st = ensure(read()); var sys = (st.integration_systems || []).filter(function(s){ return s.id === id || slug(s.name) === id; })[0]; if(!sys) return;
+      var acts = (st.integration_activity || []).filter(function(a){ return a.system_id === sys.id; }).slice(0,5);
+      var body = document.getElementById('tf14Body');
+      body.innerHTML = '<h3>'+esc(sys.name)+'</h3><p>'+esc(sys.provider)+' · '+esc(sys.category)+'</p>'+
+        '<div class="tf14-kpi-grid">'+
+        '<div class="tf14-kpi"><b>Connection Status</b><span>'+badge(sys.connection_status)+'</span></div>'+
+        '<div class="tf14-kpi"><b>Last Sync</b><span>'+esc(short(sys.last_sync))+'</span></div>'+
+        '<div class="tf14-kpi"><b>Memory Access</b><span>'+esc(memoryAccessLabel(sys))+'</span></div>'+
+        '<div class="tf14-kpi"><b>Connected Since</b><span>'+esc(short(sys.connected_since))+'</span></div>'+
+        '<div class="tf14-kpi"><b>Readiness</b><span>'+esc(sys.integration_readiness)+'</span></div>'+
+        '<div class="tf14-kpi"><b>Sync Health</b><span>'+esc(sys.sync_health || 'Waiting')+'</span></div>'+
+        '</div><div class="seclbl" style="margin-top:16px"><span class="t">PERMISSIONS</span></div>'+permRows(sys)+
+        '<div class="seclbl" style="margin-top:16px"><span class="t">AVAILABLE ACTIONS</span></div><div>'+ (sys.actions||[]).map(function(a){return '<span class="tf14-pill">'+esc(a)+'</span>';}).join('') + '</div>'+ 
+        '<div class="seclbl" style="margin-top:16px"><span class="t">RECENT ACTIVITY</span></div>' + (acts.length ? acts.map(function(a){ return '<div class="tf14-feed-item"><div class="tf14-feed-title">'+esc(a.title)+'</div><div class="tf14-feed-meta">'+esc(a.detail)+' · '+esc(short(a.created_at))+'</div></div>'; }).join('') : '<div class="tf14-feed-item"><div class="tf14-feed-title">Waiting for activity</div><div class="tf14-feed-meta">Run a command to sync this system.</div></div>');
+      bindPermissionButtons(sys.id); document.getElementById('tf14SystemModal').classList.add('open');
+    }
+    function permRows(sys){
+      var rows = [
+        ['read_memory','Read Memory','Allow system to read shared memory'], ['write_memory','Write Memory','Allow system to create memory updates'], ['receive_context','Receive Context','Send relevant context to the system'], ['execute_actions','Execute Actions','Allow actions through this integration'], ['enabled','Enabled / Disabled','Turn this integration on or off']
+      ];
+      var p = sys.permissions || DEFAULT_PERMS;
+      return rows.map(function(r){ return '<div class="tf14-perm-row"><div class="tf14-perm-text"><b>'+esc(r[1])+'</b><span>'+esc(r[2])+'</span></div><button type="button" class="tf14-toggle '+(p[r[0]]?'on':'')+'" data-tf14-toggle="'+esc(r[0])+'" data-system="'+esc(sys.id)+'"></button></div>'; }).join('');
+    }
+    function bindPermissionButtons(id){
+      document.querySelectorAll('[data-tf14-toggle]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var st = ensure(read()); var key = btn.getAttribute('data-tf14-toggle'); var sysId = btn.getAttribute('data-system');
+          st.integration_systems = st.integration_systems.map(function(s){ if(s.id === sysId){ s.permissions = Object.assign({}, DEFAULT_PERMS, s.permissions || {}); s.permissions[key] = !s.permissions[key]; st.integration_permissions[sysId] = s.permissions; s.connection_status = s.permissions.enabled ? 'connected' : 'disconnected'; s.sync_health = s.permissions.enabled ? 'Healthy' : 'Disabled'; feed(s.name + ' permission changed', key.replace(/_/g,' ') + ' → ' + (s.permissions[key] ? 'ON' : 'OFF'), s.id); } return s; });
+          write(st); render(); openSystem(sysId);
+        });
+      });
+    }
+    function openConnect(){
+      ensureModal(); var st = ensure(read());
+      var body = document.getElementById('tf14Body');
+      body.innerHTML = '<h3>Connect System</h3><p>Add another AI, app, device, or API to the shared memory layer.</p>' +
+        (st.integration_systems || []).map(function(s){ return '<div class="tf14-system-option" data-tf14-connect="'+esc(s.id)+'"><div><b>'+esc(s.icon+' '+s.name)+'</b><br><span>'+esc(s.provider+' · '+s.category+' · '+s.integration_readiness)+'</span></div>'+badge(s.connection_status)+'</div>'; }).join('');
+      document.querySelectorAll('[data-tf14-connect]').forEach(function(el){ el.addEventListener('click', function(){ connectSystem(el.getAttribute('data-tf14-connect')); }); });
+      document.getElementById('tf14SystemModal').classList.add('open');
+    }
+    function connectSystem(id){
+      var st = ensure(read()); var now = iso(); var connected = null;
+      st.integration_systems = st.integration_systems.map(function(s){ if(s.id === id){ s.connection_status = 'connected'; s.integration_readiness = 'Connected'; s.connected_since = s.connected_since || now; s.last_sync = now; s.sync_health = 'Healthy'; connected = s; } return s; });
+      write(st); if(connected){ upsertConnectedService(connected); feed(connected.name + ' connected', 'System added to Shared Memory Integration Hub', connected.id); }
+      render(); openSystem(id);
+    }
+    function enhanceConnectedRows(){
+      var st = ensure(read());
+      document.querySelectorAll('#screen-home .act[data-act], #screen-agents .agent[data-act]').forEach(function(el){
+        var name = el.getAttribute('data-act') || (el.querySelector('.act-name,.an')||{}).textContent || '';
+        var sys = (st.integration_systems || []).filter(function(s){ return slug(s.name) === slug(name) || slug(s.name).indexOf(slug(name).replace('_ai','')) >= 0 || slug(name).indexOf(slug(s.name)) >= 0; })[0];
+        if(!sys) return;
+        el.setAttribute('data-tf14-system', sys.id);
+        var desc = el.querySelector('.act-desc') || el.querySelector('.ad'); if(desc) desc.textContent = memoryAccessLabel(sys) + ' · ' + sys.integration_readiness;
+        var live = el.querySelector('.act-live') || el.querySelector('.as'); if(live) live.innerHTML = '<span class="dot"></span>' + (STATUS[String(sys.connection_status).toLowerCase().replace(/\s+/g,'_')] || sys.connection_status);
+        var time = el.querySelector('.act-time'); if(time) time.textContent = sys.last_sync ? short(sys.last_sync) : 'Ready';
+        if(!el.__tf14){ el.__tf14 = true; el.addEventListener('click', function(){ openSystem(sys.id); }); }
+      });
+      document.querySelectorAll('#screen-home .csys-ico').forEach(function(chip){
+        var title = chip.getAttribute('title') || (chip.textContent || '');
+        var sys = (st.integration_systems || []).filter(function(s){ return title.toLowerCase().indexOf(s.name.toLowerCase()) >= 0 || s.name.toLowerCase().indexOf(title.toLowerCase().replace(' ai','')) >= 0; })[0];
+        if(sys && !chip.__tf14){ chip.__tf14 = true; chip.style.cursor = 'pointer'; chip.addEventListener('click', function(){ openSystem(sys.id); }); }
+      });
+    }
+    function renderPanels(){
+      var st = ensure(read());
+      var label = null; document.querySelectorAll('#screen-home .seclbl .t').forEach(function(t){ if((t.textContent||'').indexOf('CONNECTED AI SYSTEMS') !== -1) label = t.closest('.seclbl'); });
+      if(label && !document.getElementById('tf14ConnectRow')) label.insertAdjacentHTML('afterend', '<div id="tf14ConnectRow" class="tf14-connect-row"><button type="button" class="tf14-connect-btn" id="tf14ConnectBtn">+ Connect System</button></div><div id="tf14MemoryPanel" class="tf14-memory-panel"></div><div id="tf14FeedPanel" class="tf14-feed-panel"></div>');
+      var btn = document.getElementById('tf14ConnectBtn'); if(btn && !btn.__tf14){ btn.__tf14 = true; btn.addEventListener('click', openConnect); }
+      var active = (st.integration_systems || []).filter(function(s){ return s.connection_status === 'connected'; });
+      var shared = active.reduce(function(n,s){ return n + Number(s.memory_items_shared || 0); }, 0);
+      var last = active.map(function(s){ return s.last_sync; }).filter(Boolean).sort().pop();
+      var panel = document.getElementById('tf14MemoryPanel'); if(panel) panel.innerHTML = '<div class="tf14-panel-title">Shared Memory Visibility</div><div class="tf14-panel-sub">Systems using memory, shared items, sync health, and last memory sync.</div><div class="tf14-kpi-grid"><div class="tf14-kpi"><b>Systems Using Memory</b><span>'+esc(active.length)+'</span></div><div class="tf14-kpi"><b>Memory Items Shared</b><span>'+esc(shared || (st.memory_items||[]).length)+'</span></div><div class="tf14-kpi"><b>Last Memory Sync</b><span>'+esc(short(last))+'</span></div><div class="tf14-kpi"><b>Sync Health</b><span>'+esc(active.some(function(s){return s.sync_health==='Restricted';}) ? 'Restricted' : 'Healthy')+'</span></div></div>';
+      var feedPanel = document.getElementById('tf14FeedPanel'); if(feedPanel){
+        var items = (st.integration_activity || []).slice(0,6);
+        feedPanel.innerHTML = '<div class="tf14-panel-title">Activity Feed</div>' + (items.length ? items.map(function(a){ return '<div class="tf14-feed-item"><div class="tf14-feed-title">'+esc(a.title)+'</div><div class="tf14-feed-meta">'+esc(a.detail)+' · '+esc(short(a.created_at))+'</div></div>'; }).join('') : '<div class="tf14-feed-item"><div class="tf14-feed-title">Integration hub ready</div><div class="tf14-feed-meta">Run a command to create persistent activity.</div></div>');
+      }
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__tf14Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var before = ensure(read()); var snapshot = { memory_items:(before.memory_items || []).slice() };
+        var result = oldRun.apply(this, arguments);
+        var restriction = applyRestrictionIfNeeded(input, snapshot);
+        setTimeout(function(){ render(); if(window.TerafarmPhase7Workflow && TerafarmPhase7Workflow.render) TerafarmPhase7Workflow.render(); if(window.TerafarmPhase5Memory && TerafarmPhase5Memory.render) TerafarmPhase5Memory.render(); }, 0);
+        if(result) result.permission_restriction = restriction.blocked;
+        return result;
+      };
+      window.TerafarmPhase4Router.__tf14Patched = true;
+    }
+    function render(){ ensureModal(); ensure(read()); enhanceConnectedRows(); renderPanels(); }
+    function init(){ ensure(read()); patchRouter(); render(); setInterval(render, 2000); console.log('[Terafarm Phase 14] Real Integration Hub online'); }
+    return { init:init, render:render, openSystem:openSystem, connectSystem:connectSystem, permissions:function(id){ var s=getSystem(id); return s && s.permissions; }, test:function(){ openSystem('chatgpt'); } };
+  })();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase14IntegrationHub) TerafarmPhase14IntegrationHub.init(); }, 130);
+  });
+
+  // Phase 15 boot completion: close every transient overlay after all phase renderers finish.
+  document.addEventListener('DOMContentLoaded', function(){
+    tfCloseAllModals();
+    setTimeout(function(){
+      tfResetTransientUiState();
+      tfCloseAllModals();
+      appBooting = false;
+      window.appBooting = false;
+      console.log('[Terafarm Phase 15] Load-state modal guard active');
+    }, 320);
+  });
+
+</script>
 </body>
 </html>
