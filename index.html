@@ -958,7 +958,7 @@
 
 
 
-  /* ════════ HACKATHON FINAL CENTER LOCK — Connected AI only ════════ */
+  /* ════════ PRODUCT FINAL CENTER LOCK — Connected AI only ════════ */
   /* Purpose: keep the AI chips visually centered under the robot on phone and desktop. */
   /* Nothing here touches robot, sound waves, hero, quick actions, menu, auth, or nav. */
   #screen-home .csys {
@@ -1067,6 +1067,167 @@
       display:inline-flex !important;
     }
   }
+
+
+  /* ════════ TERAFARM PHASE 5 — Visible Memory Engine ════════ */
+  .tf-memory-live { margin-bottom:12px; }
+  .tf-memory-badge { display:inline-flex; align-items:center; gap:6px; margin-top:7px; padding:5px 9px; border-radius:999px; background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.18); color:rgba(185,245,210,.92); font-size:10px; font-weight:700; letter-spacing:.04em; }
+  .tf-memory-badge .dot { width:6px; height:6px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,.6); }
+  .tf-memory-meta { font-size:11px; color:rgba(150,190,235,.52); margin-top:7px; line-height:1.35; }
+  .tf-memory-detail { display:none; position:fixed; inset:0; z-index:140; background:rgba(0,8,20,.82); backdrop-filter:blur(12px); align-items:flex-end; justify-content:center; }
+  .tf-memory-detail.open { display:flex; }
+  .tf-memory-sheet { width:100%; max-width:460px; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:none; border-radius:24px 24px 0 0; padding:22px 18px 30px; box-shadow:0 -18px 60px rgba(0,20,60,.25); }
+  .tf-memory-sheet h3 { font-size:20px; color:#fff; margin:0 36px 6px 0; }
+  .tf-memory-sheet p { font-size:13px; color:rgba(180,215,250,.72); line-height:1.45; margin:0 0 12px; }
+  .tf-memory-close { position:absolute; right:18px; top:16px; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+  .tf-memory-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:12px; }
+  .tf-memory-kv { background:rgba(13,20,32,.92); border:1px solid rgba(80,140,255,.12); border-radius:12px; padding:10px; }
+  .tf-memory-kv b { display:block; font-size:10px; letter-spacing:.09em; color:rgba(150,190,235,.55); text-transform:uppercase; margin-bottom:4px; }
+  .tf-memory-kv span { display:block; font-size:12px; color:rgba(235,248,255,.92); line-height:1.35; }
+
+
+
+  /* ════════ TERAFARM PHASE 6 — Realistic Service Permissions ════════ */
+  .tf-service-row { cursor:pointer; }
+  .tf-service-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .tf-service-status { font-size:11px; font-weight:700; padding:5px 8px; border-radius:999px; background:rgba(34,197,94,.10); border:1px solid rgba(34,197,94,.25); color:rgba(178,255,205,.92); white-space:nowrap; }
+  .tf-service-status.limited { background:rgba(250,204,21,.10); border-color:rgba(250,204,21,.25); color:rgba(255,235,160,.92); }
+  .tf-service-status.private { background:rgba(90,120,170,.14); border-color:rgba(140,170,220,.20); color:rgba(210,225,255,.86); }
+  .tf-service-status.disabled { background:rgba(150,160,180,.10); border-color:rgba(150,160,180,.16); color:rgba(190,200,215,.72); }
+  .tf-service-status.demo { background:rgba(58,143,255,.10); border-color:rgba(58,143,255,.22); color:rgba(170,215,255,.92); }
+  .tf-service-meta { font-size:12px; color:rgba(165,205,245,.62); margin-top:6px; line-height:1.45; }
+  .tf-service-sync { font-size:11px; color:rgba(150,190,235,.50); margin-top:7px; }
+  .tf-service-detail { display:none; position:fixed; inset:0; z-index:155; background:rgba(0,8,20,.84); backdrop-filter:blur(14px); align-items:flex-end; justify-content:center; }
+  .tf-service-detail.open { display:flex; }
+  .tf-service-sheet { width:100%; max-width:460px; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:0; border-radius:26px 26px 0 0; padding:24px 20px 32px; position:relative; box-shadow:0 -18px 60px rgba(0,20,60,.28); }
+  .tf-service-close { position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; border:1px solid rgba(80,140,255,.18); background:rgba(13,20,32,.92); color:#fff; font-size:22px; line-height:1; cursor:pointer; }
+  .tf-service-sheet h3 { font-size:22px; color:#fff; margin:0 42px 7px 0; }
+  .tf-service-sheet p { font-size:13px; color:rgba(165,205,245,.68); line-height:1.5; margin-bottom:14px; }
+  .tf-permission-options { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+  .tf-permission-btn { border:1px solid rgba(80,140,255,.16); background:rgba(13,20,32,.92); color:rgba(220,238,255,.88); border-radius:12px; padding:11px 8px; font-size:12px; font-weight:700; cursor:pointer; }
+  .tf-permission-btn.on { border-color:rgba(58,143,255,.55); background:rgba(58,143,255,.18); color:#fff; }
+  .tf-mini-log { margin-top:8px; padding:9px 10px; border-radius:11px; background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.10); font-size:12px; color:rgba(190,220,255,.74); line-height:1.35; }
+
+
+
+  /* ════════ TERAFARM PHASE 7 — Workflow Execution Timeline ════════ */
+  .tf-workflow-live {
+    background:#111927;
+    border:1px solid rgba(80,140,255,.12);
+    border-radius:15px;
+    padding:14px 15px;
+    margin:10px 0 12px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+  }
+  .tf-workflow-title { font-size:15px; font-weight:700; color:rgba(240,250,255,.96); margin-bottom:8px; }
+  .tf-workflow-sub { font-size:12px; color:rgba(165,205,245,.62); margin-bottom:10px; line-height:1.35; }
+  .tf-timeline-step { display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-top:1px solid rgba(255,255,255,.055); }
+  .tf-timeline-step:first-child { border-top:0; }
+  .tf-step-dot { width:20px; height:20px; border-radius:50%; flex:0 0 auto; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; margin-top:1px; }
+  .tf-step-dot.completed { background:rgba(34,197,94,.14); color:#22c55e; border:1px solid rgba(34,197,94,.45); }
+  .tf-step-dot.running { background:rgba(58,143,255,.14); color:#3a8fff; border:1px solid rgba(58,143,255,.45); }
+  .tf-step-dot.waiting { background:rgba(148,163,184,.12); color:rgba(190,210,235,.72); border:1px solid rgba(148,163,184,.22); }
+  .tf-step-dot.failed { background:rgba(239,68,68,.12); color:#ef4444; border:1px solid rgba(239,68,68,.42); }
+  .tf-step-body { flex:1; min-width:0; }
+  .tf-step-label { font-size:13px; font-weight:700; color:rgba(235,248,255,.92); }
+  .tf-step-detail { font-size:12px; color:rgba(165,205,245,.58); margin-top:2px; line-height:1.35; }
+  .tf-command-row { cursor:pointer; }
+  .tf-command-row:active { background:#22304a; }
+  .tf-command-meta { font-size:12px; color:rgba(165,205,245,.62); margin-top:3px; line-height:1.4; }
+  .tf-command-detail { display:none; position:fixed; inset:0; z-index:145; background:rgba(0,8,20,.82); backdrop-filter:blur(12px); align-items:flex-end; justify-content:center; }
+  .tf-command-detail.open { display:flex; }
+  .tf-command-sheet { width:100%; max-width:460px; max-height:86vh; overflow-y:auto; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:none; border-radius:26px 26px 0 0; padding:24px 20px 34px; position:relative; box-shadow:0 -18px 60px rgba(0,20,60,.24); }
+  .tf-command-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; border:1px solid rgba(80,140,255,.16); background:rgba(13,20,32,.92); color:#fff; font-size:20px; line-height:28px; cursor:pointer; }
+  .tf-command-sheet h3 { font-size:21px; font-weight:700; color:#fff; padding-right:40px; margin-bottom:6px; }
+  .tf-command-sheet p { font-size:13px; color:rgba(165,205,245,.65); line-height:1.45; margin-bottom:14px; }
+
+
+
+  /* ════════ TERAFARM PHASE 8 — Foreign Services Connector Layer ════════ */
+  .tf-connector-row { cursor:pointer; transition:.12s; }
+  .tf-connector-row:active { background:#22304a; transform:scale(.99); }
+  .tf-connector-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .tf-connector-status { flex:0 0 auto; padding:4px 8px; border-radius:999px; font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; border:1px solid rgba(255,255,255,.08); }
+  .tf-connector-status.connected { color:#22c55e; background:rgba(34,197,94,.10); border-color:rgba(34,197,94,.24); }
+  .tf-connector-status.needs_auth { color:#f59e0b; background:rgba(245,158,11,.10); border-color:rgba(245,158,11,.22); }
+  .tf-connector-status.limited { color:#60a5fa; background:rgba(96,165,250,.10); border-color:rgba(96,165,250,.22); }
+  .tf-connector-status.private { color:#c084fc; background:rgba(192,132,252,.10); border-color:rgba(192,132,252,.22); }
+  .tf-connector-status.disabled { color:#94a3b8; background:rgba(148,163,184,.08); border-color:rgba(148,163,184,.18); }
+  .tf-connector-status.demo { color:#67e8f9; background:rgba(103,232,249,.09); border-color:rgba(103,232,249,.20); }
+  .tf-connector-meta, .tf-connector-actions { font-size:12px; color:rgba(165,205,245,.64); line-height:1.48; margin-top:5px; }
+  .tf-connector-sync { font-size:11px; color:rgba(150,190,235,.48); margin-top:7px; }
+  .tf-connector-detail { display:none; position:fixed; inset:0; z-index:150; background:rgba(0,8,20,.84); backdrop-filter:blur(14px); align-items:flex-end; justify-content:center; }
+  .tf-connector-detail.open { display:flex; }
+  .tf-connector-sheet { width:100%; max-width:460px; max-height:86vh; overflow:auto; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:none; border-radius:26px 26px 0 0; padding:24px 20px 34px; position:relative; box-shadow:0 -18px 60px rgba(0,20,60,.26); }
+  .tf-connector-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(13,20,32,.92); border:1px solid rgba(80,140,255,.14); color:#dbeafe; font-size:20px; line-height:1; cursor:pointer; }
+  .tf-connector-sheet h3 { font-size:21px; color:#fff; margin:0 42px 6px 0; }
+  .tf-connector-sheet p { color:rgba(165,205,245,.68); font-size:14px; line-height:1.5; margin-bottom:14px; }
+  .tf-action-pill { display:inline-flex; align-items:center; margin:4px 5px 0 0; padding:5px 8px; border-radius:999px; background:rgba(58,143,255,.10); border:1px solid rgba(58,143,255,.16); color:rgba(218,238,255,.9); font-size:11px; font-weight:600; }
+
+
+
+  /* ════════ TERAFARM PHASE 9 — Onboarding + Connect Phone Simulation ════════ */
+  .tf-onboard-card { background:#111927; border:1px solid rgba(80,140,255,.14); border-radius:16px; padding:15px; margin:14px 0 12px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+  .tf-onboard-card .tf-ob-title { font-size:16px; font-weight:800; color:rgba(240,250,255,.97); }
+  .tf-onboard-card .tf-ob-sub { font-size:13px; color:rgba(165,205,245,.66); line-height:1.45; margin-top:4px; }
+  .tf-onboard-btn { width:100%; margin-top:12px; padding:13px 14px; border:0; border-radius:13px; background:linear-gradient(135deg,#176ee8,#2f8cff); color:#fff; font-size:15px; font-weight:800; cursor:pointer; box-shadow:0 4px 18px rgba(47,140,255,.22); }
+  .tf-onboard-btn:active { transform:scale(.98); opacity:.9; }
+  .tf-onboard-ov { display:none; position:fixed; inset:0; z-index:170; background:rgba(0,8,20,.86); backdrop-filter:blur(14px); align-items:flex-end; justify-content:center; }
+  .tf-onboard-ov.open { display:flex; }
+  .tf-onboard-sheet { width:100%; max-width:460px; max-height:88vh; overflow:auto; background:#111927; border:1px solid rgba(80,140,255,.14); border-bottom:none; border-radius:26px 26px 0 0; padding:24px 20px 34px; position:relative; box-shadow:0 -18px 60px rgba(0,20,60,.26); }
+  .tf-onboard-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:rgba(13,20,32,.92); border:1px solid rgba(80,140,255,.14); color:#dbeafe; font-size:20px; line-height:1; cursor:pointer; }
+  .tf-onboard-sheet h3 { font-size:22px; color:#fff; margin:0 42px 6px 0; }
+  .tf-onboard-sheet p { color:rgba(165,205,245,.68); font-size:14px; line-height:1.5; margin-bottom:14px; }
+  .tf-scan-stage { background:rgba(13,20,32,.92); border:1px solid rgba(80,140,255,.14); border-radius:15px; padding:14px; margin:12px 0; }
+  .tf-scan-state { font-size:15px; font-weight:800; color:#fff; }
+  .tf-scan-bar { height:8px; border-radius:8px; background:rgba(80,140,255,.12); overflow:hidden; margin-top:10px; }
+  .tf-scan-fill { width:0%; height:100%; border-radius:8px; background:linear-gradient(90deg,#176ee8,#67e8f9); box-shadow:0 0 16px rgba(80,200,255,.35); transition:width .45s ease; }
+  .tf-detected-list { display:grid; gap:8px; margin-top:12px; }
+  .tf-detected-item { display:flex; justify-content:space-between; align-items:center; gap:8px; background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.10); border-radius:12px; padding:10px 12px; font-size:13px; color:rgba(225,242,255,.92); }
+  .tf-detected-item span:last-child { color:#22c55e; font-size:12px; font-weight:800; }
+  .tf-scan-result { display:none; margin-top:13px; padding:13px; border-radius:14px; background:rgba(34,197,94,.10); border:1px solid rgba(34,197,94,.24); color:rgba(230,255,240,.94); font-size:14px; line-height:1.45; }
+  .tf-scan-result.show { display:block; }
+
+
+
+  /* ════════ TERAFARM PHASE 10 — My World Living Profile ════════ */
+  .tf-world-card .ad { line-height:1.35; }
+  .tf-world-meta { font-size:11px; color:rgba(150,190,235,.48); margin-top:7px; line-height:1.35; }
+  .tf-world-status { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:#22c55e; margin-top:9px; }
+  .tf-world-status .dot { width:6px; height:6px; border-radius:50%; background:#22c55e; box-shadow:0 0 6px rgba(34,197,94,.55); }
+  .tf-world-detail-body { display:grid; gap:10px; margin-top:12px; }
+  .tf-world-detail-row { background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.12); border-radius:12px; padding:12px; }
+  .tf-world-detail-row b { display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:rgba(130,195,255,.78); margin-bottom:5px; }
+  .tf-world-detail-row p { font-size:13px; color:rgba(220,238,255,.82); line-height:1.45; }
+
+
+
+  /* ════════ TERAFARM PHASE 12 PRODUCT — Accounts + Integration Readiness ════════ */
+  .tf-account-card { background:#111927; border:1px solid rgba(80,140,255,.14); border-radius:16px; padding:15px; margin:14px 0 12px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+  .tf-account-card h3 { font-size:16px; font-weight:800; color:rgba(240,250,255,.97); margin:0 0 5px; }
+  .tf-account-card p { font-size:13px; color:rgba(165,205,245,.66); line-height:1.45; margin:0; }
+  .tf-account-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  .tf-account-kv { background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.11); border-radius:12px; padding:10px; }
+  .tf-account-kv b { display:block; font-size:10px; letter-spacing:.10em; text-transform:uppercase; color:rgba(130,195,255,.72); margin-bottom:4px; }
+  .tf-account-kv span { display:block; font-size:12px; color:rgba(235,248,255,.9); line-height:1.35; }
+  .tf-account-state { display:inline-flex; align-items:center; gap:6px; margin-top:10px; padding:6px 9px; border-radius:999px; background:rgba(34,197,94,.09); border:1px solid rgba(34,197,94,.22); color:rgba(194,255,218,.95); font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; }
+  .tf-account-state .dot { width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px rgba(34,197,94,.55); }
+  .tf-account-state.guest { background:rgba(58,143,255,.09); border-color:rgba(58,143,255,.20); color:rgba(190,225,255,.95); }
+  .tf-account-state.guest .dot { background:#3a8fff; box-shadow:0 0 8px rgba(58,143,255,.55); }
+  .tf-integration-panel { background:#111927; border:1px solid rgba(80,140,255,.14); border-radius:16px; padding:15px; margin:12px 0 14px; }
+  .tf-integration-panel h3 { font-size:16px; color:#fff; margin:0 0 4px; }
+  .tf-integration-panel p { font-size:12px; color:rgba(165,205,245,.62); line-height:1.45; margin:0 0 12px; }
+  .tf-readiness-list { display:grid; gap:8px; }
+  .tf-ready-row { display:flex; align-items:center; justify-content:space-between; gap:10px; background:rgba(13,20,32,.72); border:1px solid rgba(80,140,255,.10); border-radius:12px; padding:10px 12px; }
+  .tf-ready-row span:first-child { font-size:13px; color:rgba(225,242,255,.92); }
+  .tf-ready-row span:last-child { font-size:11px; font-weight:800; color:#22c55e; }
+  .tf-mode-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+  .tf-mode-card { border:1px solid rgba(80,140,255,.12); background:rgba(13,20,32,.72); border-radius:12px; padding:10px; }
+  .tf-mode-card b { display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:rgba(130,195,255,.78); margin-bottom:4px; }
+  .tf-mode-card span { display:block; font-size:12px; color:rgba(220,238,255,.78); line-height:1.35; }
+  .tf-onboard-card.tf-locked { opacity:.72; }
+  .tf-onboard-card.tf-locked .tf-ob-sub::after { content:' Sign in to activate.'; color:rgba(130,195,255,.95); }
+
 </style>
 </head>
 <body>
@@ -1345,7 +1506,7 @@
 
     <!-- WORK -->
     <div class="seclbl"><span class="t">💼 WORK</span><span class="a">3</span></div>
-    <div class="mem-item"><div class="mt">Current focus</div><div class="mb">Building the Terafarm hackathon demo — reviewing PRs and design checks.</div><div class="mtime">Updated just now · synced to all platforms</div></div>
+    <div class="mem-item"><div class="mt">Current focus</div><div class="mb">Building the Terafarm product system — reviewing workflows and design checks.</div><div class="mtime">Updated just now · synced to all platforms</div></div>
     <div class="mem-item"><div class="mt">Coding style</div><div class="mb">Single-file builds, compact code, clear architecture, no bloat.</div><div class="mtime">Synced to Claude, Robot AI</div></div>
     <div class="mem-item"><div class="mt">Meetings</div><div class="mb">Protects mornings for deep work; schedules meetings in the afternoon.</div><div class="mtime">Synced to Calendar AI</div></div>
 
@@ -1435,13 +1596,44 @@
   </div>
   </section>
 
+
+
+  <!-- ════════ PRODUCT CORE SCREENS — localStorage proof layer ════════ -->
+  <section class="screen" id="screen-sync">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Sync Logs</h2><p>Live memory activity from commands, agents, and connected services.</p></div>
+    <div class="stat-row">
+      <div class="stat"><div class="n" id="sync-count">0</div><div class="l">Events</div></div>
+      <div class="stat"><div class="n" id="sync-services">0</div><div class="l">Services</div></div>
+      <div class="stat"><div class="n" id="sync-confidence">98%</div><div class="l">Confidence</div></div>
+    </div>
+    <div class="seclbl"><span class="t">RECENT SYNC ACTIVITY</span></div>
+    <div id="sync-log-list"></div>
+  </div>
+  </section>
+
+  <section class="screen" id="screen-permissions">
+  <div class="wrap">
+    <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
+    <div class="scr-head"><h2>Permissions</h2><p>You choose what connects, what reads memory, and what stays private.</p></div>
+    <div class="stat-row">
+      <div class="stat"><div class="n" id="perm-connected">0</div><div class="l">Connected</div></div>
+      <div class="stat"><div class="n" id="perm-limited">0</div><div class="l">Limited</div></div>
+      <div class="stat"><div class="n">Vault</div><div class="l">Private</div></div>
+    </div>
+    <div class="seclbl"><span class="t">CONNECTED SERVICES</span></div>
+    <div id="permission-list"></div>
+  </div>
+  </section>
+
   <!-- ════════ BOTTOM NAV ════════ -->
   <!-- ════════ MY WORLD HUBS (placeholder screens) ════════ -->
   <section class="screen" id="screen-work-hub">
   <div class="wrap">
     <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
     <div class="scr-head"><h2>Work Hub</h2><p>Everything Terafarm understands about your work.</p></div>
-    <div class="mem-item"><div class="mt">Current focus</div><div class="mb">Building the Terafarm hackathon demo — reviewing PRs and design checks.</div><div class="mtime">Updated today</div></div>
+    <div class="mem-item"><div class="mt">Current focus</div><div class="mb">Building the Terafarm product system — reviewing workflows and design checks.</div><div class="mtime">Updated today</div></div>
     <div class="mem-item"><div class="mt">Coding style</div><div class="mb">Single-file builds, compact code, clear architecture.</div><div class="mtime">Synced to Claude, Robot AI</div></div>
     <div class="mem-item"><div class="mt">Meetings</div><div class="mb">Mornings for deep work; meetings in the afternoon.</div><div class="mtime">Synced to Calendar AI</div></div>
   </div>
@@ -1511,7 +1703,7 @@
   <div class="wrap">
     <div class="seclbl"><span class="t" data-nav="home" style="cursor:pointer">← Back</span></div>
     <div class="scr-head"><h2>Goals Center</h2><p>The goals Terafarm is helping you reach.</p></div>
-    <div class="mem-item"><div class="mt">Ship Terafarm</div><div class="mb">Get the hackathon build demo-ready.</div><div class="mtime">Active</div></div>
+    <div class="mem-item"><div class="mt">Ship Terafarm</div><div class="mb">Prepare the Terafarm product build for release.</div><div class="mtime">Active</div></div>
     <div class="mem-item"><div class="mt">Grow the network</div><div class="mb">Consistent voice across platforms.</div><div class="mtime">Active</div></div>
     <div class="mem-item"><div class="mt">Health &amp; focus</div><div class="mb">Protect mornings and sleep.</div><div class="mtime">12 active</div></div>
   </div>
@@ -1542,6 +1734,8 @@
         <div class="menu-item on" data-nav="home"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</div>
         <div class="menu-item" data-nav="memory"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>Shared Memory</div>
         <div class="menu-item" data-nav="agents"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>AI Agents</div>
+        <div class="menu-item" data-nav="sync"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-15.5 6.2"/><path d="M3 12a9 9 0 0115.5-6.2"/><path d="M7 18H3v4"/><path d="M17 6h4V2"/></svg>Sync Logs</div>
+        <div class="menu-item" data-nav="permissions"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Permissions</div>
         <div class="menu-item" data-toast="Automation coming soon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Automation</div>
         <div class="menu-item" data-toast="Devices coming soon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>Devices</div>
         <div class="menu-item" data-nav="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82M4.6 9a1.65 1.65 0 000-1.82"/></svg>Settings</div>
@@ -1988,7 +2182,7 @@
       speaking:  ['Speaking\u2026',  'Working across your AI'],
       completed: ['Done',            'Memory updated across all systems']
     };
-    // Scripted demo turns: [ speaking detail line , completion headline , command id ]
+    // Scripted command turns: [ speaking detail line , completion headline , command id ]
     var ACTIONS = [
       ['Calendar AI \u00b7 moving your 2 PM to 3 PM', 'Calendar AI \u00b7 meeting rescheduled to 3 PM', 'schedule_meeting'],
       ['Code AI \u00b7 checking your GitHub branch',  'Code AI \u00b7 branch checked, 2 PRs summarized', 'review_code'],
@@ -2897,6 +3091,1546 @@
     };
   })();
 
+
+
+  // ════════ TERAFARM PRODUCT CORE — Phase 1/2/3 additive product brain ════════
+  // Adds a real product data layer over the existing interface: localStorage collections,
+  // structured memory_items, connected service permissions, command sync logs, and
+  // renderers for the new Sync Logs + Permissions screens. Existing UI remains intact.
+  var TerafarmProductCore = (function(){
+    var KEY = 'terafarm.product.v1';
+    var MAX_LOGS = 40;
+    var MAX_MEMORY = 60;
+
+    var DEFAULT_SERVICES = [
+      { id:'chatgpt', name:'ChatGPT', type:'AI system', status:'connected', access:'Shared memory summary', privacy:'limited' },
+      { id:'claude', name:'Claude', type:'AI system', status:'connected', access:'Code + project context', privacy:'limited' },
+      { id:'gemini', name:'Gemini', type:'AI system', status:'connected', access:'Command understanding', privacy:'limited' },
+      { id:'grok', name:'Grok', type:'AI system', status:'connected', access:'Fast answer context', privacy:'limited' },
+      { id:'gmail', name:'Gmail', type:'Google', status:'demo', access:'Email summaries only', privacy:'limited' },
+      { id:'calendar', name:'Google Calendar', type:'Google', status:'connected', access:'Schedule actions', privacy:'limited' },
+      { id:'drive', name:'Google Drive', type:'Google', status:'demo', access:'File summaries only', privacy:'limited' },
+      { id:'github', name:'GitHub', type:'Productivity', status:'demo', access:'Repository context', privacy:'limited' },
+      { id:'home', name:'Home Assistant', type:'Devices', status:'demo', access:'Routine triggers', privacy:'limited' },
+      { id:'vault', name:'Private Vault', type:'Security', status:'private', access:'Never shared by default', privacy:'private' }
+    ];
+
+    var state = {
+      users:[{ id:'terafarm_user', name:'Terafarm User', email:'user@terafarm.ai' }],
+      memory_items:[],
+      agents:[],
+      connected_services:DEFAULT_SERVICES.slice(),
+      workflows:[],
+      commands:[],
+      permissions:[],
+      sync_logs:[],
+      notifications:[]
+    };
+
+    function load(){
+      try {
+        var raw = localStorage.getItem(KEY);
+        if(raw){
+          var saved = JSON.parse(raw);
+          if(saved && typeof saved === 'object'){
+            Object.keys(state).forEach(function(k){ if(Array.isArray(saved[k])) state[k] = saved[k]; });
+          }
+        }
+      } catch(e){}
+      if(!state.connected_services || !state.connected_services.length) state.connected_services = DEFAULT_SERVICES.slice();
+      seedPermissions();
+      return state;
+    }
+
+    function save(){
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+    }
+
+    function seedPermissions(){
+      var existing = {};
+      (state.permissions || []).forEach(function(p){ existing[p.service_id] = p; });
+      state.permissions = state.connected_services.map(function(s){
+        return existing[s.id] || {
+          service_id:s.id,
+          service_name:s.name,
+          memory_access:s.privacy === 'private' ? 'private' : 'limited',
+          can_read:s.privacy !== 'private',
+          can_write:s.id === 'calendar' || s.id === 'gemini' || s.id === 'claude',
+          updated_at:new Date().toISOString()
+        };
+      });
+    }
+
+    function addLog(title, detail, source, agents){
+      var log = {
+        id:'log_' + Date.now() + '_' + Math.random().toString(16).slice(2,6),
+        title:title,
+        detail:detail || '',
+        source:source || 'Terafarm',
+        agents:agents || [],
+        created_at:new Date().toISOString()
+      };
+      state.sync_logs.unshift(log);
+      if(state.sync_logs.length > MAX_LOGS) state.sync_logs.length = MAX_LOGS;
+      save();
+      renderSyncLogs();
+      return log;
+    }
+
+    function addMemoryFromCommand(cmd, agents){
+      if(!cmd) return null;
+      var item = {
+        id:'mem_item_' + Date.now(),
+        title:cmd.label || cmd.id || 'Command memory',
+        category:categoryFor(cmd.id),
+        summary:cmd.message || 'Command completed and synchronized across selected agents.',
+        source:'Command Engine',
+        connected_agents:(agents || []).slice(),
+        privacy_level:'limited',
+        last_updated:new Date().toISOString(),
+        confidence_score:98
+      };
+      state.memory_items.unshift(item);
+      if(state.memory_items.length > MAX_MEMORY) state.memory_items.length = MAX_MEMORY;
+      state.commands.unshift({ id:'cmd_' + Date.now(), command_id:cmd.id, label:cmd.label, status:'completed', agents:(agents||[]).slice(), created_at:item.last_updated });
+      if(state.commands.length > MAX_LOGS) state.commands.length = MAX_LOGS;
+      save();
+      addLog('Memory item created', item.title + ' → ' + item.connected_agents.join(', '), 'Shared Memory Core', item.connected_agents);
+      renderMemoryStats();
+      return item;
+    }
+
+    function categoryFor(id){
+      var map = {
+        coming_home:'home', plan_trip:'travel', review_code:'work', check_design:'design',
+        summarize_team:'people', schedule_meeting:'calendar', send_flowers:'life', run_workflow:'automation'
+      };
+      return map[id] || 'general';
+    }
+
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function shortTime(iso){
+      var d = new Date(iso || Date.now());
+      return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+    }
+
+    function renderSyncLogs(){
+      var list = document.getElementById('sync-log-list');
+      if(!list) return;
+      var logs = state.sync_logs.slice(0, 12);
+      if(!logs.length){
+        list.innerHTML = '<div class="mem-item"><div class="mt">🧠 Waiting for first command</div><div class="mb">Run any Quick Action and Terafarm will create memory, route agents, and write sync logs here.</div><div class="mtime">Local product engine ready</div></div>';
+      } else {
+        list.innerHTML = logs.map(function(l){
+          return '<div class="mem-item"><div class="mt">🔄 ' + esc(l.title) + '</div><div class="mb">' + esc(l.detail) + '</div><div class="mtime">' + esc(l.source) + ' · ' + shortTime(l.created_at) + '</div></div>';
+        }).join('');
+      }
+      var c = document.getElementById('sync-count'); if(c) c.textContent = state.sync_logs.length;
+      var s = document.getElementById('sync-services'); if(s) s.textContent = state.connected_services.length;
+    }
+
+    function renderPermissions(){
+      var list = document.getElementById('permission-list');
+      if(!list) return;
+      list.innerHTML = state.connected_services.map(function(s){
+        var status = s.status === 'connected' ? '🟢 Connected' : s.status === 'private' ? '🔒 Private' : '🟡 Simulated';
+        return '<div class="mem-item"><div class="mt">' + esc(s.name) + '</div><div class="mb">' + esc(s.type) + ' · ' + esc(s.access) + '</div><div class="mtime">' + status + ' · memory access: ' + esc(s.privacy) + '</div></div>';
+      }).join('');
+      var connected = state.connected_services.filter(function(s){ return s.status === 'connected'; }).length;
+      var limited = state.connected_services.filter(function(s){ return s.privacy === 'limited'; }).length;
+      var pc = document.getElementById('perm-connected'); if(pc) pc.textContent = connected;
+      var pl = document.getElementById('perm-limited'); if(pl) pl.textContent = limited;
+    }
+
+    function renderMemoryStats(){
+      var stats = document.querySelectorAll('#screen-memory .stat .n');
+      if(stats[0]) stats[0].textContent = (2847 + state.memory_items.length).toLocaleString();
+      if(stats[1]) stats[1].textContent = '10';
+      if(stats[2]) stats[2].textContent = state.connected_services.length;
+    }
+
+    function wireBus(){
+      if(typeof SystemBus === 'undefined' || !SystemBus.subscribe) return;
+      SystemBus.subscribe('command:run', function(p){
+        addLog('Agent Router received command', (p.label || p.id) + ' → routing started', 'Agent Router', p.agents || []);
+      });
+      SystemBus.subscribe('agents:routed', function(p){
+        addLog('Agents selected', (p.agents || []).join(', ') || 'No agents selected', 'Agent Router', p.agents || []);
+      });
+      SystemBus.subscribe('activity:log', function(p){
+        var ev = (p.events || [])[0];
+        if(ev) addLog('Service execution started', ev.task + ' · ' + (p.events || []).length + ' agent events', 'Tool Layer', (p.events || []).map(function(e){ return e.agent; }));
+      });
+      SystemBus.subscribe('memory:write', function(mem){
+        if(mem) addLog('Shared memory updated', mem.text || 'Memory synchronized', 'Shared Memory Core', mem.agents || []);
+      });
+    }
+
+    function init(){
+      load();
+      wireBus();
+      addLog('Product engine online', 'localStorage collections ready: users, memory_items, agents, services, workflows, commands, permissions, sync_logs', 'Terafarm Core', ['Memory Core','Agent Router']);
+      renderSyncLogs();
+      renderPermissions();
+      renderMemoryStats();
+      // Wrap existing CommandEngine once so every successful command also creates a structured memory_item.
+      if(window.CommandEngine && !window.CommandEngine.__tfProductWrapped) return;
+    }
+
+    return { init:init, state:function(){ return JSON.parse(JSON.stringify(state)); }, addLog:addLog, addMemoryFromCommand:addMemoryFromCommand, renderSyncLogs:renderSyncLogs, renderPermissions:renderPermissions };
+  })();
+
+  // Phase 3 bridge: keep original CommandEngine behavior and add structured collection records.
+  (function(){
+    var originalRun = CommandEngine.run;
+    CommandEngine.run = function(input){
+      var cmd = originalRun.call(CommandEngine, input);
+      if(cmd && typeof TerafarmProductCore !== 'undefined'){
+        TerafarmProductCore.addMemoryFromCommand(cmd, (typeof AgentRouter !== 'undefined' && AgentRouter.get) ? AgentRouter.get(cmd.id) : []);
+      }
+      return cmd;
+    };
+  })();
+
+
+  // ════════ TERAFARM PHASE 4: REAL COMMAND ROUTER ════════
+  // Product-logic only. No redesign, no layout movement, no robot changes.
+  // Flow: command → intent → agents → memory item → command history → sync logs → visible UI update.
+  (function(){
+    var PHASE4_ROUTES = {
+      schedule_meeting:      ['Calendar AI', 'People Memory', 'Email AI', 'Notification AI'],
+      plan_trip:             ['Travel AI', 'Calendar AI', 'Finance AI', 'Drive AI'],
+      coming_home:           ['Home AI', 'Car AI', 'Robot AI', 'Security AI'],
+      review_code:           ['GitHub', 'Claude', 'Code AI', 'Memory Core'],
+      check_design:          ['Design AI', 'Claude', 'Memory Core', 'Notification AI'],
+      send_flowers:          ['Calendar AI', 'Finance AI', 'Shopping AI', 'Notification AI'],
+      summarize_team:        ['Email AI', 'Calendar AI', 'Notes AI', 'Chat History'],
+      general_memory_update: ['Memory Core', 'Knowledge AI', 'Cloud AI']
+    };
+
+    var PHASE4_DEFS = {
+      schedule_meeting:      { label:'Schedule meeting', category:'calendar', message:'Meeting flow prepared — calendar, people, email and notifications synchronized.' },
+      plan_trip:             { label:'Plan my business trip', category:'travel', message:'Business trip plan created — travel, calendar, finance and drive context synchronized.' },
+      coming_home:           { label:'Coming home', category:'home', message:'Arrival routine prepared — home, car, robot and security systems synchronized.' },
+      review_code:           { label:'Review code', category:'engineering', message:'Code review started — GitHub, Claude, Code AI and memory context synchronized.' },
+      check_design:          { label:'Check design', category:'design', message:'Design check started — layout, visual hierarchy and shared memory synchronized.' },
+      send_flowers:          { label:'Send flowers', category:'life', message:'Flower delivery flow prepared — calendar, budget, shopping and notifications synchronized.' },
+      summarize_team:        { label:'Summarize team', category:'people', message:'Team summary prepared — email, calendar, notes and chat history synchronized.' },
+      general_memory_update: { label:'Memory update', category:'general', message:'General memory update saved and synchronized across connected intelligence.' }
+    };
+
+    function normalizeInput(input){ return String(input || '').toLowerCase().trim().replace(/[_-]+/g, ' '); }
+
+    function detectIntent(input){
+      var q = normalizeInput(input);
+      if(!q) return 'general_memory_update';
+      if(q === 'plan_trip' || q.indexOf('plan trip') !== -1 || q.indexOf('business trip') !== -1 || q.indexOf('travel') !== -1 || q.indexOf('flight') !== -1) return 'plan_trip';
+      if(q === 'schedule_meeting' || q.indexOf('schedule') !== -1 || q.indexOf('meeting') !== -1 || q.indexOf('calendar') !== -1) return 'schedule_meeting';
+      if(q === 'coming_home' || q.indexOf('coming home') !== -1 || q.indexOf('come home') !== -1 || q.indexOf('home') !== -1) return 'coming_home';
+      if(q === 'review_code' || q.indexOf('review code') !== -1 || q.indexOf('github') !== -1 || q.indexOf('pull request') !== -1 || q.indexOf('pr ') !== -1) return 'review_code';
+      if(q === 'check_design' || q.indexOf('check design') !== -1 || q.indexOf('design') !== -1 || q.indexOf('ui') !== -1) return 'check_design';
+      if(q === 'send_flowers' || q.indexOf('flower') !== -1 || q.indexOf('flowers') !== -1) return 'send_flowers';
+      if(q === 'summarize_team' || q.indexOf('summarize team') !== -1 || q.indexOf('team summary') !== -1 || q.indexOf('team') !== -1) return 'summarize_team';
+      if(q === 'general_memory_update' || q.indexOf('memory') !== -1 || q.indexOf('remember') !== -1) return 'general_memory_update';
+      return 'general_memory_update';
+    }
+
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+    function shortTime(iso){
+      var d = new Date(iso || Date.now());
+      return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+    }
+
+    function reflectRoutedAgents(agents, intent){
+      var visibleAliases = {
+        'People Memory':'Knowledge AI', 'Notification AI':'Communication AI', 'Memory Core':'Knowledge AI', 'Chat History':'Communication AI',
+        'GitHub':'Code AI', 'Claude':'Code AI', 'Security AI':'Security AI', 'Email AI':'Email AI', 'Shopping AI':'Shopping AI'
+      };
+      (agents || []).forEach(function(agent){
+        var candidates = [agent, visibleAliases[agent]].filter(Boolean);
+        candidates.forEach(function(name){
+          document.querySelectorAll('[data-act="' + name + '"]').forEach(function(el){
+            var desc = el.querySelector('.act-desc') || el.querySelector('.ad');
+            if(desc) desc.textContent = 'Synced for ' + (PHASE4_DEFS[intent] ? PHASE4_DEFS[intent].label : 'command');
+            var time = el.querySelector('.act-time'); if(time) time.textContent = 'just now';
+            var status = el.querySelector('.as'); if(status) status.innerHTML = '<span class="dot"></span>Synced';
+          });
+        });
+      });
+    }
+
+    function renderPhase4Memory(item){
+      if(!item) return;
+      document.querySelectorAll('.tf-live-memory').forEach(function(n){ n.remove(); });
+      var labels = document.querySelectorAll('#screen-memory .seclbl .t');
+      var recentLabel = null;
+      labels.forEach(function(t){ if((t.textContent || '').indexOf('RECENT MEMORY') !== -1) recentLabel = t.closest('.seclbl'); });
+      if(recentLabel){
+        var node = document.createElement('div');
+        node.className = 'mem-item tf-live-memory';
+        node.innerHTML = '<div class="mt">🧠 ' + esc(item.title) + '</div><div class="mb">' + esc(item.summary) + '</div><div class="mtime">Updated just now · synced to ' + esc((item.connected_agents || []).join(', ')) + '</div>';
+        recentLabel.insertAdjacentElement('afterend', node);
+      }
+      var cardTitle = document.querySelector('.memcard .ttl');
+      var cardSub = document.querySelector('.memcard .sub');
+      if(cardTitle) cardTitle.textContent = 'Memory updated';
+      if(cardSub) cardSub.textContent = item.title + ' · synced just now';
+      var greet = document.getElementById('greetMsg');
+      if(greet){ greet.classList.remove('fade'); greet.textContent = '🧠 ' + item.title + ' saved across selected agents'; }
+    }
+
+    function renderPhase4Stats(snapshot){
+      var state = snapshot || (window.TerafarmProductCore && TerafarmProductCore.state ? TerafarmProductCore.state() : null);
+      if(!state) return;
+      var stats = document.querySelectorAll('#screen-memory .stat .n');
+      if(stats[0]) stats[0].textContent = (2847 + (state.memory_items || []).length).toLocaleString();
+      if(stats[1]) stats[1].textContent = '10';
+      if(stats[2]) stats[2].textContent = (state.connected_services || []).length;
+      var syncCount = document.getElementById('sync-count'); if(syncCount) syncCount.textContent = (state.sync_logs || []).length;
+    }
+
+    function phase4Run(input){
+      var intent = detectIntent(input);
+      var def = PHASE4_DEFS[intent] || PHASE4_DEFS.general_memory_update;
+      var agents = (PHASE4_ROUTES[intent] || PHASE4_ROUTES.general_memory_update).slice();
+      var cmd = { id:intent, intent:intent, label:def.label, status:'completed', timestamp:Date.now(), message:def.message, agents:agents };
+
+      if(typeof AgentRouter !== 'undefined'){
+        try { AgentRouter.route = function(commandId){ var routed = (PHASE4_ROUTES[commandId] || PHASE4_ROUTES.general_memory_update).slice(); reflectRoutedAgents(routed, commandId); if(typeof SystemBus !== 'undefined') SystemBus.emit('agents:routed', { commandId:commandId, agents:routed }); return routed; }; } catch(e){}
+        try { AgentRouter.get = function(commandId){ return (PHASE4_ROUTES[commandId] || PHASE4_ROUTES.general_memory_update).slice(); }; } catch(e){}
+      }
+
+      setState('activeCommand', intent);
+      setState('activeAgents', agents);
+      setState('lastAction', def.label);
+      reflectRoutedAgents(agents, intent);
+
+      if(typeof SystemBus !== 'undefined') SystemBus.emit('command:run', { id:intent, label:def.label, agents:agents, timestamp:cmd.timestamp });
+      if(typeof MemoryEngine !== 'undefined' && MemoryEngine.write) MemoryEngine.write(cmd, agents);
+      if(typeof ActivityEngine !== 'undefined' && ActivityEngine.log) ActivityEngine.log(cmd, agents);
+      if(typeof SessionStore !== 'undefined' && SessionStore.persist) SessionStore.persist(cmd, agents);
+      if(typeof PatternEngine !== 'undefined' && PatternEngine.record) PatternEngine.record(cmd, agents);
+
+      var item = null;
+      if(typeof TerafarmProductCore !== 'undefined' && TerafarmProductCore.addMemoryFromCommand){
+        item = TerafarmProductCore.addMemoryFromCommand(cmd, agents);
+        if(TerafarmProductCore.addLog){
+          TerafarmProductCore.addLog('Intent detected', def.label + ' → ' + intent, 'Command Router', agents);
+          TerafarmProductCore.addLog('Visible UI updated', 'Memory count, recent memory, sync logs and agent statuses refreshed', 'Terafarm UI', agents);
+        }
+      }
+      renderPhase4Memory(item || { title:def.label, summary:def.message, connected_agents:agents });
+      renderPhase4Stats();
+      if(typeof TerafarmProductCore !== 'undefined'){
+        if(TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+        if(TerafarmProductCore.renderPermissions) TerafarmProductCore.renderPermissions();
+      }
+      console.log('[Terafarm Phase 4 Router]', input, '→', intent, agents);
+      return cmd;
+    }
+
+    if(typeof CommandEngine !== 'undefined'){
+      CommandEngine.run = phase4Run;
+      CommandEngine.resolveId = detectIntent;
+      CommandEngine.get = function(id){ return PHASE4_DEFS[id] || null; };
+      CommandEngine.list = function(){ return Object.keys(PHASE4_DEFS); };
+      CommandEngine.__phase4Router = true;
+    }
+
+    window.TerafarmPhase4Router = {
+      detectIntent: detectIntent,
+      agentsFor: function(intent){ return (PHASE4_ROUTES[intent] || PHASE4_ROUTES.general_memory_update).slice(); },
+      run: phase4Run,
+      testBusinessTrip: function(){ return phase4Run('Plan my business trip'); }
+    };
+  })();
+
+
+
+  // ════════ TERAFARM PHASE 5: VISIBLE MEMORY ENGINE ════════
+  // Behavior only: dynamic memory count, live recent memory, real memory screen entries,
+  // category metadata, and memory detail modal. Original layout and robot remain untouched.
+  var TerafarmPhase5Memory = (function(){
+    var BASE_MEMORY_COUNT = 2847;
+    var CATEGORIES = ['Work','Projects','People','Goals','Devices','Knowledge','Travel','Home'];
+    var SERVICE_BY_AGENT = {
+      'Travel AI':'Travel Service', 'Calendar AI':'Google Calendar', 'Finance AI':'Finance Context', 'Drive AI':'Google Drive',
+      'People Memory':'People Memory', 'Email AI':'Gmail', 'Notification AI':'Notifications',
+      'Home AI':'Home Assistant', 'Car AI':'Vehicle System', 'Robot AI':'Robot Devices', 'Security AI':'Security System',
+      'GitHub':'GitHub', 'Claude':'Claude', 'Code AI':'Code AI', 'Memory Core':'Shared Memory Core',
+      'Design AI':'Design System', 'UI AI':'UI System', 'Shopping AI':'Shopping Service', 'Chat History':'Chat History',
+      'Gemini':'Gemini', 'ChatGPT':'ChatGPT'
+    };
+    var INTENT_CATEGORY = {
+      schedule_meeting:'Work', plan_trip:'Travel', coming_home:'Home', review_code:'Projects', check_design:'Projects',
+      send_flowers:'People', summarize_team:'People', general_memory_update:'Knowledge'
+    };
+
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function state(){ return (window.TerafarmProductCore && TerafarmProductCore.state) ? TerafarmProductCore.state() : {memory_items:[], connected_services:[], sync_logs:[]}; }
+    function when(iso){
+      var t = new Date(iso || Date.now()).getTime();
+      var diff = Math.max(0, Date.now() - t);
+      if(diff < 60000) return 'Created now';
+      if(diff < 3600000) return 'Created ' + Math.floor(diff/60000) + 'm ago';
+      return new Date(t).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+    }
+    function prettyCategory(mem){
+      if(!mem) return 'Knowledge';
+      if(mem.command_intent && INTENT_CATEGORY[mem.command_intent]) return INTENT_CATEGORY[mem.command_intent];
+      var c = String(mem.category || '').toLowerCase();
+      var map = { work:'Work', calendar:'Work', travel:'Travel', home:'Home', people:'People', design:'Projects', engineering:'Projects', general:'Knowledge', life:'People', devices:'Devices', projects:'Projects', goals:'Goals', knowledge:'Knowledge' };
+      return map[c] || 'Knowledge';
+    }
+    function servicesFor(mem){
+      var agents = mem && mem.connected_agents ? mem.connected_agents : [];
+      var services = agents.map(function(a){ return SERVICE_BY_AGENT[a] || a; });
+      return services.filter(function(v, i, arr){ return v && arr.indexOf(v) === i; });
+    }
+    function syncStatus(mem){
+      var n = servicesFor(mem).length || ((mem && mem.connected_agents) ? mem.connected_agents.length : 0);
+      return n ? 'Synced to ' + n + ' services' : 'Ready to sync';
+    }
+    function normalizeItem(mem){
+      var services = servicesFor(mem);
+      return Object.assign({}, mem, {
+        category_label: prettyCategory(mem),
+        created_label: when(mem.last_updated || mem.created_at),
+        sync_status: syncStatus(mem),
+        connected_services: services
+      });
+    }
+    function latestItems(){ return (state().memory_items || []).map(normalizeItem); }
+
+    function ensureModal(){
+      if(document.getElementById('tfMemoryDetail')) return;
+      var modal = document.createElement('div');
+      modal.id = 'tfMemoryDetail';
+      modal.className = 'tf-memory-detail';
+      modal.innerHTML = '<div class="tf-memory-sheet"><button class="tf-memory-close" id="tfMemoryClose">×</button><div id="tfMemoryDetailBody"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeDetail(); });
+      var close = document.getElementById('tfMemoryClose');
+      if(close) close.addEventListener('click', closeDetail);
+    }
+
+    function openDetail(id){
+      ensureModal();
+      var mem = latestItems().filter(function(x){ return x.id === id; })[0];
+      if(!mem) return;
+      var body = document.getElementById('tfMemoryDetailBody');
+      if(!body) return;
+      var agents = (mem.connected_agents || []).join(' + ') || 'Shared Memory Core';
+      var services = (mem.connected_services || []).join(' + ') || 'Local memory only';
+      body.innerHTML = '<h3>' + esc(mem.title) + '</h3>' +
+        '<p>' + esc(mem.summary || 'Memory stored in Terafarm shared memory.') + '</p>' +
+        '<div class="tf-memory-grid">' +
+          '<div class="tf-memory-kv"><b>Category</b><span>' + esc(mem.category_label) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Created</b><span>' + esc(mem.created_label) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Source command</b><span>' + esc(mem.source_command || mem.title || 'Command Engine') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Sync status</b><span>' + esc(mem.sync_status) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Agents used</b><span>' + esc(agents) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Connected services</b><span>' + esc(services) + '</span></div>' +
+        '</div>';
+      document.getElementById('tfMemoryDetail').classList.add('open');
+    }
+    function closeDetail(){ var m = document.getElementById('tfMemoryDetail'); if(m) m.classList.remove('open'); }
+
+    function memoryCard(mem, isRecent){
+      var agents = (mem.connected_agents || []).join(' + ') || 'Shared Memory Core';
+      return '<div class="mem-item tf-memory-live" data-memory-id="' + esc(mem.id) + '">' +
+        '<div class="mt">🧠 ' + esc(mem.title) + '</div>' +
+        '<div class="mb">' + esc(mem.summary || '') + '</div>' +
+        '<div class="tf-memory-meta">' + esc(mem.category_label) + ' · ' + esc(mem.created_label) + '<br>Source: ' + esc(mem.source_command || mem.source || 'Command Engine') + '<br>Agents: ' + esc(agents) + '</div>' +
+        '<div class="tf-memory-badge"><span class="dot"></span>' + esc(mem.sync_status) + '</div>' +
+      '</div>';
+    }
+
+    function renderCounters(items){
+      var stats = document.querySelectorAll('#screen-memory .stat .n');
+      if(stats[0]) stats[0].textContent = (BASE_MEMORY_COUNT + items.length).toLocaleString();
+      if(stats[1]) stats[1].textContent = CATEGORIES.length;
+      var st = state();
+      if(stats[2]) stats[2].textContent = (st.connected_services || []).length || 8;
+      var cardTitle = document.querySelector('.memcard .ttl');
+      var cardSub = document.querySelector('.memcard .sub');
+      if(items[0]){
+        if(cardTitle) cardTitle.textContent = 'Memory updated';
+        if(cardSub) cardSub.textContent = items[0].title + ' · ' + items[0].sync_status;
+      }
+    }
+
+    function renderRecent(items){
+      var labels = document.querySelectorAll('#screen-memory .seclbl .t');
+      var recentLabel = null;
+      labels.forEach(function(t){ if((t.textContent || '').indexOf('RECENT MEMORY') !== -1) recentLabel = t.closest('.seclbl'); });
+      if(!recentLabel) return;
+      document.querySelectorAll('#screen-memory .tf-memory-live').forEach(function(n){ n.remove(); });
+      if(!items.length) return;
+      recentLabel.insertAdjacentHTML('afterend', items.slice(0, 8).map(function(item){ return memoryCard(item, true); }).join(''));
+    }
+
+    function renderCategoryCounts(items){
+      var counts = {};
+      CATEGORIES.forEach(function(c){ counts[c] = 0; });
+      items.forEach(function(i){ counts[i.category_label] = (counts[i.category_label] || 0) + 1; });
+      document.querySelectorAll('#screen-memory .seclbl').forEach(function(lbl){
+        var t = lbl.querySelector('.t'); var a = lbl.querySelector('.a');
+        if(!t || !a) return;
+        var text = t.textContent || '';
+        CATEGORIES.forEach(function(c){ if(text.toLowerCase().indexOf(c.toLowerCase()) !== -1) a.textContent = Math.max(parseInt(a.textContent || '0', 10) || 0, counts[c]); });
+      });
+    }
+
+    function bindClicks(){
+      document.querySelectorAll('#screen-memory [data-memory-id]').forEach(function(el){
+        if(el.__tfPhase5Bound) return;
+        el.__tfPhase5Bound = true;
+        el.addEventListener('click', function(){ openDetail(el.getAttribute('data-memory-id')); });
+      });
+    }
+
+    function render(){
+      ensureModal();
+      var items = latestItems();
+      renderCounters(items);
+      renderRecent(items);
+      renderCategoryCounts(items);
+      bindClicks();
+      var greet = document.getElementById('greetMsg');
+      if(greet && items[0]) greet.textContent = '🧠 ' + items[0].title + ' saved in shared memory';
+    }
+
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase5Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var result = oldRun(input);
+        setTimeout(render, 0);
+        return result;
+      };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      window.TerafarmPhase4Router.__phase5Patched = true;
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+    }
+
+    function init(){
+      ensureModal();
+      patchRouter();
+      render();
+      document.addEventListener('click', function(e){
+        var item = e.target.closest && e.target.closest('#screen-memory [data-memory-id]');
+        if(item) openDetail(item.getAttribute('data-memory-id'));
+      });
+      console.log('[Terafarm Phase 5] Visible Memory Engine online');
+    }
+
+    return { init:init, render:render, openDetail:openDetail, categories:function(){ return CATEGORIES.slice(); } };
+  })();
+
+
+  // ════════ TERAFARM PHASE 6: REALISTIC SERVICE PERMISSIONS ════════
+  // Behavior only. Adds functional service registry, sync state after commands,
+  // service detail modal, and permission toggle simulation.
+  (function(){
+    var KEY = 'terafarm.product.v1';
+    var LEVEL_LABEL = { full:'Full Access', limited:'Limited Access', read_only:'Read Only', private:'Private', off:'Off' };
+    var STATUS_LABEL = { connected:'Connected', limited:'Limited', private:'Private', disabled:'Disabled', demo:'Simulated' };
+    var AGENT_SERVICE = {
+      'Travel AI':'travel_ai', 'Calendar AI':'calendar_ai', 'Finance AI':'finance_ai', 'Drive AI':'drive_ai',
+      'Home AI':'home_ai', 'Car AI':'car_ai', 'Robot AI':'robot_ai', 'Security AI':'security_ai',
+      'GitHub':'github', 'Claude':'claude', 'Code AI':'code_ai', 'Memory Core':'memory_core',
+      'Design AI':'design_ai', 'Notification AI':'notification_ai', 'People Memory':'people_memory',
+      'Email AI':'email_ai', 'Shopping AI':'shopping_ai', 'Notes AI':'notes_ai', 'Chat History':'chat_history',
+      'Knowledge AI':'knowledge_ai', 'Cloud AI':'cloud_ai'
+    };
+    var DEFAULT_PHASE6_SERVICES = [
+      { id:'travel_ai', name:'Travel AI', type:'Agent', category:'Travel', status:'demo', permission_level:'limited', memory_access:'travel memory + calendar context', connected_agents:['Travel AI'] },
+      { id:'calendar_ai', name:'Calendar AI', type:'Agent', category:'Google', status:'connected', permission_level:'full', memory_access:'schedule, meetings and routines', connected_agents:['Calendar AI'] },
+      { id:'finance_ai', name:'Finance AI', type:'Agent', category:'Productivity', status:'limited', permission_level:'read_only', memory_access:'budget estimates only', connected_agents:['Finance AI'] },
+      { id:'drive_ai', name:'Drive AI', type:'Agent', category:'Google', status:'demo', permission_level:'limited', memory_access:'file summaries and trip docs', connected_agents:['Drive AI'] },
+      { id:'home_ai', name:'Home AI', type:'Device Agent', category:'Devices', status:'limited', permission_level:'limited', memory_access:'home routines only', connected_agents:['Home AI'] },
+      { id:'car_ai', name:'Car AI', type:'Device Agent', category:'Devices', status:'demo', permission_level:'read_only', memory_access:'routes and arrival context', connected_agents:['Car AI'] },
+      { id:'robot_ai', name:'Robot AI', type:'Device Agent', category:'Devices', status:'demo', permission_level:'limited', memory_access:'home task context', connected_agents:['Robot AI'] },
+      { id:'security_ai', name:'Security AI', type:'Device Agent', category:'Security', status:'private', permission_level:'private', memory_access:'private security state', connected_agents:['Security AI'] },
+      { id:'email_ai', name:'Email AI', type:'Agent', category:'Google', status:'demo', permission_level:'read_only', memory_access:'email summaries only', connected_agents:['Email AI'] },
+      { id:'notification_ai', name:'Notification AI', type:'Agent', category:'System', status:'connected', permission_level:'limited', memory_access:'notification context', connected_agents:['Notification AI'] },
+      { id:'people_memory', name:'People Memory', type:'Memory Agent', category:'People', status:'limited', permission_level:'limited', memory_access:'relationship graph', connected_agents:['People Memory'] },
+      { id:'memory_core', name:'Shared Memory Core', type:'Core System', category:'Memory', status:'connected', permission_level:'full', memory_access:'shared memory engine', connected_agents:['Memory Core'] },
+      { id:'code_ai', name:'Code AI', type:'Agent', category:'Development', status:'demo', permission_level:'limited', memory_access:'code/project memory', connected_agents:['Code AI'] },
+      { id:'design_ai', name:'Design AI', type:'Agent', category:'Design', status:'demo', permission_level:'limited', memory_access:'UI and visual memory', connected_agents:['Design AI'] },
+      { id:'knowledge_ai', name:'Knowledge AI', type:'Agent', category:'Knowledge', status:'connected', permission_level:'limited', memory_access:'knowledge memory summaries', connected_agents:['Knowledge AI'] },
+      { id:'chatgpt', name:'ChatGPT', type:'AI System', category:'AI', status:'connected', permission_level:'limited', memory_access:'shared memory summary', connected_agents:['Knowledge AI'] },
+      { id:'claude', name:'Claude', type:'AI System', category:'AI', status:'connected', permission_level:'limited', memory_access:'code + project context', connected_agents:['Claude'] },
+      { id:'gemini', name:'Gemini', type:'AI System', category:'AI', status:'connected', permission_level:'limited', memory_access:'command understanding', connected_agents:['Knowledge AI'] },
+      { id:'github', name:'GitHub', type:'Productivity', category:'Development', status:'demo', permission_level:'limited', memory_access:'repository context', connected_agents:['GitHub'] },
+      { id:'gmail', name:'Gmail', type:'Google', category:'Google', status:'demo', permission_level:'read_only', memory_access:'email summaries only', connected_agents:['Email AI'] },
+      { id:'calendar', name:'Google Calendar', type:'Google', category:'Google', status:'connected', permission_level:'full', memory_access:'schedule actions', connected_agents:['Calendar AI'] },
+      { id:'drive', name:'Google Drive', type:'Google', category:'Google', status:'demo', permission_level:'limited', memory_access:'file summaries only', connected_agents:['Drive AI'] },
+      { id:'vault', name:'Private Vault', type:'Security', category:'Security', status:'private', permission_level:'private', memory_access:'private memory only', connected_agents:['Memory Core'] }
+    ];
+
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function nowIso(){ return new Date().toISOString(); }
+    function when(iso){ if(!iso) return 'Waiting for sync'; var d = new Date(iso); return isNaN(d) ? 'Waiting for sync' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function timeAgo(iso){ if(!iso) return 'Waiting for first sync'; var diff = Date.now() - new Date(iso).getTime(); if(diff < 60000) return 'just now'; if(diff < 3600000) return Math.floor(diff/60000) + ' min ago'; return when(iso); }
+    function normalizeService(s){
+      var privacy = s.privacy || s.permission_level || 'limited';
+      var level = s.permission_level || (privacy === 'private' ? 'private' : privacy === 'off' ? 'off' : privacy === 'read_only' ? 'read_only' : s.status === 'connected' ? 'limited' : 'limited');
+      var status = s.status || (level === 'off' ? 'disabled' : level === 'private' ? 'private' : 'demo');
+      if(level === 'off') status = 'disabled';
+      return {
+        id:s.id,
+        name:s.name,
+        type:s.type || 'Connected Service',
+        category:s.category || s.type || 'System',
+        status:status,
+        permission_level:level,
+        last_sync:s.last_sync || null,
+        connected_agents:s.connected_agents || [],
+        memory_access:s.memory_access || s.access || 'limited memory context'
+      };
+    }
+    function migrate(){
+      var st = read();
+      if(!Array.isArray(st.connected_services)) st.connected_services = [];
+      var byId = {};
+      DEFAULT_PHASE6_SERVICES.forEach(function(s){ byId[s.id] = normalizeService(s); });
+      st.connected_services.forEach(function(s){ if(s && s.id) byId[s.id] = Object.assign({}, byId[s.id] || {}, normalizeService(s)); });
+      st.connected_services = Object.keys(byId).map(function(id){ return byId[id]; });
+      st.permissions = st.connected_services.map(function(s){ return { service_id:s.id, service_name:s.name, permission_level:s.permission_level, memory_access:s.memory_access, updated_at:s.last_sync || nowIso() }; });
+      write(st); return st;
+    }
+    function serviceById(id){ return (migrate().connected_services || []).filter(function(s){ return s.id === id; })[0]; }
+    function statusClass(s){ return ['connected','limited','private','disabled','demo'].indexOf(s.status) >= 0 ? s.status : 'demo'; }
+    function displayLevel(l){ return LEVEL_LABEL[l] || l || 'Limited Access'; }
+    function logsForService(st, service){
+      var logs = st.sync_logs || [];
+      var agents = service.connected_agents || [];
+      return logs.filter(function(l){
+        var text = [l.title, l.detail, l.source].join(' ').toLowerCase();
+        return agents.some(function(a){ return text.indexOf(String(a).toLowerCase()) !== -1; }) || text.indexOf(service.name.toLowerCase()) !== -1;
+      }).slice(0,4);
+    }
+    function render(){
+      var st = migrate();
+      var list = document.getElementById('permission-list');
+      if(list){
+        list.innerHTML = (st.connected_services || []).map(function(s){
+          var agents = (s.connected_agents || []).join(' + ') || 'Shared Memory Core';
+          return '<div class="mem-item tf-service-row" data-service-id="' + esc(s.id) + '">' +
+            '<div class="tf-service-top"><div class="mt">' + esc(s.name) + '</div><div class="tf-service-status ' + statusClass(s) + '">' + esc(STATUS_LABEL[s.status] || s.status) + '</div></div>' +
+            '<div class="tf-service-meta">' + esc(s.category) + ' · ' + esc(s.type) + '<br>Permission: ' + esc(displayLevel(s.permission_level)) + '<br>Agents: ' + esc(agents) + '<br>Memory: ' + esc(s.memory_access) + '</div>' +
+            '<div class="tf-service-sync">Last sync: ' + esc(timeAgo(s.last_sync)) + '</div>' +
+          '</div>';
+        }).join('');
+      }
+      var connected = (st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length;
+      var limited = (st.connected_services || []).filter(function(s){ return s.permission_level === 'limited' || s.status === 'limited'; }).length;
+      var pc = document.getElementById('perm-connected'); if(pc) pc.textContent = connected;
+      var pl = document.getElementById('perm-limited'); if(pl) pl.textContent = limited;
+      var syncServices = document.getElementById('sync-services'); if(syncServices) syncServices.textContent = (st.connected_services || []).length;
+      bindRows();
+    }
+    function ensureModal(){
+      if(document.getElementById('tfServiceDetail')) return;
+      var modal = document.createElement('div');
+      modal.id = 'tfServiceDetail';
+      modal.className = 'tf-service-detail';
+      modal.innerHTML = '<div class="tf-service-sheet"><button class="tf-service-close" id="tfServiceClose">×</button><div id="tfServiceDetailBody"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeDetail(); });
+      document.getElementById('tfServiceClose').addEventListener('click', closeDetail);
+    }
+    function openDetail(id){
+      ensureModal();
+      var st = migrate();
+      var service = (st.connected_services || []).filter(function(s){ return s.id === id; })[0];
+      if(!service) return;
+      var logs = logsForService(st, service);
+      var body = document.getElementById('tfServiceDetailBody');
+      var agents = (service.connected_agents || []).join(' + ') || 'Shared Memory Core';
+      body.innerHTML = '<h3>' + esc(service.name) + '</h3>' +
+        '<p>' + esc(service.type) + ' · ' + esc(service.category) + '</p>' +
+        '<div class="tf-memory-grid">' +
+          '<div class="tf-memory-kv"><b>Status</b><span>' + esc(STATUS_LABEL[service.status] || service.status) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Permission</b><span>' + esc(displayLevel(service.permission_level)) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Memory access</b><span>' + esc(service.memory_access) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Connected agents</b><span>' + esc(agents) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Last sync</b><span>' + esc(timeAgo(service.last_sync)) + '</span></div>' +
+        '</div>' +
+        '<div class="seclbl" style="margin-top:16px"><span class="t">PERMISSION LEVEL</span></div>' +
+        '<div class="tf-permission-options">' + ['full','limited','read_only','private','off'].map(function(level){ return '<button class="tf-permission-btn ' + (service.permission_level === level ? 'on' : '') + '" data-service-level="' + level + '" data-service-target="' + esc(service.id) + '">' + esc(displayLevel(level)) + '</button>'; }).join('') + '</div>' +
+        '<div class="seclbl" style="margin-top:16px"><span class="t">RECENT SYNC LOGS</span></div>' +
+        (logs.length ? logs.map(function(l){ return '<div class="tf-mini-log">' + esc(l.title || 'Sync event') + '<br><span>' + esc(l.detail || l.source || '') + '</span></div>'; }).join('') : '<div class="tf-mini-log">Waiting for first service sync.</div>');
+      document.getElementById('tfServiceDetail').classList.add('open');
+      bindLevelButtons();
+    }
+    function closeDetail(){ var m = document.getElementById('tfServiceDetail'); if(m) m.classList.remove('open'); }
+    function setPermission(id, level){
+      var st = migrate();
+      (st.connected_services || []).forEach(function(s){
+        if(s.id === id){
+          s.permission_level = level;
+          s.status = level === 'off' ? 'disabled' : level === 'private' ? 'private' : level === 'limited' ? 'limited' : 'connected';
+          s.last_sync = nowIso();
+          s.memory_access = level === 'off' ? 'access disabled' : level === 'private' ? 'private memory only' : s.memory_access;
+        }
+      });
+      st.permissions = (st.connected_services || []).map(function(s){ return { service_id:s.id, service_name:s.name, permission_level:s.permission_level, memory_access:s.memory_access, updated_at:s.last_sync || nowIso() }; });
+      st.sync_logs = st.sync_logs || [];
+      var service = (st.connected_services || []).filter(function(s){ return s.id === id; })[0];
+      st.sync_logs.unshift({ id:'log_' + Date.now(), title:'Permission updated', detail:(service ? service.name : id) + ' → ' + displayLevel(level), source:'Permission Layer', agents: service ? service.connected_agents : [], created_at:nowIso() });
+      write(st);
+      render();
+      openDetail(id);
+      if(typeof toast === 'function') toast('🔐 Permission updated: ' + displayLevel(level));
+    }
+    function bindRows(){
+      document.querySelectorAll('#permission-list [data-service-id]').forEach(function(el){
+        if(el.__tfPhase6Bound) return;
+        el.__tfPhase6Bound = true;
+        el.addEventListener('click', function(){ openDetail(el.getAttribute('data-service-id')); });
+      });
+    }
+    function bindLevelButtons(){
+      document.querySelectorAll('[data-service-level][data-service-target]').forEach(function(btn){
+        btn.addEventListener('click', function(e){ e.stopPropagation(); setPermission(btn.getAttribute('data-service-target'), btn.getAttribute('data-service-level')); });
+      });
+    }
+    function syncAgents(agents){
+      var st = migrate();
+      var ids = (agents || []).map(function(a){ return AGENT_SERVICE[a]; }).filter(Boolean);
+      var now = nowIso();
+      (st.connected_services || []).forEach(function(s){
+        var match = ids.indexOf(s.id) !== -1 || (s.connected_agents || []).some(function(a){ return (agents || []).indexOf(a) !== -1; });
+        if(match){
+          s.last_sync = now;
+          if(s.permission_level !== 'off' && s.permission_level !== 'private') s.status = 'connected';
+        }
+      });
+      st.sync_logs = st.sync_logs || [];
+      (agents || []).forEach(function(a){
+        st.sync_logs.unshift({ id:'log_' + Date.now() + '_' + Math.random().toString(16).slice(2,5), title:a + ' synced', detail:a + ' received shared memory context and updated service status.', source:'Service Registry', agents:[a], created_at:now });
+      });
+      if(st.sync_logs.length > 80) st.sync_logs.length = 80;
+      write(st);
+      render();
+      updateAgentVisuals(agents);
+      if(typeof TerafarmProductCore !== 'undefined' && TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+    }
+    function updateAgentVisuals(agents){
+      (agents || []).forEach(function(agent){
+        document.querySelectorAll('[data-act="' + agent + '"]').forEach(function(el){
+          var status = el.querySelector('.as'); if(status) status.innerHTML = '<span class="dot"></span>Synced';
+          var desc = el.querySelector('.ad') || el.querySelector('.act-desc'); if(desc) desc.textContent = 'Synced just now';
+          var time = el.querySelector('.act-time'); if(time) time.textContent = 'just now';
+        });
+      });
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase6Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var result = oldRun(input);
+        setTimeout(function(){ syncAgents(result && result.agents ? result.agents : []); }, 0);
+        return result;
+      };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.__phase6Patched = true;
+    }
+    function init(){
+      ensureModal();
+      migrate();
+      patchRouter();
+      render();
+      console.log('[Terafarm Phase 6] Realistic Service Permissions online');
+    }
+    window.TerafarmPhase6Permissions = { init:init, render:render, syncAgents:syncAgents, openDetail:openDetail, setPermission:setPermission };
+  })();
+
+
+  // ════════ TERAFARM PHASE 7: WORKFLOW EXECUTION TIMELINE ════════
+  // Behavior only. Adds step-by-step execution timelines to commands, renders
+  // command history, and opens command detail without touching the robot/layout.
+  var TerafarmPhase7Workflow = (function(){
+    var KEY = 'terafarm.product.v1';
+    var STATUS_ICON = { completed:'✓', running:'•', waiting:'…', failed:'!' };
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function isoNow(){ return new Date().toISOString(); }
+    function timeLabel(iso){ var d = new Date(iso || Date.now()); return d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}); }
+    function ago(iso){
+      if(!iso) return 'never';
+      var diff = Math.max(0, Date.now() - new Date(iso).getTime());
+      if(diff < 60000) return 'just now';
+      var m = Math.floor(diff/60000); if(m < 60) return m + 'm ago';
+      var h = Math.floor(m/60); if(h < 24) return h + 'h ago';
+      return new Date(iso).toLocaleDateString();
+    }
+    function timelineHtml(steps){
+      return '<div class="tf-workflow-live">' + (steps || []).map(function(step, i){
+        var status = step.status || 'waiting';
+        return '<div class="tf-timeline-step">' +
+          '<div class="tf-step-dot ' + esc(status) + '">' + esc(STATUS_ICON[status] || '•') + '</div>' +
+          '<div class="tf-step-body"><div class="tf-step-label">' + (i + 1) + '. ' + esc(step.label || 'Workflow step') + '</div>' +
+          '<div class="tf-step-detail">' + esc(step.detail || status) + '</div></div>' +
+        '</div>';
+      }).join('') + '</div>';
+    }
+    function buildTimeline(input, result, memoryItem){
+      var intent = (result && (result.intent || result.id)) || 'general_memory_update';
+      var agents = (result && result.agents) || [];
+      var memoryTitle = (memoryItem && memoryItem.title) || (result && result.label) || 'Command memory';
+      return [
+        { label:'Command received', status:'completed', detail:String(input || (result && result.label) || 'Command') },
+        { label:'Intent detected: ' + intent, status:'completed', detail:'Agent Router mapped the command to ' + intent },
+        { label:'Agents selected', status:'completed', detail:agents.length ? agents.join(' + ') : 'Shared Memory Core' },
+        { label:'Memory item created', status:'completed', detail:memoryTitle },
+        { label:'Services synced', status:'completed', detail:agents.length ? agents.join(' + ') + ' synced' : 'Connected services synced' },
+        { label:'Final result completed', status:'completed', detail:(result && result.message) || 'Workflow completed successfully' }
+      ];
+    }
+    function findLatestMemory(st){ return ((st && st.memory_items) || [])[0] || null; }
+    function attachTimeline(input, result){
+      var st = read();
+      st.commands = Array.isArray(st.commands) ? st.commands : [];
+      st.sync_logs = Array.isArray(st.sync_logs) ? st.sync_logs : [];
+      var memoryItem = findLatestMemory(st);
+      var timeline = buildTimeline(input, result, memoryItem);
+      var command = st.commands[0] || { id:'cmd_' + Date.now(), command_id:(result && result.id) || 'general_memory_update', label:(result && result.label) || String(input || 'Command'), status:'completed', agents:(result && result.agents) || [], created_at:isoNow() };
+      command.original_command = String(input || command.label || 'Command');
+      command.detected_intent = (result && (result.intent || result.id)) || command.command_id || 'general_memory_update';
+      command.agents = ((result && result.agents) || command.agents || []).slice();
+      command.memory_item_id = memoryItem ? memoryItem.id : null;
+      command.memory_item_title = memoryItem ? memoryItem.title : command.label;
+      command.services_synced = command.agents.slice();
+      command.workflow_timeline = timeline;
+      command.final_result = (result && result.message) || 'Workflow completed successfully';
+      command.created_at = command.created_at || isoNow();
+      st.commands[0] = command;
+      st.sync_logs.unshift({ id:'log_' + Date.now() + '_workflow', title:'Workflow timeline completed', detail:command.detected_intent + ' → ' + timeline.length + ' completed steps', source:'Workflow Engine', agents:command.agents, created_at:isoNow() });
+      if(st.sync_logs.length > 80) st.sync_logs.length = 80;
+      write(st);
+      renderLiveTimeline(command);
+      renderCommandHistory();
+      if(typeof TerafarmProductCore !== 'undefined' && TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+      return command;
+    }
+    function ensureHistoryAnchor(){
+      var syncScreen = document.querySelector('#screen-sync .wrap');
+      if(!syncScreen || document.getElementById('command-history-list')) return;
+      var marker = document.getElementById('sync-log-list');
+      var block = document.createElement('div');
+      block.innerHTML = '<div class="seclbl"><span class="t">COMMAND HISTORY</span></div><div id="command-history-list"></div>';
+      if(marker) marker.parentNode.insertBefore(block, marker.previousElementSibling || marker);
+      else syncScreen.appendChild(block);
+    }
+    function renderLiveTimeline(command){
+      if(!command || !command.workflow_timeline) return;
+      var old = document.getElementById('tfLiveWorkflow'); if(old) old.remove();
+      var target = document.querySelector('#screen-home .memcard');
+      if(!target) return;
+      var node = document.createElement('div');
+      node.id = 'tfLiveWorkflow';
+      node.className = 'tf-workflow-live';
+      node.innerHTML = '<div class="tf-workflow-title">⚡ Workflow completed</div>' +
+        '<div class="tf-workflow-sub">' + esc(command.original_command || command.label || 'Command') + ' · ' + esc(command.detected_intent || command.command_id || '') + '</div>' +
+        (command.workflow_timeline || []).map(function(step, i){
+          var status = step.status || 'completed';
+          return '<div class="tf-timeline-step"><div class="tf-step-dot ' + esc(status) + '">' + esc(STATUS_ICON[status] || '✓') + '</div><div class="tf-step-body"><div class="tf-step-label">' + (i+1) + '. ' + esc(step.label) + '</div><div class="tf-step-detail">' + esc(step.detail) + '</div></div></div>';
+        }).join('');
+      target.insertAdjacentElement('afterend', node);
+    }
+    function renderCommandHistory(){
+      ensureHistoryAnchor();
+      var list = document.getElementById('command-history-list');
+      if(!list) return;
+      var st = read();
+      var commands = (st.commands || []).slice(0,8);
+      if(!commands.length){
+        list.innerHTML = '<div class="mem-item"><div class="mt">⚡ Waiting for first workflow</div><div class="mb">Run a command and Terafarm will save its execution timeline here.</div><div class="mtime">Workflow Engine ready</div></div>';
+        return;
+      }
+      list.innerHTML = commands.map(function(c, idx){
+        var steps = (c.workflow_timeline || []).length;
+        return '<div class="mem-item tf-command-row" data-command-index="' + idx + '"><div class="mt">⚡ ' + esc(c.label || c.original_command || 'Command') + '</div>' +
+          '<div class="tf-command-meta">Intent: ' + esc(c.detected_intent || c.command_id || 'general_memory_update') + '<br>Agents: ' + esc((c.agents || []).join(' + ') || 'Shared Memory Core') + '<br>Timeline: ' + steps + ' completed steps</div>' +
+          '<div class="mtime">' + esc(ago(c.created_at)) + ' · final result completed</div></div>';
+      }).join('');
+      bindCommandRows();
+    }
+    function ensureModal(){
+      if(document.getElementById('tfCommandDetail')) return;
+      var modal = document.createElement('div');
+      modal.id = 'tfCommandDetail';
+      modal.className = 'tf-command-detail';
+      modal.innerHTML = '<div class="tf-command-sheet"><button class="tf-command-close" id="tfCommandClose">×</button><div id="tfCommandDetailBody"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeDetail(); });
+      document.getElementById('tfCommandClose').addEventListener('click', closeDetail);
+    }
+    function openDetail(index){
+      ensureModal();
+      var st = read();
+      var c = ((st.commands || [])[Number(index)]) || null;
+      if(!c) return;
+      var body = document.getElementById('tfCommandDetailBody');
+      body.innerHTML = '<h3>' + esc(c.label || c.original_command || 'Command') + '</h3>' +
+        '<p>' + esc(c.final_result || 'Workflow completed successfully') + '</p>' +
+        '<div class="tf-memory-grid">' +
+          '<div class="tf-memory-kv"><b>Original command</b><span>' + esc(c.original_command || c.label || '') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Detected intent</b><span>' + esc(c.detected_intent || c.command_id || '') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Agents used</b><span>' + esc((c.agents || []).join(' + ') || 'Shared Memory Core') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Memory created</b><span>' + esc(c.memory_item_title || c.memory_item_id || 'Command memory') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Services synced</b><span>' + esc((c.services_synced || c.agents || []).join(' + ') || 'Connected services') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Created time</b><span>' + esc(timeLabel(c.created_at)) + '</span></div>' +
+        '</div><div class="seclbl" style="margin-top:16px"><span class="t">WORKFLOW TIMELINE</span></div>' + timelineHtml(c.workflow_timeline || []);
+      document.getElementById('tfCommandDetail').classList.add('open');
+    }
+    function closeDetail(){ var m = document.getElementById('tfCommandDetail'); if(m) m.classList.remove('open'); }
+    function bindCommandRows(){
+      document.querySelectorAll('[data-command-index]').forEach(function(row){
+        if(row.__tfPhase7Bound) return;
+        row.__tfPhase7Bound = true;
+        row.addEventListener('click', function(){ openDetail(row.getAttribute('data-command-index')); });
+      });
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase7Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var result = oldRun(input);
+        var command = attachTimeline(input, result || {});
+        result.workflow_timeline = command.workflow_timeline;
+        result.command_history_id = command.id;
+        return result;
+      };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.__phase7Patched = true;
+    }
+    function init(){ ensureHistoryAnchor(); ensureModal(); patchRouter(); renderCommandHistory(); console.log('[Terafarm Phase 7] Workflow Execution Timeline online'); }
+    return { init:init, renderCommandHistory:renderCommandHistory, openDetail:openDetail, attachTimeline:attachTimeline };
+  })();
+
+
+
+
+  // ════════ TERAFARM PHASE 8: FOREIGN SERVICES CONNECTOR LAYER ════════
+  // Behavior only. Adds connector model, external service registry, connector action simulation,
+  // connector logs, connector detail modal, and intent → connector execution mapping.
+  var TerafarmPhase8Connectors = (function(){
+    var KEY = 'terafarm.product.v1';
+    var STATUS_LABEL = { connected:'Connected', needs_auth:'Needs Auth', limited:'Limited', private:'Private', disabled:'Disabled', demo:'Simulated' };
+    var LEVEL_LABEL = { full:'Full Access', limited:'Limited Access', read_only:'Read Only', private:'Private', off:'Off' };
+    var DEFAULT_CONNECTORS = [
+      { id:'google_calendar', name:'Google Calendar', provider:'Google', category:'Calendar', auth_status:'connected', permission_level:'full', available_actions:['create_event','check_availability','update_event'], connected_agents:['Calendar AI'], memory_access:'schedule, meetings, routines', sync_status:'ready' },
+      { id:'gmail', name:'Gmail', provider:'Google', category:'Email', auth_status:'limited', permission_level:'read_only', available_actions:['read_inbox','draft_email','send_email','scan_travel_emails'], connected_agents:['Email AI','Travel AI'], memory_access:'email summaries only', sync_status:'ready' },
+      { id:'google_drive', name:'Google Drive', provider:'Google', category:'Files', auth_status:'limited', permission_level:'limited', available_actions:['read_files','summarize_docs','create_doc'], connected_agents:['Drive AI'], memory_access:'file names, summaries, selected docs', sync_status:'ready' },
+      { id:'github', name:'GitHub', provider:'GitHub', category:'Development', auth_status:'demo', permission_level:'limited', available_actions:['read_repo','review_code','create_issue'], connected_agents:['GitHub','Code AI','Claude'], memory_access:'repository context', sync_status:'demo' },
+      { id:'vercel', name:'Vercel', provider:'Vercel', category:'Deployment', auth_status:'demo', permission_level:'read_only', available_actions:['read_deployments','check_status'], connected_agents:['Code AI'], memory_access:'deployment status', sync_status:'demo' },
+      { id:'slack', name:'Slack', provider:'Slack', category:'Team', auth_status:'needs_auth', permission_level:'off', available_actions:['read_channels','summarize_threads','draft_update'], connected_agents:['Communication AI'], memory_access:'team context after auth', sync_status:'waiting' },
+      { id:'notion', name:'Notion', provider:'Notion', category:'Knowledge', auth_status:'needs_auth', permission_level:'off', available_actions:['read_pages','summarize_workspace','create_page'], connected_agents:['Knowledge AI'], memory_access:'workspace context after auth', sync_status:'waiting' },
+      { id:'apple_health', name:'Apple Health', provider:'Apple', category:'Health', auth_status:'private', permission_level:'private', available_actions:['read_activity','read_sleep','read_vitals'], connected_agents:['Health AI'], memory_access:'private health signals', sync_status:'private' },
+      { id:'google_fit', name:'Google Fit', provider:'Google', category:'Health', auth_status:'needs_auth', permission_level:'off', available_actions:['read_activity','read_steps'], connected_agents:['Health AI'], memory_access:'fitness context after auth', sync_status:'waiting' },
+      { id:'home_assistant', name:'Home Assistant', provider:'Home Assistant', category:'Smart Home', auth_status:'limited', permission_level:'limited', available_actions:['control_lights','set_climate','away_mode'], connected_agents:['Home AI','Security AI'], memory_access:'home routines and device state', sync_status:'ready' },
+      { id:'car', name:'Tesla / Car', provider:'Vehicle', category:'Mobility', auth_status:'demo', permission_level:'limited', available_actions:['prepare_route','check_charge','start_climate'], connected_agents:['Car AI','Travel AI'], memory_access:'routes, battery, arrival context', sync_status:'demo' },
+      { id:'chatgpt', name:'ChatGPT', provider:'OpenAI', category:'AI System', auth_status:'connected', permission_level:'limited', available_actions:['share_context','summarize_memory','draft_response'], connected_agents:['Knowledge AI','Memory Core'], memory_access:'shared memory summary', sync_status:'ready' },
+      { id:'claude', name:'Claude', provider:'Anthropic', category:'AI System', auth_status:'connected', permission_level:'limited', available_actions:['share_project_context','review_code','analyze_design'], connected_agents:['Claude','Code AI','Design AI'], memory_access:'project and code context', sync_status:'ready' },
+      { id:'gemini', name:'Gemini', provider:'Google', category:'AI System', auth_status:'connected', permission_level:'limited', available_actions:['generate_trip_plan','understand_command','summarize_context'], connected_agents:['Knowledge AI','Travel AI'], memory_access:'command context and summaries', sync_status:'ready' }
+    ];
+    var INTENT_CONNECTORS = {
+      plan_trip: [
+        { id:'google_calendar', actions:['check_availability'] },
+        { id:'gmail', actions:['scan_travel_emails'] },
+        { id:'google_drive', actions:['summarize_docs'] },
+        { id:'car', actions:['prepare_route'] },
+        { id:'gemini', actions:['generate_trip_plan'] }
+      ],
+      schedule_meeting: [
+        { id:'google_calendar', actions:['check_availability','create_event'] },
+        { id:'gmail', actions:['draft_email'] },
+        { id:'gemini', actions:['understand_command'] }
+      ],
+      coming_home: [
+        { id:'home_assistant', actions:['control_lights','set_climate'] },
+        { id:'car', actions:['prepare_route','start_climate'] }
+      ],
+      review_code: [
+        { id:'github', actions:['read_repo','review_code'] },
+        { id:'vercel', actions:['read_deployments','check_status'] },
+        { id:'claude', actions:['review_code'] }
+      ],
+      check_design: [
+        { id:'google_drive', actions:['read_files'] },
+        { id:'claude', actions:['analyze_design'] },
+        { id:'gemini', actions:['summarize_context'] }
+      ],
+      send_flowers: [
+        { id:'google_calendar', actions:['check_availability'] },
+        { id:'gmail', actions:['draft_email'] },
+        { id:'gemini', actions:['understand_command'] }
+      ],
+      summarize_team: [
+        { id:'gmail', actions:['read_inbox'] },
+        { id:'google_calendar', actions:['check_availability'] },
+        { id:'slack', actions:['summarize_threads'] },
+        { id:'notion', actions:['summarize_workspace'] }
+      ],
+      general_memory_update: [
+        { id:'chatgpt', actions:['summarize_memory'] },
+        { id:'gemini', actions:['summarize_context'] }
+      ]
+    };
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function iso(){ return new Date().toISOString(); }
+    function ago(isoDate){ if(!isoDate) return 'Waiting for first sync'; var t = new Date(isoDate).getTime(); if(isNaN(t)) return 'Waiting for first sync'; var d = Date.now() - t; if(d < 60000) return 'just now'; if(d < 3600000) return Math.floor(d/60000) + ' min ago'; return new Date(t).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function normalizeConnector(c){
+      return {
+        id:c.id, name:c.name, provider:c.provider || 'External', category:c.category || 'Service',
+        auth_status:c.auth_status || c.status || 'demo', permission_level:c.permission_level || 'limited',
+        last_sync:c.last_sync || null, available_actions:c.available_actions || [], connected_agents:c.connected_agents || [],
+        memory_access:c.memory_access || 'limited memory context', sync_status:c.sync_status || (c.last_sync ? 'synced' : 'ready'),
+        recent_activity:c.recent_activity || []
+      };
+    }
+    function migrate(){
+      var st = read();
+      if(!Array.isArray(st.connectors)) st.connectors = [];
+      if(!Array.isArray(st.connector_logs)) st.connector_logs = [];
+      var byId = {};
+      DEFAULT_CONNECTORS.forEach(function(c){ byId[c.id] = normalizeConnector(c); });
+      st.connectors.forEach(function(c){ if(c && c.id) byId[c.id] = Object.assign({}, byId[c.id] || {}, normalizeConnector(c)); });
+      st.connectors = Object.keys(byId).map(function(id){ return byId[id]; });
+      write(st); return st;
+    }
+    function connectorById(st, id){ return (st.connectors || []).filter(function(c){ return c.id === id; })[0]; }
+    function actionLabel(action){ return String(action || '').replace(/_/g,' '); }
+    function selectedForIntent(intent){ return (INTENT_CONNECTORS[intent] || INTENT_CONNECTORS.general_memory_update).map(function(x){ return { id:x.id, actions:x.actions.slice() }; }); }
+    function simulateAction(connector, action){
+      var name = connector ? connector.name : 'Connector';
+      var map = {
+        check_availability:'availability checked', scan_travel_emails:'travel emails scanned', summarize_docs:'Drive context updated', prepare_route:'route prepared', generate_trip_plan:'trip plan generated',
+        create_event:'calendar event prepared', update_event:'calendar event updated', read_inbox:'inbox scanned', draft_email:'email draft prepared', send_email:'email send simulation ready',
+        read_files:'files scanned', create_doc:'document prepared', read_repo:'repository scanned', review_code:'code review simulated', create_issue:'issue draft prepared',
+        read_deployments:'deployments checked', check_status:'status checked', control_lights:'lights command prepared', set_climate:'climate command prepared', away_mode:'away mode prepared',
+        check_charge:'charge checked', start_climate:'car climate prepared', share_context:'context shared', summarize_memory:'memory summarized', draft_response:'response drafted',
+        share_project_context:'project context shared', analyze_design:'design analyzed', understand_command:'command understood', summarize_context:'context summarized',
+        read_channels:'channels scanned', summarize_threads:'threads summarized', draft_update:'update drafted', read_pages:'pages scanned', summarize_workspace:'workspace summarized', create_page:'page prepared',
+        read_activity:'activity checked', read_sleep:'sleep context checked', read_vitals:'vitals context checked', read_steps:'steps checked'
+      };
+      return name + ' ' + (map[action] || (actionLabel(action) + ' completed'));
+    }
+    function executeConnectors(intent, agents, commandLabel){
+      var st = migrate();
+      var selected = selectedForIntent(intent);
+      var now = iso();
+      var execution = [];
+      selected.forEach(function(sel){
+        var c = connectorById(st, sel.id); if(!c) return;
+        c.last_sync = now;
+        c.sync_status = 'synced';
+        if(c.auth_status === 'needs_auth') c.sync_status = 'auth required';
+        if(c.auth_status === 'disabled' || c.permission_level === 'off') c.sync_status = 'disabled';
+        var activity = sel.actions.map(function(action){ return simulateAction(c, action); });
+        c.recent_activity = (activity.concat(c.recent_activity || [])).slice(0,8);
+        execution.push({ id:c.id, name:c.name, provider:c.provider, category:c.category, actions:sel.actions.slice(), status:c.sync_status, activity:activity });
+        st.connector_logs.unshift({ id:'connector_log_' + Date.now() + '_' + Math.random().toString(16).slice(2), connector_id:c.id, connector_name:c.name, title:c.name + ' synced', detail:activity.join(' · '), actions:sel.actions.slice(), agents:(agents || []).slice(), command:commandLabel || intent, created_at:now });
+        if(Array.isArray(st.sync_logs)) st.sync_logs.unshift({ id:'sync_' + Date.now() + '_' + c.id, title:c.name + ' synced', detail:activity.join(' · '), source:'Connector Layer', agents:(agents || []).slice(), created_at:now });
+      });
+      if(st.connector_logs.length > 100) st.connector_logs.length = 100;
+      if(Array.isArray(st.sync_logs) && st.sync_logs.length > 120) st.sync_logs.length = 120;
+      // Attach connector references to latest memory item.
+      if(Array.isArray(st.memory_items) && st.memory_items[0]){
+        st.memory_items[0].connected_services = execution.map(function(e){ return e.name; });
+        st.memory_items[0].connector_actions = execution.reduce(function(out, e){ out[e.name] = e.actions; return out; }, {});
+        st.memory_items[0].sync_status = 'Synced with ' + execution.length + ' foreign connectors';
+        st.memory_items[0].last_updated = now;
+      }
+      // Attach connector execution into latest command timeline.
+      if(Array.isArray(st.commands) && st.commands[0]){
+        var cmd = st.commands[0];
+        cmd.foreign_connectors = execution.map(function(e){ return e.name; });
+        cmd.connector_actions = execution.reduce(function(out, e){ out[e.name] = e.actions; return out; }, {});
+        cmd.services_synced = Array.from(new Set((cmd.services_synced || []).concat(execution.map(function(e){ return e.name; }))));
+        var detail = execution.map(function(e){ return e.name + ': ' + e.actions.map(actionLabel).join(', '); }).join(' · ');
+        var step = { label:'Foreign connectors executed', status:'completed', detail:detail || 'Connector layer completed' };
+        var tl = Array.isArray(cmd.workflow_timeline) ? cmd.workflow_timeline : [];
+        var finalIndex = tl.findIndex(function(x){ return String(x.label || '').toLowerCase().indexOf('final result') !== -1; });
+        if(finalIndex >= 0) tl.splice(finalIndex, 0, step); else tl.push(step);
+        cmd.workflow_timeline = tl;
+        st.commands[0] = cmd;
+      }
+      write(st);
+      render();
+      updateVisibleConnectorStatus(execution);
+      if(typeof TerafarmPhase5Memory !== 'undefined' && TerafarmPhase5Memory.render) TerafarmPhase5Memory.render();
+      if(typeof TerafarmPhase6Permissions !== 'undefined' && TerafarmPhase6Permissions.render) TerafarmPhase6Permissions.render();
+      if(typeof TerafarmPhase7Workflow !== 'undefined' && TerafarmPhase7Workflow.renderCommandHistory) TerafarmPhase7Workflow.renderCommandHistory();
+      if(typeof TerafarmProductCore !== 'undefined' && TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+      return execution;
+    }
+    function updateVisibleConnectorStatus(execution){
+      var greet = document.getElementById('greetMsg');
+      if(greet && execution && execution.length) greet.textContent = '🔌 ' + execution.length + ' foreign connectors synchronized';
+      (execution || []).forEach(function(e){
+        document.querySelectorAll('[data-connector-id="' + e.id + '"]').forEach(function(row){
+          var sync = row.querySelector('.tf-connector-sync'); if(sync) sync.textContent = 'Last sync: just now · ' + e.actions.map(actionLabel).join(', ');
+          var badge = row.querySelector('.tf-connector-status'); if(badge) { badge.textContent = STATUS_LABEL.connected; badge.className = 'tf-connector-status connected'; }
+        });
+      });
+    }
+    function statusClass(c){ return ['connected','needs_auth','limited','private','disabled','demo'].indexOf(c.auth_status) >= 0 ? c.auth_status : 'demo'; }
+    function render(){
+      var st = migrate();
+      var list = document.getElementById('permission-list');
+      if(list){
+        var html = '<div class="seclbl"><span class="t">FOREIGN CONNECTORS</span></div>' + (st.connectors || []).map(function(c){
+          return '<div class="mem-item tf-connector-row" data-connector-id="' + esc(c.id) + '">' +
+            '<div class="tf-connector-top"><div class="mt">🔌 ' + esc(c.name) + '</div><div class="tf-connector-status ' + statusClass(c) + '">' + esc(STATUS_LABEL[c.auth_status] || c.auth_status) + '</div></div>' +
+            '<div class="tf-connector-meta">' + esc(c.provider) + ' · ' + esc(c.category) + '<br>Permission: ' + esc(LEVEL_LABEL[c.permission_level] || c.permission_level) + '<br>Agents: ' + esc((c.connected_agents || []).join(' + ') || 'Shared Memory Core') + '<br>Memory: ' + esc(c.memory_access) + '</div>' +
+            '<div class="tf-connector-actions">Actions: ' + esc((c.available_actions || []).slice(0,4).map(actionLabel).join(', ')) + '</div>' +
+            '<div class="tf-connector-sync">Last sync: ' + esc(ago(c.last_sync)) + ' · ' + esc(c.sync_status || 'ready') + '</div>' +
+          '</div>';
+        }).join('');
+        list.innerHTML = html;
+        bindRows();
+      }
+    }
+    function ensureModal(){
+      if(document.getElementById('tfConnectorDetail')) return;
+      var modal = document.createElement('div');
+      modal.id = 'tfConnectorDetail';
+      modal.className = 'tf-connector-detail';
+      modal.innerHTML = '<div class="tf-connector-sheet"><button class="tf-connector-close" id="tfConnectorClose">×</button><div id="tfConnectorDetailBody"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) closeDetail(); });
+      document.getElementById('tfConnectorClose').addEventListener('click', closeDetail);
+    }
+    function logsFor(c){ var st = read(); return (st.connector_logs || []).filter(function(l){ return l.connector_id === c.id; }).slice(0,5); }
+    function openDetail(id){
+      ensureModal();
+      var st = migrate(); var c = connectorById(st, id); if(!c) return;
+      var logs = logsFor(c);
+      var body = document.getElementById('tfConnectorDetailBody');
+      body.innerHTML = '<h3>' + esc(c.name) + '</h3><p>' + esc(c.provider) + ' connector · ' + esc(c.category) + '</p>' +
+        '<div class="tf-memory-grid">' +
+          '<div class="tf-memory-kv"><b>Provider</b><span>' + esc(c.provider) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Auth status</b><span>' + esc(STATUS_LABEL[c.auth_status] || c.auth_status) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Permission level</b><span>' + esc(LEVEL_LABEL[c.permission_level] || c.permission_level) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Memory access</b><span>' + esc(c.memory_access) + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Agents using it</b><span>' + esc((c.connected_agents || []).join(' + ') || 'Shared Memory Core') + '</span></div>' +
+          '<div class="tf-memory-kv"><b>Last sync</b><span>' + esc(ago(c.last_sync)) + '</span></div>' +
+        '</div>' +
+        '<div class="seclbl" style="margin-top:16px"><span class="t">AVAILABLE ACTIONS</span></div><div>' + (c.available_actions || []).map(function(a){ return '<span class="tf-action-pill">' + esc(actionLabel(a)) + '</span>'; }).join('') + '</div>' +
+        '<div class="seclbl" style="margin-top:16px"><span class="t">RECENT ACTIVITY</span></div>' + (logs.length ? logs.map(function(l){ return '<div class="mem-item"><div class="mt">' + esc(l.title) + '</div><div class="mb">' + esc(l.detail) + '</div><div class="mtime">' + esc(ago(l.created_at)) + '</div></div>'; }).join('') : '<div class="mem-item"><div class="mt">Waiting for connector activity</div><div class="mb">Run a command to simulate external service actions.</div><div class="mtime">Connector ready</div></div>');
+      document.getElementById('tfConnectorDetail').classList.add('open');
+    }
+    function closeDetail(){ var m = document.getElementById('tfConnectorDetail'); if(m) m.classList.remove('open'); }
+    function bindRows(){
+      document.querySelectorAll('[data-connector-id]').forEach(function(row){
+        if(row.__tfPhase8Bound) return; row.__tfPhase8Bound = true;
+        row.addEventListener('click', function(){ openDetail(row.getAttribute('data-connector-id')); });
+      });
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase8Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var result = oldRun(input);
+        var intent = (result && (result.intent || result.id)) || (window.TerafarmPhase4Router.detectIntent ? window.TerafarmPhase4Router.detectIntent(input) : 'general_memory_update');
+        var agents = (result && result.agents) || [];
+        var execution = executeConnectors(intent, agents, (result && result.label) || String(input || 'Command'));
+        result.foreign_connectors = execution.map(function(e){ return e.name; });
+        result.connector_actions = execution.reduce(function(out, e){ out[e.name] = e.actions; return out; }, {});
+        return result;
+      };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.__phase8Patched = true;
+    }
+    function init(){ migrate(); ensureModal(); patchRouter(); render(); console.log('[Terafarm Phase 8] Foreign Services Connector Layer online'); }
+    return { init:init, render:render, executeConnectors:executeConnectors, openDetail:openDetail, connectors:function(){ return migrate().connectors || []; } };
+  })();
+
+
+  // ════════ TERAFARM PHASE 9: ONBOARDING + CONNECT PHONE SIMULATION ════════
+  // Behavior only. Adds first-run onboarding, phone scan simulation, detected systems,
+  // initial profile memory objects, connector activation, and visible Shared Memory state.
+  var TerafarmPhase9Onboarding = (function(){
+    var KEY = 'terafarm.product.v1';
+    var STAGES = [
+      'Ready to connect',
+      'Scanning apps',
+      'Detecting AI systems',
+      'Mapping permissions',
+      'Building My World',
+      'Shared Memory activated'
+    ];
+    var DETECTED = [
+      { name:'ChatGPT', connector:'chatgpt' },
+      { name:'Claude', connector:'claude' },
+      { name:'Gemini', connector:'gemini' },
+      { name:'Google Calendar', connector:'google_calendar', service:'calendar' },
+      { name:'Gmail', connector:'gmail', service:'gmail' },
+      { name:'Google Drive', connector:'google_drive', service:'drive' },
+      { name:'GitHub', connector:'github', service:'github' },
+      { name:'Vercel', connector:'vercel' },
+      { name:'Home Assistant', connector:'home_assistant', service:'home' },
+      { name:'Car', connector:'car' },
+      { name:'Wearable', connector:'google_fit' }
+    ];
+    var INITIAL_MEMORY = [
+      { title:'Work Pattern', category:'Work', summary:'Work context initialized from apps, calendar, email, files, and AI assistant usage patterns.' },
+      { title:'Project Context', category:'Projects', summary:'Active projects connected into one shared memory layer for AI agents and external services.' },
+      { title:'Device Ecosystem', category:'Devices', summary:'Phone, smart home, car, wearable, and cloud tools mapped into My World.' },
+      { title:'AI Systems Connected', category:'Knowledge', summary:'ChatGPT, Claude, Gemini, and connected assistants detected for context synchronization.' },
+      { title:'Communication Style', category:'People', summary:'Preferred tone and communication rhythm initialized for assistant, email, and team workflows.' },
+      { title:'Daily Routine', category:'Goals', summary:'Routine learning started from calendar, device, home, mobility, and communication signals.' }
+    ];
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function iso(){ return new Date().toISOString(); }
+    function ensureArrays(st){
+      ['memory_items','commands','sync_logs','connectors','connector_logs','connected_services','notifications'].forEach(function(k){ if(!Array.isArray(st[k])) st[k] = []; });
+      if(!st.onboarding) st.onboarding = { phone_connected:false, scan_state:'ready', detected_systems:[] };
+      return st;
+    }
+    function ensureModal(){
+      if(document.getElementById('tfOnboardModal')) return;
+      var modal = document.createElement('div');
+      modal.id = 'tfOnboardModal';
+      modal.className = 'tf-onboard-ov';
+      modal.innerHTML = '<div class="tf-onboard-sheet"><button class="tf-onboard-close" id="tfOnboardClose">×</button>' +
+        '<h3>Connect your digital world</h3>' +
+        '<p>Terafarm scans allowed apps, AI assistants, calendar, email, files, devices, wearables, smart home, car, and cloud tools to build My World.</p>' +
+        '<div class="tf-scan-stage"><div class="tf-scan-state" id="tfScanState">Ready to connect</div><div class="tf-scan-bar"><div class="tf-scan-fill" id="tfScanFill"></div></div></div>' +
+        '<button class="tf-onboard-btn" id="tfStartPhoneScan">Connect Phone</button>' +
+        '<div class="seclbl" style="margin-top:16px"><span class="t">DETECTED SYSTEMS</span></div>' +
+        '<div class="tf-detected-list" id="tfDetectedList"><div class="tf-detected-item"><span>Waiting for scan</span><span>Ready</span></div></div>' +
+        '<div class="tf-scan-result" id="tfScanResult"><b>Digital identity initialized.</b><br>Shared Memory activated.</div>' +
+      '</div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+      document.getElementById('tfOnboardClose').addEventListener('click', close);
+      document.getElementById('tfStartPhoneScan').addEventListener('click', startScan);
+    }
+    function open(){ ensureModal(); document.getElementById('tfOnboardModal').classList.add('open'); }
+    function close(){ var m=document.getElementById('tfOnboardModal'); if(m) m.classList.remove('open'); }
+    function ensureHomeCard(){
+      if(document.getElementById('tfConnectPhoneCard')) return;
+      var anchor = document.querySelector('#screen-home .sm-pill');
+      if(!anchor || !anchor.parentNode) return;
+      var card = document.createElement('div');
+      card.id = 'tfConnectPhoneCard';
+      card.className = 'tf-onboard-card';
+      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+      anchor.parentNode.insertBefore(card, anchor.nextSibling);
+      card.querySelector('button').addEventListener('click', open);
+      refreshHomeCard();
+    }
+    function refreshHomeCard(){
+      var st = ensureArrays(read());
+      var card = document.getElementById('tfConnectPhoneCard');
+      if(!card) return;
+      var done = !!(st.onboarding && st.onboarding.phone_connected);
+      card.querySelector('.tf-ob-title').textContent = done ? '🧠 Shared Memory Active' : '📱 Connect Phone';
+      card.querySelector('.tf-ob-sub').textContent = done ? 'Digital identity initialized across apps, AI systems, devices, and cloud tools.' : 'Scan allowed apps, AI systems, devices, and cloud tools to build My World.';
+      card.querySelector('button').textContent = done ? 'View Connected Systems' : 'Connect Phone';
+    }
+    function renderModalFromState(){
+      ensureModal();
+      var st = ensureArrays(read());
+      var state = document.getElementById('tfScanState');
+      var fill = document.getElementById('tfScanFill');
+      var list = document.getElementById('tfDetectedList');
+      var result = document.getElementById('tfScanResult');
+      var detected = (st.onboarding && st.onboarding.detected_systems) || [];
+      if(state) state.textContent = st.onboarding.phone_connected ? 'Shared Memory activated' : (st.onboarding.scan_state || 'Ready to connect');
+      if(fill) fill.style.width = st.onboarding.phone_connected ? '100%' : '0%';
+      if(list) list.innerHTML = detected.length ? detected.map(function(x){ return '<div class="tf-detected-item"><span>' + esc(x) + '</span><span>Detected</span></div>'; }).join('') : '<div class="tf-detected-item"><span>Waiting for scan</span><span>Ready</span></div>';
+      if(result) result.classList.toggle('show', !!st.onboarding.phone_connected);
+    }
+    function setStage(label, pct){
+      var state = document.getElementById('tfScanState'); if(state) state.textContent = label;
+      var fill = document.getElementById('tfScanFill'); if(fill) fill.style.width = pct + '%';
+      var st = ensureArrays(read()); st.onboarding.scan_state = label; write(st);
+    }
+    function addDetected(system){
+      var st = ensureArrays(read());
+      if(st.onboarding.detected_systems.indexOf(system.name) < 0) st.onboarding.detected_systems.push(system.name);
+      write(st);
+      var list = document.getElementById('tfDetectedList');
+      if(list) list.innerHTML = st.onboarding.detected_systems.map(function(x){ return '<div class="tf-detected-item"><span>' + esc(x) + '</span><span>Detected</span></div>'; }).join('');
+    }
+    function createInitialProfile(){
+      var st = ensureArrays(read());
+      var now = iso();
+      var existing = {};
+      st.memory_items.forEach(function(m){ existing[m.title] = true; });
+      INITIAL_MEMORY.slice().reverse().forEach(function(m){
+        if(existing[m.title]) return;
+        st.memory_items.unshift({
+          id:'mem_phone_' + Date.now() + '_' + Math.random().toString(16).slice(2,6),
+          title:m.title,
+          category:m.category,
+          summary:m.summary,
+          source:'Connect Phone Scan',
+          source_command:'Connect Phone',
+          connected_agents:['Memory Core','Agent Router','Knowledge AI','Cloud AI'],
+          connected_services:DETECTED.map(function(d){ return d.name; }),
+          privacy_level:'limited',
+          memory_access:'shared memory summary',
+          sync_status:'Shared Memory activated',
+          created_at:now,
+          last_updated:now,
+          confidence_score:94
+        });
+      });
+      st.sync_logs.unshift({ id:'sync_phone_' + Date.now(), title:'Digital identity initialized', detail:'Phone scan created initial memory profile and activated connected systems', source:'Connect Phone', agents:['Memory Core','Knowledge AI','Cloud AI'], created_at:now });
+      st.commands.unshift({ id:'cmd_phone_' + Date.now(), command_id:'connect_phone', label:'Connect Phone', status:'completed', intent:'connect_phone', agents:['Memory Core','Knowledge AI','Cloud AI'], created_at:now, final_result:'Digital identity initialized. Shared Memory activated.', workflow_timeline:STAGES.map(function(s){ return { label:s, status:'completed', detail:'Connect Phone onboarding step completed' }; }) });
+      st.onboarding.phone_connected = true;
+      st.onboarding.scan_state = 'Shared Memory activated';
+      st.onboarding.completed_at = now;
+      write(st);
+    }
+    function activateServices(){
+      var st = ensureArrays(read());
+      var now = iso();
+      var detectedByConnector = {};
+      DETECTED.forEach(function(d){ detectedByConnector[d.connector] = d; });
+      st.connectors = (st.connectors || []).map(function(c){
+        if(detectedByConnector[c.id]){
+          c.auth_status = (c.permission_level === 'private') ? 'private' : (c.auth_status === 'needs_auth' ? 'demo' : 'connected');
+          c.last_sync = now;
+          c.sync_status = 'detected by phone scan';
+          c.recent_activity = c.recent_activity || [];
+          c.recent_activity.unshift('Detected by Connect Phone');
+          st.connector_logs.unshift({ id:'connector_phone_' + Date.now() + '_' + c.id, connector_id:c.id, connector_name:c.name, title:c.name + ' detected', detail:'Activated during Connect Phone scan', actions:['phone_scan'], agents:['Memory Core','Cloud AI'], command:'Connect Phone', created_at:now });
+        }
+        return c;
+      });
+      st.connected_services = (st.connected_services || []).map(function(s){
+        var match = DETECTED.filter(function(d){ return d.service === s.id || String(d.name).toLowerCase().indexOf(String(s.name).toLowerCase()) >= 0; })[0];
+        if(match){ s.status = s.status === 'private' ? 'private' : 'connected'; s.last_sync = now; s.access = s.access || 'Shared memory context'; }
+        return s;
+      });
+      write(st);
+    }
+    function refreshAll(){
+      refreshHomeCard();
+      renderModalFromState();
+      var greet = document.getElementById('greetMsg'); if(greet) greet.textContent = '🧠 Shared Memory activated across your digital world';
+      var badge = document.querySelector('#screen-home .sm-badge'); if(badge) badge.innerHTML = '<span class="sm-dot"></span>SHARED MEMORY ACTIVE';
+      if(typeof TerafarmPhase5Memory !== 'undefined' && TerafarmPhase5Memory.render) TerafarmPhase5Memory.render();
+      if(typeof TerafarmPhase6Permissions !== 'undefined' && TerafarmPhase6Permissions.render) TerafarmPhase6Permissions.render();
+      if(typeof TerafarmPhase7Workflow !== 'undefined' && TerafarmPhase7Workflow.renderCommandHistory) TerafarmPhase7Workflow.renderCommandHistory();
+      if(typeof TerafarmPhase8Connectors !== 'undefined' && TerafarmPhase8Connectors.render) TerafarmPhase8Connectors.render();
+      if(typeof TerafarmProductCore !== 'undefined'){
+        if(TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+        if(TerafarmProductCore.renderMemoryStats) TerafarmProductCore.renderMemoryStats();
+      }
+    }
+    function startScan(){
+      ensureModal();
+      var btn = document.getElementById('tfStartPhoneScan');
+      if(btn){ btn.disabled = true; btn.textContent = 'Scanning...'; }
+      var result = document.getElementById('tfScanResult'); if(result) result.classList.remove('show');
+      var list = document.getElementById('tfDetectedList'); if(list) list.innerHTML = '';
+      var st = ensureArrays(read()); st.onboarding = { phone_connected:false, scan_state:'Ready to connect', detected_systems:[] }; write(st);
+      setStage('Ready to connect', 6);
+      STAGES.forEach(function(stage, i){
+        setTimeout(function(){ setStage(stage, Math.round(((i+1)/STAGES.length)*100)); }, i * 1600);
+      });
+      DETECTED.forEach(function(system, i){ setTimeout(function(){ addDetected(system); }, 900 + i * 650); });
+      setTimeout(function(){
+        activateServices();
+        createInitialProfile();
+        if(result) result.classList.add('show');
+        if(btn){ btn.disabled = false; btn.textContent = 'View Connected Systems'; }
+        refreshAll();
+        if(typeof showToast === 'function') showToast('Digital identity initialized. Shared Memory activated.');
+      }, 10000);
+    }
+    function maybeOpenFirstRun(){
+      var st = ensureArrays(read());
+      if(!(st.onboarding && st.onboarding.phone_connected)) setTimeout(open, 450);
+    }
+    function init(){ ensureModal(); ensureHomeCard(); renderModalFromState(); maybeOpenFirstRun(); console.log('[Terafarm Phase 9] Onboarding + Connect Phone Simulation online'); }
+    return { init:init, open:open, startScan:startScan, refresh:refreshAll };
+  })();
+
+
+
+
+  // ════════ TERAFARM PHASE 10: MY WORLD LIVING PROFILE ════════
+  // Behavior only. Converts the existing My World cards into live profile categories,
+  // adds category details, and updates categories after onboarding + commands.
+  var TerafarmPhase10World = (function(){
+    var KEY = 'terafarm.product.v1';
+    var CATS = [
+      { id:'work', icon:'💼', name:'Work', access:'limited', services:['Gmail','Google Calendar','Slack'], agents:['Work AI','Memory Core'], summary:'Work context, schedule signals, communication rhythm, and active professional patterns.', signals:['Active project context detected','Calendar and email work signals mapped'] },
+      { id:'projects', icon:'🚀', name:'Projects', access:'full', services:['Google Drive','GitHub','Vercel','Claude'], agents:['Project AI','Code AI','Claude'], summary:'Active builds, files, code context, deployment signals, and product decisions.', signals:['Terafarm.ai active build detected','Phase-based product execution detected'] },
+      { id:'people', icon:'👥', name:'People', access:'limited', services:['Gmail','Google Calendar','ChatGPT'], agents:['People Memory','Communication AI'], summary:'Known collaborators, meetings, communication style, and relationship context.', signals:['Contact graph initialized','Communication style memory available'] },
+      { id:'goals', icon:'🎯', name:'Goals', access:'private', services:['ChatGPT','Google Drive'], agents:['Goal AI','Memory Core'], summary:'Long-term goals, launch milestones, product launch preparation, and strategic direction.', signals:['Product milestone detected','Shared Memory OS direction detected'] },
+      { id:'devices', icon:'📱', name:'Devices', access:'limited', services:['Phone','Wearable','Tesla / Car','Home Assistant'], agents:['Device AI','Home AI','Car AI'], summary:'Phone, wearable, car, and smart home environment connected into My World.', signals:['Phone detected','Wearable detected','Car detected','Home services detected'] },
+      { id:'knowledge', icon:'🧠', name:'Knowledge', access:'limited', services:['Google Drive','Notion','ChatGPT','Gemini'], agents:['Knowledge AI','Research AI'], summary:'Documents, notes, summaries, AI context, and reusable project knowledge.', signals:['Drive context available','AI memory summaries initialized'] },
+      { id:'routines', icon:'🔁', name:'Routines', access:'private', services:['Google Calendar','Home Assistant','Car'], agents:['Routine AI','Automation AI'], summary:'Morning, work, travel, home, and recurring behavior patterns.', signals:['Morning pattern initialized','Work routine pattern initialized'] },
+      { id:'ai_systems', icon:'🤖', name:'AI Systems', access:'limited', services:['ChatGPT','Claude','Gemini'], agents:['Agent Router','Memory Core'], summary:'Connected AI assistants share the same user context and project memory.', signals:['ChatGPT detected','Claude detected','Gemini detected'] },
+      { id:'travel', icon:'✈️', name:'Travel', access:'limited', services:['Google Calendar','Gmail','Google Drive','Tesla / Car','Gemini'], agents:['Travel AI','Calendar AI','Finance AI','Drive AI'], summary:'Trips, routes, calendar availability, travel emails, and planning context.', signals:['Ready for business trip planning','Calendar and route context available'] }
+    ];
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function iso(){ return new Date().toISOString(); }
+    function ago(v){ if(!v) return 'Waiting'; var t = new Date(v).getTime(); if(isNaN(t)) return 'Waiting'; var d = Date.now() - t; if(d < 60000) return 'just now'; if(d < 3600000) return Math.floor(d/60000) + ' min ago'; return new Date(t).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function ensureArrays(st){ st = st || {}; if(!Array.isArray(st.memory_items)) st.memory_items = []; if(!Array.isArray(st.connectors)) st.connectors = []; if(!Array.isArray(st.my_world)) st.my_world = []; return st; }
+    function memoryCountFor(st, cat){
+      var aliases = { ai_systems:['AI Systems','AI','Knowledge'], routines:['Routines','Home'], travel:['Travel'], work:['Work'], projects:['Projects'], people:['People'], goals:['Goals'], devices:['Devices'], knowledge:['Knowledge'] };
+      var list = aliases[cat.id] || [cat.name];
+      var count = (st.memory_items || []).filter(function(m){ return list.indexOf(m.category) >= 0 || String(m.summary || '').toLowerCase().indexOf(cat.name.toLowerCase()) >= 0; }).length;
+      return count;
+    }
+    function connectorNames(st){ return (st.connectors || []).map(function(c){ return c.name; }); }
+    function normalizeWorld(st){
+      st = ensureArrays(st);
+      var now = iso();
+      var existing = {}; (st.my_world || []).forEach(function(w){ if(w && w.id) existing[w.id] = w; });
+      var onboardingDone = !!(st.onboarding && st.onboarding.phone_connected);
+      var availableConnectors = connectorNames(st);
+      st.my_world = CATS.map(function(cat){
+        var old = existing[cat.id] || {};
+        var services = cat.services.filter(function(s){ return availableConnectors.indexOf(s) >= 0 || ['Phone','Wearable'].indexOf(s) >= 0; });
+        if(!services.length) services = cat.services.slice(0,2);
+        var count = Math.max(old.item_count || 0, memoryCountFor(st, cat));
+        if(onboardingDone && count === 0) count = cat.id === 'devices' ? 4 : (cat.id === 'ai_systems' ? 3 : 1);
+        return {
+          id:cat.id, icon:cat.icon, name:cat.name, summary:old.summary || cat.summary,
+          item_count:count, last_updated:old.last_updated || (onboardingDone ? (st.onboarding.completed_at || now) : null),
+          connected_services:old.connected_services || services, memory_access_level:old.memory_access_level || cat.access,
+          detected_signals:old.detected_signals || cat.signals.slice(), active_agents:old.active_agents || cat.agents.slice(), last_sync:old.last_sync || null
+        };
+      });
+      write(st); return st;
+    }
+    function updateCategory(id, update){
+      var st = normalizeWorld(read()); var now = iso();
+      st.my_world = st.my_world.map(function(w){
+        if(w.id !== id) return w;
+        var signals = (w.detected_signals || []).slice();
+        (update.signals || []).forEach(function(s){ if(signals.indexOf(s) < 0) signals.unshift(s); });
+        var services = (w.connected_services || []).slice();
+        (update.services || []).forEach(function(s){ if(services.indexOf(s) < 0) services.push(s); });
+        var agents = (w.active_agents || []).slice();
+        (update.agents || []).forEach(function(a){ if(agents.indexOf(a) < 0) agents.push(a); });
+        w.item_count = (w.item_count || 0) + (update.increment || 1);
+        w.last_updated = now; w.last_sync = now;
+        w.detected_signals = signals.slice(0,8); w.connected_services = services.slice(0,8); w.active_agents = agents.slice(0,8);
+        return w;
+      });
+      write(st);
+    }
+    function applyIntent(intent, agents){
+      if(intent === 'plan_trip'){
+        updateCategory('travel', { increment:1, services:['Google Calendar','Gmail','Google Drive','Tesla / Car','Gemini'], agents:agents || ['Travel AI','Calendar AI','Finance AI','Drive AI'], signals:['Business trip planning command executed','Calendar availability and route context synced'] });
+        updateCategory('projects', { increment:1, services:['Google Drive','Gemini'], agents:['Project AI','Drive AI'], signals:['Project travel context updated'] });
+        updateCategory('work', { increment:1, services:['Google Calendar','Gmail'], agents:['Calendar AI','Travel AI'], signals:['Work schedule affected by trip planning'] });
+      } else if(intent === 'coming_home'){
+        updateCategory('devices', { increment:1, services:['Home Assistant','Tesla / Car'], agents:agents || ['Home AI','Car AI'], signals:['Home arrival routine updated'] });
+        updateCategory('routines', { increment:1, services:['Home Assistant','Tesla / Car'], agents:['Routine AI','Home AI'], signals:['Coming home routine executed'] });
+      } else if(intent === 'review_code'){
+        updateCategory('projects', { increment:1, services:['GitHub','Vercel','Claude'], agents:agents || ['Code AI','Claude'], signals:['Code review command updated project context'] });
+      } else if(intent === 'schedule_meeting'){
+        updateCategory('work', { increment:1, services:['Google Calendar','Gmail'], agents:agents || ['Calendar AI','Email AI'], signals:['Meeting scheduling context updated'] });
+        updateCategory('people', { increment:1, services:['Google Calendar','Gmail'], agents:['People Memory','Calendar AI'], signals:['People graph updated from meeting command'] });
+      } else {
+        updateCategory('knowledge', { increment:1, services:['ChatGPT','Gemini'], agents:agents || ['Memory Core'], signals:['General command added knowledge context'] });
+      }
+      render();
+    }
+    function findHomeGrid(){
+      var heads = document.querySelectorAll('#screen-home .scr-head h2'); var head = null;
+      heads.forEach(function(h){ if((h.textContent || '').trim() === 'My World') head = h.closest('.scr-head'); });
+      if(!head) return null;
+      var grid = head.nextElementSibling;
+      if(grid && grid.classList.contains('agent-grid')) return grid;
+      return null;
+    }
+    function render(){
+      var st = normalizeWorld(read()); var grid = findHomeGrid(); if(!grid) return;
+      grid.id = 'tfMyWorldGrid';
+      grid.innerHTML = st.my_world.map(function(w){
+        return '<div class="agent tf-world-card" data-world-id="' + esc(w.id) + '">' +
+          '<div class="ai" style="background:rgba(20,80,160,.4)">' + esc(w.icon) + '</div>' +
+          '<div class="an">' + esc(w.name) + '</div>' +
+          '<div class="ad">' + esc(w.item_count || 0) + ' items · ' + esc((w.connected_services || []).slice(0,2).join(', ')) + '</div>' +
+          '<div class="tf-world-meta">' + esc(w.memory_access_level || 'limited') + ' access · ' + esc(ago(w.last_updated || w.last_sync)) + '</div>' +
+          '<div class="tf-world-status"><span class="dot"></span>' + (w.last_updated ? 'Live' : 'Ready') + '</div>' +
+        '</div>';
+      }).join('');
+      grid.querySelectorAll('[data-world-id]').forEach(function(card){ card.addEventListener('click', function(){ openDetail(card.getAttribute('data-world-id')); }); });
+    }
+    function ensureModal(){
+      if(document.getElementById('tfWorldModal')) return;
+      var modal = document.createElement('div');
+      modal.className = 'modal-ov'; modal.id = 'tfWorldModal';
+      modal.innerHTML = '<div class="modal"><div class="modal-x" id="tfWorldClose"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></div><h2 id="tfWorldTitle">My World</h2><div class="msub" id="tfWorldSub">Living profile category</div><div class="tf-world-detail-body" id="tfWorldBody"></div></div>';
+      document.body.appendChild(modal);
+      modal.addEventListener('click', function(e){ if(e.target === modal) modal.classList.remove('open'); });
+      document.getElementById('tfWorldClose').addEventListener('click', function(){ modal.classList.remove('open'); });
+    }
+    function openDetail(id){
+      ensureModal(); var st = normalizeWorld(read()); var w = (st.my_world || []).filter(function(x){ return x.id === id; })[0]; if(!w) return;
+      var related = (st.memory_items || []).filter(function(m){ return String(m.category || '').toLowerCase() === String(w.name || '').toLowerCase() || String(m.summary || '').toLowerCase().indexOf(String(w.name || '').toLowerCase()) >= 0; }).slice(0,4);
+      if(w.id === 'devices' && !related.length){ related = [{ title:'Device Ecosystem', summary:'Phone, wearable, car, and home services visible from Connect Phone scan.' }]; }
+      document.getElementById('tfWorldTitle').textContent = w.icon + ' ' + w.name;
+      document.getElementById('tfWorldSub').textContent = (w.item_count || 0) + ' items · ' + (w.memory_access_level || 'limited') + ' access · updated ' + ago(w.last_updated || w.last_sync);
+      document.getElementById('tfWorldBody').innerHTML =
+        '<div class="tf-world-detail-row"><b>Category Summary</b><p>' + esc(w.summary) + '</p></div>' +
+        '<div class="tf-world-detail-row"><b>Detected Signals</b><p>' + esc((w.detected_signals || []).join(' · ')) + '</p></div>' +
+        '<div class="tf-world-detail-row"><b>Related Memory Items</b><p>' + esc(related.map(function(m){ return m.title; }).join(' · ') || 'Waiting for first related memory') + '</p></div>' +
+        '<div class="tf-world-detail-row"><b>Connected Services</b><p>' + esc((w.connected_services || []).join(' · ')) + '</p></div>' +
+        '<div class="tf-world-detail-row"><b>Active Agents</b><p>' + esc((w.active_agents || []).join(' · ')) + '</p></div>' +
+        '<div class="tf-world-detail-row"><b>Last Sync</b><p>' + esc(ago(w.last_sync || w.last_updated)) + '</p></div>';
+      document.getElementById('tfWorldModal').classList.add('open');
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase10Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var result = oldRun(input);
+        var intent = (result && (result.intent || result.id)) || (window.TerafarmPhase4Router.detectIntent ? window.TerafarmPhase4Router.detectIntent(input) : 'general_memory_update');
+        applyIntent(intent, (result && result.agents) || []);
+        return result;
+      };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.__phase10Patched = true;
+    }
+    function patchOnboarding(){
+      if(!window.TerafarmPhase9Onboarding || window.TerafarmPhase9Onboarding.__phase10Patched) return;
+      var oldStart = window.TerafarmPhase9Onboarding.startScan;
+      window.TerafarmPhase9Onboarding.startScan = function(){
+        var r = oldStart.apply(window.TerafarmPhase9Onboarding, arguments);
+        setTimeout(function(){ normalizeWorld(read()); render(); }, 10300);
+        return r;
+      };
+      window.TerafarmPhase9Onboarding.__phase10Patched = true;
+    }
+    function init(){ ensureModal(); normalizeWorld(read()); render(); patchRouter(); patchOnboarding(); console.log('[Terafarm Phase 10] My World Living Profile online'); }
+    return { init:init, render:render, openDetail:openDetail, applyIntent:applyIntent };
+  })();
+
+
   // ════════ WIRE UP EVENTS ════════
   document.addEventListener('DOMContentLoaded', function(){
 
@@ -2920,6 +4654,27 @@
 
     // Phase B5: activate predictive routines (subscribes to the SystemBus)
     PredictiveEngine.init();
+
+    // Phase Product Core: activate localStorage collections + sync/permissions renderers
+    TerafarmProductCore.init();
+
+    // Phase 5: activate visible memory engine
+    TerafarmPhase5Memory.init();
+
+    // Phase 6: activate realistic service permissions
+    TerafarmPhase6Permissions.init();
+
+    // Phase 7: activate workflow execution timeline
+    TerafarmPhase7Workflow.init();
+
+    // Phase 8: activate foreign services connector layer
+    TerafarmPhase8Connectors.init();
+
+    // Phase 9: activate onboarding + Connect Phone simulation
+    TerafarmPhase9Onboarding.init();
+    // Phase 10: activate My World living profile
+    TerafarmPhase10World.init();
+
 
     // Header
     $('#burger').addEventListener('click', openMenu);
@@ -3053,6 +4808,631 @@
     document.addEventListener('DOMContentLoaded', resetConnectedAI);
   })();
 
+
+  // ════════ TERAFARM PHASE 11: REALISTIC COMMAND LIBRARY ════════
+  // Product behavior only. Adds a complete command library, per-command
+  // agent/connector routing, connector activity, workflow timelines, My World
+  // updates, final result cards, and clickable suggestions. No redesign.
+  var TerafarmPhase11CommandLibrary = (function(){
+    var KEY = 'terafarm.product.v1';
+    var COMMANDS = {
+      plan_trip: {
+        phrases:['plan my business trip','plan trip','business trip'],
+        label:'Plan my business trip', category:'Travel',
+        agents:['Travel AI','Calendar AI','Finance AI','Drive AI'],
+        connectors:['Google Calendar','Gmail','Google Drive','Tesla / Car','Gemini'],
+        actions:{'Google Calendar':['check_availability'],'Gmail':['scan_travel_emails'],'Google Drive':['summarize_docs'],'Tesla / Car':['prepare_route'],'Gemini':['generate_trip_plan']},
+        title:'Business Trip Planning',
+        summary:'Travel, calendar, finance, and drive context synchronized for business trip planning.',
+        result:'Business trip plan initialized. Travel, calendar, finance, and drive context synced. Memory updated across connected systems.',
+        world:['travel','projects','work']
+      },
+      schedule_meeting: {
+        phrases:['schedule a team meeting tomorrow at 3 pm','schedule meeting','team meeting tomorrow'],
+        label:'Schedule a team meeting tomorrow at 3 PM', category:'Work',
+        agents:['Calendar AI','People Memory','Email AI','Notification AI'],
+        connectors:['Google Calendar','Gmail','Slack','Gemini'],
+        actions:{'Google Calendar':['check_availability','create_event'],'Gmail':['draft_email'],'Slack':['summarize_threads'],'Gemini':['understand_command']},
+        title:'Team Meeting Scheduled',
+        summary:'Meeting context prepared with calendar availability, team memory, email draft, and notifications.',
+        result:'Team meeting flow prepared for tomorrow at 3 PM. Calendar, people, email, and notifications synchronized.',
+        world:['work','people','routines']
+      },
+      review_code: {
+        phrases:['review my terafarm code','review code','terafarm code'],
+        label:'Review my Terafarm code', category:'Projects',
+        agents:['Code AI','Project AI','Security AI'],
+        connectors:['GitHub','Claude','Vercel'],
+        actions:{'GitHub':['read_repo','review_code'],'Claude':['share_project_context'],'Vercel':['read_deployments','check_status']},
+        title:'Terafarm Code Review',
+        summary:'Repository, Claude project context, security checks, and deployment status synchronized.',
+        result:'Terafarm code review initialized. GitHub, Claude, security, and Vercel deployment context synced.',
+        world:['projects','knowledge','work']
+      },
+      check_design: {
+        phrases:['check my design','check design','design review'],
+        label:'Check my design', category:'Projects',
+        agents:['Design AI','Project AI','Communication AI'],
+        connectors:['Claude','Gemini','Google Drive'],
+        actions:{'Claude':['analyze_design','share_project_context'],'Gemini':['summarize_context'],'Google Drive':['read_files','summarize_docs']},
+        title:'Design Review',
+        summary:'Design hierarchy, project context, communication clarity, and Drive references synchronized.',
+        result:'Design review completed. Claude, Gemini, and Drive context synced for layout, clarity, and presentation quality.',
+        world:['projects','knowledge']
+      },
+      coming_home: {
+        phrases:['activate coming home mode','coming home','come home'],
+        label:'Activate coming home mode', category:'Home',
+        agents:['Home AI','Car AI','Security AI'],
+        connectors:['Home Assistant','Tesla / Car','Apple Health'],
+        actions:{'Home Assistant':['control_lights','set_climate'],'Tesla / Car':['prepare_route','start_climate'],'Apple Health':['summarize_context']},
+        title:'Coming Home Mode',
+        summary:'Home, vehicle, security, and wearable arrival context prepared.',
+        result:'Coming home mode activated. Home, car, security, and wearable signals synchronized.',
+        world:['devices','routines','home']
+      },
+      summarize_team: {
+        phrases:['summarize my team updates','summarize team','team updates'],
+        label:'Summarize my team updates', category:'People',
+        agents:['Communication AI','People Memory','Calendar AI','Project AI'],
+        connectors:['Gmail','Slack','Google Calendar','Notion','Gemini'],
+        actions:{'Gmail':['read_inbox'],'Slack':['summarize_threads'],'Google Calendar':['check_availability'],'Notion':['summarize_workspace'],'Gemini':['summarize_context']},
+        title:'Team Updates Summary',
+        summary:'Email, Slack, calendar, Notion, and project memory summarized for team context.',
+        result:'Team update summary generated. Email, calendar, Slack, Notion, and project memory synchronized.',
+        world:['people','work','projects']
+      },
+      send_flowers: {
+        phrases:['send flowers tomorrow','send flowers','flowers tomorrow'],
+        label:'Send flowers tomorrow', category:'People',
+        agents:['Calendar AI','People Memory','Finance AI','Notification AI'],
+        connectors:['Google Calendar','Gmail','Gemini'],
+        actions:{'Google Calendar':['check_availability','create_event'],'Gmail':['draft_email'],'Gemini':['understand_command']},
+        title:'Flowers Delivery Reminder',
+        summary:'People memory, calendar timing, message draft, and delivery reminder prepared.',
+        result:'Flowers flow prepared for tomorrow. Calendar reminder, people memory, and message context synchronized.',
+        world:['people','routines']
+      },
+      prepare_morning: {
+        phrases:['prepare my morning','morning routine','start my morning'],
+        label:'Prepare my morning', category:'Routines',
+        agents:['Calendar AI','Weather AI','Car AI','Home AI'],
+        connectors:['Google Calendar','Tesla / Car','Home Assistant','Apple Health','Gemini'],
+        actions:{'Google Calendar':['check_availability'],'Tesla / Car':['prepare_route','start_climate'],'Home Assistant':['set_climate','control_lights'],'Apple Health':['summarize_context'],'Gemini':['generate_trip_plan']},
+        title:'Morning Preparation',
+        summary:'Calendar, route, home environment, wearable signals, and morning routine context synchronized.',
+        result:'Morning preparation initialized. Calendar, car, home, and wearable context synced for the next routine.',
+        world:['routines','devices','work']
+      }
+    };
+
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function iso(){ return new Date().toISOString(); }
+    function unique(arr){ return (arr || []).filter(function(v,i,a){ return v && a.indexOf(v) === i; }); }
+    function detect(input){
+      var q = String(input || '').toLowerCase().trim();
+      for(var id in COMMANDS){ if(id === q) return id; var p = COMMANDS[id].phrases || []; for(var i=0;i<p.length;i++){ if(q.indexOf(p[i]) >= 0 || p[i].indexOf(q) >= 0) return id; } }
+      if(window.TerafarmPhase4Router && TerafarmPhase4Router.detectIntent) return TerafarmPhase4Router.detectIntent(input);
+      return 'general_memory_update';
+    }
+    function baseInputFor(id){
+      if(id === 'prepare_morning') return 'general_memory_update';
+      return id;
+    }
+    function ensureSuggestions(){
+      if(document.getElementById('tfCommandSuggestions')) return;
+      var host = document.getElementById('cmd-ov'); if(!host) return;
+      var box = document.createElement('div');
+      box.id = 'tfCommandSuggestions';
+      box.className = 'tf-command-suggestions';
+      box.innerHTML = '<div class="tf-command-title">Command suggestions</div>' +
+        '<button data-command-suggestion="Plan my business trip">Plan my business trip</button>' +
+        '<button data-command-suggestion="Review my Terafarm code">Review my Terafarm code</button>' +
+        '<button data-command-suggestion="Activate coming home mode">Activate coming home mode</button>';
+      host.appendChild(box);
+      box.addEventListener('click', function(e){
+        var btn = e.target.closest && e.target.closest('[data-command-suggestion]'); if(!btn) return;
+        if(window.TerafarmPhase4Router && TerafarmPhase4Router.run) TerafarmPhase4Router.run(btn.getAttribute('data-command-suggestion'));
+      });
+    }
+    function injectStyle(){
+      if(document.getElementById('tfPhase11Style')) return;
+      var style = document.createElement('style'); style.id = 'tfPhase11Style';
+      style.textContent = '.tf-command-suggestions{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:-6px;max-width:320px;width:86%;}.tf-command-title{font-size:10px;font-weight:700;letter-spacing:.18em;color:rgba(150,190,235,.55);text-transform:uppercase}.tf-command-suggestions button{width:100%;border:1px solid rgba(80,140,255,.18);background:rgba(17,25,39,.86);color:rgba(235,248,255,.92);border-radius:13px;padding:10px 12px;font-size:13px;font-weight:650;cursor:pointer}.tf-command-suggestions button:active{transform:scale(.98);background:rgba(70,120,255,.15)}.tf-phase11-result{margin:14px 0 0;border:1px solid rgba(80,140,255,.16);background:rgba(17,25,39,.92);border-radius:15px;padding:13px 15px}.tf-phase11-result b{display:block;color:#fff;font-size:14px;margin-bottom:4px}.tf-phase11-result p{font-size:12px;line-height:1.42;color:rgba(165,205,245,.72)}';
+      document.head.appendChild(style);
+    }
+    function findConnector(st, name){ return (st.connectors || []).filter(function(c){ return c.name === name || c.id === name; })[0] || null; }
+    function connectorSync(def, commandLabel){
+      var st = read(); if(!Array.isArray(st.connectors)) st.connectors = [];
+      if(!Array.isArray(st.connector_logs)) st.connector_logs = [];
+      var now = iso(); var used = [];
+      (def.connectors || []).forEach(function(name){
+        var c = findConnector(st, name);
+        if(!c){ c = { id:name.toLowerCase().replace(/[^a-z0-9]+/g,'_'), name:name, provider:name, category:'External', auth_status:'demo', permission_level:'limited', available_actions:[], connected_agents:[], memory_access:'simulated context', sync_status:'ready' }; st.connectors.push(c); }
+        var actions = (def.actions && def.actions[name]) || [];
+        c.auth_status = c.auth_status === 'disabled' ? 'demo' : (c.auth_status || 'demo');
+        c.permission_level = c.permission_level || 'limited';
+        c.last_sync = now; c.sync_status = 'synced';
+        c.connected_agents = unique((c.connected_agents || []).concat(def.agents || []));
+        c.available_actions = unique((c.available_actions || []).concat(actions));
+        used.push(c.name);
+        st.connector_logs.unshift({ id:'phase11_connector_' + Date.now() + '_' + Math.random().toString(16).slice(2), connector_id:c.id, connector_name:c.name, title:c.name + ' synced', detail:actions.join(' · ') || 'context synchronized', actions:actions.slice(), agents:(def.agents || []).slice(), command:commandLabel, created_at:now });
+      });
+      if(st.connector_logs.length > 80) st.connector_logs.length = 80;
+      write(st);
+      return used;
+    }
+    function timelineFor(def, intent, connectors){
+      return [
+        { label:'Command received', status:'completed', detail:def.label },
+        { label:'Intent detected: ' + intent, status:'completed', detail:'Command library matched the request' },
+        { label:'Agents selected', status:'completed', detail:(def.agents || []).join(' + ') },
+        { label:'Connectors selected', status:'completed', detail:(connectors || []).join(' + ') },
+        { label:'Connector actions simulated', status:'completed', detail:Object.keys(def.actions || {}).map(function(k){ return k + ': ' + def.actions[k].join(', '); }).join(' · ') },
+        { label:'Memory item created', status:'completed', detail:def.title },
+        { label:'My World updated', status:'completed', detail:(def.world || []).join(' + ') },
+        { label:'Final result completed', status:'completed', detail:def.result }
+      ];
+    }
+    function updateLatestRecords(intent, def, connectors){
+      var st = read(); if(!Array.isArray(st.memory_items)) st.memory_items = []; if(!Array.isArray(st.commands)) st.commands = []; if(!Array.isArray(st.sync_logs)) st.sync_logs = [];
+      var now = iso(); var actions = def.actions || {}; var timeline = timelineFor(def, intent, connectors);
+      var mem = st.memory_items[0] || { id:'mem_phase11_' + Date.now() };
+      mem.title = def.title; mem.category = def.category; mem.summary = def.summary; mem.source = 'Command Library'; mem.source_command = def.label;
+      mem.connected_agents = (def.agents || []).slice(); mem.connected_services = (connectors || []).slice(); mem.privacy_level = 'limited'; mem.command_intent = intent; mem.sync_status = 'Synced to ' + connectors.length + ' connectors'; mem.last_updated = now; mem.confidence_score = 99;
+      st.memory_items[0] = mem;
+      var cmd = st.commands[0] || { id:'cmd_phase11_' + Date.now() };
+      cmd.command_id = intent; cmd.id = cmd.id || ('cmd_phase11_' + Date.now()); cmd.label = def.label; cmd.original_command = def.label; cmd.detected_intent = intent; cmd.intent = intent; cmd.status = 'completed'; cmd.agents = (def.agents || []).slice(); cmd.services_synced = (connectors || []).slice(); cmd.memory_item_created = def.title; cmd.memory_item_id = mem.id; cmd.workflow_timeline = timeline; cmd.foreign_connectors = (connectors || []).slice(); cmd.connector_actions = actions; cmd.final_result = def.result; cmd.created_at = now;
+      st.commands[0] = cmd;
+      st.sync_logs.unshift({ id:'phase11_log_' + Date.now(), title:'Command completed', detail:def.label + ' → ' + connectors.join(', '), source:'Phase 11 Command Library', agents:(def.agents || []).slice(), created_at:now });
+      if(st.sync_logs.length > 80) st.sync_logs.length = 80;
+      write(st); return { memory:mem, command:cmd, timeline:timeline };
+    }
+    function updateWorld(def, intent){
+      if(window.TerafarmPhase10World && TerafarmPhase10World.applyIntent){ try { TerafarmPhase10World.applyIntent(intent, def.agents); } catch(e){} }
+      var st = read(); if(!Array.isArray(st.my_world)) return;
+      var now = iso();
+      st.my_world = st.my_world.map(function(w){
+        if((def.world || []).indexOf(w.id) < 0) return w;
+        w.item_count = (w.item_count || 0) + 1; w.last_updated = now; w.last_sync = now;
+        w.connected_services = unique((w.connected_services || []).concat(def.connectors || [])).slice(0,10);
+        w.active_agents = unique((w.active_agents || []).concat(def.agents || [])).slice(0,10);
+        w.detected_signals = unique([def.label + ' executed'].concat(w.detected_signals || [])).slice(0,10);
+        return w;
+      });
+      write(st); if(window.TerafarmPhase10World && TerafarmPhase10World.render) TerafarmPhase10World.render();
+    }
+    function renderResult(def, meta){
+      var greet = document.getElementById('greetMsg'); if(greet) greet.textContent = '⚡ ' + def.title + ' · memory synchronized';
+      var host = document.querySelector('#screen-home .sm-pill'); if(!host) return;
+      var old = document.getElementById('tfPhase11Result'); if(old) old.remove();
+      var node = document.createElement('div'); node.id = 'tfPhase11Result'; node.className = 'tf-phase11-result';
+      node.innerHTML = '<b>' + esc(def.title) + '</b><p>' + esc(def.result) + '<br>Agents: ' + esc((def.agents || []).join(' + ')) + '<br>Connectors: ' + esc((meta.command.foreign_connectors || []).join(' + ')) + '</p>';
+      host.insertAdjacentElement('afterend', node);
+    }
+    function refresh(){
+      if(window.TerafarmPhase5Memory && TerafarmPhase5Memory.render) TerafarmPhase5Memory.render();
+      if(window.TerafarmPhase6Permissions && TerafarmPhase6Permissions.render) TerafarmPhase6Permissions.render();
+      if(window.TerafarmPhase7Workflow && TerafarmPhase7Workflow.renderCommandHistory) TerafarmPhase7Workflow.renderCommandHistory();
+      if(window.TerafarmPhase8Connectors && TerafarmPhase8Connectors.render) TerafarmPhase8Connectors.render();
+      if(window.TerafarmPhase10World && TerafarmPhase10World.render) TerafarmPhase10World.render();
+      if(window.TerafarmProductCore && TerafarmProductCore.renderSyncLogs) TerafarmProductCore.renderSyncLogs();
+    }
+    function patchRouter(){
+      if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase11Patched) return;
+      var oldRun = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.run = function(input){
+        var intent = detect(input); var def = COMMANDS[intent];
+        if(!def) return oldRun(input);
+        var result = oldRun(baseInputFor(intent)) || {};
+        result.id = intent; result.intent = intent; result.detected_intent = intent; result.label = def.label; result.original_command = String(input || def.label); result.agents = def.agents.slice(); result.message = def.result;
+        var connectors = connectorSync(def, def.label);
+        var meta = updateLatestRecords(intent, def, connectors);
+        updateWorld(def, intent);
+        result.workflow_timeline = meta.timeline; result.final_result = def.result; result.foreign_connectors = connectors; result.connector_actions = def.actions;
+        renderResult(def, meta); refresh();
+        console.log('[Terafarm Phase 11 Command]', def.label, '→', intent, def.agents, connectors);
+        return result;
+      };
+      window.TerafarmPhase4Router.runCommandSuggestion = function(label){ return window.TerafarmPhase4Router.run(label); };
+      window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+      if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+      window.TerafarmPhase4Router.__phase11Patched = true;
+    }
+    function init(){ injectStyle(); ensureSuggestions(); patchRouter(); console.log('[Terafarm Phase 11] Realistic Command Library online'); }
+    return { init:init, detect:detect, commands:function(){ return COMMANDS; }, run:function(label){ return window.TerafarmPhase4Router && TerafarmPhase4Router.run ? TerafarmPhase4Router.run(label) : null; } };
+  })();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase11CommandLibrary) TerafarmPhase11CommandLibrary.init(); }, 0);
+  });
+
+
+  // ════════ TERAFARM PHASE 12 PRODUCT: ACCOUNTS + INTEGRATION READINESS ════════
+  // Product behavior only: account state, local profile, sign-in simulation,
+  // Connect Phone unlock, and readiness for live integrations.
+  window.TerafarmPhase12ProductAccounts = (function(){
+    var KEY = 'terafarm.product.v1';
+    var READY = [
+      'Google OAuth ready',
+      'Calendar API ready',
+      'Gmail API ready',
+      'Drive API ready',
+      'GitHub OAuth ready',
+      'MCP connector layer ready',
+      'Firebase memory store ready'
+    ];
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function iso(){ return new Date().toISOString(); }
+    function short(isoText){ if(!isoText) return '—'; var d = new Date(isoText); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function ensure(st){
+      st = st || {};
+      if(!Array.isArray(st.memory_items)) st.memory_items = [];
+      if(!Array.isArray(st.connected_services)) st.connected_services = [];
+      if(!Array.isArray(st.connectors)) st.connectors = [];
+      if(!Array.isArray(st.sync_logs)) st.sync_logs = [];
+      if(!st.onboarding) st.onboarding = { phone_connected:false, scan_state:'Ready to connect', detected_systems:[] };
+      if(!st.account_state){
+        st.account_state = {
+          guest:true,
+          signed_in:false,
+          onboarded:!!(st.onboarding && st.onboarding.phone_connected),
+          phone_connected:!!(st.onboarding && st.onboarding.phone_connected),
+          memory_active:!!(st.onboarding && st.onboarding.phone_connected)
+        };
+      }
+      st.account_state.phone_connected = !!(st.onboarding && st.onboarding.phone_connected);
+      st.account_state.onboarded = !!(st.onboarding && st.onboarding.phone_connected);
+      st.account_state.memory_active = !!(st.onboarding && st.onboarding.phone_connected);
+      return st;
+    }
+    function profileFromState(st){
+      st = ensure(st || read());
+      var p = st.account_profile || null;
+      if(!p){
+        p = {
+          user_id:'guest', name:'Guest User', email:'Not signed in', plan:'Local Prototype', created_at:null, last_active:null,
+          memory_status:st.account_state.memory_active ? 'active' : 'waiting',
+          connected_services_count:(st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length,
+          memory_items_count:(st.memory_items || []).length
+        };
+      }
+      p.memory_status = st.account_state.memory_active ? 'active' : (st.account_state.signed_in ? 'ready' : 'locked');
+      p.connected_services_count = (st.connected_services || []).filter(function(s){ return s.status === 'connected' || s.auth_status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length;
+      p.memory_items_count = (st.memory_items || []).length;
+      return p;
+    }
+    function createProfile(name, email){
+      var st = ensure(read());
+      var now = iso();
+      var cleanName = name || 'Terafarm User';
+      var cleanEmail = email || 'user@terafarm.ai';
+      st.account_state = {
+        guest:false,
+        signed_in:true,
+        onboarded:!!(st.onboarding && st.onboarding.phone_connected),
+        phone_connected:!!(st.onboarding && st.onboarding.phone_connected),
+        memory_active:!!(st.onboarding && st.onboarding.phone_connected)
+      };
+      st.account_profile = {
+        user_id:'tf_user_' + Date.now(),
+        name:cleanName,
+        email:cleanEmail,
+        plan:'Local Prototype',
+        created_at:now,
+        last_active:now,
+        memory_status:st.account_state.memory_active ? 'active' : 'ready',
+        connected_services_count:(st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length,
+        memory_items_count:(st.memory_items || []).length
+      };
+      st.sync_logs.unshift({ id:'account_signin_' + Date.now(), title:'Account profile created', detail:'Local prototype account created and Connect Phone unlocked', source:'Account System', agents:['Profile AI','Memory Core'], created_at:now });
+      write(st); render();
+      if(typeof toast === 'function') toast('Account created. Connect Phone unlocked.');
+      else if(typeof showToast === 'function') showToast('Account created. Connect Phone unlocked.');
+      return st.account_profile;
+    }
+    function ensureProfilePanels(){
+      var profileWrap = document.querySelector('#screen-profile .wrap');
+      if(profileWrap && !document.getElementById('tfAccountStatusCard')){
+        var sign = document.getElementById('pf-signin');
+        var card = document.createElement('div');
+        card.id = 'tfAccountStatusCard';
+        card.className = 'tf-account-card';
+        card.innerHTML = '<h3>Account Status</h3><p>Your Terafarm account controls memory access, connected services, and product readiness.</p><div id="tfAccountStatusBody"></div>';
+        profileWrap.insertBefore(card, sign || null);
+        var panel = document.createElement('div');
+        panel.id = 'tfIntegrationReadinessPanel';
+        panel.className = 'tf-integration-panel';
+        panel.innerHTML = '<h3>Integration Readiness</h3><p>Current mode is a local prototype. Next mode connects real authentication, APIs, MCP tools, and cloud memory.</p><div class="tf-mode-row"><div class="tf-mode-card"><b>Current Mode</b><span>Local prototype</span></div><div class="tf-mode-card"><b>Next Mode</b><span>Real integrations</span></div></div><div class="tf-readiness-list" id="tfReadinessList" style="margin-top:12px"></div>';
+        profileWrap.insertBefore(panel, sign || null);
+      }
+      var homeAnchor = document.getElementById('tfConnectPhoneCard');
+      if(homeAnchor && !document.getElementById('tfHomeAccountCard')){
+        var home = document.createElement('div');
+        home.id = 'tfHomeAccountCard';
+        home.className = 'tf-account-card';
+        home.innerHTML = '<h3>Product Account</h3><p id="tfHomeAccountText">Sign in to unlock Connect Phone and start building shared memory.</p><div id="tfHomeAccountState" class="tf-account-state guest"><span class="dot"></span>Guest Mode</div>';
+        homeAnchor.parentNode.insertBefore(home, homeAnchor);
+      }
+    }
+    function renderAccountStatus(){
+      var st = ensure(read());
+      var p = profileFromState(st);
+      var signed = !!(st.account_state && st.account_state.signed_in);
+      var body = document.getElementById('tfAccountStatusBody');
+      if(body){
+        body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
+          '<div class="tf-account-grid">' +
+          '<div class="tf-account-kv"><b>Signed in as</b><span>' + esc(signed ? (p.name + '<br>' + p.email) : 'Guest') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc(p.memory_status) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(p.connected_services_count) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(p.memory_items_count) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(st.onboarding && st.onboarding.completed_at || p.last_active)) + '</span></div>' +
+          '</div>';
+      }
+      var list = document.getElementById('tfReadinessList');
+      if(list){ list.innerHTML = READY.map(function(x){ return '<div class="tf-ready-row"><span>' + esc(x) + '</span><span>READY</span></div>'; }).join(''); }
+      var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? p.name : 'Your Account';
+      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Not signed in';
+      var av = document.querySelector('#screen-profile .pf-av'); if(av) av.textContent = signed ? '🧠' : '👤';
+      var pfBtn = document.getElementById('pf-signin'); if(pfBtn) pfBtn.textContent = signed ? 'Account Active' : 'Sign In / Create Account';
+      var menuSign = document.getElementById('menu-signin'); if(menuSign) menuSign.lastChild.nodeValue = signed ? 'Account Active' : 'Sign In / Create Account';
+      var homeText = document.getElementById('tfHomeAccountText');
+      if(homeText) homeText.textContent = signed ? 'Account active. Connect Phone is unlocked for shared memory setup.' : 'Sign in to unlock Connect Phone and start building shared memory.';
+      var homeState = document.getElementById('tfHomeAccountState');
+      if(homeState){ homeState.className = 'tf-account-state ' + (signed ? '' : 'guest'); homeState.innerHTML = '<span class="dot"></span>' + (signed ? 'Signed In' : 'Guest Mode'); }
+      var connectCard = document.getElementById('tfConnectPhoneCard'); if(connectCard) connectCard.classList.toggle('tf-locked', !signed);
+      write(st);
+    }
+    function render(){ ensureProfilePanels(); renderAccountStatus(); }
+    function unlockGuard(e){
+      var st = ensure(read());
+      if(st.account_state && st.account_state.signed_in) return;
+      var target = e.target && (e.target.closest ? e.target.closest('#tfConnectPhoneCard .tf-onboard-btn, #tfStartPhoneScan') : null);
+      if(!target) return;
+      e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      var m = document.getElementById('tfOnboardModal'); if(m) m.classList.remove('open');
+      if(typeof openModal === 'function') openModal();
+      if(typeof toast === 'function') toast('Create your account to unlock Connect Phone.');
+      else if(typeof showToast === 'function') showToast('Create your account to unlock Connect Phone.');
+    }
+    function wire(){
+      document.addEventListener('click', unlockGuard, true);
+      var create = document.getElementById('modal-create');
+      if(create && !create.__tfAccountWired){
+        create.__tfAccountWired = true;
+        create.addEventListener('click', function(){
+          var n = (document.getElementById('m-name') || {}).value || '';
+          var em = (document.getElementById('m-email') || {}).value || '';
+          var p = (document.getElementById('m-pass') || {}).value || '';
+          if(!n.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.trim()) || p.length < 6) return;
+          createProfile(n.trim(), em.trim());
+          setTimeout(render, 2500);
+        });
+      }
+      var oldOpen = window.openModal;
+      if(typeof oldOpen === 'function' && !oldOpen.__tfAccountWrapped){
+        var wrapped = function(){ oldOpen(); setTimeout(render, 30); };
+        wrapped.__tfAccountWrapped = true;
+        window.openModal = wrapped;
+      }
+      if(window.TerafarmPhase9Onboarding && !window.TerafarmPhase9Onboarding.__tfAccountWrapped){
+        var oldRefresh = window.TerafarmPhase9Onboarding.refresh;
+        if(typeof oldRefresh === 'function'){
+          window.TerafarmPhase9Onboarding.refresh = function(){ var r = oldRefresh.apply(this, arguments); syncAccountFromProduct(); render(); return r; };
+        }
+        var oldStart = window.TerafarmPhase9Onboarding.startScan;
+        if(typeof oldStart === 'function'){
+          window.TerafarmPhase9Onboarding.startScan = function(){ var r = oldStart.apply(this, arguments); setTimeout(function(){ syncAccountFromProduct(); render(); }, 10500); return r; };
+        }
+        window.TerafarmPhase9Onboarding.__tfAccountWrapped = true;
+      }
+    }
+    function syncAccountFromProduct(){
+      var st = ensure(read());
+      if(st.account_profile){
+        st.account_profile.last_active = iso();
+        st.account_profile.memory_status = st.account_state.memory_active ? 'active' : (st.account_state.signed_in ? 'ready' : 'locked');
+        st.account_profile.connected_services_count = (st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length;
+        st.account_profile.memory_items_count = (st.memory_items || []).length;
+      }
+      write(st);
+    }
+    function init(){
+      var st = ensure(read()); write(st);
+      ensureProfilePanels(); wire(); syncAccountFromProduct(); render();
+      setInterval(function(){ syncAccountFromProduct(); render(); }, 4500);
+      console.log('[Terafarm Phase 12 Product] Account System + Integration Readiness online');
+    }
+    return { init:init, createProfile:createProfile, render:render, state:function(){ return ensure(read()).account_state; }, profile:function(){ return profileFromState(read()); } };
+  })();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase12ProductAccounts) TerafarmPhase12ProductAccounts.init(); }, 40);
+  });
+
 </script>
+
+
+  <!-- ════════ TERAFARM PHASE 13 — HOME ONBOARDING CLEANUP ════════ -->
+  <style>
+    /* Behavior/visibility only: account belongs to Profile, Home keeps one onboarding action. */
+    #tfHomeAccountCard { display:none !important; }
+    #tfConnectPhoneCard.tf-phone-compact { padding:10px 12px !important; margin:10px 0 12px !important; }
+    #tfConnectPhoneCard.tf-phone-compact .tf-ob-title { font-size:15px !important; }
+    #tfConnectPhoneCard.tf-phone-compact .tf-ob-sub { font-size:12px !important; line-height:1.35 !important; margin-top:3px !important; }
+    #tfConnectPhoneCard.tf-phone-compact .tf-onboard-btn { margin-top:8px !important; padding:9px 10px !important; font-size:13px !important; }
+  </style>
+  <script>
+  // Phase 13 Home Onboarding Cleanup
+  // Product behavior only. Removes Account clutter from Home, routes registration
+  // through Connect Phone, then continues the phone scan automatically.
+  window.TerafarmPhase13HomeOnboardingCleanup = (function(){
+    var KEY = 'terafarm.product.v1';
+    var pendingPhoneScan = false;
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function short(isoText){ if(!isoText) return '—'; var d = new Date(isoText); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function isSigned(st){ return !!(st.account_state && st.account_state.signed_in); }
+    function isPhoneConnected(st){ return !!(st.onboarding && st.onboarding.phone_connected); }
+    function accountType(st){ if(!(st.account_state && st.account_state.signed_in)) return 'Guest'; var p = st.account_profile || {}; if(String(p.plan || '').toLowerCase().indexOf('pro') >= 0) return 'Pro'; return 'Free'; }
+    function removeHomeAccount(){ var c = document.getElementById('tfHomeAccountCard'); if(c) c.remove(); }
+    function closeAccountModal(){ var m = document.getElementById('modal-ov'); if(m) m.classList.remove('open'); }
+    function openAccountModal(){ if(typeof openModal === 'function') openModal(); else { var m = document.getElementById('modal-ov'); if(m) m.classList.add('open'); } }
+    function openPhoneModal(){ if(window.TerafarmPhase9Onboarding && typeof window.TerafarmPhase9Onboarding.open === 'function') window.TerafarmPhase9Onboarding.open(); }
+    function startPhoneScan(){
+      openPhoneModal();
+      setTimeout(function(){
+        if(window.TerafarmPhase9Onboarding && typeof window.TerafarmPhase9Onboarding.startScan === 'function') window.TerafarmPhase9Onboarding.startScan();
+        setTimeout(render, 200);
+        setTimeout(render, 10550);
+      }, 250);
+    }
+    function renderConnectPhoneCard(){
+      removeHomeAccount();
+      var card = document.getElementById('tfConnectPhoneCard');
+      if(!card) return;
+      var st = read();
+      var connected = isPhoneConnected(st);
+      var detected = (st.onboarding && st.onboarding.detected_systems) || [];
+      card.classList.toggle('tf-phone-compact', connected);
+      if(!connected){
+        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div>' +
+          '<div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div>' +
+          '<button class="tf-onboard-btn" type="button" id="tfCleanConnectPhoneBtn">Connect Phone</button>';
+      } else {
+        card.innerHTML = '<div class="tf-ob-title">📱 Phone Connected</div>' +
+          '<div class="tf-ob-sub">Systems Detected: ' + esc(detected.length || 0) + '<br>Memory Profile Active<br>Last Scan: ' + esc(short(st.onboarding && st.onboarding.completed_at) || 'just now') + '</div>' +
+          '<button class="tf-onboard-btn" type="button" id="tfCleanConnectPhoneBtn">Rescan</button>';
+      }
+      var btn = document.getElementById('tfCleanConnectPhoneBtn');
+      if(btn && !btn.__tfCleanWired){
+        btn.__tfCleanWired = true;
+        btn.addEventListener('click', function(e){
+          e.preventDefault();
+          e.stopPropagation();
+          var state = read();
+          if(!isSigned(state)){
+            pendingPhoneScan = true;
+            openAccountModal();
+            if(typeof showToast === 'function') showToast('Create your account to connect your phone.');
+            return;
+          }
+          startPhoneScan();
+        });
+      }
+    }
+    function renderProfileAccount(){
+      var body = document.getElementById('tfAccountStatusBody');
+      if(!body) return;
+      var st = read();
+      var signed = isSigned(st);
+      var p = st.account_profile || {};
+      var name = signed ? (p.name || 'Terafarm User') : 'Guest';
+      var email = signed ? (p.email || 'user@terafarm.ai') : 'Not signed in';
+      var memoryStatus = isPhoneConnected(st) ? 'active' : (signed ? 'ready' : 'locked');
+      var connectedCount = (st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
+      var memoryCount = (st.memory_items || []).length || 0;
+      var lastSync = (st.onboarding && st.onboarding.completed_at) || p.last_active || null;
+      body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + esc(signed ? 'Signed In' : 'Guest') + '</div>' +
+        '<div class="tf-account-grid">' +
+        '<div class="tf-account-kv"><b>Name</b><span>' + esc(name) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Email</b><span>' + esc(email) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(signed ? (p.plan || 'Free') : 'Guest') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Account Type</b><span>' + esc(accountType(st)) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc(memoryStatus) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(connectedCount) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(memoryCount) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(lastSync)) + '</span></div>' +
+        '</div>';
+    }
+    function updateProfileHeader(){
+      var st = read(); var signed = isSigned(st); var p = st.account_profile || {};
+      var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? (p.name || 'Terafarm User') : 'Your Account';
+      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? (p.email || 'user@terafarm.ai') : 'Not signed in';
+      var pfBtn = document.getElementById('pf-signin'); if(pfBtn) pfBtn.textContent = signed ? 'Account Active' : 'Sign In / Create Account';
+    }
+    function render(){
+      removeHomeAccount();
+      renderConnectPhoneCard();
+      renderProfileAccount();
+      updateProfileHeader();
+    }
+    function createAccountAndContinue(){
+      var n = (document.getElementById('m-name') || {}).value || '';
+      var em = (document.getElementById('m-email') || {}).value || '';
+      var p = (document.getElementById('m-pass') || {}).value || '';
+      if(!n.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.trim()) || p.length < 6) return false;
+      if(window.TerafarmPhase12ProductAccounts && typeof window.TerafarmPhase12ProductAccounts.createProfile === 'function'){
+        window.TerafarmPhase12ProductAccounts.createProfile(n.trim(), em.trim());
+      } else {
+        var st = read(); var now = new Date().toISOString();
+        st.account_state = { guest:false, signed_in:true, onboarded:false, phone_connected:false, memory_active:false };
+        st.account_profile = { user_id:'tf_user_' + Date.now(), name:n.trim(), email:em.trim(), plan:'Free', created_at:now, last_active:now, memory_status:'ready', connected_services_count:0, memory_items_count:(st.memory_items || []).length || 0 };
+        write(st);
+      }
+      closeAccountModal();
+      render();
+      if(pendingPhoneScan){ pendingPhoneScan = false; startPhoneScan(); }
+      return true;
+    }
+    function wire(){
+      document.addEventListener('click', function(e){
+        var target = e.target && e.target.closest ? e.target.closest('#tfConnectPhoneCard .tf-onboard-btn') : null;
+        if(!target) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+        var st = read();
+        if(!isSigned(st)){ pendingPhoneScan = true; openAccountModal(); return; }
+        startPhoneScan();
+      }, true);
+      document.addEventListener('click', function(e){
+        var target = e.target && e.target.closest ? e.target.closest('#modal-create') : null;
+        if(!target) return;
+        if(!pendingPhoneScan) return;
+        if(createAccountAndContinue()){
+          e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+      if(window.TerafarmPhase9Onboarding && !window.TerafarmPhase9Onboarding.__tfCleanWrapped){
+        var oldRefresh = window.TerafarmPhase9Onboarding.refresh;
+        if(typeof oldRefresh === 'function') window.TerafarmPhase9Onboarding.refresh = function(){ var r = oldRefresh.apply(this, arguments); render(); return r; };
+        var oldStart = window.TerafarmPhase9Onboarding.startScan;
+        if(typeof oldStart === 'function') window.TerafarmPhase9Onboarding.startScan = function(){ var r = oldStart.apply(this, arguments); setTimeout(render, 200); setTimeout(render, 10550); return r; };
+        window.TerafarmPhase9Onboarding.__tfCleanWrapped = true;
+      }
+      if(window.TerafarmPhase12ProductAccounts && !window.TerafarmPhase12ProductAccounts.__tfCleanWrapped){
+        var oldRender = window.TerafarmPhase12ProductAccounts.render;
+        if(typeof oldRender === 'function') window.TerafarmPhase12ProductAccounts.render = function(){ var r = oldRender.apply(this, arguments); render(); return r; };
+        window.TerafarmPhase12ProductAccounts.__tfCleanWrapped = true;
+      }
+    }
+    function closeAutoPhoneModal(){
+      // Phase 9 opened the scan sheet on first run; Home now presents the single onboarding card instead.
+      var m = document.getElementById('tfOnboardModal');
+      var st = read();
+      if(m && !isPhoneConnected(st)) m.classList.remove('open');
+    }
+    function init(){
+      wire();
+      setTimeout(function(){ removeHomeAccount(); closeAutoPhoneModal(); render(); }, 80);
+      setTimeout(function(){ removeHomeAccount(); closeAutoPhoneModal(); render(); }, 520);
+      setInterval(function(){ removeHomeAccount(); render(); }, 2500);
+      console.log('[Terafarm Phase 13] Home Onboarding Cleanup active');
+    }
+    return { init:init, render:render };
+  })();
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase13HomeOnboardingCleanup) window.TerafarmPhase13HomeOnboardingCleanup.init(); }, 120);
+  });
+  </script>
+
 </body>
 </html>
