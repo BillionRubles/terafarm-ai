@@ -1363,6 +1363,56 @@
     filter:none !important;
   }
 
+
+  /* ════════ TERAFARM PHASE 17 — Product Stability Lock ════════ */
+  #tfConnectPhoneCard,
+  #tfConnectPhoneCard *,
+  #tfConnectPhoneCard::before,
+  #tfConnectPhoneCard::after,
+  .tf-onboard-card,
+  .tf-onboard-card *,
+  .tf-onboard-btn {
+    animation:none !important;
+    transition:none !important;
+    text-shadow:none !important;
+    filter:none !important;
+  }
+  .signin-hint {
+    color:#22c55e !important;
+    font-weight:700 !important;
+    animation:none !important;
+    transition:none !important;
+    text-shadow:none !important;
+    filter:none !important;
+  }
+
+
+  /* ════════ TERAFARM PHASE 18 — My World Foundation ════════ */
+  .tf18-world-score { background:#111927; border:1px solid rgba(80,140,255,.14); border-radius:16px; padding:15px; margin:12px 0 14px; box-shadow:inset 0 1px 0 rgba(255,255,255,.025); }
+  .tf18-score-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+  .tf18-score-title { font-size:15px; font-weight:800; color:rgba(240,250,255,.97); }
+  .tf18-score-sub { font-size:12px; color:rgba(165,205,245,.62); margin-top:4px; line-height:1.35; }
+  .tf18-score-num { font-size:28px; font-weight:900; color:#3a8fff; letter-spacing:-.03em; }
+  .tf18-score-bar { height:8px; border-radius:999px; background:rgba(80,140,255,.12); overflow:hidden; margin-top:12px; }
+  .tf18-score-fill { height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,#176ee8,#67e8f9); box-shadow:0 0 16px rgba(80,200,255,.35); }
+  .tf18-section { margin:18px 0 10px; }
+  .tf18-section-title { font-size:11px; font-weight:700; letter-spacing:.18em; color:rgba(150,190,235,.52); text-transform:uppercase; margin:0 2px 10px; }
+  .tf18-source-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .tf18-source { background:#111927; border:1px solid rgba(80,140,255,.12); border-radius:13px; padding:10px 8px; min-width:0; }
+  .tf18-source-name { font-size:12px; font-weight:800; color:rgba(235,248,255,.92); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .tf18-source-status { display:inline-flex; margin-top:7px; padding:4px 7px; border-radius:999px; font-size:9px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; border:1px solid rgba(255,255,255,.08); }
+  .tf18-source-status.connected { color:#22c55e; background:rgba(34,197,94,.10); border-color:rgba(34,197,94,.24); }
+  .tf18-source-status.pending { color:#67e8f9; background:rgba(103,232,249,.09); border-color:rgba(103,232,249,.20); }
+  .tf18-source-status.locked { color:#94a3b8; background:rgba(148,163,184,.08); border-color:rgba(148,163,184,.18); }
+  .tf18-timeline { display:grid; gap:8px; }
+  .tf18-time-card { background:#111927; border:1px solid rgba(80,140,255,.12); border-radius:14px; padding:12px; }
+  .tf18-time-label { font-size:11px; font-weight:900; letter-spacing:.08em; color:rgba(130,195,255,.78); text-transform:uppercase; }
+  .tf18-time-title { font-size:13px; font-weight:800; color:rgba(235,248,255,.94); margin-top:5px; }
+  .tf18-time-meta { font-size:11px; color:rgba(150,190,235,.52); margin-top:4px; line-height:1.35; }
+  #screen-home .agent.tf18-world-category .ad { line-height:1.35; }
+  #screen-home .agent.tf18-world-category .tf-world-meta { margin-top:7px; }
+  @media (max-width:390px){ .tf18-source-grid { grid-template-columns:repeat(2,1fr); } }
+
 </style>
 </head>
 <body>
@@ -4530,7 +4580,7 @@
       var card = document.createElement('div');
       card.id = 'tfConnectPhoneCard';
       card.className = 'tf-onboard-card';
-      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub"></div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
       anchor.parentNode.insertBefore(card, anchor.nextSibling);
       card.querySelector('button').addEventListener('click', open);
       refreshHomeCard();
@@ -5364,15 +5414,27 @@
       var signed = !!(st.account_state && st.account_state.signed_in);
       var body = document.getElementById('tfAccountStatusBody');
       if(body){
-        body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
+        body.innerHTML = signed ? (
+          '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
           '<div class="tf-account-grid">' +
-          '<div class="tf-account-kv"><b>Signed in as</b><span>' + esc(signed ? (p.name + '<br>' + p.email) : 'Guest') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Signed In As</b><span>' + esc(p.name + '<br>' + p.email) + '</span></div>' +
           '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc(p.memory_status) + '</span></div>' +
           '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(p.connected_services_count) + '</span></div>' +
           '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(p.memory_items_count) + '</span></div>' +
           '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan) + '</span></div>' +
           '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(st.onboarding && st.onboarding.completed_at || p.last_active)) + '</span></div>' +
-          '</div>';
+          '</div>'
+        ) : (
+          '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+          '<div class="tf-account-grid">' +
+          '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+          '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+          '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+          '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+          '</div>'
+        );
       }
       var list = document.getElementById('tfReadinessList');
       if(list){ list.innerHTML = READY.map(function(x){ return '<div class="tf-ready-row"><span>' + esc(x) + '</span><span>READY</span></div>'; }).join(''); }
@@ -5516,8 +5578,7 @@
       } else {
         card.classList.remove('tf-connect-compact');
         if(!card.querySelector('.tf-ob-title') || card.querySelector('.tf-ob-title').textContent.indexOf('Connect Phone') === -1){
-          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
-          var btn = card.querySelector('button'); if(btn) btn.addEventListener('click', openPhone);
+          /* Phase 17: disconnected Connect Phone copy is rendered only by renderConnectPhone(). */
         }
         card.classList.toggle('tf-locked', !signed);
       }
@@ -5528,17 +5589,27 @@
       var signed = !!(st.account_state && st.account_state.signed_in);
       var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' };
       var s = stats(st);
-      body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
+      body.innerHTML = signed ? (
+        '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
         '<div class="tf-account-grid">' +
-        '<div class="tf-account-kv"><b>Name</b><span>' + esc(signed ? p.name : 'Guest User') + '</span></div>' +
-        '<div class="tf-account-kv"><b>Email</b><span>' + esc(signed ? p.email : 'Not signed in') + '</span></div>' +
-        '<div class="tf-account-kv"><b>Account Type</b><span>' + esc(accountType(st)) + '</span></div>' +
-        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
-        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : (signed ? 'ready' : 'locked')) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Signed In As</b><span>' + esc(p.name + '<br>' + p.email) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : 'ready') + '</span></div>' +
         '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
         '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
         '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
-        '</div>';
+        '</div>'
+      ) : (
+        '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+        '<div class="tf-account-grid">' +
+        '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+        '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+        '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+        '</div>'
+      );
     }
     function updatePriority(st){
       var greet = document.getElementById('greetMsg');
@@ -5975,17 +6046,27 @@
       var st = ensure(read()); var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' }; var signed = !!(st.account_state && st.account_state.signed_in); var s = stats(st);
       var body = document.getElementById('tfAccountStatusBody');
       if(body){
-        body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
-          '<div class="tf-account-grid">' +
-          '<div class="tf-account-kv"><b>Name</b><span>' + esc(signed ? p.name : 'Guest User') + '</span></div>' +
-          '<div class="tf-account-kv"><b>Email</b><span>' + esc(signed ? p.email : 'Not signed in') + '</span></div>' +
-          '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
-          '<div class="tf-account-kv"><b>Account Type</b><span>' + esc(signed ? (/pro/i.test(p.plan || '') ? 'Pro' : 'Free') : 'Guest') + '</span></div>' +
-          '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : (signed ? 'ready' : 'locked')) + '</span></div>' +
-          '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
-          '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
-          '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
-          '</div>';
+        body.innerHTML = signed ? (
+        '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
+        '<div class="tf-account-grid">' +
+        '<div class="tf-account-kv"><b>Signed In As</b><span>' + esc(p.name + '<br>' + p.email) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : 'ready') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
+        '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
+        '</div>'
+      ) : (
+        '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+        '<div class="tf-account-grid">' +
+        '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+        '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+        '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+        '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+        '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+        '</div>'
+      );
       }
       var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? p.name : 'Your Account';
       var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Not signed in';
@@ -6056,6 +6137,1000 @@
     setTimeout(cleanHomeClarity, 500);
   });
   window.TerafarmPhase17HomeClarity = { clean: cleanHomeClarity };
+})();
+</script>
+
+
+<script>
+/* ════════ TERAFARM PHASE 17 — Real Product Stability + Human-First Build ════════ */
+(function(){
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c] || c; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem('terafarm.product.v1') || '{}'); } catch(e){ return {}; } }
+  function short(v){ if(!v) return '—'; try { return new Date(v).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); } catch(e){ return '—'; } }
+  function stats(st){
+    var connected = (st.connected_services || []).filter(function(s){ return s.status === 'connected' || s.auth_status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
+    var last = (st.onboarding && st.onboarding.completed_at) || (st.account_profile && st.account_profile.last_active) || null;
+    return { connected:connected, mem:(st.memory_items || []).length, last:last };
+  }
+  function guestHtml(){
+    return '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+      '<div class="tf-account-grid">' +
+      '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+      '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+      '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+      '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+      '</div>';
+  }
+  function signedHtml(st){
+    var p = st.account_profile || { name:'Terafarm User', email:'Signed in', plan:'Local Prototype' };
+    var s = stats(st);
+    return '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
+      '<div class="tf-account-grid">' +
+      '<div class="tf-account-kv"><b>Signed In As</b><span>' + esc((p.name || 'Terafarm User') + '<br>' + (p.email || 'Signed in')) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : 'ready') + '</span></div>' +
+      '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
+      '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
+      '</div>';
+  }
+  function renderStableProfile(){
+    var body = document.getElementById('tfAccountStatusBody');
+    if(!body) return;
+    var st = read();
+    var signed = !!(st.account_state && st.account_state.signed_in);
+    var html = signed ? signedHtml(st) : guestHtml();
+    if(body.innerHTML !== html) body.innerHTML = html;
+    var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed && st.account_profile ? (st.account_profile.name || 'Terafarm User') : 'Your Account';
+    var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Not signed in';
+  }
+  function lockConnectPhone(){ /* Phase 17: no DOM rewrite; renderConnectPhone is the only text source. */ }
+  function run(){ renderStableProfile(); lockConnectPhone(); }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(run, 380);
+    setTimeout(run, 1300);
+    setTimeout(run, 4800);
+  });
+  document.addEventListener('click', function(){ setTimeout(run, 40); }, true);
+  window.TerafarmPhase17Stability = { render:run, renderStableProfile:renderStableProfile };
+})();
+
+/* ════════ TERAFARM PHASE 18 — MY WORLD FOUNDATION ════════ */
+(function(){
+  var KEY = 'terafarm.product.v1';
+  var categories = [
+    { id:'work', icon:'💼', title:'Work', count:127, last:'Today', status:'Active' },
+    { id:'learning', icon:'🎓', title:'Learning', count:42, last:'Yesterday', status:'Ready' },
+    { id:'life', icon:'🏠', title:'Life', count:86, last:'Today', status:'Active' },
+    { id:'health', icon:'❤️', title:'Health', count:31, last:'This Week', status:'Limited' },
+    { id:'travel', icon:'✈️', title:'Travel', count:18, last:'This Month', status:'Ready' },
+    { id:'finance', icon:'💳', title:'Finance', count:24, last:'This Week', status:'Locked' },
+    { id:'projects', icon:'🚀', title:'Projects', count:7, last:'Today', status:'Active' },
+    { id:'ai-systems', icon:'🤖', title:'AI Systems', count:11, last:'Today', status:'Connected' },
+    { id:'devices', icon:'📱', title:'Devices', count:11, last:'Today', status:'Connected' },
+    { id:'people', icon:'👥', title:'People', count:54, last:'Yesterday', status:'Ready' }
+  ];
+  var sources = [
+    { name:'ChatGPT', status:'connected' }, { name:'Claude', status:'connected' }, { name:'Gemini', status:'connected' },
+    { name:'Calendar', status:'connected' }, { name:'Email', status:'connected' }, { name:'Drive', status:'connected' },
+    { name:'Notes', status:'connected' }, { name:'Phone', status:'pending' }, { name:'WhatsApp', status:'locked' },
+    { name:'Home', status:'connected' }, { name:'Car', status:'connected' }, { name:'Watch', status:'connected' }
+  ];
+  var memoryObjects = [
+    { id:'mem-001', type:'project', title:'Terafarm Phase 18 foundation', source:'ChatGPT', timestamp:new Date().toISOString(), category:'projects', importance:98 },
+    { id:'mem-002', type:'routine', title:'Build one memory across many AI systems', source:'Claude', timestamp:new Date(Date.now()-86400000).toISOString(), category:'work', importance:92 },
+    { id:'mem-003', type:'device', title:'Phone scan prepares My World profile', source:'Phone', timestamp:new Date(Date.now()-172800000).toISOString(), category:'devices', importance:84 },
+    { id:'mem-004', type:'person', title:'Human-first daily memory profile', source:'Notes', timestamp:new Date(Date.now()-604800000).toISOString(), category:'life', importance:88 }
+  ];
+  var timeline = [
+    { label:'Today', title:'My World structure created', meta:'Work, Learning, Life, Health, Travel, Finance, Projects, AI Systems, Devices, People' },
+    { label:'Yesterday', title:'Project context synchronized', meta:'Terafarm product memory prepared across connected AI systems' },
+    { label:'This Week', title:'Phone connection flow stabilized', meta:'Connect Phone remains static and ready for permission-based scan' },
+    { label:'This Month', title:'Personal memory OS direction locked', meta:'One Person → One Memory → One World → Many Connected Systems' }
+  ];
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c] || c; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+  function ensureModel(){
+    var st = read();
+    st.memory_objects = memoryObjects.slice();
+    st.my_world_foundation = categories.map(function(c){
+      return { id:c.id, type:'world_category', title:c.title, item_count:c.count, last_update:c.last, memory_status:c.status };
+    });
+    st.memory_sources = sources.slice();
+    st.memory_coverage = calculateCoverage(sources);
+    write(st);
+    window.TerafarmMemoryObjects = st.memory_objects;
+    window.TerafarmMyWorldFoundation = st.my_world_foundation;
+    return st;
+  }
+  function calculateCoverage(list){
+    var connected = list.filter(function(s){ return s.status === 'connected'; }).length;
+    return { connected:connected, total:list.length, score:Math.round((connected / list.length) * 86) };
+  }
+  function categoryHtml(c){
+    return '<div class="agent tf-world-card tf18-world-category" data-world-id="' + esc(c.id) + '">' +
+      '<div class="ai" style="background:rgba(20,80,160,.35)">' + esc(c.icon) + '</div>' +
+      '<div class="an">' + esc(c.title) + '</div>' +
+      '<div class="ad">' + esc(c.count) + ' items</div>' +
+      '<div class="tf-world-meta">Last update: ' + esc(c.last) + '</div>' +
+      '<div class="tf-world-status"><span class="dot"></span>' + esc(c.status) + '</div>' +
+      '</div>';
+  }
+  function renderScore(coverage){
+    return '<div class="tf18-world-score" id="tf18WorldScore">' +
+      '<div class="tf18-score-top"><div><div class="tf18-score-title">Memory Coverage</div>' +
+      '<div class="tf18-score-sub">' + esc(coverage.connected) + ' systems connected · Ready for real integrations</div></div>' +
+      '<div class="tf18-score-num">' + esc(coverage.score) + '%</div></div>' +
+      '<div class="tf18-score-bar"><div class="tf18-score-fill" style="width:' + esc(coverage.score) + '%"></div></div>' +
+      '</div>';
+  }
+  function renderSources(){
+    return '<div class="tf18-section" id="tf18Sources"><div class="tf18-section-title">Memory Sources</div><div class="tf18-source-grid">' +
+      sources.map(function(s){ return '<div class="tf18-source"><div class="tf18-source-name">' + esc(s.name) + '</div><span class="tf18-source-status ' + esc(s.status) + '">' + esc(s.status) + '</span></div>'; }).join('') +
+      '</div></div>';
+  }
+  function renderTimeline(){
+    return '<div class="tf18-section" id="tf18Timeline"><div class="tf18-section-title">Memory Timeline</div><div class="tf18-timeline">' +
+      timeline.map(function(t){ return '<div class="tf18-time-card"><div class="tf18-time-label">' + esc(t.label) + '</div><div class="tf18-time-title">' + esc(t.title) + '</div><div class="tf18-time-meta">' + esc(t.meta) + '</div></div>'; }).join('') +
+      '</div></div>';
+  }
+  function render(){
+    var st = ensureModel();
+    var head = Array.prototype.slice.call(document.querySelectorAll('#screen-home .scr-head')).filter(function(h){
+      var title = h.querySelector('h2'); return title && (title.textContent || '').trim() === 'My World';
+    })[0];
+    if(!head) return;
+    var grid = head.nextElementSibling;
+    if(!grid || !grid.classList.contains('agent-grid')) return;
+    grid.innerHTML = categories.map(categoryHtml).join('');
+    var coverage = st.memory_coverage || calculateCoverage(sources);
+    var scoreHtml = renderScore(coverage);
+    var sourcesHtml = renderSources();
+    var timelineHtml = renderTimeline();
+    var score = document.getElementById('tf18WorldScore'); if(score) score.remove();
+    var src = document.getElementById('tf18Sources'); if(src) src.remove();
+    var tl = document.getElementById('tf18Timeline'); if(tl) tl.remove();
+    grid.insertAdjacentHTML('afterend', scoreHtml + sourcesHtml + timelineHtml);
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(render, 520);
+    setTimeout(render, 1500);
+  });
+  document.addEventListener('click', function(){ setTimeout(render, 70); }, true);
+  window.TerafarmPhase18WorldFoundation = { render:render, model:memoryObjects, categories:categories, sources:sources };
+})();
+
+
+
+/* ════════ TERAFARM PHASE 19 — Real Product Cleanup + Personal Data Safety ════════ */
+(function(){
+  var KEY = 'terafarm.product.v1';
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c] || c; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+  function short(v){ if(!v) return '—'; try { return new Date(v).toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); } catch(e){ return '—'; } }
+  function stats(st){
+    var connected = (st.connected_services || []).filter(function(s){ return s.status === 'connected' || s.auth_status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
+    var last = (st.onboarding && st.onboarding.completed_at) || (st.account_profile && st.account_profile.last_active) || null;
+    return { connected:connected, mem:(st.memory_items || []).length, last:last };
+  }
+  function guestHtml(){
+    return '<div class="tf-account-state guest"><span class="dot"></span>Guest</div>' +
+      '<div class="tf-account-grid">' +
+      '<div class="tf-account-kv"><b>Signed In As</b><span>Guest</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Status</b><span>Locked</span></div>' +
+      '<div class="tf-account-kv"><b>Connected Services</b><span>11</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Items</b><span>4</span></div>' +
+      '<div class="tf-account-kv"><b>Plan</b><span>Local Prototype</span></div>' +
+      '<div class="tf-account-kv"><b>Last Sync</b><span>—</span></div>' +
+      '</div>';
+  }
+  function signedHtml(st){
+    var p = st.account_profile || { name:'Terafarm User', email:'Signed in', plan:'Local Prototype' };
+    var s = stats(st);
+    return '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
+      '<div class="tf-account-grid">' +
+      '<div class="tf-account-kv"><b>Signed In As</b><span>' + esc((p.name || 'Terafarm User') + '<br>' + (p.email || 'Signed in')) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : 'ready') + '</span></div>' +
+      '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+      '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
+      '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
+      '</div>';
+  }
+  function syncWorldMode(st){
+    st = st || read();
+    var connected = !!(st.account_state && st.account_state.phone_connected) || !!(st.onboarding && st.onboarding.phone_connected);
+    st.worldMode = connected ? 'personal' : (st.worldMode || 'sample');
+    if(!connected) st.worldMode = 'sample';
+    write(st);
+    window.TerafarmWorldMode = st.worldMode;
+    return st.worldMode;
+  }
+  function lockProfileAccount(){
+    var body = document.getElementById('tfAccountStatusBody');
+    if(!body) return;
+    var st = read();
+    var signed = !!(st.account_state && st.account_state.signed_in);
+    var html = signed ? signedHtml(st) : guestHtml();
+    if(body.innerHTML !== html) body.innerHTML = html;
+    var name = document.querySelector('#screen-profile .pf-name');
+    if(name) name.textContent = signed && st.account_profile ? (st.account_profile.name || 'Terafarm User') : 'Your Account';
+    var mail = document.querySelector('#screen-profile .pf-mail');
+    if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Not signed in';
+  }
+  function addSampleLabels(){
+    var mode = syncWorldMode(read());
+    var labelText = mode === 'personal' ? 'Personal Memory' : 'Sample Memory';
+    var subText = mode === 'personal' ? 'Connected phone memory profile' : 'Example memory entries until your real world is connected';
+    var head = Array.prototype.slice.call(document.querySelectorAll('#screen-home .scr-head')).filter(function(h){
+      var title = h.querySelector('h2'); return title && (title.textContent || '').trim() === 'My World';
+    })[0];
+    if(head){
+      var p = head.querySelector('p');
+      if(p) p.textContent = subText;
+      var badge = document.getElementById('tf19SampleMemoryLabel');
+      if(!badge){
+        badge = document.createElement('div');
+        badge.id = 'tf19SampleMemoryLabel';
+        badge.className = 'tf-memory-badge';
+        badge.style.marginTop = '8px';
+        badge.innerHTML = '<span class="dot"></span><span></span>';
+        head.appendChild(badge);
+      }
+      var span = badge.querySelector('span:last-child'); if(span) span.textContent = labelText;
+    }
+    var tlTitle = document.querySelector('#tf18Timeline .tf18-section-title');
+    if(tlTitle && tlTitle.textContent.indexOf(labelText) === -1) tlTitle.textContent = labelText + ' Timeline';
+    var sourceTitle = document.querySelector('#tf18Sources .tf18-section-title');
+    if(sourceTitle) sourceTitle.textContent = 'Memory Sources · Ready for real integrations';
+    var scoreSub = document.querySelector('#tf18WorldScore .tf18-score-sub');
+    if(scoreSub) scoreSub.textContent = scoreSub.textContent.replace('frontend score only','Ready for real integrations');
+  }
+  function wireSingleAccountModal(){
+    function openAccount(){
+      if(window.appBooting) return;
+      if(typeof openModal === 'function') openModal();
+      else { var m = document.getElementById('modal-ov'); if(m) m.classList.add('open'); }
+    }
+    var pf = document.getElementById('pf-signin');
+    if(pf && !pf.__tf19SameModal){ pf.__tf19SameModal = true; pf.addEventListener('click', function(e){ e.preventDefault(); openAccount(); }, false); }
+    var menu = document.getElementById('menu-signin');
+    if(menu && !menu.__tf19SameModal){ menu.__tf19SameModal = true; menu.addEventListener('click', function(e){ e.preventDefault(); openAccount(); }, false); }
+  }
+  function patchPhoneCompletion(){
+    if(window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.startScan === 'function' && !TerafarmPhase9Onboarding.__tf19WorldMode){
+      var oldStart = TerafarmPhase9Onboarding.startScan;
+      TerafarmPhase9Onboarding.startScan = function(){
+        var result = oldStart.apply(this, arguments);
+        setTimeout(function(){ var st = read(); if(st.onboarding && st.onboarding.phone_connected){ syncWorldMode(st); } run(); }, 900);
+        setTimeout(function(){ var st = read(); if(st.onboarding && st.onboarding.phone_connected){ syncWorldMode(st); } run(); }, 2400);
+        return result;
+      };
+      TerafarmPhase9Onboarding.__tf19WorldMode = true;
+    }
+  }
+  function run(){
+    patchPhoneCompletion();
+    syncWorldMode(read());
+    lockProfileAccount();
+    wireSingleAccountModal();
+    addSampleLabels();
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(run, 620);
+    setTimeout(run, 1700);
+    setTimeout(run, 4200);
+  });
+  document.addEventListener('click', function(){ setTimeout(run, 90); }, true);
+  window.TerafarmPhase19Safety = { render:run, syncWorldMode:syncWorldMode, profile:lockProfileAccount };
+})();
+
+
+/* ════════ TERAFARM PHASE 20 — MY WORLD SCANNER FOUNDATION ════════ */
+(function(){
+  var KEY = 'terafarm.product.v1';
+  var scanSources = [
+    'AI Assistants','Calendar','Email','Files','Notes','Browser','Devices','Apps'
+  ];
+  var defaultWorldProfile = {
+    assistants: [],
+    apps: [],
+    devices: [],
+    interests: [],
+    routines: [],
+    projects: [],
+    preferences: []
+  };
+  var sampleScanResult = [
+    ['AI Assistants','3'],
+    ['Projects','6'],
+    ['Domains','40+'],
+    ['Preferences','12'],
+    ['Devices','4'],
+    ['Routines','8']
+  ];
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c] || c; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+  function now(){ return new Date().toISOString(); }
+  function short(v){ if(!v) return '—'; if(v === 'just now') return 'just now'; try { var d = new Date(v); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); } catch(e){ return '—'; } }
+  function ensure(st){
+    st = st || read();
+    if(!Array.isArray(st.memory_items)) st.memory_items = [];
+    if(!Array.isArray(st.connected_services)) st.connected_services = [];
+    if(!Array.isArray(st.connectors)) st.connectors = [];
+    if(!st.onboarding) st.onboarding = { phone_connected:false, scan_state:'Ready to connect', detected_systems:[] };
+    if(!st.account_state) st.account_state = { guest:true, signed_in:false, onboarded:false, phone_connected:false, memory_active:false };
+    if(!st.worldMode) st.worldMode = st.onboarding.phone_connected ? 'personal' : 'sample';
+    if(!st.worldProfile) st.worldProfile = JSON.parse(JSON.stringify(defaultWorldProfile));
+    if(!st.scanSources) st.scanSources = scanSources.slice();
+    if(!st.phase20Scan) st.phase20Scan = { completed:false, built:false, result:[], last_scan:null };
+    return st;
+  }
+  function saveWorldProfile(st){
+    st.worldProfile = {
+      assistants:['ChatGPT','Claude','Gemini'],
+      apps:['Calendar','Email','Files','Notes'],
+      devices:['Phone','Watch','Home','Car'],
+      interests:['AI memory','infrastructure','automation'],
+      routines:['Morning planning','project review','voice notes','daily sync','travel prep','weekly cleanup','content drafting','build check'],
+      projects:['Terafarm','FreightCapsule','ChargingTube','BuiltToUnite','LinkedIn voice','coding style'],
+      preferences:['mobile-first','clean UI','static onboarding','shared memory','premium dark system','clear labels','no fake personal data','local prototype','real integrations ready','one memory','many systems','human-first copy']
+    };
+    return st;
+  }
+  function isSigned(st){ return !!(st.account_state && st.account_state.signed_in); }
+  function openAccountThenScan(){
+    window.tfPendingConnectPhoneAfterAccount = true;
+    var onboard = document.getElementById('tfOnboardModal'); if(onboard) onboard.classList.remove('open');
+    if(typeof openModal === 'function') openModal();
+    else { var m = document.getElementById('modal-ov'); if(m) m.classList.add('open'); }
+  }
+  function ensureScannerModal(){
+    var modal = document.getElementById('tfOnboardModal');
+    if(!modal){
+      modal = document.createElement('div');
+      modal.id = 'tfOnboardModal';
+      modal.className = 'tf-onboard-ov';
+      document.body.appendChild(modal);
+    }
+    modal.innerHTML = '<div class="tf-onboard-sheet tf20-world-sheet"><button class="tf-onboard-close" id="tfOnboardClose">×</button>' +
+      '<h3>Build My World</h3>' +
+      '<p>Terafarm can learn from apps, assistants, devices, and services you already use.</p>' +
+      '<div class="tf-scan-stage"><div class="tf-scan-state" id="tfScanState">Ready to scan allowed sources</div><div class="tf-scan-bar"><div class="tf-scan-fill" id="tfScanFill"></div></div></div>' +
+      '<div class="seclbl" style="margin-top:16px"><span class="t">SCAN CATEGORIES</span></div>' +
+      '<div class="tf20-source-grid">' + scanSources.map(function(x){ return '<div class="tf20-source-chip">' + esc(x) + '</div>'; }).join('') + '</div>' +
+      '<button class="tf-onboard-btn" id="tfStartPhoneScan" type="button">Run Scan</button>' +
+      '<div class="tf-scan-result" id="tfScanResult"><b>Sample scan result</b><div class="tf20-result-list" id="tf20ResultList"></div></div>' +
+      '<button class="tf-onboard-btn tf20-build-btn" id="tf20BuildWorld" type="button" style="display:none">Build My World</button>' +
+      '<p class="tf20-safety-note">Local prototype only. No real phone, app, email, calendar, file, browser, contact, or device data is accessed.</p>' +
+      '</div>';
+    var close = document.getElementById('tfOnboardClose');
+    if(close) close.addEventListener('click', function(){ modal.classList.remove('open'); window.connectPhoneModalOpen = false; window.scanModalOpen = false; });
+    modal.onclick = function(e){ if(e.target === modal){ modal.classList.remove('open'); window.connectPhoneModalOpen = false; window.scanModalOpen = false; } };
+    var scan = document.getElementById('tfStartPhoneScan'); if(scan) scan.addEventListener('click', runScan);
+    var build = document.getElementById('tf20BuildWorld'); if(build) build.addEventListener('click', buildWorld);
+    renderModalState();
+    return modal;
+  }
+  function openScanner(){
+    if(window.appBooting) return;
+    var st = ensure(read()); write(st);
+    if(!isSigned(st)){ openAccountThenScan(); return; }
+    var modal = ensureScannerModal();
+    modal.classList.add('open');
+    window.connectPhoneModalOpen = true;
+    window.scanModalOpen = true;
+    renderModalState();
+  }
+  function renderModalState(){
+    var st = ensure(read());
+    var state = document.getElementById('tfScanState');
+    var fill = document.getElementById('tfScanFill');
+    var result = document.getElementById('tfScanResult');
+    var list = document.getElementById('tf20ResultList');
+    var build = document.getElementById('tf20BuildWorld');
+    var scan = document.getElementById('tfStartPhoneScan');
+    var completed = !!(st.phase20Scan && st.phase20Scan.completed);
+    var built = !!(st.phase20Scan && st.phase20Scan.built);
+    if(state) state.textContent = built ? 'My World active' : (completed ? 'Scan complete' : 'Ready to scan allowed sources');
+    if(fill) fill.style.width = built || completed ? '100%' : '0%';
+    if(result) result.classList.toggle('show', completed || built);
+    if(list) list.innerHTML = sampleScanResult.map(function(r){ return '<div class="tf-detected-item"><span>' + esc(r[0]) + '</span><span>' + esc(r[1]) + '</span></div>'; }).join('');
+    if(build) build.style.display = completed && !built ? '' : (built ? '' : 'none');
+    if(build) build.textContent = built ? 'My World Active' : 'Build My World';
+    if(scan) scan.textContent = completed ? 'Run Scan Again' : 'Run Scan';
+  }
+  function runScan(e){
+    if(e && e.preventDefault) e.preventDefault();
+    var st = ensure(read());
+    st.phase20Scan.completed = true;
+    st.phase20Scan.result = sampleScanResult.map(function(r){ return { label:r[0], value:r[1] }; });
+    st.phase20Scan.last_scan = now();
+    st.onboarding.scan_state = 'Scan complete';
+    st.onboarding.detected_systems = scanSources.slice();
+    write(st);
+    renderModalState();
+    renderAll();
+    if(typeof showToast === 'function') showToast('Sample scan complete. Ready to build My World.');
+    else if(typeof toast === 'function') toast('Sample scan complete. Ready to build My World.');
+  }
+  function buildWorld(e){
+    if(e && e.preventDefault) e.preventDefault();
+    var st = ensure(read());
+    st = saveWorldProfile(st);
+    st.worldMode = 'personal';
+    st.onboarding.phone_connected = true;
+    st.onboarding.scan_state = 'My World active';
+    st.onboarding.completed_at = now();
+    st.onboarding.detected_systems = scanSources.slice();
+    st.account_state.phone_connected = true;
+    st.account_state.onboarded = true;
+    st.account_state.memory_active = true;
+    st.phase20Scan.completed = true;
+    st.phase20Scan.built = true;
+    st.phase20Scan.last_scan = st.onboarding.completed_at;
+    if(!st.memory_items.some(function(m){ return m && m.id === 'phase20_my_world_profile'; })){
+      st.memory_items.unshift({ id:'phase20_my_world_profile', type:'profile', title:'My World Profile', source:'Build My World', timestamp:st.onboarding.completed_at, category:'Life', importance:'high', summary:'Built from connected sources and personal patterns.' });
+    }
+    write(st);
+    renderModalState();
+    renderAll();
+    if(typeof showToast === 'function') showToast('My World built. Memory Profile Active.');
+    else if(typeof toast === 'function') toast('My World built. Memory Profile Active.');
+  }
+  function renderConnectPhoneCard(){
+    var st = ensure(read());
+    var card = document.getElementById('tfConnectPhoneCard');
+    if(!card) return;
+    var built = st.worldMode === 'personal' && !!(st.onboarding && st.onboarding.phone_connected);
+    if(built){
+      card.classList.add('tf-connect-compact','tf20-connected-card');
+      card.classList.remove('tf-locked');
+      card.innerHTML = '<div class="tf-connect-main"><div class="tf-ob-title">📱 Phone Connected</div>' +
+        '<div class="tf-ob-sub"><span>Systems Detected: 8</span><br><span>Memory Profile Active</span><br><span>Last Scan: just now</span></div></div>' +
+        '<button class="tf-onboard-btn" id="tf20RescanPhone" type="button">Rescan</button>';
+      var rescan = document.getElementById('tf20RescanPhone');
+      if(rescan && !rescan.__tf20){ rescan.__tf20 = true; rescan.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); openScanner(); }); }
+    } else {
+      card.classList.remove('tf-connect-compact','tf20-connected-card');
+      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div>' +
+        '<div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World. <span class="signin-hint">Sign in to activate.</span></div>' +
+        '<button class="tf-onboard-btn" id="tf20ConnectPhoneBtn" type="button">Connect Phone</button>';
+      var btn = document.getElementById('tf20ConnectPhoneBtn');
+      if(btn && !btn.__tf20){ btn.__tf20 = true; btn.addEventListener('click', function(ev){ ev.preventDefault(); ev.stopPropagation(); openScanner(); }); }
+    }
+    write(st);
+  }
+  function renderMemoryReaction(){
+    var st = ensure(read());
+    var personal = st.worldMode === 'personal';
+    var homeHead = Array.prototype.slice.call(document.querySelectorAll('#screen-home .scr-head')).filter(function(h){ var t = h.querySelector('h2'); return t && (t.textContent || '').trim() === 'My World'; })[0];
+    if(homeHead){
+      var p = homeHead.querySelector('p');
+      if(p) p.textContent = personal ? 'Built from connected sources and personal patterns.' : 'Example memory entries until your real world is connected';
+      var badge = document.getElementById('tf19SampleMemoryLabel');
+      if(!badge){ badge = document.createElement('div'); badge.id='tf19SampleMemoryLabel'; badge.className='tf-memory-badge'; badge.style.marginTop='8px'; badge.innerHTML='<span class="dot"></span><span></span>'; homeHead.appendChild(badge); }
+      var span = badge.querySelector('span:last-child'); if(span) span.textContent = personal ? 'My World' : 'Sample Memory';
+    }
+    var memHead = document.querySelector('#screen-memory .scr-head');
+    if(memHead){
+      var h2 = memHead.querySelector('h2');
+      var p2 = memHead.querySelector('p');
+      if(h2) h2.textContent = personal ? 'My World' : 'Memory';
+      if(p2) p2.textContent = personal ? 'Built from connected sources and personal patterns.' : 'Sample Memory';
+    }
+    var tlTitle = document.querySelector('#tf18Timeline .tf18-section-title');
+    if(tlTitle) tlTitle.textContent = personal ? 'My World Timeline' : 'Sample Memory Timeline';
+  }
+  function patchPhase9(){
+    if(window.TerafarmPhase9Onboarding && !window.TerafarmPhase9Onboarding.__tf20Scanner){
+      window.TerafarmPhase9Onboarding.open = openScanner;
+      window.TerafarmPhase9Onboarding.startScan = runScan;
+      window.TerafarmPhase9Onboarding.__tf20Scanner = true;
+    }
+  }
+  function wireConnectGate(){
+    if(document.__tf20ConnectGate) return;
+    document.__tf20ConnectGate = true;
+    document.addEventListener('click', function(e){
+      var target = e.target && e.target.closest ? e.target.closest('#screen-home #tfConnectPhoneCard .tf-onboard-btn') : null;
+      if(!target) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+      openScanner();
+    }, true);
+    var create = document.getElementById('modal-create');
+    if(create && !create.__tf20AfterAccount){
+      create.__tf20AfterAccount = true;
+      create.addEventListener('click', function(){
+        setTimeout(function(){
+          var st = ensure(read());
+          if(isSigned(st) && window.tfPendingConnectPhoneAfterAccount){
+            window.tfPendingConnectPhoneAfterAccount = false;
+            if(typeof closeModal === 'function') closeModal(); else { var m = document.getElementById('modal-ov'); if(m) m.classList.remove('open'); }
+            setTimeout(openScanner, 80);
+          }
+        }, 220);
+      }, false);
+    }
+  }
+  function injectCss(){
+    if(document.getElementById('tf20Style')) return;
+    var style = document.createElement('style');
+    style.id = 'tf20Style';
+    style.textContent = '.tf20-source-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 12px}.tf20-source-chip{background:rgba(13,20,32,.72);border:1px solid rgba(80,140,255,.12);border-radius:12px;padding:10px 11px;font-size:12px;font-weight:700;color:rgba(225,242,255,.9)}.tf20-result-list{display:grid;gap:8px;margin-top:10px}.tf20-build-btn{margin-top:10px!important;background:linear-gradient(135deg,#16a34a,#22c55e)!important}.tf20-safety-note{font-size:11px!important;color:rgba(150,190,235,.48)!important;margin:12px 0 0!important}.tf20-connected-card .tf-ob-sub span{color:rgba(185,215,250,.76)}#tfConnectPhoneCard .signin-hint{color:#22c55e!important;font-weight:700!important;animation:none!important;transition:none!important;text-shadow:none!important;filter:none!important}';
+    document.head.appendChild(style);
+  }
+  function renderAll(){
+    injectCss();
+    patchPhase9();
+    wireConnectGate();
+    var st = ensure(read()); write(st);
+    renderConnectPhoneCard();
+    renderMemoryReaction();
+    if(window.TerafarmPhase19Safety && typeof window.TerafarmPhase19Safety.render === 'function') window.TerafarmPhase19Safety.render();
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(renderAll, 760);
+    setTimeout(renderAll, 1800);
+    setTimeout(renderAll, 4300);
+  });
+  document.addEventListener('click', function(){ setTimeout(renderAll, 110); }, true);
+  window.TerafarmPhase20WorldScanner = { render:renderAll, open:openScanner, runScan:runScan, buildWorld:buildWorld, scanSources:scanSources, worldProfile:defaultWorldProfile };
+})();
+
+
+/* ════════ TERAFARM PHASE 21 — MEMORY INGESTION ENGINE FOUNDATION ════════ */
+(function(){
+  var KEY = 'terafarm.product.v1';
+  var sourceToMemoryMapping = {
+    'AI Assistants':['projects','preferences','knowledge'],
+    'Calendar':['routines','meetings','travel'],
+    'Email':['people','work','communication'],
+    'Files':['projects','documents','knowledge'],
+    'Notes':['ideas','goals','preferences'],
+    'Browser':['interests','research','learning'],
+    'Devices':['routines','health','home'],
+    'Apps':['habits','services','workflows']
+  };
+  var extractedMemories = [
+    { id:'phase21_project_memory', type:'project', title:'Project Memory', source:'Build My World', category:'Projects', importance:98, summary:'Terafarm is the active personal memory OS project.' },
+    { id:'phase21_preference_memory', type:'preference', title:'Preference Memory', source:'Build My World', category:'Preferences', importance:96, summary:'User prefers one shared memory across all AI systems.' },
+    { id:'phase21_routine_memory', type:'routine', title:'Routine Memory', source:'Build My World', category:'Routines', importance:91, summary:'Morning and travel planning should coordinate calendar, car, and assistant systems.' },
+    { id:'phase21_device_memory', type:'device', title:'Device Memory', source:'Build My World', category:'Devices', importance:90, summary:'Phone, wearable, car, and smart home are part of the personal world.' },
+    { id:'phase21_work_memory', type:'work', title:'Work Memory', source:'Build My World', category:'Work', importance:94, summary:'User works with AI systems, code, design, product strategy, and infrastructure projects.' },
+    { id:'phase21_people_memory', type:'people', title:'People Memory', source:'Build My World', category:'People', importance:88, summary:'Important contacts and collaborators should stay connected to project context.' }
+  ];
+  var visibleCategoryIncrements = { projects:1, life:2, devices:1, work:1, people:1, learning:1 };
+  function esc(v){ return String(v == null ? '' : v).replace(/[&<>'"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c] || c; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+  function now(){ return new Date().toISOString(); }
+  function ensure(st){
+    st = st || read();
+    if(!Array.isArray(st.memory_items)) st.memory_items = [];
+    if(!Array.isArray(st.sync_logs)) st.sync_logs = [];
+    if(!st.memoryIngestion){
+      st.memoryIngestion = { sources:[], extractedItems:[], categoriesUpdated:[], confidenceScore:0, lastRun:null };
+    }
+    st.sourceToMemoryMapping = sourceToMemoryMapping;
+    return st;
+  }
+  function runIngestion(force){
+    var st = ensure(read());
+    var built = !!(st.phase20Scan && st.phase20Scan.built) || (st.worldMode === 'personal' && st.onboarding && st.onboarding.phone_connected);
+    if(!built) { write(st); return st; }
+    if(st.memoryIngestion && st.memoryIngestion.lastRun && !force) return st;
+    var ts = now();
+    var scanSources = Array.isArray(st.scanSources) && st.scanSources.length ? st.scanSources.slice() : ['AI Assistants','Calendar','Email','Files','Notes','Browser','Devices','Apps'];
+    var items = extractedMemories.map(function(m){
+      var copy = Object.assign({}, m);
+      copy.timestamp = ts;
+      copy.extracted_from = 'Build My World';
+      return copy;
+    });
+    items.forEach(function(m){
+      if(!st.memory_items.some(function(x){ return x && x.id === m.id; })){
+        st.memory_items.unshift({ id:m.id, type:m.type, title:m.title, source:m.source, timestamp:m.timestamp, category:m.category, importance:m.importance, summary:m.summary, label:'Extracted from Build My World' });
+      }
+    });
+    st.memoryIngestion = {
+      sources:scanSources,
+      extractedItems:items,
+      categoriesUpdated:['Projects','Preferences','Routines','Devices','Work','People','Knowledge','Life'],
+      confidenceScore:72,
+      lastRun:ts
+    };
+    st.activity_log = Array.isArray(st.activity_log) ? st.activity_log : [];
+    ['Build My World scan completed','6 memories extracted','My World profile updated','Memory synchronized locally'].forEach(function(title, i){
+      var id = 'phase21_activity_' + i;
+      if(!st.activity_log.some(function(a){ return a && a.id === id; })) st.activity_log.unshift({ id:id, title:title, created_at:ts, source:'Memory Ingestion Engine' });
+    });
+    var logItems = [
+      ['phase21_log_scan','Build My World scan completed','8 simulated source categories scanned locally.'],
+      ['phase21_log_extract','6 memories extracted','Project, preference, routine, device, work, and people memories created.'],
+      ['phase21_log_profile','My World profile updated','Categories updated: Projects, Preferences, Routines, Devices, Work, People, Knowledge.'],
+      ['phase21_log_sync','Memory synchronized locally','Local prototype memory graph updated without backend, OAuth, or real data access.']
+    ];
+    logItems.reverse().forEach(function(l){
+      if(!st.sync_logs.some(function(x){ return x && x.id === l[0]; })) st.sync_logs.unshift({ id:l[0], title:l[1], detail:l[2], source:'Memory Ingestion Engine', agents:['Memory Core','My World','Knowledge AI'], created_at:ts });
+    });
+    if(st.sync_logs.length > 120) st.sync_logs.length = 120;
+    updateStoredCategories(st);
+    write(st);
+    return st;
+  }
+  function updateStoredCategories(st){
+    if(Array.isArray(st.my_world_foundation)){
+      st.my_world_foundation.forEach(function(c){
+        var key = c.id;
+        if(visibleCategoryIncrements[key] && !c.phase21_updated){
+          c.item_count = Number(c.item_count || 0) + visibleCategoryIncrements[key];
+          c.phase21_updated = true;
+          c.last_update = 'just now';
+          c.memory_status = 'Updated';
+        }
+      });
+    }
+    if(window.TerafarmPhase18WorldFoundation && Array.isArray(window.TerafarmPhase18WorldFoundation.categories)){
+      window.TerafarmPhase18WorldFoundation.categories.forEach(function(c){
+        if(visibleCategoryIncrements[c.id] && !c.__phase21Updated){
+          c.count = Number(c.count || 0) + visibleCategoryIncrements[c.id];
+          c.last = 'just now';
+          c.status = 'Updated';
+          c.__phase21Updated = true;
+        }
+      });
+    }
+  }
+  function renderIngestionResult(){
+    var st = ensure(read());
+    var built = !!(st.memoryIngestion && st.memoryIngestion.lastRun);
+    var old = document.getElementById('tf21IngestionResult'); if(old) old.remove();
+    if(!built) return;
+    var card = document.getElementById('tfConnectPhoneCard');
+    if(!card || !card.parentNode) return;
+    var node = document.createElement('div');
+    node.id = 'tf21IngestionResult';
+    node.className = 'tf21-result-card';
+    node.innerHTML = '<div class="tf21-result-title">🧠 Memory Created</div>' +
+      '<div class="tf21-result-grid">' +
+      '<div><b>6</b><span>memories extracted</span></div>' +
+      '<div><b>8</b><span>categories updated</span></div>' +
+      '<div><b>72%</b><span>confidence</span></div>' +
+      '<div><b>just now</b><span>last run</span></div>' +
+      '</div>';
+    card.insertAdjacentElement('afterend', node);
+  }
+  function renderMemoryPage(){
+    var st = ensure(read());
+    var ing = st.memoryIngestion || {};
+    var old = document.getElementById('tf21MyWorldMemory'); if(old) old.remove();
+    if(!ing.lastRun || !Array.isArray(ing.extractedItems) || !ing.extractedItems.length) return;
+    var stat = document.querySelector('#screen-memory .stat-row');
+    if(!stat || !stat.parentNode) return;
+    var section = document.createElement('div');
+    section.id = 'tf21MyWorldMemory';
+    section.innerHTML = '<div class="seclbl"><span class="t">MY WORLD MEMORY</span><span class="a">Extracted from Build My World</span></div>' +
+      ing.extractedItems.map(function(m){ return '<div class="mem-item"><div class="mt">🧠 ' + esc(m.title) + '</div><div class="mb">' + esc(m.summary) + '</div><div class="mtime">Extracted from Build My World · local prototype</div></div>'; }).join('');
+    stat.insertAdjacentElement('afterend', section);
+    var stats = document.querySelectorAll('#screen-memory .stat .n');
+    if(stats[0]) stats[0].textContent = String((st.memory_items || []).length || 6);
+  }
+  function renderCategoryCounts(){
+    var st = ensure(read());
+    if(!(st.memoryIngestion && st.memoryIngestion.lastRun)) return;
+    updateStoredCategories(st);
+    document.querySelectorAll('#screen-home .tf18-world-category').forEach(function(card){
+      var id = card.getAttribute('data-world-id');
+      var inc = visibleCategoryIncrements[id];
+      if(!inc) return;
+      var ad = card.querySelector('.ad');
+      var meta = card.querySelector('.tf-world-meta');
+      var status = card.querySelector('.tf-world-status');
+      var base = null;
+      if(window.TerafarmPhase18WorldFoundation && Array.isArray(window.TerafarmPhase18WorldFoundation.categories)){
+        var c = window.TerafarmPhase18WorldFoundation.categories.filter(function(x){ return x.id === id; })[0];
+        if(c) base = c.count;
+      }
+      if(ad && base != null) ad.textContent = base + ' items';
+      if(meta) meta.textContent = 'Last update: just now';
+      if(status) status.innerHTML = '<span class="dot"></span>Updated';
+    });
+    write(st);
+  }
+  function renderActivityLog(){
+    var st = ensure(read());
+    if(!(st.memoryIngestion && st.memoryIngestion.lastRun)) return;
+    if(window.TerafarmProductCore && typeof window.TerafarmProductCore.renderSyncLogs === 'function'){
+      window.TerafarmProductCore.renderSyncLogs();
+    }
+  }
+  function injectCss(){
+    if(document.getElementById('tf21Style')) return;
+    var style = document.createElement('style');
+    style.id = 'tf21Style';
+    style.textContent = '.tf21-result-card{background:#111927;border:1px solid rgba(80,140,255,.14);border-radius:16px;padding:15px;margin:12px 0 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.tf21-result-title{font-size:16px;font-weight:800;color:rgba(240,250,255,.97);margin-bottom:10px}.tf21-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.tf21-result-grid div{background:rgba(13,20,32,.72);border:1px solid rgba(80,140,255,.10);border-radius:12px;padding:10px}.tf21-result-grid b{display:block;font-size:16px;color:#22c55e}.tf21-result-grid span{display:block;font-size:11px;color:rgba(165,205,245,.66);margin-top:3px;line-height:1.3}#tf21MyWorldMemory .seclbl .a{font-size:11px;color:#22c55e;font-weight:700}';
+    document.head.appendChild(style);
+  }
+  function render(){
+    injectCss();
+    var st = runIngestion(false);
+    if(st.memoryIngestion && st.memoryIngestion.lastRun){
+      renderIngestionResult();
+      renderMemoryPage();
+      renderCategoryCounts();
+      renderActivityLog();
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(render, 900);
+    setTimeout(render, 2200);
+    setTimeout(render, 4700);
+  });
+  document.addEventListener('click', function(){ setTimeout(render, 180); }, true);
+  window.TerafarmPhase21MemoryIngestion = { render:render, run:runIngestion, model:function(){ return ensure(read()).memoryIngestion; }, mapping:sourceToMemoryMapping, extracted:extractedMemories };
+})();
+</script>
+
+
+
+<script>
+// ════════ TERAFARM PHASE 22 — MEMORY-AWARE AGENT ROUTING ════════
+// Frontend logic only. No backend, OAuth, API calls, or real data access.
+(function(){
+  var KEY = 'terafarm.product.v1';
+  var REQUIRED_TIMELINE = ['Memory context loaded','Intent detected','Agents selected','Connectors synced','Memory updated'];
+
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+  function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e){} }
+  function ensure(st){ st = st || {}; ['memory_items','sync_logs','commands','activity_log'].forEach(function(k){ if(!Array.isArray(st[k])) st[k] = []; }); return st; }
+  function now(){ return new Date().toISOString(); }
+  function lower(s){ return String(s || '').toLowerCase(); }
+
+  function normalizeSignal(item, fallbackType){
+    if(!item) return null;
+    return {
+      id:item.id || ('phase22_signal_' + fallbackType + '_' + Math.random().toString(36).slice(2)),
+      title:item.title || item.name || fallbackType || 'Memory signal',
+      summary:item.summary || item.detail || item.description || item.memory_access || 'Memory signal from My World.',
+      type:item.type || fallbackType || item.category || 'memory',
+      category:item.category || fallbackType || 'Knowledge',
+      source:item.source || 'My World Memory',
+      importance:item.importance || 'medium'
+    };
+  }
+
+  function keywordMatch(text, keys){
+    text = lower(text);
+    return keys.some(function(k){ return text.indexOf(lower(k)) !== -1; });
+  }
+
+  function pickFrom(items, keys, fallback){
+    var found = [];
+    (items || []).forEach(function(raw){
+      var item = normalizeSignal(raw, 'memory');
+      if(!item) return;
+      var blob = [item.title,item.summary,item.category,item.type,item.source].join(' ');
+      if(keywordMatch(blob, keys) && !found.some(function(x){ return x.id === item.id; })) found.push(item);
+    });
+    if(!found.length && fallback) found.push(fallback);
+    return found.slice(0, 3);
+  }
+
+  function defaultSignal(id, type, title, summary, category){
+    return { id:id, type:type, title:title, summary:summary, category:category || type, source:'Build My World Memory', importance:'high' };
+  }
+
+  function buildMemoryContext(commandText){
+    var st = ensure(read());
+    var q = lower(commandText);
+    var ingestion = st.memoryIngestion || {};
+    var extracted = Array.isArray(ingestion.extractedItems) ? ingestion.extractedItems : [];
+    var items = (st.memory_items || []).concat(extracted);
+    var world = st.worldProfile || {};
+    var categories = (st.my_world_foundation || []).concat((window.TerafarmPhase18WorldFoundation && window.TerafarmPhase18WorldFoundation.categories) || []);
+
+    var isTrip = keywordMatch(q, ['trip','travel','flight','business trip','hotel','airport']);
+    var isHome = keywordMatch(q, ['home','coming home','arrive']);
+    var isCode = keywordMatch(q, ['code','github','review','deploy']);
+    var isDesign = keywordMatch(q, ['design','ui','screen','layout']);
+    var isMeeting = keywordMatch(q, ['meeting','calendar','schedule']);
+
+    var ctx = {
+      relevantProjects: pickFrom(items, ['project','terafarm','freightcapsule','chargingtube','built'], defaultSignal('phase22_project_context','project','Project context','Active projects and product context should guide routing.','Projects')),
+      relevantPreferences: pickFrom(items, ['preference','shared memory','one memory','calendar coordination','style'], defaultSignal('phase22_calendar_preference','preference','Calendar preference','Calendar coordination should happen before travel or meeting workflows.','Preferences')),
+      relevantRoutines: pickFrom(items, ['routine','morning','travel planning','planning','trip'], defaultSignal('phase22_travel_routine','routine','Travel routine','Travel planning should coordinate calendar, car, finance, and assistant systems.','Routines')),
+      relevantPeople: pickFrom(items, ['people','contact','collaborator','team'], defaultSignal('phase22_people_context','people','People context','Important contacts and collaborators stay connected to project context.','People')),
+      relevantDevices: pickFrom(items, ['device','phone','car','home','watch','wearable'], defaultSignal('phase22_device_context','device','Device context','Phone, wearable, car, and smart home are part of the personal world.','Devices')),
+      confidence: 68
+    };
+
+    if(isTrip){
+      ctx.relevantRoutines = [defaultSignal('phase22_travel_routine','routine','Travel routine','Business travel should coordinate calendar, route, budget, files, and assistants.','Routines')].concat(ctx.relevantRoutines).slice(0,3);
+      ctx.relevantPreferences = [defaultSignal('phase22_calendar_preference','preference','Calendar preference','Scheduling preference is loaded before travel planning.','Preferences')].concat(ctx.relevantPreferences).slice(0,3);
+      ctx.relevantDevices = [defaultSignal('phase22_device_context','device','Device context','Phone, car, watch, and smart home context can support travel preparation.','Devices')].concat(ctx.relevantDevices).slice(0,3);
+      ctx.confidence = 82;
+    } else if(isHome){
+      ctx.relevantRoutines = [defaultSignal('phase22_home_routine','routine','Home arrival routine','Home arrival should coordinate car, home, robot, and security systems.','Routines')].concat(ctx.relevantRoutines).slice(0,3);
+      ctx.confidence = 80;
+    } else if(isCode || isDesign){
+      ctx.confidence = 78;
+    } else if(isMeeting){
+      ctx.confidence = 76;
+    }
+
+    if(Array.isArray(world.projects) && world.projects.length){ ctx.relevantProjects.push(defaultSignal('phase22_world_projects','project','World profile projects',world.projects.slice(0,3).join(', '),'Projects')); }
+    if(Array.isArray(world.preferences) && world.preferences.length){ ctx.relevantPreferences.push(defaultSignal('phase22_world_preferences','preference','World profile preferences',world.preferences.slice(0,3).join(', '),'Preferences')); }
+    if(Array.isArray(world.devices) && world.devices.length){ ctx.relevantDevices.push(defaultSignal('phase22_world_devices','device','World profile devices',world.devices.slice(0,3).join(', '),'Devices')); }
+
+    ctx.relevantProjects = dedupe(ctx.relevantProjects).slice(0,3);
+    ctx.relevantPreferences = dedupe(ctx.relevantPreferences).slice(0,3);
+    ctx.relevantRoutines = dedupe(ctx.relevantRoutines).slice(0,3);
+    ctx.relevantPeople = dedupe(ctx.relevantPeople).slice(0,3);
+    ctx.relevantDevices = dedupe(ctx.relevantDevices).slice(0,3);
+    ctx.categories = categories.slice(0,10).map(function(c){ return { id:c.id || c.name, title:c.title || c.name, count:c.item_count || c.count || 0, status:c.memory_status || c.status || 'Ready' }; });
+    return ctx;
+  }
+
+  function dedupe(arr){
+    var seen = {}; var out = [];
+    (arr || []).forEach(function(x){ if(!x) return; var key = x.id || x.title; if(seen[key]) return; seen[key] = 1; out.push(x); });
+    return out;
+  }
+
+  function flattenSignals(ctx){
+    return dedupe([].concat(ctx.relevantRoutines || [], ctx.relevantPreferences || [], ctx.relevantProjects || [], ctx.relevantDevices || [], ctx.relevantPeople || [])).slice(0,6);
+  }
+
+  function ensureSignalMemories(st, signals){
+    var existing = {};
+    (st.memory_items || []).forEach(function(m){ existing[m.id] = true; });
+    signals.forEach(function(s){
+      if(!s || existing[s.id]) return;
+      st.memory_items.unshift({ id:s.id, type:s.type || 'memory_signal', title:s.title, source:s.source || 'Memory Context Builder', timestamp:now(), category:s.category || 'Knowledge', importance:s.importance || 'medium', summary:s.summary || 'Memory signal used by agent routing.', label:'Memory Used' });
+      existing[s.id] = true;
+    });
+    if(st.memory_items.length > 80) st.memory_items.length = 80;
+  }
+
+  function enhanceAgents(input, agents, ctx){
+    var q = lower(input);
+    if(keywordMatch(q, ['trip','travel','flight','business trip','airport'])) return ['Travel AI','Calendar AI','Finance AI','Drive AI'];
+    if(keywordMatch(q, ['meeting','schedule','calendar'])) return ['Calendar AI','People Memory','Email AI','Notification AI'];
+    if(keywordMatch(q, ['home','coming home'])) return ['Home AI','Car AI','Robot AI','Security AI'];
+    return (agents && agents.length ? agents : ['Memory Core','Knowledge AI','Cloud AI']).slice();
+  }
+
+  function requiredTimeline(command, ctx){
+    var agents = (command.agents || []).join(' + ') || 'Shared Memory Core';
+    var signals = flattenSignals(ctx);
+    return [
+      { label:'Memory context loaded', status:'completed', detail:'Used ' + signals.length + ' memory signals before agent routing.' },
+      { label:'Intent detected', status:'completed', detail:command.detected_intent || command.command_id || 'general_memory_update' },
+      { label:'Agents selected', status:'completed', detail:agents },
+      { label:'Connectors synced', status:'completed', detail:agents + ' received relevant context' },
+      { label:'Memory updated', status:'completed', detail:'Command result and routing context saved locally.' }
+    ];
+  }
+
+  function saveCommandContext(input, result, ctx){
+    var st = ensure(read());
+    var signals = flattenSignals(ctx);
+    ensureSignalMemories(st, signals);
+    var command = (st.commands || [])[0] || { id:'cmd_phase22_' + Date.now(), created_at:now() };
+    command.original_command = String(input || command.original_command || command.label || 'Command');
+    command.label = (result && result.label) || command.label || command.original_command;
+    command.detected_intent = (result && (result.intent || result.id)) || command.detected_intent || 'general_memory_update';
+    command.agents = enhanceAgents(input, (result && result.agents) || command.agents || [], ctx);
+    command.memory_context = ctx;
+    command.memory_signals_used = signals;
+    command.memory_confidence = ctx.confidence || 0;
+    command.workflow_timeline = requiredTimeline(command, ctx);
+    command.final_result = (result && result.message) || command.final_result || 'Workflow completed successfully';
+    command.created_at = command.created_at || now();
+    st.commands[0] = command;
+
+    addUniqueLog(st, 'phase22_log_context_' + command.id, 'Memory context loaded for ' + (command.label || 'command'), signals.length + ' memory signals used before agent routing.', 'Memory Context Builder', ['Memory Core','Agent Router']);
+    addUniqueLog(st, 'phase22_log_signals_' + command.id, signals.length + ' memory signals used', signals.map(function(s){ return s.title; }).join(' · '), 'Memory Context Builder', ['Memory Core']);
+    if(command.detected_intent === 'plan_trip' || lower(command.original_command).indexOf('trip') !== -1){
+      addUniqueLog(st, 'phase22_log_travel_' + command.id, 'Travel AI received relevant context', 'Travel routine, project context, calendar preference, and device context loaded.', 'Agent Router', ['Travel AI']);
+      addUniqueLog(st, 'phase22_log_calendar_' + command.id, 'Calendar AI received scheduling preference', 'Scheduling preference shared before travel planning.', 'Agent Router', ['Calendar AI']);
+    }
+    write(st);
+    return command;
+  }
+
+  function addUniqueLog(st, id, title, detail, source, agents){
+    if(st.sync_logs.some(function(l){ return l && l.id === id; })) return;
+    st.sync_logs.unshift({ id:id, title:title, detail:detail, source:source, agents:agents || ['Memory Core'], created_at:now() });
+    if(st.sync_logs.length > 140) st.sync_logs.length = 140;
+  }
+
+  function renderMemoryUsed(command){
+    if(!command || !command.memory_context) return;
+    var old = document.getElementById('tf22MemoryUsed'); if(old) old.remove();
+    var target = document.getElementById('tfLiveWorkflow') || document.querySelector('#screen-home .memcard');
+    if(!target || !target.parentNode) return;
+    var signals = (command.memory_signals_used || flattenSignals(command.memory_context)).slice(0,4);
+    var node = document.createElement('div');
+    node.id = 'tf22MemoryUsed';
+    node.className = 'tf22-memory-used';
+    node.innerHTML = '<div class="tf22-title">🧠 Memory Used</div>' +
+      '<div class="tf22-sub">Used ' + esc(signals.length) + ' memory signals before routing:</div>' +
+      '<div class="tf22-signal-list">' + signals.map(function(s){ return '<button class="tf22-signal" data-tf22-memory-id="' + esc(s.id) + '">' + esc(s.title) + '</button>'; }).join('') + '</div>' +
+      '<div class="tf22-confidence"><b>Confidence</b><span>' + esc(command.memory_confidence || command.memory_context.confidence || 0) + '%</span></div>';
+    target.insertAdjacentElement(target.id === 'tfLiveWorkflow' ? 'beforebegin' : 'afterend', node);
+    bindSignalClicks();
+  }
+
+  function renderLiveTimeline(command){
+    var node = document.getElementById('tfLiveWorkflow');
+    if(!node || !command || !command.workflow_timeline) return;
+    var icons = { completed:'✓', running:'•', waiting:'…', failed:'!' };
+    node.innerHTML = '<div class="tf-workflow-title">⚡ Workflow completed</div>' +
+      '<div class="tf-workflow-sub">' + esc(command.original_command || command.label || 'Command') + ' · memory-aware routing</div>' +
+      command.workflow_timeline.map(function(step, i){
+        var status = step.status || 'completed';
+        return '<div class="tf-timeline-step"><div class="tf-step-dot ' + esc(status) + '">' + esc(icons[status] || '✓') + '</div><div class="tf-step-body"><div class="tf-step-label">' + (i+1) + '. ' + esc(step.label) + '</div><div class="tf-step-detail">' + esc(step.detail) + '</div></div></div>';
+      }).join('');
+  }
+
+  function bindSignalClicks(){
+    document.querySelectorAll('[data-tf22-memory-id]').forEach(function(btn){
+      if(btn.__tf22Bound) return;
+      btn.__tf22Bound = true;
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        var id = btn.getAttribute('data-tf22-memory-id');
+        if(window.TerafarmPhase5Memory && typeof window.TerafarmPhase5Memory.openDetail === 'function') window.TerafarmPhase5Memory.openDetail(id);
+      });
+    });
+  }
+
+  function injectCss(){
+    if(document.getElementById('tf22Style')) return;
+    var s = document.createElement('style');
+    s.id = 'tf22Style';
+    s.textContent = '.tf22-memory-used{background:#111927;border:1px solid rgba(80,140,255,.14);border-radius:16px;padding:15px;margin:12px 0 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}.tf22-title{font-size:16px;font-weight:800;color:rgba(240,250,255,.97);margin-bottom:6px}.tf22-sub{font-size:12px;color:rgba(165,205,245,.66);line-height:1.4;margin-bottom:10px}.tf22-signal-list{display:flex;flex-wrap:wrap;gap:7px}.tf22-signal{border:1px solid rgba(34,197,94,.22);background:rgba(34,197,94,.08);color:rgba(210,255,225,.94);border-radius:999px;padding:7px 9px;font-size:11px;font-weight:800;cursor:pointer}.tf22-signal:active{opacity:.82}.tf22-confidence{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding:9px 10px;border-radius:12px;background:rgba(13,20,32,.72);border:1px solid rgba(80,140,255,.10)}.tf22-confidence b{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(150,190,235,.55)}.tf22-confidence span{font-size:13px;font-weight:800;color:#22c55e}';
+    document.head.appendChild(s);
+  }
+
+  function patchRouter(){
+    if(!window.TerafarmPhase4Router || window.TerafarmPhase4Router.__phase22Patched) return;
+    var oldRun = window.TerafarmPhase4Router.run;
+    window.TerafarmPhase4Router.run = function(input){
+      var context = buildMemoryContext(input);
+      var result = oldRun(input) || {};
+      result.memory_context = context;
+      result.agents = enhanceAgents(input, result.agents || [], context);
+      var command = saveCommandContext(input, result, context);
+      setTimeout(function(){
+        renderMemoryUsed(command);
+        renderLiveTimeline(command);
+        if(window.TerafarmPhase7Workflow && typeof window.TerafarmPhase7Workflow.renderCommandHistory === 'function') window.TerafarmPhase7Workflow.renderCommandHistory();
+        if(window.TerafarmProductCore && typeof window.TerafarmProductCore.renderSyncLogs === 'function') window.TerafarmProductCore.renderSyncLogs();
+        if(window.TerafarmPhase5Memory && typeof window.TerafarmPhase5Memory.render === 'function') window.TerafarmPhase5Memory.render();
+      }, 0);
+      return result;
+    };
+    window.TerafarmPhase4Router.testBusinessTrip = function(){ return window.TerafarmPhase4Router.run('Plan my business trip'); };
+    if(typeof CommandEngine !== 'undefined') CommandEngine.run = window.TerafarmPhase4Router.run;
+    window.TerafarmPhase4Router.__phase22Patched = true;
+  }
+
+  function init(){ injectCss(); patchRouter(); bindSignalClicks(); }
+  window.buildMemoryContext = buildMemoryContext;
+  window.TerafarmPhase22MemoryAwareRouting = { init:init, buildMemoryContext:buildMemoryContext, renderMemoryUsed:renderMemoryUsed };
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(init, 900); setTimeout(init, 2200); });
+  document.addEventListener('click', function(){ setTimeout(bindSignalClicks, 80); }, true);
 })();
 </script>
 
