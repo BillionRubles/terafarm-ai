@@ -1284,6 +1284,26 @@
   .tf14-system-option span { font-size:11px; color:rgba(150,190,235,.56); }
   .tf14-pill { display:inline-flex; margin:4px 5px 0 0; padding:5px 8px; border-radius:999px; background:rgba(58,143,255,.10); border:1px solid rgba(58,143,255,.16); color:rgba(218,238,255,.9); font-size:11px; font-weight:700; }
 
+
+
+  /* ════════ TERAFARM PHASE 16 — Onboarding Flow Fix ════════ */
+  /* Behavior / visibility only: Home is product command center; account lives in Profile. */
+  #screen-home #tfHomeAccountCard,
+  #screen-home .tf-account-card#tfHomeAccountCard,
+  #screen-home #tfHomeAccountText,
+  #screen-home #tfHomeAccountState {
+    display:none !important;
+    visibility:hidden !important;
+    height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    overflow:hidden !important;
+  }
+  .tf-auth-options { display:grid; gap:8px; margin:10px 0 4px; }
+  .tf-auth-option { width:100%; padding:11px 12px; border-radius:12px; border:1px solid rgba(80,140,255,.14); background:rgba(13,20,32,.92); color:rgba(235,248,255,.92); font-size:13px; font-weight:700; cursor:pointer; }
+  .tf-auth-option:active { opacity:.85; transform:scale(.99); }
+
 </style>
 </head>
 <body>
@@ -5262,14 +5282,7 @@
         panel.innerHTML = '<h3>Integration Readiness</h3><p>Current mode is a local prototype. Next mode connects real authentication, APIs, MCP tools, and cloud memory.</p><div class="tf-mode-row"><div class="tf-mode-card"><b>Current Mode</b><span>Local prototype</span></div><div class="tf-mode-card"><b>Next Mode</b><span>Real integrations</span></div></div><div class="tf-readiness-list" id="tfReadinessList" style="margin-top:12px"></div>';
         profileWrap.insertBefore(panel, sign || null);
       }
-      var homeAnchor = document.getElementById('tfConnectPhoneCard');
-      if(homeAnchor && !document.getElementById('tfHomeAccountCard')){
-        var home = document.createElement('div');
-        home.id = 'tfHomeAccountCard';
-        home.className = 'tf-account-card';
-        home.innerHTML = '<h3>Product Account</h3><p id="tfHomeAccountText">Sign in to unlock Connect Phone and start building shared memory.</p><div id="tfHomeAccountState" class="tf-account-state guest"><span class="dot"></span>Guest Mode</div>';
-        homeAnchor.parentNode.insertBefore(home, homeAnchor);
-      }
+      // Phase 16: Home is product command center. Account card belongs only in Profile.
     }
     function renderAccountStatus(){
       var st = ensure(read());
@@ -5407,16 +5420,9 @@
       else { var m2 = document.getElementById('tfOnboardModal'); if(m2){ m2.classList.add('open'); window.connectPhoneModalOpen = true; } }
     }
     function updateHomeAccount(st){
+      // Phase 16: Product Account / Guest Mode must never render on Home.
       var card = document.getElementById('tfHomeAccountCard');
-      if(!card) return;
-      var signed = !!(st.account_state && st.account_state.signed_in);
-      card.classList.toggle('tf-phase13-hidden', signed);
-      if(signed) return;
-      card.innerHTML = '<h3>Product Account</h3>' +
-        '<p>Sign in to unlock Connect Phone and start building shared memory.</p>' +
-        '<button class="tf-account-action" id="tfHomeCreateAccount" type="button">Create Account</button>';
-      var btn = document.getElementById('tfHomeCreateAccount');
-      if(btn && !btn.__tf13){ btn.__tf13 = true; btn.addEventListener('click', openAccount); }
+      if(card) card.remove();
     }
     function updateConnectPhone(st){
       var card = document.getElementById('tfConnectPhoneCard');
@@ -5760,6 +5766,169 @@
 
   document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function(){ if(window.TerafarmPhase14IntegrationHub) TerafarmPhase14IntegrationHub.init(); }, 130);
+  });
+
+
+
+  // ════════ TERAFARM PHASE 16: ONBOARDING FLOW FIX ════════
+  // Bug / flow fix only. Home = command center. Connect Phone = onboarding gateway.
+  // Account creation lives inside Connect Phone flow. Profile = account management.
+  window.TerafarmPhase16OnboardingFlowFix = (function(){
+    var KEY = 'terafarm.product.v1';
+    function read(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e){ return {}; } }
+    function write(st){ try { localStorage.setItem(KEY, JSON.stringify(st || {})); } catch(e){} }
+    function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+    function iso(){ return new Date().toISOString(); }
+    function short(isoText){ if(!isoText) return '—'; var d = new Date(isoText); return isNaN(d.getTime()) ? '—' : d.toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' }); }
+    function ensure(st){
+      st = st || read();
+      if(!st.account_state) st.account_state = { guest:true, signed_in:false, onboarded:false, phone_connected:false, memory_active:false };
+      if(!st.onboarding) st.onboarding = { phone_connected:false, detected_systems:[] };
+      ['memory_items','connected_services','connectors','sync_logs'].forEach(function(k){ if(!Array.isArray(st[k])) st[k]=[]; });
+      st.account_state.phone_connected = !!(st.account_state.phone_connected || st.onboarding.phone_connected);
+      st.account_state.memory_active = !!(st.account_state.memory_active || st.account_state.phone_connected);
+      st.account_state.onboarded = !!(st.account_state.onboarded || st.account_state.phone_connected);
+      return st;
+    }
+    function removeHomeAccount(){
+      document.querySelectorAll('#screen-home #tfHomeAccountCard, #screen-home #tfHomeAccountText, #screen-home #tfHomeAccountState').forEach(function(el){
+        var card = el.id === 'tfHomeAccountCard' ? el : el.closest('#tfHomeAccountCard');
+        (card || el).remove();
+      });
+      document.querySelectorAll('#screen-home .tf-account-card').forEach(function(card){
+        var txt = (card.textContent || '').toLowerCase();
+        if(txt.indexOf('product account') >= 0 || txt.indexOf('guest mode') >= 0 || txt.indexOf('create account') >= 0) card.remove();
+      });
+    }
+    function ensureAuthOptions(){
+      var form = document.getElementById('modal-form');
+      var create = document.getElementById('modal-create');
+      if(!form || !create) return;
+      var sub = form.querySelector('.msub');
+      if(sub) sub.textContent = 'Create your account to connect your phone and choose what Terafarm can access.';
+      if(!document.getElementById('tfAuthOptions')){
+        var box = document.createElement('div');
+        box.id = 'tfAuthOptions';
+        box.className = 'tf-auth-options';
+        box.innerHTML = '<button type="button" class="tf-auth-option" data-auth-option="google">Continue with Google</button>' +
+                        '<button type="button" class="tf-auth-option" data-auth-option="apple">Continue with Apple</button>' +
+                        '<button type="button" class="tf-auth-option" data-auth-option="email">Continue with Email</button>';
+        create.parentNode.insertBefore(box, create);
+        box.querySelectorAll('[data-auth-option]').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var name = document.getElementById('m-name');
+            var email = document.getElementById('m-email');
+            var pass = document.getElementById('m-pass');
+            var opt = btn.getAttribute('data-auth-option');
+            if(name && !name.value) name.value = 'Terafarm User';
+            if(email && !email.value) email.value = opt === 'apple' ? 'apple.user@terafarm.ai' : (opt === 'google' ? 'google.user@terafarm.ai' : 'user@terafarm.ai');
+            if(pass && !pass.value) pass.value = 'terafarm123';
+          });
+        });
+      }
+      var note = form.querySelector('.modal-note');
+      if(note) note.textContent = 'By continuing, you choose what systems Terafarm can connect.';
+    }
+    function stats(st){
+      var connected = (st.connected_services || []).filter(function(s){ return s.status === 'connected' || s.auth_status === 'connected'; }).length || (st.connectors || []).filter(function(c){ return c.auth_status === 'connected'; }).length || 0;
+      var detected = ((st.onboarding && st.onboarding.detected_systems) || []).length || connected || 0;
+      var last = (st.onboarding && st.onboarding.completed_at) || (st.account_profile && st.account_profile.last_active) || null;
+      return { connected:connected, detected:detected, mem:(st.memory_items || []).length, last:last };
+    }
+    function openAccountFromConnectPhone(){
+      if(window.appBooting) return;
+      window.tfPendingConnectPhoneAfterAccount = true;
+      var onboard = document.getElementById('tfOnboardModal'); if(onboard) onboard.classList.remove('open');
+      ensureAuthOptions();
+      if(typeof openModal === 'function') openModal();
+      else { var m = document.getElementById('modal-ov'); if(m) m.classList.add('open'); }
+    }
+    function openPhoneGateway(autoStart){
+      if(window.appBooting) return;
+      var st = ensure(read());
+      if(!(st.account_state && st.account_state.signed_in)){
+        openAccountFromConnectPhone();
+        return;
+      }
+      if(window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.open === 'function') TerafarmPhase9Onboarding.open();
+      else { var m = document.getElementById('tfOnboardModal'); if(m){ m.classList.add('open'); window.connectPhoneModalOpen = true; } }
+      if(autoStart && window.TerafarmPhase9Onboarding && typeof TerafarmPhase9Onboarding.startScan === 'function'){
+        setTimeout(function(){ TerafarmPhase9Onboarding.startScan(); }, 80);
+      }
+    }
+    function renderConnectPhone(){
+      var st = ensure(read());
+      var card = document.getElementById('tfConnectPhoneCard');
+      if(!card) return;
+      var connected = !!(st.account_state && st.account_state.phone_connected) || !!(st.onboarding && st.onboarding.phone_connected);
+      var s = stats(st);
+      if(connected){
+        card.classList.add('tf-connect-compact');
+        card.classList.remove('tf-locked');
+        card.innerHTML = '<div class="tf-connect-main"><div class="tf-ob-title">📱 Phone Connected</div><div class="tf-ob-sub">Systems Detected: ' + esc(s.detected) + ' · Memory Profile Active · Last Scan: ' + esc(short(s.last)) + '</div></div><button class="tf-onboard-btn" id="tfRescanPhone" type="button">Rescan</button>';
+        var rescan = document.getElementById('tfRescanPhone');
+        if(rescan && !rescan.__tf16){ rescan.__tf16 = true; rescan.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
+      } else {
+        card.classList.remove('tf-connect-compact','tf-locked');
+        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" id="tf16ConnectPhoneBtn" type="button">Connect Phone</button>';
+        var btn = document.getElementById('tf16ConnectPhoneBtn');
+        if(btn && !btn.__tf16){ btn.__tf16 = true; btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
+      }
+      write(st);
+    }
+    function renderProfile(){
+      var st = ensure(read()); var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' }; var signed = !!(st.account_state && st.account_state.signed_in); var s = stats(st);
+      var body = document.getElementById('tfAccountStatusBody');
+      if(body){
+        body.innerHTML = '<div class="tf-account-state ' + (signed ? '' : 'guest') + '"><span class="dot"></span>' + (signed ? 'Signed In' : 'Guest') + '</div>' +
+          '<div class="tf-account-grid">' +
+          '<div class="tf-account-kv"><b>Name</b><span>' + esc(signed ? p.name : 'Guest User') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Email</b><span>' + esc(signed ? p.email : 'Not signed in') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Plan</b><span>' + esc(p.plan || 'Local Prototype') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Account Type</b><span>' + esc(signed ? (/pro/i.test(p.plan || '') ? 'Pro' : 'Free') : 'Guest') + '</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Status</b><span>' + esc((st.account_state && st.account_state.memory_active) ? 'active' : (signed ? 'ready' : 'locked')) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Connected Services</b><span>' + esc(s.connected) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Memory Items</b><span>' + esc(s.mem) + '</span></div>' +
+          '<div class="tf-account-kv"><b>Last Sync</b><span>' + esc(short(s.last)) + '</span></div>' +
+          '</div>';
+      }
+      var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? p.name : 'Your Account';
+      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Not signed in';
+    }
+    function patchCreateAccountFlow(){
+      var create = document.getElementById('modal-create');
+      if(create && !create.__tf16Flow){
+        create.__tf16Flow = true;
+        create.addEventListener('click', function(){
+          setTimeout(function(){
+            var st = ensure(read());
+            if(st.account_state && st.account_state.signed_in && window.tfPendingConnectPhoneAfterAccount){
+              window.tfPendingConnectPhoneAfterAccount = false;
+              if(typeof closeModal === 'function') closeModal(); else { var m = document.getElementById('modal-ov'); if(m) m.classList.remove('open'); }
+              openPhoneGateway(true);
+            }
+            render();
+          }, 180);
+        }, false);
+      }
+    }
+    function guardHomeClicks(){
+      document.addEventListener('click', function(e){
+        var target = e.target && e.target.closest ? e.target.closest('#screen-home #tfConnectPhoneCard .tf-onboard-btn') : null;
+        if(!target) return;
+        e.preventDefault();
+        e.stopPropagation();
+        if(e.stopImmediatePropagation) e.stopImmediatePropagation();
+        openPhoneGateway(false);
+      }, true);
+    }
+    function render(){ removeHomeAccount(); ensureAuthOptions(); renderConnectPhone(); renderProfile(); removeHomeAccount(); }
+    function init(){ ensureAuthOptions(); patchCreateAccountFlow(); guardHomeClicks(); render(); setInterval(render, 500); console.log('[Terafarm Phase 16] Onboarding flow fix active'); }
+    return { init:init, render:render, openPhone:openPhoneGateway };
+  })();
+
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ if(window.TerafarmPhase16OnboardingFlowFix) TerafarmPhase16OnboardingFlowFix.init(); }, 360);
   });
 
   // Phase 15 boot completion: close every transient overlay after all phase renderers finish.
