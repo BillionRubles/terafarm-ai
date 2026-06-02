@@ -1341,6 +1341,28 @@
     filter:none !important;
   }
 
+
+  /* ════════ TERAFARM PHASE 15.3 — Connect Phone JS Stability Lock ════════ */
+  .signin-hint {
+    color:#22c55e !important;
+    font-weight:700 !important;
+    animation:none !important;
+    transition:none !important;
+    text-shadow:none !important;
+    filter:none !important;
+  }
+  #tfConnectPhoneCard,
+  #tfConnectPhoneCard *,
+  #tfConnectPhoneCard::before,
+  #tfConnectPhoneCard::after,
+  .tf-onboard-card,
+  .tf-onboard-btn {
+    animation:none !important;
+    transition:none !important;
+    text-shadow:none !important;
+    filter:none !important;
+  }
+
 </style>
 </head>
 <body>
@@ -4508,7 +4530,7 @@
       var card = document.createElement('div');
       card.id = 'tfConnectPhoneCard';
       card.className = 'tf-onboard-card';
-      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+      card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
       anchor.parentNode.insertBefore(card, anchor.nextSibling);
       card.querySelector('button').addEventListener('click', open);
       refreshHomeCard();
@@ -5494,7 +5516,7 @@
       } else {
         card.classList.remove('tf-connect-compact');
         if(!card.querySelector('.tf-ob-title') || card.querySelector('.tf-ob-title').textContent.indexOf('Connect Phone') === -1){
-          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
+          card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.</div><button class="tf-onboard-btn" type="button">Connect Phone</button>';
           var btn = card.querySelector('button'); if(btn) btn.addEventListener('click', openPhone);
         }
         card.classList.toggle('tf-locked', !signed);
@@ -5943,7 +5965,7 @@
         if(rescan && !rescan.__tf16){ rescan.__tf16 = true; rescan.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
       } else {
         card.classList.remove('tf-connect-compact','tf-locked');
-        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World.<span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" id="tf16ConnectPhoneBtn" type="button">Connect Phone</button>';
+        card.innerHTML = '<div class="tf-ob-title">📱 Connect Phone</div><div class="tf-ob-sub">Scan allowed apps, AI systems, devices, and cloud tools to build My World. <span class="signin-hint">Sign in to activate.</span></div><button class="tf-onboard-btn" id="tf16ConnectPhoneBtn" type="button">Connect Phone</button>';
         var btn = document.getElementById('tf16ConnectPhoneBtn');
         if(btn && !btn.__tf16){ btn.__tf16 = true; btn.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); openPhoneGateway(false); }); }
       }
@@ -5996,7 +6018,7 @@
       }, true);
     }
     function render(){ removeHomeAccount(); ensureAuthOptions(); renderConnectPhone(); renderProfile(); removeHomeAccount(); }
-    function init(){ ensureAuthOptions(); patchCreateAccountFlow(); guardHomeClicks(); render(); setInterval(render, 500); console.log('[Terafarm Phase 16] Onboarding flow fix active'); }
+    function init(){ ensureAuthOptions(); patchCreateAccountFlow(); guardHomeClicks(); render(); console.log('[Terafarm Phase 16] Onboarding flow fix active'); }
     return { init:init, render:render, openPhone:openPhoneGateway };
   })();
 
@@ -6035,53 +6057,6 @@
   });
   window.TerafarmPhase17HomeClarity = { clean: cleanHomeClarity };
 })();
-
-
-  // ════════ TERAFARM PHASE 15.2: CONNECT PHONE STATIC UI FIX ════════
-  // Bug fix only: restore inline green hint and remove every Connect Phone animation/glow.
-  (function(){
-    function applyStaticConnectPhoneFix(){
-      var card = document.getElementById('tfConnectPhoneCard');
-      if(!card) return;
-      card.style.animation = 'none';
-      card.style.transition = 'none';
-      card.style.filter = 'none';
-      card.style.textShadow = 'none';
-      var btn = card.querySelector('.tf-onboard-btn');
-      if(btn){
-        btn.style.animation = 'none';
-        btn.style.transition = 'none';
-        btn.style.filter = 'none';
-        btn.style.textShadow = 'none';
-      }
-      var sub = card.querySelector('.tf-ob-sub');
-      if(!sub) return;
-      var isConnected = /Systems Detected|Memory Profile Active|Digital identity initialized/i.test(sub.textContent || '');
-      if(isConnected) return;
-      sub.innerHTML = 'Scan allowed apps, AI systems, devices, and cloud tools to build My World. <span class="signin-hint">Sign in to activate.</span>';
-      var hint = sub.querySelector('.signin-hint');
-      if(hint){
-        hint.style.display = 'inline';
-        hint.style.margin = '0';
-        hint.style.color = '#22c55e';
-        hint.style.fontWeight = '700';
-        hint.style.animation = 'none';
-        hint.style.transition = 'none';
-        hint.style.filter = 'none';
-        hint.style.textShadow = 'none';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', function(){
-      setTimeout(applyStaticConnectPhoneFix, 0);
-      setTimeout(applyStaticConnectPhoneFix, 250);
-      setTimeout(applyStaticConnectPhoneFix, 900);
-    });
-    var observer = new MutationObserver(function(){ applyStaticConnectPhoneFix(); });
-    document.addEventListener('DOMContentLoaded', function(){
-      observer.observe(document.body, { childList:true, subtree:true });
-    });
-    window.TerafarmPhase152ConnectPhoneStaticFix = { apply: applyStaticConnectPhoneFix };
-  })();
 </script>
 
 </body>
