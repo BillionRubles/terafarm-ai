@@ -1493,6 +1493,68 @@
   #tfConnectPhoneCard.tf38-connect-restored .signin-hint { display:inline !important; color:#22c55e !important; -webkit-text-fill-color:#22c55e !important; font-weight:700 !important; }
   @media (max-width:390px){ .tf38-mini-grid { grid-template-columns:1fr; } }
 
+
+  /* ════════ TERAFARM PHASE 40 — Profile Avatar + Platform Slogan Polish ════════ */
+  /* Scope: Profile avatar visual only. Keeps layout, navigation, modals, account logic intact. */
+  #screen-profile .pf-av {
+    position:relative !important;
+    width:88px !important;
+    height:88px !important;
+    border-radius:50% !important;
+    font-size:0 !important;
+    color:transparent !important;
+    overflow:hidden !important;
+    background:
+      radial-gradient(circle at 42% 32%, rgba(74,190,255,.22), rgba(30,112,210,.16) 34%, rgba(14,31,55,.96) 72%),
+      linear-gradient(135deg, rgba(19,42,72,.98), rgba(8,18,34,.98)) !important;
+    border:1px solid rgba(72,188,255,.22) !important;
+    box-shadow:
+      0 0 0 6px rgba(45,135,255,.045),
+      0 0 22px rgba(44,150,255,.18),
+      inset 0 1px 0 rgba(255,255,255,.08) !important;
+  }
+
+  #screen-profile .pf-av::before {
+    content:"" !important;
+    position:absolute !important;
+    inset:21px !important;
+    border-radius:18px !important;
+    background:
+      linear-gradient(135deg, rgba(54,178,255,.22), rgba(32,96,190,.10)) !important;
+    border:1.5px solid rgba(86,205,255,.52) !important;
+    box-shadow:
+      0 0 18px rgba(52,178,255,.20),
+      inset 0 0 14px rgba(70,205,255,.08) !important;
+    clip-path:polygon(25% 6%, 75% 6%, 100% 50%, 75% 94%, 25% 94%, 0 50%) !important;
+  }
+
+  #screen-profile .pf-av::after {
+    content:"" !important;
+    position:absolute !important;
+    left:50% !important;
+    top:50% !important;
+    width:34px !important;
+    height:34px !important;
+    transform:translate(-50%,-50%) !important;
+    border-radius:50% !important;
+    background:
+      radial-gradient(circle, rgba(87,216,255,.95) 0 16%, transparent 17%),
+      radial-gradient(circle at 22% 28%, rgba(87,216,255,.72) 0 9%, transparent 10%),
+      radial-gradient(circle at 78% 28%, rgba(87,216,255,.72) 0 9%, transparent 10%),
+      radial-gradient(circle at 25% 78%, rgba(87,216,255,.58) 0 8%, transparent 9%),
+      radial-gradient(circle at 75% 78%, rgba(87,216,255,.58) 0 8%, transparent 9%),
+      linear-gradient(35deg, transparent 0 47%, rgba(87,216,255,.34) 48% 52%, transparent 53% 100%),
+      linear-gradient(-35deg, transparent 0 47%, rgba(87,216,255,.30) 48% 52%, transparent 53% 100%),
+      linear-gradient(90deg, transparent 0 47%, rgba(87,216,255,.28) 48% 52%, transparent 53% 100%) !important;
+    opacity:.92 !important;
+    filter:drop-shadow(0 0 8px rgba(70,205,255,.32)) !important;
+  }
+
+  #screen-profile .pf-mail {
+    color:rgba(168,204,242,.66) !important;
+  }
+
+
 </style>
 </head>
 <body>
@@ -1502,7 +1564,7 @@
     <div class="burger" id="burger"><span></span><span></span><span></span></div>
     <div class="brand" data-nav="home">
       <h1>TERAFARM</h1>
-      <p>One Memory Across All AI</p>
+      <p>One Memory Across All Platforms</p>
     </div>
     <div class="bell" id="bell">
       <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
@@ -1649,7 +1711,7 @@
              speaks the result back. Bot face mouth-glow synced to TTS.
 
   NAV: Home · Memory (shared store) · Command (voice/router) · Agents · Profile
-  CORE: One Memory Across All AI — every agent reads/writes the same memory,
+  CORE: One Memory Across All Platforms — every agent reads/writes the same memory,
         so context stays consistent across every platform and device.
 ═══════════════════════════════════════════════════════════════════════════════
 -->
@@ -1864,7 +1926,7 @@
     <div class="pf-top">
       <div class="pf-av">👤</div>
       <div class="pf-name">Your Account</div>
-      <div class="pf-mail">Not signed in</div>
+      <div class="pf-mail">Memory not connected</div>
     </div>
     <div class="pf-list">
       <div class="pf-row" id="pf-account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg><span class="pl">Account settings</span><svg class="pc" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
@@ -5226,7 +5288,7 @@
       var p = st.account_profile || null;
       if(!p){
         p = {
-          user_id:'guest', name:'Guest User', email:'Not signed in', plan:'Local Prototype', created_at:null, last_active:null,
+          user_id:'guest', name:'Guest User', email:'Memory not connected', plan:'Local Prototype', created_at:null, last_active:null,
           memory_status:st.account_state.memory_active ? 'active' : 'waiting',
           connected_services_count:(st.connected_services || []).filter(function(s){ return s.status === 'connected'; }).length,
           memory_items_count:(st.memory_items || []).length
@@ -5314,7 +5376,7 @@
       var list = document.getElementById('tfReadinessList');
       if(list){ list.innerHTML = READY.map(function(x){ return '<div class="tf-ready-row"><span>' + esc(x) + '</span><span>READY</span></div>'; }).join(''); }
       var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? p.name : 'Your Account';
-      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Not signed in';
+      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Memory not connected';
       var av = document.querySelector('#screen-profile .pf-av'); if(av) av.textContent = signed ? '🧠' : '👤';
       var pfBtn = document.getElementById('pf-signin'); if(pfBtn) pfBtn.textContent = signed ? 'Account Active' : 'Sign In / Create Account';
       var menuSign = document.getElementById('menu-signin'); if(menuSign) menuSign.lastChild.nodeValue = signed ? 'Account Active' : 'Sign In / Create Account';
@@ -5462,7 +5524,7 @@
       var body = document.getElementById('tfAccountStatusBody');
       if(!body) return;
       var signed = !!(st.account_state && st.account_state.signed_in);
-      var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' };
+      var p = st.account_profile || { name:'Guest User', email:'Memory not connected', plan:'Local Prototype', memory_status:'locked' };
       var s = stats(st);
       body.innerHTML = signed ? (
         '<div class="tf-account-state"><span class="dot"></span>Signed In</div>' +
@@ -5918,7 +5980,7 @@
       write(st);
     }
     function renderProfile(){
-      var st = ensure(read()); var p = st.account_profile || { name:'Guest User', email:'Not signed in', plan:'Local Prototype', memory_status:'locked' }; var signed = !!(st.account_state && st.account_state.signed_in); var s = stats(st);
+      var st = ensure(read()); var p = st.account_profile || { name:'Guest User', email:'Memory not connected', plan:'Local Prototype', memory_status:'locked' }; var signed = !!(st.account_state && st.account_state.signed_in); var s = stats(st);
       var body = document.getElementById('tfAccountStatusBody');
       if(body){
         body.innerHTML = signed ? (
@@ -5944,7 +6006,7 @@
       );
       }
       var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed ? p.name : 'Your Account';
-      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Not signed in';
+      var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed ? p.email : 'Memory not connected';
     }
     function patchCreateAccountFlow(){
       var create = document.getElementById('modal-create');
@@ -6223,7 +6285,7 @@
     var html = signed ? signedHtml(st) : guestHtml();
     if(body.innerHTML !== html) body.innerHTML = html;
     var name = document.querySelector('#screen-profile .pf-name'); if(name) name.textContent = signed && st.account_profile ? (st.account_profile.name || 'Terafarm User') : 'Your Account';
-    var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Not signed in';
+    var mail = document.querySelector('#screen-profile .pf-mail'); if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Memory not connected';
   }
   function lockConnectPhone(){ /* Phase 17: no DOM rewrite; renderConnectPhone is the only text source. */ }
   function run(){ renderStableProfile(); lockConnectPhone(); }
@@ -6399,7 +6461,7 @@
     var name = document.querySelector('#screen-profile .pf-name');
     if(name) name.textContent = signed && st.account_profile ? (st.account_profile.name || 'Terafarm User') : 'Your Account';
     var mail = document.querySelector('#screen-profile .pf-mail');
-    if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Not signed in';
+    if(mail) mail.textContent = signed && st.account_profile ? (st.account_profile.email || 'Signed in') : 'Memory not connected';
   }
   function addSampleLabels(){
     var mode = syncWorldMode(read());
