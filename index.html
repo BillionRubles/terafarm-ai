@@ -1555,6 +1555,100 @@
   }
 
 
+
+  /* ════════ TERAFARM FINAL BLUE REDUCTION — background only ════════ */
+  /* Scope: removes the global blue tint from large surfaces only.
+     Buttons and primary action gradients are intentionally untouched. */
+  :root {
+    --tf-bg:#0b0f16 !important;
+    --tf-card:#101720 !important;
+    --tf-border:rgba(255,255,255,.085) !important;
+    --tf-hover:rgba(255,255,255,.055) !important;
+  }
+
+  html,
+  body {
+    background:#0b0f16 !important;
+  }
+
+  .top,
+  .menu,
+  .modal,
+  .tf-memory-sheet,
+  .tf-service-sheet,
+  .tf-command-sheet,
+  .tf-connector-sheet,
+  .tf-onboard-sheet,
+  .tf14-sheet {
+    background:#0b0f16 !important;
+  }
+
+  .qa-card,
+  .act,
+  .memcard,
+  .stat,
+  .mem-item,
+  .agent,
+  .pf-row,
+  .tf-onboard-card,
+  .tf-account-card,
+  .tf-integration-panel,
+  .tf14-memory-panel,
+  .tf14-feed-panel,
+  .tf-workflow-live,
+  .tf18-world-score,
+  .tf18-source,
+  .tf18-time-card,
+  .tf38-mini-card,
+  .tf38-flow-row,
+  .tf-memory-kv,
+  .tf-service-row,
+  .tf-scan-stage,
+  .tf-detected-item,
+  .tf-account-kv,
+  .tf-ready-row,
+  .tf-mode-card,
+  .tf14-kpi,
+  .tf14-system-option {
+    background:#101720 !important;
+    border-color:rgba(255,255,255,.085) !important;
+  }
+
+  .qa-card:active,
+  .act:active,
+  .memcard:active,
+  .agent:active,
+  .pf-row:active,
+  .tf-command-row:active,
+  .tf-connector-row:active,
+  .tf14-system-option:active {
+    background:#151d28 !important;
+  }
+
+  .sm-badge,
+  .memcard .ico,
+  .csys-ico,
+  #screen-home .csys-ico,
+  .menu-x,
+  .menu-signin,
+  .menu-pro,
+  .modal-x,
+  .fld,
+  .tf14-connect-btn,
+  .tf-permission-btn,
+  .tf-auth-option {
+    background:rgba(16,23,32,.94) !important;
+    border-color:rgba(255,255,255,.085) !important;
+    box-shadow:none !important;
+  }
+
+  .menu-pro {
+    background:linear-gradient(135deg, rgba(18,24,32,.96), rgba(11,15,22,.98)) !important;
+  }
+
+  /* Keep buttons exactly as designed: no override for .modal-btn, .pf-signin,
+     .tf-onboard-btn, .tf-account-action, .nav-c .mic, or action gradients. */
+
 </style>
 </head>
 <body>
