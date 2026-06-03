@@ -1515,7 +1515,7 @@
 
     <div class="greet">
       <h2 id="greet">Good morning 💙</h2>
-      <p id="greetMsg" class="greet-msg">🔗 Active across 8 AI systems</p>
+      <p id="greetMsg" class="greet-msg">🧠 Shared memory is online</p>
     </div>
 
     <!-- MEMORY CORE -->
@@ -11568,6 +11568,252 @@
     new MutationObserver(function(){ clearTimeout(t); t=setTimeout(apply,100); }).observe(document.body,{childList:true,subtree:true});
   }
   window.TerafarmPhase389MemoryOSOrderLock={refresh:apply};
+})();
+</script>
+
+
+
+<style>
+
+
+
+<style id="tfStableLandingMessageCSS">
+  /* TERAFARM FINAL MESSAGE STABILITY LOCK
+     Fixed height, no layout jump, no fade-class conflict. */
+  #greetMsg.greet-msg{
+    min-height:42px !important;
+    height:42px !important;
+    max-height:42px !important;
+    line-height:1.22 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    overflow:hidden !important;
+    white-space:normal !important;
+    padding:0 16px !important;
+    margin-top:5px !important;
+    transform:none !important;
+    animation:none !important;
+    transition:none !important;
+    opacity:1 !important;
+    will-change:auto !important;
+  }
+  #greetMsg.greet-msg.fade,
+  #greetMsg.greet-msg.tf-msg-fade,
+  #greetMsg.greet-msg.tf-demo-fade{
+    opacity:1 !important;
+    transform:none !important;
+    animation:none !important;
+    transition:none !important;
+  }
+  @media (max-width:480px){
+    #greetMsg.greet-msg{ font-size:16px !important; }
+  }
+</style>
+<script id="tfStableLandingMessageJS">
+/* TERAFARM FINAL LANDING DEMO MESSAGES
+   One controller. No names. No debug logs. No first-screen shaking. */
+(function(){
+  'use strict';
+
+  var MESSAGES = [
+    '🧠 One memory across all platforms',
+    '🔗 Connected AI systems synchronized',
+    '📱 Phone context ready to connect',
+    '🤖 Assistants share one memory layer',
+    '📅 Calendar context prepared',
+    '📧 Email intelligence ready',
+    '🏠 Smart home signals available',
+    '🚗 Vehicle context ready',
+    '📂 Files and notes can link securely',
+    '🎯 Goals and projects updated',
+    '⚡ One command routes across agents',
+    '🔄 Memory flows across systems',
+    '☁️ Cloud intelligence coordinated',
+    '✅ Shared memory active'
+  ];
+
+  var FIRST_INTERVAL_MS = 2200;
+  var AFTER_INTERVAL_MS = 4000;
+  var FAST_WINDOW_MS = 20000;
+
+  var allowed = Object.create(null);
+  MESSAGES.forEach(function(m){ allowed[m] = true; });
+
+  var BLOCK_PATTERNS = [
+    /memory record/i,
+    /saved in shared memory/i,
+    /coming home routine/i,
+    /code review/i,
+    /review initialized/i,
+    /github/i,
+    /vercel/i,
+    /repository/i,
+    /command received/i,
+    /timeline synchronized/i,
+    /memory coverage updated/i,
+    /foreign connectors/i,
+    /business travel memory/i,
+    /manual memory/i,
+    /platform connection memory/i,
+    /general memory/i,
+    /agents:/i,
+    /connectors:/i,
+    /terafarm code review/i
+  ];
+
+  var index = 0;
+  var timer = null;
+  var bootTime = Date.now();
+  var current = MESSAGES[0];
+  var internalWrite = false;
+
+  function clean(v){ return String(v == null ? '' : v).replace(/\s+/g,' ').trim(); }
+  function isAllowed(v){ return !!allowed[clean(v)]; }
+  function isBlocked(v){
+    var s = clean(v);
+    if(!s) return true;
+    if(isAllowed(s)) return false;
+    if(s.length > 58) return true;
+    for(var i=0;i<BLOCK_PATTERNS.length;i++){
+      if(BLOCK_PATTERNS[i].test(s)) return true;
+    }
+    return true;
+  }
+  function node(){ return document.getElementById('greetMsg'); }
+
+  function installSetterGuards(){
+    if(window.__tfStableMessageSetterGuards) return;
+    window.__tfStableMessageSetterGuards = true;
+
+    var textDesc = Object.getOwnPropertyDescriptor(Node.prototype, 'textContent');
+    if(textDesc && textDesc.set){
+      Object.defineProperty(Node.prototype, 'textContent', {
+        get: textDesc.get,
+        set: function(v){
+          if(this && this.id === 'greetMsg' && !internalWrite && isBlocked(v)) return;
+          return textDesc.set.call(this, v);
+        },
+        configurable:true
+      });
+    }
+
+    var innerTextDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText');
+    if(innerTextDesc && innerTextDesc.set){
+      Object.defineProperty(HTMLElement.prototype, 'innerText', {
+        get: innerTextDesc.get,
+        set: function(v){
+          if(this && this.id === 'greetMsg' && !internalWrite && isBlocked(v)) return;
+          return innerTextDesc.set.call(this, v);
+        },
+        configurable:true
+      });
+    }
+
+    var htmlDesc = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+    if(htmlDesc && htmlDesc.set){
+      Object.defineProperty(Element.prototype, 'innerHTML', {
+        get: htmlDesc.get,
+        set: function(v){
+          if(this && this.id === 'greetMsg' && !internalWrite && isBlocked(v)) return;
+          return htmlDesc.set.call(this, v);
+        },
+        configurable:true
+      });
+    }
+  }
+
+  function forceCleanClasses(el){
+    if(!el) return;
+    el.classList.remove('fade','tf-msg-fade','tf-demo-fade');
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }
+
+  function write(msg){
+    var el = node();
+    if(!el) return;
+    msg = isAllowed(msg) ? clean(msg) : MESSAGES[0];
+    internalWrite = true;
+    forceCleanClasses(el);
+    el.textContent = msg;
+    current = msg;
+    internalWrite = false;
+  }
+
+  function removeDebugCards(){
+    var bad = /Terafarm Code Review|code review initialized|GitHub|Claude \+ Vercel|Repository context|Agents:|Connectors:/i;
+    var sel = '#screen-home .tf-workflow-live,#screen-home .tf14-feed-panel,#screen-home .tf38-flow-row,#screen-home [id*="Result"],#screen-home [class*="workflow"],#screen-home [class*="feed"]';
+    document.querySelectorAll(sel).forEach(function(el){
+      if(bad.test(el.textContent || '')) el.remove();
+    });
+  }
+
+  function interval(){
+    return (Date.now() - bootTime < FAST_WINDOW_MS) ? FIRST_INTERVAL_MS : AFTER_INTERVAL_MS;
+  }
+
+  function tick(){
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      removeDebugCards();
+      index = (index + 1) % MESSAGES.length;
+      write(MESSAGES[index]);
+      tick();
+    }, interval());
+  }
+
+  function stabilize(){
+    installSetterGuards();
+    removeDebugCards();
+    var el = node();
+    if(el){
+      forceCleanClasses(el);
+      if(!isAllowed(el.textContent)) write(current || MESSAGES[0]);
+    }
+  }
+
+  function boot(){
+    bootTime = Date.now();
+    index = 0;
+    current = MESSAGES[0];
+    installSetterGuards();
+    removeDebugCards();
+    write(MESSAGES[0]);
+    tick();
+  }
+
+  installSetterGuards();
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', boot, {once:true});
+  } else {
+    boot();
+  }
+
+  // One light observer only: cleans classes/text after old engines try to touch the hero message.
+  if(window.MutationObserver){
+    var observerTimer = null;
+    new MutationObserver(function(){
+      clearTimeout(observerTimer);
+      observerTimer = setTimeout(stabilize, 20);
+    }).observe(document.documentElement, {
+      childList:true,
+      subtree:true,
+      characterData:true,
+      attributes:true,
+      attributeFilter:['class','style']
+    });
+  }
+
+  window.TerafarmDemoMessages = {
+    messages: MESSAGES.slice(),
+    firstIntervalMs: FIRST_INTERVAL_MS,
+    afterIntervalMs: AFTER_INTERVAL_MS,
+    reset: boot,
+    set: function(msg){ if(isAllowed(msg)) write(msg); },
+    clean: removeDebugCards
+  };
 })();
 </script>
 
