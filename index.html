@@ -11973,5 +11973,76 @@
 })();
 </script>
 
+
+<!-- ===== TERAFARM desktop cinematic background - ADDED LAYER ONLY =====
+     Desktop only (min-width:1024px). The website background stays the ORIGINAL
+     Terafarm colour (#0b0f16) - this layer does NOT set background-color, and
+     the centre band is painted in #0b0f16, so the column, card gaps and the
+     site are untinted and fully separate from the horizon. Behind the margins
+     sits one continuous, SUBTLE planetary atmosphere (orbital limb): a faint,
+     desaturated horizon edge with a soft muted-blue atmosphere ONLY ABOVE it,
+     fading back into #0b0f16; below the line is the plain #0b0f16 (no glow).
+     It is one uniform ring (same radius / thickness / colour everywhere, no
+     hotspots); the centred website occludes its peak so it reads as one planet
+     behind the app and the band meets the column edge sharply, so the limb
+     keeps its intensity to the content boundary then disappears cleanly behind
+     it (no taper / wedge / endpoints). The horizon is intentionally secondary:
+     Terafarm first, dark background second, atmosphere third. Only the body
+     background-image layer is added; the site forces
+     `html,body{background:#0b0f16 !important}`, so background-image uses
+     `html body` + !important purely to layer the art in. No website selector
+     and no JavaScript is touched. -->
+<style id="tf-desktop-cinematic-bg">
+@media (min-width:1024px){
+  html body{
+    background-image:
+      linear-gradient(90deg,
+        transparent calc(50% - 366px),
+        #0b0f16 calc(50% - 360px),
+        #0b0f16 calc(50% + 360px),
+        transparent calc(50% + 366px)),
+      radial-gradient(210% 380% at 50% 408%,
+        transparent 0,
+        transparent 90.27%,
+        rgba(150,180,212,.20) 90.32%,
+        rgba(176,200,226,.46) 90.355%,
+        rgba(120,158,200,.30) 90.45%,
+        rgba(82,120,170,.19) 90.78%,
+        rgba(54,88,140,.11) 91.35%,
+        rgba(38,64,108,.055) 92.10%,
+        rgba(28,50,90,.025) 93.20%,
+        transparent 94.80%) !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+  }
+}
+@media (min-width:1200px){
+  html body{
+    background-image:
+      linear-gradient(90deg,
+        transparent calc(50% - 486px),
+        #0b0f16 calc(50% - 480px),
+        #0b0f16 calc(50% + 480px),
+        transparent calc(50% + 486px)),
+      radial-gradient(210% 380% at 50% 408%,
+        transparent 0,
+        transparent 90.27%,
+        rgba(150,180,212,.20) 90.32%,
+        rgba(176,200,226,.46) 90.355%,
+        rgba(120,158,200,.30) 90.45%,
+        rgba(82,120,170,.19) 90.78%,
+        rgba(54,88,140,.11) 91.35%,
+        rgba(38,64,108,.055) 92.10%,
+        rgba(28,50,90,.025) 93.20%,
+        transparent 94.80%) !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+  }
+}
+</style>
 </body>
 </html>
